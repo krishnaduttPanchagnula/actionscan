@@ -1,0 +1,87 @@
+version: 2
+
+project_name: actionscan
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: actionscan
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ignore:
+      # drop windows/arm64 — rare combo
+      - goos: windows
+        goarch: arm64
+    ldflags:
+      - -s -w
+      - -X main.version={{.Version}}
+      - -X main.commit={{.Commit}}
+      - -X main.date={{.Date}}
+
+archives:
+  - id: default
+    formats: [tar.gz]
+    # zip for windows
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "arm64" }}ARM64
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+    files:
+      - README.md
+      - LICENSE*
+      - config.yaml
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - Merge pull request
+      - Merge branch
+
+# ── Homebrew: auto-updates the formula in your tap on every release ──
+brews:
+  - repository:
+      owner: krishnaduttPanchagnula
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"   # PAT with repo scope on the tap
+    folder: Formula
+    homepage: "https://github.com/krishnaduttPanchagnula/actionscan"
+    description: "Scan GitHub repos for vulnerable, malicious, and outdated GitHub Actions"
+    license: MIT
+    test: |
+      system "#{bin}/actionscan --help"
+    install: |
+      bin.install "actionscan"
+
+# ── GitHub release with auto-generated notes ──
+release:
+  github:
+    owner: krishnaduttPanchagnula
+    name: actionscan
+  draft: false
+  prerelease: auto
+  make_latest: true

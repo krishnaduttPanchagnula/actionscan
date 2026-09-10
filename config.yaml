@@ -1,0 +1,18 @@
+server:
+  port: "8080"
+  mode: release
+
+github:
+  token: ""
+  org: ""
+  user: ""
+
+scan:
+  concurrency: 8
+  report_dir: ./reports
+
+rules:
+  cache_ttl_hours: 12
+  cache_dir: ""              # empty = ~/.actionscan
+  fetch_latest_tags: true
+  use_osv: true              # OSV.dev per-action queries
