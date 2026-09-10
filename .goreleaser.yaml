@@ -67,7 +67,7 @@ changelog:
 brews:
   - repository:
       owner: krishnaduttPanchagnula
-      name: homebrew-tap
+      name: actionscan
       token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
     directory: HomebrewFormula
     homepage: "https://github.com/krishnaduttPanchagnula/actionscan"
