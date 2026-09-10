@@ -63,12 +63,13 @@ changelog:
       - Merge branch
 
 # ── Homebrew: auto-updates the formula in your tap on every release ──
+
 brews:
   - repository:
       owner: krishnaduttPanchagnula
       name: homebrew-tap
-      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"   # PAT with repo scope on the tap
-    folder: Formula
+      token: "{{ .Env.HOMEBREW_TAP_TOKEN }}"
+    directory: HomebrewFormula
     homepage: "https://github.com/krishnaduttPanchagnula/actionscan"
     description: "Scan GitHub repos for vulnerable, malicious, and outdated GitHub Actions"
     license: MIT
@@ -76,6 +77,7 @@ brews:
       system "#{bin}/actionscan --help"
     install: |
       bin.install "actionscan"
+
 
 # ── GitHub release with auto-generated notes ──
 release:

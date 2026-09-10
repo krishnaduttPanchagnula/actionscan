@@ -1,0 +1,196 @@
+name: "Kitchen Sink CI/CD Pipeline"
+
+# Dynamically names the workflow run in the GitHub UI
+run-name: Deploying ${{ github.ref_name }} by @${{ github.actor }}
+
+# -----------------------------------------------------------------------------
+# 1. TRIGGERS (Events that start the workflow)
+# -----------------------------------------------------------------------------
+on:
+  push:
+    branches:
+      - main
+      - 'releases/**' # Wildcard matching
+    tags:
+      - 'v*.*.*'
+    paths:
+      - 'src/**'
+      - '.github/workflows/**'
+    paths-ignore:
+      - 'docs/**'
+      - 'README.md'
+
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened, ready_for_review]
+
+  schedule:
+    - cron: '0 2 * * *' # Every day at 2 AM UTC
+
+  workflow_dispatch: # Manual trigger via UI/API
+    inputs:
+      environment:
+        description: 'Target deployment environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      debug_mode:
+        description: 'Enable debug logging'
+        required: false
+        type: boolean
+        default: false
+
+  workflow_call: # Allows THIS workflow to be called by other workflows
+    inputs:
+      caller_input:
+        required: true
+        type: string
+    secrets:
+      SHARED_SECRET:
+        required: true
+
+# -----------------------------------------------------------------------------
+# 2. GLOBAL CONFIGURATION
+# -----------------------------------------------------------------------------
+# Granular permissions (e.g., required for OIDC authentication like AWS/GCP)
+permissions:
+  contents: read
+  id-token: write
+  pull-requests: write
+  packages: write
+
+# Ensures only one run of this workflow per branch happens at a time
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true # Automatically cancels older queued/running jobs
+
+env:
+  GLOBAL_ENV_VAR: "Accessible in all jobs and steps"
+
+defaults:
+  run:
+    shell: bash
+    working-directory: ./src
+
+# -----------------------------------------------------------------------------
+# 3. JOBS
+# -----------------------------------------------------------------------------
+jobs:
+  test-and-build:
+    name: Build & Test (Matrix & Services)
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    continue-on-error: false # If true, workflow passes even if this job fails
+
+    # Matrix strategy to run this job multiple times with different variables
+    strategy:
+      fail-fast: false # If one matrix job fails, don't cancel the others
+      max-parallel: 4
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        language-version: ['1.21', '1.22']
+        include:
+          - os: ubuntu-latest
+            language-version: '1.22'
+            experimental: true
+        exclude:
+          - os: macos-latest
+            language-version: '1.21'
+
+    # Background service containers (e.g., Databases, Redis)
+    services:
+      postgres:
+        image: postgres:15
+        env:
+          POSTGRES_USER: user
+          POSTGRES_PASSWORD: password
+          POSTGRES_DB: testdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    # Job-level outputs to pass to downstream jobs
+    outputs:
+      build_status: ${{ steps.set_output.outputs.status }}
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetches full git history (useful for tools like SonarQube)
+
+      - name: Conditional Step Execution
+        if: ${{ github.event_name == 'pull_request' && matrix.experimental != true }}
+        run: echo "This only runs on PRs for non-experimental matrix legs."
+
+      - name: Run Tests with Services
+        env:
+          DB_URL: postgres://user:password@localhost:5432/testdb
+          LOCAL_VAR: ${{ secrets.MY_SECRET }}
+        run: |
+          echo "Testing on ${{ matrix.os }} with version ${{ matrix.language-version }}"
+          echo "Global var: $GLOBAL_ENV_VAR"
+
+      - name: Set Output Parameter
+        id: set_output
+        run: echo "status=success" >> $GITHUB_OUTPUT
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-artifact-${{ matrix.os }}
+          path: ./src/bin/
+          retention-days: 5
+
+  # ---------------------------------------------------------------------------
+  # Reusable Workflow Call (Nesting workflows)
+  # ---------------------------------------------------------------------------
+  call-external-workflow:
+    name: Run Security Scan
+    needs: test-and-build
+    uses: ./.github/workflows/security-scan.yml
+    with:
+      scan_level: 'strict'
+    secrets: inherit # Passes all caller secrets to the reusable workflow
+
+  # ---------------------------------------------------------------------------
+  # Deployment Job (Environments, Dependencies, and OIDC)
+  # ---------------------------------------------------------------------------
+  deploy:
+    name: Deploy to Environment
+    needs: [test-and-build, call-external-workflow] # Waits for previous jobs
+    if: github.ref == 'refs/heads/main' # Only deploy from the main branch
+    runs-on: ubuntu-latest
+
+    # Links to GitHub Environments (supports manual approvals, wait timers)
+    environment:
+      name: ${{ inputs.environment || 'staging' }}
+      url: https://${{ inputs.environment }}.example.com
+
+    steps:
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifact-ubuntu-latest
+          path: ./downloaded-bin
+
+      - name: Check Output from Previous Job
+        run: |
+          echo "Previous job status was: ${{ needs.test-and-build.outputs.build_status }}"
+
+      - name: Authenticate via OIDC (Example AWS)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: arn:aws:iam::123456789012:role/GitHubActionsRole
+          aws-region: us-east-1
+
+      - name: Execute Deployment
+        run: echo "Deploying artifact to ${{ inputs.environment || 'staging' }}..."
