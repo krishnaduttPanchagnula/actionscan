@@ -39,9 +39,9 @@ func CSV(s *scanner.Summary, dir string) (string, error) {
 	defer f.Close()
 
 	w := csv.NewWriter(f)
-	w.Write([]string{"repo", "workflow", "action", "ref", "severity", "category", "reason"})
+	w.Write([]string{"repo", "workflow", "action", "ref", "severity", "category", "reason", "fix"})
 	for _, fi := range s.Findings {
-		w.Write([]string{fi.Repo, fi.Workflow, fi.Action, fi.Ref, fi.Severity, fi.Category, fi.Reason})
+		w.Write([]string{fi.Repo, fi.Workflow, fi.Action, fi.Ref, fi.Severity, fi.Category, fi.Reason, fi.Fix})
 	}
 	w.Flush()
 	return p, w.Error()

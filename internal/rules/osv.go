@@ -39,16 +39,22 @@ type OSVVuln struct {
 		Type  string `json:"type"`
 		Score string `json:"score"`
 	} `json:"severity"`
-	Affected []struct {
-		Package struct {
-			Name      string `json:"name"`
-			Ecosystem string `json:"ecosystem"`
-		} `json:"package"`
-		Ranges []struct {
-			Type   string     `json:"type"`
-			Events []OSVEvent `json:"events"`
-		} `json:"ranges"`
-	} `json:"affected"`
+	Affected []OSVAffected `json:"affected"`
+}
+
+// OSVAffected is one affected package entry of an advisory — named so
+// callers can walk Ranges/Events to derive fix information.
+type OSVAffected struct {
+	Package struct {
+		Name      string `json:"name"`
+		Ecosystem string `json:"ecosystem"`
+	} `json:"package"`
+	Ranges []OSVRange `json:"ranges"`
+}
+
+type OSVRange struct {
+	Type   string     `json:"type"`
+	Events []OSVEvent `json:"events"`
 }
 
 type OSVEvent struct {

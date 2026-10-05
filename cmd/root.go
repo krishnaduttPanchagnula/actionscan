@@ -43,6 +43,9 @@ func init() {
 	rootCmd.PersistentFlags().Bool("no-osv", false, "skip OSV.dev queries")
 
 	_ = viper.BindPFlag("github.token", rootCmd.PersistentFlags().Lookup("token"))
+	// Honor the documented ACTIONSCAN_TOKEN env var (AutomaticEnv only
+	// checks ACTIONSCAN_GITHUB_TOKEN for this key).
+	_ = viper.BindEnv("github.token", "ACTIONSCAN_TOKEN")
 	_ = viper.BindPFlag("github.org", rootCmd.PersistentFlags().Lookup("org"))
 	_ = viper.BindPFlag("github.user", rootCmd.PersistentFlags().Lookup("user"))
 	_ = viper.BindPFlag("scan.concurrency", rootCmd.PersistentFlags().Lookup("concurrency"))

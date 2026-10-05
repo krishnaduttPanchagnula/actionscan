@@ -114,13 +114,13 @@ var DefaultMalicious = []CompromisedEntry{
 	{Repo: "reviewdog/action-setup", Description: "Compromised Mar 2025 (CVE-2025-30154) — injected malicious runner code"},
 }
 
-var DefaultVulnerable = map[string]string{
-	"actions/checkout@v2":          "EOL — upgrade to v4",
-	"actions/cache@v2":             "EOL — upgrade to v4",
-	"actions/upload-artifact@v2":   "Deprecated Dec 2024 — upgrade to v4",
-	"actions/upload-artifact@v3":   "Deprecated Dec 2024 — upgrade to v4",
-	"actions/download-artifact@v2": "Deprecated Dec 2024 — upgrade to v4",
-	"actions/download-artifact@v3": "Deprecated Dec 2024 — upgrade to v4",
+var DefaultVulnerable = map[string]VulnRule{
+	"actions/checkout@v2":          {Reason: "EOL — upgrade to v4", Fix: "Upgrade to actions/checkout@v4"},
+	"actions/cache@v2":             {Reason: "EOL — upgrade to v4", Fix: "Upgrade to actions/cache@v4"},
+	"actions/upload-artifact@v2":   {Reason: "Deprecated Dec 2024 — upgrade to v4", Fix: "Upgrade to actions/upload-artifact@v4"},
+	"actions/upload-artifact@v3":   {Reason: "Deprecated Dec 2024 — upgrade to v4", Fix: "Upgrade to actions/upload-artifact@v4"},
+	"actions/download-artifact@v2": {Reason: "Deprecated Dec 2024 — upgrade to v4", Fix: "Upgrade to actions/download-artifact@v4"},
+	"actions/download-artifact@v3": {Reason: "Deprecated Dec 2024 — upgrade to v4", Fix: "Upgrade to actions/download-artifact@v4"},
 }
 
 func normalizeRepo(s string) string {

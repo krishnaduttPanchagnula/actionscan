@@ -71,8 +71,11 @@ func getStr(key, def string) string {
 }
 
 func getInt(key string, def int) int {
-	if v := viper.GetInt(key); v != 0 {
-		return v
+	// IsSet distinguishes "explicitly configured to 0" from "unset";
+	// viper.GetInt alone returns 0 in both cases, and the old `v != 0`
+	// check silently discarded legitimate zero values (e.g. cache_ttl_hours: 0).
+	if viper.IsSet(key) {
+		return viper.GetInt(key)
 	}
 	return def
 }

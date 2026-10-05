@@ -9,7 +9,7 @@ GitHub Action referenced in CI workflows, and audits them against **live threat 
 - 📦 **Outdated actions** — latest-release tag lookups per action repo
 - 📌 **Pinning hygiene** — missing refs and short SHAs
 
-Reports are generated as **HTML** (with 4 themes), **CSV**, and **JSON**.
+Reports are generated as **HTML** (minimal Wiz-style dashboard), **CSV**, and **JSON**.
 
 ---
 
@@ -28,7 +28,8 @@ Reports are generated as **HTML** (with 4 themes), **CSV**, and **JSON**.
 - ✅ **Graceful offline fallback** — built-in default rules when feeds unreachable
 - ✅ **No cloning** — reads workflow files via the GitHub API (git tree + contents)
 - ✅ **Concurrent scanning** with configurable worker count
-- ✅ **Themed HTML report** — Dark / Aurora / Light / Sand with localStorage persistence
+- ✅ **Fix suggestions** — every finding carries a concrete remediation (the exact `uses:` line to copy, the advisory's patched version, or rotation guidance)
+- ✅ **Minimal Wiz-style dashboard** — severity cards, distribution bar, severity filters, live search, one-click fix copy
 
 ---
 
@@ -149,7 +150,8 @@ Reports:
 # → http://localhost:8080
 ```
 
-- Themed HTML report with theme switcher (Dark / Aurora / Light / Sand)
+- Minimal security dashboard: severity cards, distribution bar, filter + search
+- A **Recommended fix** column with copy-to-clipboard for every finding
 - CSV + JSON download buttons
 - JSON API: `GET /api/status`, `GET /api/findings`
 
@@ -187,7 +189,7 @@ actionscan/
 │   │   └── ruleset.go       # merged RuleSet, disk cache, semver matching
 │   ├── scanner/scanner.go   # workflow parsing + 4-layer checks
 │   └── report/report.go     # HTML/CSV/JSON generation
-└── web/template.html        # themed HTML report template
+└── web/template.html        # minimal dashboard report template
 ```
 
 ---
@@ -215,7 +217,8 @@ Rate limits: use a token for GHSA (60→5000 req/hr). OSV is unauthenticated and
   "ref": "v41",
   "severity": "CRITICAL",
   "category": "malicious",
-  "reason": "Compromised Mar 2025 (CVE-2025-30066) — dumped runner memory to attacker C2"
+  "reason": "Compromised Mar 2025 (CVE-2025-30066) — dumped runner memory to attacker C2",
+  "fix": "Remove tj-actions/changed-files from all workflows (avoid compromised refs: v41); rotate any secrets/tokens it could have accessed and audit recent workflow runs"
 }
 ```
 

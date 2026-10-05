@@ -14,8 +14,13 @@ import (
 type Client struct {
 	gh *github.Client
 
-	latestMu sync.Mutex
-	latest   map[string]string
+	latestMu       sync.Mutex
+	latest         map[string]string
+	latestInflight map[string]chan struct{}
+
+	shaMu       sync.Mutex
+	sha         map[string]string // "repo@shortsha" -> full 40-char sha ("" = unresolvable)
+	shaInflight map[string]chan struct{}
 }
 
 func New(token string) *Client {
@@ -23,6 +28,7 @@ func New(token string) *Client {
 	return &Client{
 		gh:     github.NewClient(oauth2.NewClient(context.Background(), ts)),
 		latest: map[string]string{},
+		sha:    map[string]string{},
 	}
 }
 
@@ -126,7 +132,15 @@ func (c *Client) ListWorkflows(ctx context.Context, r Repo) (map[string][]byte, 
 		if err != nil || file == nil || file.Content == nil {
 			continue
 		}
-		content, err := base64.StdEncoding.DecodeString(*file.Content)
+		// GitHub wraps base64 content at 60 chars with newlines; strip
+		// them or decoding fails and the workflow is silently skipped.
+		raw := strings.Map(func(r rune) rune {
+			if r == '\n' || r == '\r' {
+				return -1
+			}
+			return r
+		}, *file.Content)
+		content, err := base64.StdEncoding.DecodeString(raw)
 		if err != nil {
 			continue
 		}
@@ -135,27 +149,91 @@ func (c *Client) ListWorkflows(ctx context.Context, r Repo) (map[string][]byte, 
 	return out, nil
 }
 
-// LatestTag returns the latest release tag for an action repo (in-memory cached).
+// LatestTag returns the latest release tag for an action repo
+// (in-memory cached; concurrent callers share one upstream request).
 func (c *Client) LatestTag(ctx context.Context, actionRepo string) string {
+	parts := strings.SplitN(actionRepo, "/", 2)
+	if len(parts) != 2 {
+		return ""
+	}
+
 	c.latestMu.Lock()
 	if v, ok := c.latest[actionRepo]; ok {
 		c.latestMu.Unlock()
 		return v
 	}
+	if c.latestInflight == nil {
+		c.latestInflight = map[string]chan struct{}{}
+	}
+	if done, ok := c.latestInflight[actionRepo]; ok {
+		// Another worker is fetching this tag — wait for it.
+		c.latestMu.Unlock()
+		<-done
+		c.latestMu.Lock()
+		v := c.latest[actionRepo]
+		c.latestMu.Unlock()
+		return v
+	}
+	done := make(chan struct{})
+	c.latestInflight[actionRepo] = done
 	c.latestMu.Unlock()
 
-	parts := strings.SplitN(actionRepo, "/", 2)
-	if len(parts) != 2 {
-		return ""
-	}
 	rel, _, err := c.gh.Repositories.GetLatestRelease(ctx, parts[0], parts[1])
-	var tag string
+	tag := ""
 	if err == nil {
 		tag = rel.GetTagName()
 	}
 
 	c.latestMu.Lock()
 	c.latest[actionRepo] = tag
+	delete(c.latestInflight, actionRepo)
 	c.latestMu.Unlock()
+	close(done)
 	return tag
+}
+
+// ResolveSHA expands a short commit SHA to its full 40-char form
+// (in-memory cached; concurrent callers share one upstream request).
+// Returns "" when the SHA cannot be resolved so callers can fall back
+// to generic advice.
+func (c *Client) ResolveSHA(ctx context.Context, actionRepo, short string) string {
+	parts := strings.SplitN(actionRepo, "/", 2)
+	if len(parts) != 2 || short == "" {
+		return ""
+	}
+
+	key := actionRepo + "@" + short
+	c.shaMu.Lock()
+	if v, ok := c.sha[key]; ok {
+		c.shaMu.Unlock()
+		return v
+	}
+	if c.shaInflight == nil {
+		c.shaInflight = map[string]chan struct{}{}
+	}
+	if done, ok := c.shaInflight[key]; ok {
+		// Another worker is resolving this SHA — wait for it.
+		c.shaMu.Unlock()
+		<-done
+		c.shaMu.Lock()
+		v := c.sha[key]
+		c.shaMu.Unlock()
+		return v
+	}
+	done := make(chan struct{})
+	c.shaInflight[key] = done
+	c.shaMu.Unlock()
+
+	commit, _, err := c.gh.Repositories.GetCommit(ctx, parts[0], parts[1], short, nil)
+	full := ""
+	if err == nil && commit != nil && len(commit.GetSHA()) == 40 {
+		full = commit.GetSHA()
+	}
+
+	c.shaMu.Lock()
+	c.sha[key] = full
+	delete(c.shaInflight, key)
+	c.shaMu.Unlock()
+	close(done)
+	return full
 }

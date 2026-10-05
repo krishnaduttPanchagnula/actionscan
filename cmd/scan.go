@@ -46,8 +46,9 @@ var scanCmd = &cobra.Command{
 		fmt.Printf("Rules loaded from: %v (cached %s)\n",
 			rs.Sources, rs.LoadedAt.Format(time.RFC3339))
 
+		ghClient := github.New(token)
 		s := &scanner.Scanner{
-			Client:  github.New(token),
+			Client:  ghClient,
 			RuleSet: rs,
 		}
 
@@ -56,7 +57,7 @@ var scanCmd = &cobra.Command{
 		}
 
 		fmt.Printf("Listing repos (org=%q user=%q)…\n", cfg.GitHub.Org, cfg.GitHub.User)
-		repos, err := s.Client.ListRepos(ctx, cfg.GitHub.Org, cfg.GitHub.User)
+		repos, err := ghClient.ListRepos(ctx, cfg.GitHub.Org, cfg.GitHub.User)
 		if err != nil {
 			return fmt.Errorf("listing repos: %w", err)
 		}
@@ -81,7 +82,8 @@ var scanCmd = &cobra.Command{
 			return fmt.Errorf("writing json: %w", err)
 		}
 
-		fmt.Printf("\nDone. %d findings across %d repos:\n", len(summary.Findings), summary.TotalRepos)
+		fmt.Printf("\nDone. %d findings in %d of %d repos (%d actions checked):\n",
+			len(summary.Findings), summary.AffectedRepos, summary.TotalRepos, summary.ActionsChecked)
 		fmt.Printf("  CRITICAL: %d  HIGH: %d  MEDIUM: %d  LOW: %d\n",
 			summary.Critical, summary.High, summary.Medium, summary.Low)
 		fmt.Printf("Reports:\n  HTML: %s\n  CSV:  %s\n  JSON: %s\n", htmlPath, csvPath, jsonPath)

@@ -28,6 +28,12 @@ var serveCmd = &cobra.Command{
 		gin.SetMode(mode)
 		r := gin.Default()
 
+		// LoadHTMLGlob panics when the pattern matches nothing (e.g. the
+		// binary is run outside the repo root) — fail with a clear error.
+		if matches, _ := filepath.Glob("web/*.html"); len(matches) == 0 {
+			return fmt.Errorf("web/template.html not found — run `serve` from the repository root")
+		}
+
 		summary, err := loadSummary(outDir)
 		if err != nil {
 			fmt.Printf("⚠ No report in %s (run `actionscan scan` first): %v\n", outDir, err)
@@ -40,10 +46,7 @@ var serveCmd = &cobra.Command{
 				c.String(http.StatusNotFound, "No report yet — run `actionscan scan` first.")
 				return
 			}
-			c.HTML(http.StatusOK, "template.html", gin.H{
-				"Summary": summary,
-				"Empty":   len(summary.Findings) == 0,
-			})
+			c.HTML(http.StatusOK, "template.html", templateData(summary))
 		})
 
 		r.GET("/report.csv", func(c *gin.Context) {
@@ -90,6 +93,20 @@ func loadSummary(dir string) (*scanner.Summary, error) {
 		return nil, err
 	}
 	return &s, nil
+}
+
+// templateData adapts a summary to the shape web/template.html expects:
+// promoted summary fields at the top level ({{.Critical}}, {{range
+// .Findings}}), exactly like report.HTML. Passing the summary under a
+// named key instead renders an empty page.
+func templateData(s *scanner.Summary) struct {
+	*scanner.Summary
+	Empty bool
+} {
+	return struct {
+		*scanner.Summary
+		Empty bool
+	}{s, len(s.Findings) == 0}
 }
 
 func init() {
