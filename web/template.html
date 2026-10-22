@@ -6,29 +6,68 @@
 <title>actionscan — Security Report</title>
 <style>
   :root {
+    color-scheme: light dark;
     --bg: #f6f7f9;
     --surface: #ffffff;
+    --surface-2: #f9fafb;
     --border: #e4e7ec;
     --border-soft: #f2f4f7;
     --text: #101828;
     --muted: #667085;
-    --faint: #98a2b3;
     --accent: #4f46e5;
     --accent-ink: #ffffff;
-    --critical: #d92d20; --critical-bg: #fef3f2;
-    --high:     #ea580c; --high-bg:     #fff4ed;
-    --medium:   #d97706; --medium-bg:   #fffbeb;
-    --low:      #079455; --low-bg:      #ecfdf3;
+    --focus: #4f46e5;
+    --ok-fg: #067647; --ok-bg: #ecfdf3; --ok-border: #abefc6;
+    --warn-fg: #a15c07; --warn-bg: #fffaeb; --warn-border: #fedf89;
+    --bad-fg: #b42318; --bad-bg: #fef3f2; --bad-border: #fecdca;
+    --critical-fg: #b42318; --critical-bg: #fef3f2; --critical-border: #fecdca;
+    --high-fg: #c2410c;     --high-bg: #fff4ed;     --high-border: #f9dbaf;
+    --medium-fg: #a15c07;   --medium-bg: #fffbeb;   --medium-border: #fde272;
+    --low-fg: #067647;      --low-bg: #ecfdf3;      --low-border: #abefc6;
     --radius: 10px;
     --shadow: 0 1px 2px rgba(16, 24, 40, .05);
   }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d1117;
+      --surface: #161b22;
+      --surface-2: #1c2128;
+      --border: #30363d;
+      --border-soft: #21262d;
+      --text: #e6edf3;
+      --muted: #9aa4b2;
+      --accent: #a5b4fc;
+      --accent-ink: #0d1117;
+      --focus: #a5b4fc;
+      --ok-fg: #6ce9a6; --ok-bg: #052e16; --ok-border: #0f5c33;
+      --warn-fg: #fec84b; --warn-bg: #2a2205; --warn-border: #6b4d06;
+      --bad-fg: #fda29b; --bad-bg: #2d1517; --bad-border: #7a2c2c;
+      --critical-fg: #fda29b; --critical-bg: #2d1517; --critical-border: #7a2c2c;
+      --high-fg: #fdb022;     --high-bg: #2a1a0c;     --high-border: #7a4c0d;
+      --medium-fg: #fec84b;   --medium-bg: #2a2205;   --medium-border: #6b4d06;
+      --low-fg: #6ce9a6;      --low-bg: #052e16;      --low-border: #0f5c33;
+      --shadow: none;
+    }
+  }
   * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
   body {
     margin: 0; background: var(--bg); color: var(--text);
     font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
     -webkit-font-smoothing: antialiased;
   }
   code, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  :focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; border-radius: 4px; }
+  .sr-only {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+  }
+  .skip-link {
+    position: absolute; left: -999px; top: 0; z-index: 20;
+    background: var(--surface); color: var(--text); padding: .5rem .8rem;
+    border: 1px solid var(--border); border-radius: 0 0 8px 0;
+  }
+  .skip-link:focus { left: 0; }
 
   /* ── top bar ── */
   .topbar {
@@ -41,132 +80,325 @@
   }
   .brand { display: flex; align-items: center; gap: .55rem; font-weight: 650; font-size: 15px; letter-spacing: -.01em; }
   .brand svg { display: block; }
-  .brand .tag { color: var(--faint); font-weight: 450; font-size: 13px; }
+  .brand .tag { color: var(--muted); font-weight: 450; font-size: 13px; }
   .spacer { flex: 1; }
   .btn {
     display: inline-block; padding: .38rem .8rem; border-radius: 7px;
     border: 1px solid var(--border); background: var(--surface); color: var(--text);
-    font-size: 13px; text-decoration: none; cursor: pointer;
+    font-size: 13px; text-decoration: none; cursor: pointer; font-family: inherit;
   }
-  .btn:hover { background: var(--bg); }
+  .btn:hover { background: var(--surface-2); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+  .btn-primary:hover { background: var(--accent); filter: brightness(.94); }
 
-  main { max-width: 1200px; margin: 0 auto; padding: 1.5rem; }
+  main { max-width: 1200px; margin: 0 auto; padding: 1.25rem 1.5rem 2rem; }
 
-  /* ── scan meta ── */
-  .meta { color: var(--muted); font-size: 13px; margin: 0 0 1.25rem; }
-  .meta b { color: var(--text); font-weight: 600; }
-
-  /* ── stat cards ── */
-  .stats {
-    display: grid; gap: .75rem;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    margin-bottom: 1rem;
-  }
-  .stat {
+  /* ── verdict ── */
+  .verdict {
+    display: flex; gap: 1rem; align-items: flex-start;
     background: var(--surface); border: 1px solid var(--border);
-    border-radius: var(--radius); padding: .9rem 1rem; box-shadow: var(--shadow);
+    border-left: 4px solid var(--muted); border-radius: var(--radius);
+    padding: 1rem 1.1rem; margin: 0 0 1rem; box-shadow: var(--shadow);
   }
-  .stat-num { font-size: 1.9rem; font-weight: 650; letter-spacing: -.02em; line-height: 1.15; }
-  .stat-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-top: .15rem; }
-  .stat.critical .stat-num { color: var(--critical); }
-  .stat.high     .stat-num { color: var(--high); }
-  .stat.medium   .stat-num { color: var(--medium); }
-  .stat.low      .stat-num { color: var(--low); }
+  .verdict h1 { margin: 0; font-size: 1.35rem; line-height: 1.3; letter-spacing: -.015em; }
+  .verdict p { margin: .35rem 0 0; color: var(--muted); font-size: 13.5px; }
+  .verdict .verdict-actions { margin-left: auto; display: flex; gap: .5rem; align-items: center; flex-wrap: wrap; }
+  .verdict-bad { border-left-color: var(--critical-fg); background: var(--critical-bg); }
+  .verdict-bad h1 { color: var(--critical-fg); }
+  .verdict-warn { border-left-color: var(--high-fg); background: var(--high-bg); }
+  .verdict-warn h1 { color: var(--high-fg); }
+  .verdict-ok { border-left-color: var(--ok-fg); background: var(--ok-bg); }
+  .verdict-ok h1 { color: var(--ok-fg); }
+  .verdict-ok p { color: var(--text); }
 
-  /* ── severity distribution bar ── */
-  .bar { display: flex; gap: 2px; height: 8px; margin-bottom: 1.5rem; }
-  .bar span { border-radius: 99px; }
-  .bar .critical { background: var(--critical); }
-  .bar .high     { background: var(--high); }
-  .bar .medium   { background: var(--medium); }
-  .bar .low      { background: var(--low); }
+  /* ── alerts ── */
+  .alert {
+    display: flex; gap: .75rem; align-items: flex-start;
+    border: 1px solid var(--warn-border); background: var(--warn-bg); color: var(--warn-fg);
+    border-radius: var(--radius); padding: .8rem 1rem; margin: 0 0 1rem;
+  }
+  .alert strong { display: block; }
+  .alert p { margin: .25rem 0 0; font-size: 13px; }
+  .alert ul { margin: .35rem 0 0; padding-left: 1.1rem; font-size: 13px; }
+  .alert li { margin: .1rem 0; }
+  .alert .alert-body { min-width: 0; }
+  .alert svg { flex: none; margin-top: 2px; }
 
-  /* ── findings panel ── */
+  /* ── scan details ── */
   .panel {
     background: var(--surface); border: 1px solid var(--border);
     border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden;
   }
+  .panel + .panel { margin-top: 1rem; }
   .panel-head {
     display: flex; align-items: center; gap: .75rem; flex-wrap: wrap;
     padding: .85rem 1rem; border-bottom: 1px solid var(--border-soft);
   }
   h2 { font-size: 14px; font-weight: 650; margin: 0; }
-  h2 .count { color: var(--faint); font-weight: 500; }
-  .filters { display: flex; gap: .35rem; flex-wrap: wrap; }
+  h3 { font-size: 13px; font-weight: 650; margin: 0 0 .35rem; }
+  .count { color: var(--muted); font-weight: 500; }
+  .hint { color: var(--muted); font-size: 12.5px; }
+
+  .meta-grid {
+    display: grid; gap: .75rem 1.25rem; margin: 0; padding: .9rem 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+  .meta-grid > div { min-width: 0; }
+  .meta-grid dt {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); font-weight: 600; margin-bottom: .15rem;
+  }
+  .meta-grid dd { margin: 0; font-size: 13.5px; font-weight: 550; word-break: break-word; }
+  .meta-grid dd .muted { font-weight: 400; color: var(--muted); }
+  .meta-wide { grid-column: 1 / -1; }
+  .feeds { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: .35rem; }
+  .feeds li {
+    border: 1px solid var(--border); background: var(--surface-2); border-radius: 999px;
+    padding: .1rem .55rem; font-size: 12px; font-weight: 500;
+  }
+
+  /* ── stat cards ── */
+  .stats {
+    display: grid; gap: .75rem;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    margin: 1rem 0;
+  }
+  .stat {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: .75rem .9rem; box-shadow: var(--shadow);
+  }
+  .stat-num { font-size: 1.6rem; font-weight: 650; letter-spacing: -.02em; line-height: 1.15; }
+  .stat-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .06em; margin-top: .1rem; }
+  .stat-critical .stat-num { color: var(--critical-fg); }
+  .stat-high .stat-num { color: var(--high-fg); }
+  .stat-medium .stat-num { color: var(--medium-fg); }
+  .stat-low .stat-num { color: var(--low-fg); }
+
+  /* ── legend ── */
+  .legend {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius); box-shadow: var(--shadow); margin: 0 0 1rem;
+  }
+  .legend > summary {
+    cursor: pointer; padding: .7rem 1rem; font-weight: 600; font-size: 13.5px;
+    list-style: revert;
+  }
+  .legend-body {
+    display: grid; gap: 1rem; padding: 0 1rem 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+  .legend-body ul { margin: 0; padding-left: 1.1rem; font-size: 13px; color: var(--muted); }
+  .legend-body li { margin: .2rem 0; }
+  .legend-body b { color: var(--text); }
+  .dot { display: inline-block; width: .6rem; height: .6rem; border-radius: 999px; vertical-align: baseline; }
+  .dot-critical { background: var(--critical-fg); }
+  .dot-high { background: var(--high-fg); }
+  .dot-medium { background: var(--medium-fg); }
+  .dot-low { background: var(--low-fg); }
+
+  /* ── filters ── */
+  .controls {
+    display: flex; gap: .85rem; flex-wrap: wrap; align-items: flex-end;
+    padding: .85rem 1rem; border-bottom: 1px solid var(--border-soft);
+  }
+  .pill-group { display: flex; gap: .3rem; flex-wrap: wrap; align-items: center; }
+  .pill-group-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); font-weight: 600; margin-right: .15rem;
+  }
   .pill {
     border: 1px solid var(--border); background: var(--surface); color: var(--muted);
     border-radius: 999px; padding: .22rem .7rem; font-size: 12.5px; cursor: pointer;
+    font-family: inherit; white-space: nowrap;
   }
-  .pill:hover { color: var(--text); }
-  .pill.active { background: var(--text); border-color: var(--text); color: #fff; }
-  .search {
+  .pill:hover { color: var(--text); border-color: var(--muted); }
+  .pill.active { background: var(--text); border-color: var(--text); color: var(--surface); }
+  .pill-count { font-variant-numeric: tabular-nums; opacity: .75; }
+  .field { display: flex; flex-direction: column; gap: .2rem; }
+  .field label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--muted); font-weight: 600;
+  }
+  .search, select {
     border: 1px solid var(--border); border-radius: 7px; padding: .35rem .65rem;
-    font-size: 13px; min-width: 220px; background: var(--surface); color: var(--text);
+    font-size: 13px; background: var(--surface); color: var(--text); font-family: inherit;
+    min-width: 210px; max-width: 100%;
   }
-  .search::placeholder { color: var(--faint); }
-  .search:focus { outline: 2px solid color-mix(in srgb, var(--accent) 35%, transparent); outline-offset: 0; border-color: var(--accent); }
-  .showing { color: var(--faint); font-size: 12.5px; margin-left: auto; }
+  .search::placeholder { color: var(--muted); }
+  .search:focus-visible, select:focus-visible { border-color: var(--accent); }
 
+  .filter-state {
+    display: flex; gap: .5rem; flex-wrap: wrap; align-items: center;
+    margin: 0; padding: .6rem 1rem; border-bottom: 1px solid var(--border-soft);
+    background: var(--surface-2); font-size: 12.5px;
+  }
+  .filter-state[hidden] { display: none; }
+  .fs-label { font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; font-size: 11px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: .3rem;
+    border: 1px solid var(--border); background: var(--surface);
+    border-radius: 999px; padding: .1rem .3rem .1rem .6rem; font-size: 12px;
+  }
+  .chip button {
+    border: none; background: none; cursor: pointer; color: var(--muted);
+    font-size: 14px; line-height: 1; padding: .1rem .3rem; font-family: inherit; border-radius: 999px;
+  }
+  .chip button:hover { color: var(--text); background: var(--surface-2); }
+  .showing { color: var(--muted); font-size: 12.5px; margin-left: auto; }
+
+  /* ── tables ── */
   .table-wrap { overflow-x: auto; }
   table { width: 100%; border-collapse: collapse; }
+  #findings-table { min-width: 880px; }
   thead th {
     text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: .06em; color: var(--faint); padding: .6rem 1rem;
+    letter-spacing: .06em; color: var(--muted); padding: .6rem 1rem;
     border-bottom: 1px solid var(--border-soft); white-space: nowrap;
+    background: var(--surface-2);
   }
+  .th-sort {
+    background: none; border: none; padding: 0; margin: 0; font: inherit; color: inherit;
+    cursor: pointer; text-transform: inherit; letter-spacing: inherit; display: inline-flex; gap: .3rem; align-items: center;
+  }
+  .th-sort:hover { color: var(--text); }
+  th[aria-sort="ascending"] .th-sort::after { content: "\25B2"; font-size: 9px; }
+  th[aria-sort="descending"] .th-sort::after { content: "\25BC"; font-size: 9px; }
   tbody td {
     padding: .7rem 1rem; font-size: 13.5px; border-bottom: 1px solid var(--border-soft);
     vertical-align: top;
   }
   tbody tr:last-child td { border-bottom: none; }
-  tbody tr:hover { background: #fafbfc; }
+  tbody tr:hover { background: var(--surface-2); }
   td.repo { font-weight: 550; white-space: nowrap; }
   td.workflow, td.action { color: var(--muted); }
   td.action { font-size: 12.5px; word-break: break-all; }
-  td.reason { min-width: 260px; }
-  .cat { color: var(--faint); font-size: 12px; white-space: nowrap; }
+  td.reason { min-width: 220px; }
+  .job { display: block; color: var(--muted); font-size: 11.5px; margin-top: .1rem; }
+  a { color: var(--accent); }
+  a.action-link { color: var(--accent); text-decoration: none; }
+  a.action-link:hover { text-decoration: underline; }
+  .cat {
+    display: inline-block; border: 1px solid var(--border); background: var(--surface-2);
+    border-radius: 999px; padding: .05rem .5rem; font-size: 11.5px; color: var(--muted); white-space: nowrap;
+  }
+  .advisory { margin-top: .3rem; font-size: 12px; }
 
   /* severity chip */
   .sev {
     display: inline-block; padding: .1rem .55rem; border-radius: 999px;
     font-size: 11px; font-weight: 650; letter-spacing: .04em; white-space: nowrap;
+    border: 1px solid transparent;
   }
-  .sev.CRITICAL { background: var(--critical-bg); color: var(--critical); }
-  .sev.HIGH     { background: var(--high-bg);     color: var(--high); }
-  .sev.MEDIUM   { background: var(--medium-bg);   color: var(--medium); }
-  .sev.LOW      { background: var(--low-bg);      color: var(--low); }
+  .sev.CRITICAL { background: var(--critical-bg); color: var(--critical-fg); border-color: var(--critical-border); }
+  .sev.HIGH     { background: var(--high-bg);     color: var(--high-fg);     border-color: var(--high-border); }
+  .sev.MEDIUM   { background: var(--medium-bg);   color: var(--medium-fg);   border-color: var(--medium-border); }
+  .sev.LOW      { background: var(--low-bg);      color: var(--low-fg);      border-color: var(--low-border); }
 
   /* fix column */
-  td.fix { min-width: 300px; }
+  td.fix { min-width: 280px; }
   .fix-row { display: flex; align-items: flex-start; gap: .5rem; }
   .fix-row code {
-    background: var(--bg); border: 1px solid var(--border-soft); border-radius: 6px;
+    background: var(--surface-2); border: 1px solid var(--border-soft); border-radius: 6px;
     padding: .18rem .45rem; font-size: 12.5px; color: var(--text); word-break: break-all;
-    flex: 1;
+    flex: 1; user-select: all;
   }
+  .fix-prose { margin: 0; font-size: 13px; color: var(--text); }
   .copy {
     border: 1px solid var(--border); background: var(--surface); color: var(--muted);
     border-radius: 6px; padding: .15rem .5rem; font-size: 11.5px; cursor: pointer;
-    white-space: nowrap;
+    white-space: nowrap; font-family: inherit;
   }
-  .copy:hover { color: var(--text); background: var(--bg); }
-  .no-fix { color: var(--faint); }
+  .copy:hover { color: var(--text); background: var(--surface-2); }
+  .no-fix { color: var(--muted); }
 
-  /* empty state */
+  /* ── blast radius ── */
+  .blast-body { max-height: 340px; overflow-y: auto; }
+  .blast-table td { padding: .5rem 1rem; font-size: 13px; border-bottom: 1px solid var(--border-soft); }
+  .blast-table td:first-child { font-weight: 550; }
+  .blast-table .refs { display: block; color: var(--muted); font-size: 11.5px; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+  .linkish {
+    background: none; border: none; padding: 0; margin: 0; font: inherit; color: var(--accent);
+    cursor: pointer; text-align: left; word-break: break-all;
+  }
+  .linkish:hover { text-decoration: underline; }
+  .num { font-variant-numeric: tabular-nums; text-align: right; }
+
+  /* ── empty states ── */
   .empty {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius);
-    padding: 3rem 1.5rem; text-align: center; box-shadow: var(--shadow);
+    padding: 2.5rem 1.5rem; text-align: center; box-shadow: var(--shadow);
   }
-  .empty h3 { margin: .75rem 0 .25rem; font-size: 16px; }
-  .empty p { margin: 0; color: var(--muted); font-size: 13.5px; }
+  .empty h1, .empty h3 { margin: .75rem 0 .25rem; font-size: 17px; }
+  .empty p { margin: 0 auto; max-width: 46ch; color: var(--muted); font-size: 13.5px; }
+  .empty .btn { margin-top: 1rem; }
+  .nomatch { border-style: dashed; }
 
   footer {
     max-width: 1200px; margin: 0 auto; padding: 1rem 1.5rem 2rem;
-    color: var(--faint); font-size: 12px;
+    color: var(--muted); font-size: 12px;
+  }
+
+  /* ── responsive: stacked cards ── */
+  @media (max-width: 760px) {
+    main { padding: 1rem .85rem 1.5rem; }
+    .topbar-inner { padding: .6rem .85rem; }
+    .verdict { flex-direction: column; gap: .6rem; }
+    .verdict .verdict-actions { margin-left: 0; }
+    .controls { gap: .6rem; }
+    .search, select { min-width: 0; width: 100%; }
+    .field { width: 100%; }
+    .table-wrap { overflow-x: visible; }
+    table, thead, tbody, tr, td { display: block; width: 100%; }
+    #findings-table { min-width: 0; }
+    thead { position: static; }
+    thead tr { display: flex; flex-wrap: wrap; gap: .3rem; padding: .5rem .75rem; border-bottom: 1px solid var(--border-soft); }
+    thead th { display: block; border: none; padding: 0; background: none; }
+    tbody tr {
+      border: 1px solid var(--border); border-radius: var(--radius);
+      margin: .6rem .75rem; padding: .4rem .1rem; background: var(--surface);
+    }
+    tbody td {
+      display: grid; grid-template-columns: 7.5rem 1fr; gap: .5rem;
+      border: none; padding: .28rem .75rem; align-items: baseline;
+    }
+    tbody td::before {
+      content: attr(data-label); color: var(--muted); font-size: 10.5px;
+      text-transform: uppercase; letter-spacing: .05em; font-weight: 600;
+    }
+    td.repo { white-space: normal; }
+    td.reason, td.fix { min-width: 0; }
+    .blast-body { max-height: none; }
+    .blast-table td { display: grid; grid-template-columns: 7.5rem 1fr; gap: .5rem; padding: .28rem .75rem; }
+    .blast-table td::before {
+      content: attr(data-label); color: var(--muted); font-size: 10.5px;
+      text-transform: uppercase; letter-spacing: .05em; font-weight: 600;
+    }
+    .blast-table .num { text-align: left; }
+  }
+
+  /* ── print ── */
+  @media print {
+    .topbar, .controls, .filter-state, .legend, .blast-panel, .no-print, footer, .skip-link { display: none !important; }
+    body { background: #fff; color: #000; font-size: 11px; }
+    main { padding: 0; max-width: none; }
+    .panel, .verdict, .alert, .stat, .empty { box-shadow: none; break-inside: avoid; }
+    .table-wrap { overflow: visible; }
+    #findings-table { min-width: 0; }
+    thead { display: table-header-group; }
+    thead tr { display: table-row; }
+    thead th { display: table-cell; }
+    tbody tr { display: table-row; }
+    tbody td { display: table-cell; }
+    tbody td::before, .blast-table td::before { content: none; }
+    .verdict { background: none; border-left: 3px solid #000; }
+    a { color: #000; text-decoration: none; }
+    h1 { font-size: 15pt; }
   }
 </style>
 </head>
 <body>
+
+<a class="skip-link" href="#findings">Skip to findings</a>
 
 <header class="topbar">
   <div class="topbar-inner">
@@ -180,140 +412,856 @@
       actionscan <span class="tag">GitHub Actions posture</span>
     </div>
     <div class="spacer"></div>
-    <a class="btn" href="/report.csv" download>Export CSV</a>
-    <a class="btn" href="/report.json" download>Export JSON</a>
+    <!-- Relative links: the report is usually opened straight off disk,
+         where an absolute "/report.csv" resolves to the filesystem root
+         and 404s. Served over HTTP the relative path lands on the same
+         route. -->
+    <a class="btn" href="report.csv" download>Export CSV</a>
+    <a class="btn" href="report.json" download>Export JSON</a>
+    <a class="btn" href="report.sarif" download>Export SARIF</a>
   </div>
 </header>
 
 <main>
-  <p class="meta">
-    <b>{{.TotalRepos}}</b> repos scanned · <b>{{.AffectedRepos}}</b> with findings ·
-    <b>{{.ActionsChecked}}</b> actions checked{{if not .ScannedAt.IsZero}} · scanned {{.ScannedAt.Format "2 Jan 2006 15:04"}} UTC{{end}}
-  </p>
 
-  <section class="stats">
-    <div class="stat critical"><div class="stat-num">{{.Critical}}</div><div class="stat-label">Critical</div></div>
-    <div class="stat high"><div class="stat-num">{{.High}}</div><div class="stat-label">High</div></div>
-    <div class="stat medium"><div class="stat-num">{{.Medium}}</div><div class="stat-label">Medium</div></div>
-    <div class="stat low"><div class="stat-num">{{.Low}}</div><div class="stat-label">Low</div></div>
-    <div class="stat"><div class="stat-num">{{len .Findings}}</div><div class="stat-label">Findings</div></div>
-    <div class="stat"><div class="stat-num">{{.TotalRepos}}</div><div class="stat-label">Repos scanned</div></div>
-    <div class="stat"><div class="stat-num">{{.AffectedRepos}}</div><div class="stat-label">Repos affected</div></div>
-    <div class="stat"><div class="stat-num">{{.ActionsChecked}}</div><div class="stat-label">Actions checked</div></div>
-  </section>
-
-  {{if .Empty}}
-  <div class="empty">
+{{if .Empty}}
+  <section class="empty">
     <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-      <circle cx="12" cy="12" r="10" stroke="#079455" stroke-width="1.6"/>
-      <path d="m8 12.5 2.5 2.5L16 9.5" stroke="#079455" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.6" style="color: var(--ok-fg)"/>
+      <path d="m8 12.5 2.5 2.5L16 9.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="color: var(--ok-fg)"/>
     </svg>
-    <h3>No findings — all actions look clean 🎉</h3>
-    <p>Every action referenced by your workflows passed malicious, vulnerable, outdated and pinning checks.</p>
-  </div>
-  {{else}}
-
-  <div class="bar" title="Severity distribution">
-    {{if .Critical}}<span class="critical" style="flex-grow: {{.Critical}}"></span>{{end}}
-    {{if .High}}<span class="high" style="flex-grow: {{.High}}"></span>{{end}}
-    {{if .Medium}}<span class="medium" style="flex-grow: {{.Medium}}"></span>{{end}}
-    {{if .Low}}<span class="low" style="flex-grow: {{.Low}}"></span>{{end}}
-  </div>
-
-  <section class="panel">
-    <div class="panel-head">
-      <h2>Findings <span class="count" id="shown-count">({{len .Findings}})</span></h2>
-      <div class="filters" id="filters">
-        <button class="pill active" data-filter="">All</button>
-        <button class="pill" data-filter="CRITICAL">Critical · {{.Critical}}</button>
-        <button class="pill" data-filter="HIGH">High · {{.High}}</button>
-        <button class="pill" data-filter="MEDIUM">Medium · {{.Medium}}</button>
-        <button class="pill" data-filter="LOW">Low · {{.Low}}</button>
-      </div>
-      <input class="search" id="search" type="search" placeholder="Filter by repo, action, workflow…">
-      <span class="showing" id="showing">Showing {{len .Findings}} of {{len .Findings}}</span>
+    <h1>No findings — every checked action looks clean</h1>
+    <p>Every action referenced by the scanned workflows passed the malicious, vulnerable, outdated and pinning checks.
+       Review the scan details below to confirm what was covered.</p>
+  </section>
+{{else}}
+  {{if .Critical}}
+  <section class="verdict verdict-bad">
+    <div>
+      <h1>{{.Critical}} {{if eq .Critical 1}}critical finding needs{{else}}critical findings need{{end}} attention</h1>
+      <p>{{.Total}} finding{{if eq .Total 1}}{{else}}s{{end}} across {{.AffectedRepos}} of {{.TotalRepos}} scanned repos. Start with the highest-blast-radius action below.</p>
     </div>
-
-    <div class="table-wrap">
-      <table>
-        <thead>
-          <tr>
-            <th>Severity</th><th>Repository</th><th>Workflow</th><th>Action</th>
-            <th>Category</th><th>Issue</th><th>Recommended fix</th>
-          </tr>
-        </thead>
-        <tbody id="findings-body">
-        {{range .Findings}}
-          <tr data-sev="{{.Severity}}">
-            <td><span class="sev {{.Severity}}">{{.Severity}}</span></td>
-            <td class="repo">{{.Repo}}</td>
-            <td class="workflow mono">{{.Workflow}}</td>
-            <td class="action mono">{{.Action}}</td>
-            <td><span class="cat">{{.Category}}</span></td>
-            <td class="reason">{{.Reason}}</td>
-            <td class="fix">
-              {{if .Fix}}
-              <div class="fix-row">
-                <code>{{.Fix}}</code>
-                <button class="copy" data-fix="{{.Fix}}" type="button">Copy</button>
-              </div>
-              {{else}}<span class="no-fix">—</span>{{end}}
-            </td>
-          </tr>
-        {{end}}
-        </tbody>
-      </table>
+    <div class="verdict-actions">
+      <button class="btn btn-primary" type="button" id="show-critical">Show critical only</button>
+    </div>
+  </section>
+  {{else if .High}}
+  <section class="verdict verdict-warn">
+    <div>
+      <h1>No critical findings — {{.High}} high-severity finding{{if eq .High 1}}{{else}}s{{end}} to review</h1>
+      <p>{{.Total}} finding{{if eq .Total 1}}{{else}}s{{end}} across {{.AffectedRepos}} of {{.TotalRepos}} scanned repos. No action is known-compromised.</p>
+    </div>
+    <div class="verdict-actions">
+      <button class="btn btn-primary" type="button" id="show-high">Show high severity</button>
+    </div>
+  </section>
+  {{else}}
+  <section class="verdict verdict-ok">
+    <div>
+      <h1>No critical or high-severity findings</h1>
+      <p>{{.Total}} finding{{if eq .Total 1}}{{else}}s{{end}} across {{.AffectedRepos}} of {{.TotalRepos}} scanned repos — only medium/low hygiene issues remain.</p>
     </div>
   </section>
   {{end}}
+{{end}}
+
+{{if .Degraded}}
+<div class="alert" role="alert">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 3.5 22 20H2L12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M12 10v4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="12" cy="17.2" r=".9" fill="currentColor"/>
+  </svg>
+  <div class="alert-body">
+    <strong>Partial intelligence — a threat feed failed to load</strong>
+    <p>{{.DegradedReason}}</p>
+    <p>Actions were only checked against the rule feeds that answered. This report may be missing findings — treat
+       untriaged actions as unknown rather than clean, and re-run the scan once the feed recovers.</p>
+  </div>
+</div>
+{{end}}
+
+{{if .UnreadableRepos}}
+<div class="alert" role="alert">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <path d="M12 3.5 22 20H2L12 3.5Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+    <path d="M12 10v4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    <circle cx="12" cy="17.2" r=".9" fill="currentColor"/>
+  </svg>
+  <div class="alert-body">
+    <strong>{{len .UnreadableRepos}} repo{{if eq (len .UnreadableRepos) 1}}{{else}}s{{end}} could not be scanned</strong>
+    <p>These repos were not evaluated — they are unknown, not clean. They are excluded from every count below.</p>
+    <ul>
+      {{range .UnreadableRepos}}<li class="mono">{{.}}</li>{{end}}
+    </ul>
+  </div>
+</div>
+{{end}}
+
+<section class="panel" aria-labelledby="scan-details-h">
+  <div class="panel-head">
+    <h2 id="scan-details-h">Scan details</h2>
+    <span class="hint">What this report covers — and how much to trust it</span>
+  </div>
+  <dl class="meta-grid">
+    <div>
+      <dt>Target</dt>
+      <dd>{{if .Target}}{{.Target}}{{else}}<span class="muted">not specified</span>{{end}}</dd>
+    </div>
+    <div>
+      <dt>Scanned at</dt>
+      <dd>{{if not .ScannedAt.IsZero}}{{.ScannedAt.Format "2 Jan 2006 15:04 MST"}}{{else}}<span class="muted">unknown</span>{{end}}</dd>
+    </div>
+    <div>
+      <dt>Tool version</dt>
+      <dd>{{if .ToolVersion}}{{.ToolVersion}}{{else}}<span class="muted">unknown</span>{{end}}</dd>
+    </div>
+    <div>
+      <dt>Rules fetched</dt>
+      <dd>{{if not .RulesLoadedAt.IsZero}}{{.RulesLoadedAt.Format "2 Jan 2006 15:04 MST"}}{{else}}<span class="muted">unknown</span>{{end}}</dd>
+    </div>
+    <div>
+      <dt>Repos scanned</dt>
+      <dd>{{.TotalRepos}}</dd>
+    </div>
+    <div>
+      <dt>Repos with findings</dt>
+      <dd>{{.AffectedRepos}}</dd>
+    </div>
+    <div>
+      <dt>Action usages evaluated</dt>
+      <dd>{{.ActionsChecked}}</dd>
+    </div>
+    <div>
+      <dt>Feed status</dt>
+      <dd>{{if .Degraded}}<span class="muted">degraded — partial intelligence</span>{{else}}complete{{end}}</dd>
+    </div>
+    <div class="meta-wide">
+      <dt>Rule feeds that answered</dt>
+      <dd>
+        {{if .RulesSources}}
+        <ul class="feeds">
+          {{range .RulesSources}}<li>{{.}}</li>{{end}}
+        </ul>
+        {{else}}<span class="muted">no feed names reported</span>{{end}}
+      </dd>
+    </div>
+  </dl>
+</section>
+
+<section class="stats" aria-label="Severity counts">
+  <div class="stat stat-critical"><div class="stat-num">{{.Critical}}</div><div class="stat-label">Critical</div></div>
+  <div class="stat stat-high"><div class="stat-num">{{.High}}</div><div class="stat-label">High</div></div>
+  <div class="stat stat-medium"><div class="stat-num">{{.Medium}}</div><div class="stat-label">Medium</div></div>
+  <div class="stat stat-low"><div class="stat-num">{{.Low}}</div><div class="stat-label">Low</div></div>
+  <div class="stat"><div class="stat-num">{{.TotalRepos}}</div><div class="stat-label">Repos scanned</div></div>
+</section>
+
+<details class="legend">
+  <summary>How to read this report</summary>
+  <div class="legend-body">
+    <div>
+      <h3>Severity</h3>
+      <ul>
+        <li><span class="dot dot-critical" aria-hidden="true"></span> <b>CRITICAL</b> — the action is known-compromised or malicious. Remove it and rotate any credential it could read.</li>
+        <li><span class="dot dot-high" aria-hidden="true"></span> <b>HIGH</b> — a published advisory covers this exact ref. Upgrade past the advisory's fixed version.</li>
+        <li><span class="dot dot-medium" aria-hidden="true"></span> <b>MEDIUM</b> — pinning hygiene: the reference is mutable (no ref or a short SHA). Pin it.</li>
+        <li><span class="dot dot-low" aria-hidden="true"></span> <b>LOW</b> — outdated but not known-vulnerable. Update when convenient.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Category</h3>
+      <ul>
+        <li><b>malicious</b> — matched a compromised/malicious action feed.</li>
+        <li><b>vulnerable</b> — matched a GitHub Security Advisory version range.</li>
+        <li><b>osv</b> — matched an OSV.dev advisory for the action's package.</li>
+        <li><b>outdated</b> — a newer release of the action exists.</li>
+        <li><b>unpinned</b> — the reference is mutable (no ref, or a short SHA).</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Reading a row</h3>
+      <ul>
+        <li><b>Repository</b> — the repo that uses the action. <b>Workflow</b> and <b>job</b> point at the exact file and job to open.</li>
+        <li><b>Issue</b> — why it was flagged, plus the advisory ID when one applies.</li>
+        <li><b>Recommended fix</b> — a paste-ready <span class="mono">uses:</span> line gets a Copy button; prose guidance does not.</li>
+      </ul>
+    </div>
+  </div>
+</details>
+
+{{if not .Empty}}
+
+<section class="panel blast-panel" aria-labelledby="blast-h">
+  <div class="panel-head">
+    <h2 id="blast-h">Top actions by blast radius</h2>
+    <span class="hint">Grouped by action — the repos column is “how bad if I fix just this one action”</span>
+    <span class="showing" id="blast-count"></span>
+  </div>
+  <div class="blast-body">
+    <div class="table-wrap">
+      <table class="blast-table">
+        <caption class="sr-only">Actions grouped by the number of repositories and findings they account for, worst first</caption>
+        <thead>
+          <tr>
+            <th scope="col">Action</th>
+            <th scope="col" class="num">Repos</th>
+            <th scope="col" class="num">Findings</th>
+            <th scope="col">Worst severity</th>
+            <th scope="col">Filter</th>
+          </tr>
+        </thead>
+        <tbody id="blast-body"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="panel" id="findings" aria-labelledby="findings-h">
+  <div class="panel-head">
+    <h2 id="findings-h">Findings <span class="count" id="shown-count">({{.Total}})</span></h2>
+    <span class="hint">Filter, then sort by any column header</span>
+  </div>
+
+  <div class="controls">
+    <div class="pill-group" role="group" aria-label="Filter by severity">
+      <span class="pill-group-label" aria-hidden="true">Severity</span>
+      <button class="pill active" type="button" data-sev="" aria-pressed="true">All <span class="pill-count">{{.Total}}</span></button>
+      <button class="pill" type="button" data-sev="CRITICAL" aria-pressed="false">Critical <span class="pill-count">{{.Critical}}</span></button>
+      <button class="pill" type="button" data-sev="HIGH" aria-pressed="false">High <span class="pill-count">{{.High}}</span></button>
+      <button class="pill" type="button" data-sev="MEDIUM" aria-pressed="false">Medium <span class="pill-count">{{.Medium}}</span></button>
+      <button class="pill" type="button" data-sev="LOW" aria-pressed="false">Low <span class="pill-count">{{.Low}}</span></button>
+    </div>
+    <div class="pill-group" role="group" aria-label="Filter by category">
+      <span class="pill-group-label" aria-hidden="true">Category</span>
+      <button class="pill active" type="button" data-cat="" aria-pressed="true">All</button>
+      <button class="pill" type="button" data-cat="malicious" aria-pressed="false">malicious <span class="pill-count" data-count="malicious"></span></button>
+      <button class="pill" type="button" data-cat="vulnerable" aria-pressed="false">vulnerable <span class="pill-count" data-count="vulnerable"></span></button>
+      <button class="pill" type="button" data-cat="osv" aria-pressed="false">osv <span class="pill-count" data-count="osv"></span></button>
+      <button class="pill" type="button" data-cat="outdated" aria-pressed="false">outdated <span class="pill-count" data-count="outdated"></span></button>
+      <button class="pill" type="button" data-cat="unpinned" aria-pressed="false">unpinned <span class="pill-count" data-count="unpinned"></span></button>
+    </div>
+    <div class="field">
+      <label for="repo-filter">Repository</label>
+      <select id="repo-filter">
+        <option value="">All repositories</option>
+      </select>
+    </div>
+    <div class="field">
+      <label for="search">Search</label>
+      <input class="search" id="search" type="search" placeholder="repo, workflow, job, action, advisory ID" autocomplete="off">
+    </div>
+    <button class="btn" type="button" id="clear-filters">Clear filters</button>
+  </div>
+
+  <p class="filter-state" id="filter-state" hidden>
+    <span class="fs-label">Active filters</span>
+    <span id="filter-chips"></span>
+    <button class="btn" type="button" id="share-view">Copy link to this view</button>
+  </p>
+
+  <noscript>
+    <p class="filter-state">Filtering and sorting need JavaScript — the complete list of findings is shown below.</p>
+  </noscript>
+
+  <div class="table-wrap" id="table-wrap">
+    <table id="findings-table">
+      <caption class="sr-only">Every action finding, with severity, location, reason and recommended fix</caption>
+      <thead>
+        <tr>
+          <th scope="col" data-sort="sev" aria-sort="ascending"><button class="th-sort" type="button">Severity</button></th>
+          <th scope="col" data-sort="repo" aria-sort="none"><button class="th-sort" type="button">Repository</button></th>
+          <th scope="col">Workflow / job</th>
+          <th scope="col" data-sort="action" aria-sort="none"><button class="th-sort" type="button">Action</button></th>
+          <th scope="col" data-sort="cat" aria-sort="none"><button class="th-sort" type="button">Category</button></th>
+          <th scope="col">Issue</th>
+          <th scope="col">Recommended fix</th>
+        </tr>
+      </thead>
+      <tbody id="findings-body">
+      {{range .Findings}}
+        <tr data-sev="{{.Severity}}" data-repo="{{.Repo}}" data-cat="{{.Category}}" data-action="{{.Action}}" data-ref="{{.Ref}}" data-search="{{.Repo}}|{{.Workflow}}|{{.Job}}|{{.Action}}|{{.AdvisoryID}}">
+          <td data-label="Severity"><span class="sev {{.Severity}}">{{.Severity}}</span></td>
+          <td data-label="Repository" class="repo"><a href="https://github.com/{{.Repo}}" target="_blank" rel="noopener noreferrer">{{.Repo}}</a></td>
+          <td data-label="Workflow" class="workflow mono">
+            {{.Workflow}}
+            {{if .Job}}<span class="job">job: {{.Job}}</span>{{end}}
+          </td>
+          <td data-label="Action" class="action mono"><a class="action-link" data-action="{{.Action}}">{{.Action}}</a></td>
+          <td data-label="Category"><span class="cat">{{.Category}}</span></td>
+          <td data-label="Issue" class="reason">
+            {{.Reason}}
+            {{if .AdvisoryID}}
+            <div class="advisory">
+              {{if .AdvisoryURL}}<a href="{{.AdvisoryURL}}" target="_blank" rel="noopener noreferrer">{{.AdvisoryID}}</a>{{else}}{{.AdvisoryID}}{{end}}
+            </div>
+            {{end}}
+          </td>
+          <td data-label="Recommended fix" class="fix">
+            {{if .Fix}}
+              {{if .HasCopyableFix}}
+              <div class="fix-row">
+                <code>{{.Fix}}</code>
+                <button class="copy" type="button" data-fix="{{.Fix}}" aria-label="Copy recommended fix for {{.Action}}">Copy</button>
+              </div>
+              {{else}}
+              <p class="fix-prose">{{.Fix}}</p>
+              {{end}}
+            {{else}}<span class="no-fix">—</span>{{end}}
+          </td>
+        </tr>
+      {{end}}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="empty nomatch" id="no-match" hidden>
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+      <circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.6"/>
+      <path d="m16 16 4.5 4.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+    </svg>
+    <h3>Nothing matches the current filters</h3>
+    <p id="no-match-text">No rows in this report match the filters you applied. Clear them to see the full list again.</p>
+    <button class="btn" type="button" id="clear-filters-2">Clear filters</button>
+  </div>
+
+  <p class="filter-state no-print" id="showing" aria-live="off">Showing {{.Total}} of {{.Total}} findings</p>
+</section>
+
+{{end}}
+
 </main>
 
-<footer>Generated by actionscan · rules refreshed on a 12h cache TTL</footer>
+<footer>
+  Generated by actionscan{{if .ToolVersion}} {{.ToolVersion}}{{end}} · findings are advisory, not a substitute for reviewing the workflows themselves.
+</footer>
+
+<div class="sr-only" id="live" role="status" aria-live="polite"></div>
 
 <script>
 (function () {
-  var rows = Array.prototype.slice.call(document.querySelectorAll('#findings-body tr'));
-  if (!rows.length) return;
+  'use strict';
 
-  var activeSev = '';
-  var search = document.getElementById('search');
-  var showing = document.getElementById('showing');
-  var shownCount = document.getElementById('shown-count');
+  var live = document.getElementById('live');
+  function announce(msg) { if (live) { live.textContent = msg; } }
+
+  var tbody = document.getElementById('findings-body');
+  if (!tbody) { return; } // empty report — nothing to filter or sort
+
+  var SEV_RANK = { CRITICAL: 0, HIGH: 1, MEDIUM: 2, LOW: 3 };
+  var CATS = ['malicious', 'vulnerable', 'osv', 'outdated', 'unpinned'];
+  var SORT_KEYS = ['sev', 'repo', 'action', 'cat'];
+
+  var rows = Array.prototype.slice.call(tbody.querySelectorAll('tr'));
   var total = rows.length;
 
-  function apply() {
-    var q = (search && search.value || '').trim().toLowerCase();
-    var shown = 0;
-    rows.forEach(function (r) {
-      var okSev = !activeSev || r.getAttribute('data-sev') === activeSev;
-      var okQ = !q || r.textContent.toLowerCase().indexOf(q) !== -1;
-      var ok = okSev && okQ;
-      r.style.display = ok ? '' : 'none';
-      if (ok) shown++;
-    });
-    if (showing) showing.textContent = 'Showing ' + shown + ' of ' + total;
-    if (shownCount) shownCount.textContent = '(' + shown + ')';
+  function rank(sev) {
+    var r = SEV_RANK[sev];
+    return r === undefined ? 9 : r;
+  }
+  // data-action is rendered in a URL-ish attribute context, so html/template
+  // percent-encodes it. Decode for display/grouping, keep the encoded form
+  // for the GitHub link so the href is not encoded twice.
+  function decodeSafe(s) {
+    try { return decodeURIComponent(s); } catch (e) { return s; }
+  }
+  function actionPath(raw) {
+    var at = raw.indexOf('@');
+    return at === -1 ? raw : raw.slice(0, at);
+  }
+  function actionName(raw) {
+    return decodeSafe(actionPath(raw));
+  }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) { n.className = cls; }
+    if (text !== undefined && text !== null) { n.textContent = text; }
+    return n;
   }
 
-  document.getElementById('filters').addEventListener('click', function (e) {
-    var btn = e.target.closest('.pill');
-    if (!btn) return;
-    document.querySelectorAll('#filters .pill').forEach(function (p) { p.classList.remove('active'); });
-    btn.classList.add('active');
-    activeSev = btn.getAttribute('data-filter');
-    apply();
+  // Pre-compute the search haystack and the action name once, so a
+  // keystroke never has to touch textContent of every row.
+  rows.forEach(function (r) {
+    r._hay = (r.getAttribute('data-search') || '').toLowerCase();
+    r._name = actionName(r.getAttribute('data-action') || '');
+    r._sev = rank(r.getAttribute('data-sev'));
   });
 
-  if (search) search.addEventListener('input', apply);
+  var state = { sev: '', cat: '', repo: '', q: '', action: '', sort: 'sev', dir: 'asc' };
 
-  document.addEventListener('click', function (e) {
-    var btn = e.target.closest('.copy');
-    if (!btn || !navigator.clipboard) return;
-    navigator.clipboard.writeText(btn.getAttribute('data-fix')).then(function () {
-      btn.textContent = 'Copied';
-      setTimeout(function () { btn.textContent = 'Copy'; }, 1200);
+  var searchInput = document.getElementById('search');
+  var repoSelect = document.getElementById('repo-filter');
+  var showing = document.getElementById('showing');
+  var shownCount = document.getElementById('shown-count');
+  var filterState = document.getElementById('filter-state');
+  var filterChips = document.getElementById('filter-chips');
+  var noMatch = document.getElementById('no-match');
+  var noMatchText = document.getElementById('no-match-text');
+  var tableWrap = document.getElementById('table-wrap');
+
+  // ── sorting ────────────────────────────────────────────────────────
+  function sortValue(r, key) {
+    switch (key) {
+      case 'sev': return r._sev;
+      case 'repo': return (r.getAttribute('data-repo') || '').toLowerCase();
+      case 'action': return r._name.toLowerCase();
+      case 'cat': return (r.getAttribute('data-cat') || '').toLowerCase();
+      default: return 0;
+    }
+  }
+  function sortedRows() {
+    var key = state.sort;
+    var sign = state.dir === 'desc' ? -1 : 1;
+    return rows.slice().sort(function (a, b) {
+      var va = sortValue(a, key), vb = sortValue(b, key);
+      if (va < vb) { return -1 * sign; }
+      if (va > vb) { return 1 * sign; }
+      return rows.indexOf(a) - rows.indexOf(b);
+    });
+  }
+  function updateAriaSort() {
+    var ths = document.querySelectorAll('th[data-sort]');
+    Array.prototype.forEach.call(ths, function (th) {
+      if (th.getAttribute('data-sort') === state.sort) {
+        th.setAttribute('aria-sort', state.dir === 'desc' ? 'descending' : 'ascending');
+      } else {
+        th.setAttribute('aria-sort', 'none');
+      }
+    });
+  }
+
+  // ── rendering ──────────────────────────────────────────────────────
+  var visible = 0;
+
+  function render() {
+    var q = state.q.trim().toLowerCase();
+    visible = 0;
+    rows.forEach(function (r) {
+      var ok =
+        (!state.sev || r.getAttribute('data-sev') === state.sev) &&
+        (!state.cat || r.getAttribute('data-cat') === state.cat) &&
+        (!state.repo || r.getAttribute('data-repo') === state.repo) &&
+        (!state.action || r._name === state.action) &&
+        (!q || r._hay.indexOf(q) !== -1);
+      r.style.display = ok ? '' : 'none';
+      if (ok) { visible++; }
+    });
+
+    if (showing) { showing.textContent = 'Showing ' + visible + ' of ' + total + ' findings'; }
+    if (shownCount) { shownCount.textContent = '(' + visible + ')'; }
+
+    if (noMatch) {
+      noMatch.hidden = visible !== 0;
+      if (tableWrap) { tableWrap.hidden = visible === 0; }
+    }
+    if (noMatchText) {
+      noMatchText.textContent = 'No rows in this report match the filters you applied (' +
+        visible + ' of ' + total + ' shown). Clear them to see the full list again.';
+    }
+
+    renderChips();
+  }
+
+  function renderChips() {
+    if (!filterChips || !filterState) { return; }
+    while (filterChips.firstChild) { filterChips.removeChild(filterChips.firstChild); }
+    var active = false;
+    function chip(label, value, kind) {
+      active = true;
+      var c = el('span', 'chip');
+      c.appendChild(el('span', null, label + ': ' + value));
+      var b = el('button', null, '×');
+      b.type = 'button';
+      b.setAttribute('aria-label', 'Remove ' + label + ' filter');
+      b.setAttribute('data-clear', kind);
+      c.appendChild(b);
+      filterChips.appendChild(c);
+    }
+    if (state.sev) { chip('Severity', state.sev.toLowerCase(), 'sev'); }
+    if (state.cat) { chip('Category', state.cat, 'cat'); }
+    if (state.repo) { chip('Repository', state.repo, 'repo'); }
+    if (state.action) { chip('Action', state.action, 'action'); }
+    if (state.q.trim()) { chip('Search', '"' + state.q.trim() + '"', 'q'); }
+    filterState.hidden = !active;
+  }
+
+  function syncControls() {
+    Array.prototype.forEach.call(document.querySelectorAll('.pill[data-sev]'), function (b) {
+      var on = (b.getAttribute('data-sev') || '') === state.sev;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.pill[data-cat]'), function (b) {
+      var on = (b.getAttribute('data-cat') || '') === state.cat;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    if (repoSelect) { repoSelect.value = state.repo; }
+    if (searchInput && searchInput.value !== state.q) { searchInput.value = state.q; }
+  }
+
+  // ── URL state ──────────────────────────────────────────────────────
+  // A report is most often opened straight off disk (file://), where
+  // browsers refuse history writes. Fall back to the fragment so the
+  // filtered view stays shareable in both cases.
+  function stateParams() {
+    var raw = window.location.search || '';
+    if (!raw) {
+      raw = (window.location.hash || '').replace(/^#/, '');
+    }
+    try { return new URLSearchParams(raw); }
+    catch (e) { return new URLSearchParams(); }
+  }
+  function readURL() {
+    var p = stateParams();
+    var sev = (p.get('sev') || '').toUpperCase();
+    if (SEV_RANK[sev] !== undefined) { state.sev = sev; }
+    var cat = (p.get('cat') || '').toLowerCase();
+    if (CATS.indexOf(cat) !== -1) { state.cat = cat; }
+    state.repo = p.get('repo') || '';
+    state.q = p.get('q') || '';
+    state.action = p.get('action') || '';
+    var sort = p.get('sort');
+    if (SORT_KEYS.indexOf(sort) !== -1) { state.sort = sort; }
+    var dir = (p.get('dir') || '').toLowerCase();
+    if (dir === 'asc' || dir === 'desc') { state.dir = dir; }
+  }
+  function urlQuery() {
+    var p = new URLSearchParams();
+    if (state.sev) { p.set('sev', state.sev); }
+    if (state.cat) { p.set('cat', state.cat); }
+    if (state.repo) { p.set('repo', state.repo); }
+    if (state.q) { p.set('q', state.q); }
+    if (state.action) { p.set('action', state.action); }
+    if (state.sort !== 'sev') { p.set('sort', state.sort); }
+    if (state.dir !== 'asc') { p.set('dir', state.dir); }
+    return p.toString();
+  }
+  function writeURL() {
+    var qs = urlQuery();
+    var url = window.location.pathname + (qs ? '?' + qs : '');
+    try {
+      window.history.replaceState(null, '', url);
+      return;
+    } catch (e) { /* file:// has an opaque origin — fall through to the fragment */ }
+    try { window.location.hash = qs; }
+    catch (e) { /* no history API at all: filtering still works, only sharing is lost */ }
+  }
+  function shareURL() {
+    var qs = urlQuery();
+    var base = window.location.protocol + '//' + window.location.host + window.location.pathname;
+    return qs ? base + '#' + qs : base;
+  }
+
+  // ── one place that applies a state change ──────────────────────────
+  function scrollToFindings() {
+    var f = document.getElementById('findings');
+    if (f && f.scrollIntoView) { f.scrollIntoView({ block: 'start' }); }
+  }
+  function apply(announceResult) {
+    render();
+    syncControls();
+    writeURL();
+    if (announceResult) {
+      announce(visible + ' of ' + total + ' findings match the current filters.');
+    }
+  }
+
+  // ── controls ───────────────────────────────────────────────────────
+  function onPillClick(e) {
+    var b = e.target.closest ? e.target.closest('.pill') : null;
+    if (!b) { return; }
+    if (b.hasAttribute('data-sev')) { state.sev = b.getAttribute('data-sev') || ''; }
+    if (b.hasAttribute('data-cat')) { state.cat = b.getAttribute('data-cat') || ''; }
+    apply(true);
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('.pill-group'), function (g) {
+    g.addEventListener('click', onPillClick);
+  });
+
+  if (repoSelect) {
+    repoSelect.addEventListener('change', function () {
+      state.repo = repoSelect.value;
+      apply(true);
+    });
+  }
+
+  var searchTimer = null;
+  if (searchInput) {
+    searchInput.addEventListener('input', function () {
+      state.q = searchInput.value;
+      if (searchTimer) { clearTimeout(searchTimer); }
+      searchTimer = setTimeout(function () { apply(false); }, 120);
+    });
+  }
+
+  function clearAll() {
+    state.sev = '';
+    state.cat = '';
+    state.repo = '';
+    state.q = '';
+    state.action = '';
+    apply(true);
+  }
+  var clearBtn = document.getElementById('clear-filters');
+  if (clearBtn) { clearBtn.addEventListener('click', clearAll); }
+  var clearBtn2 = document.getElementById('clear-filters-2');
+  if (clearBtn2) { clearBtn2.addEventListener('click', clearAll); }
+
+  if (filterChips) {
+    filterChips.addEventListener('click', function (e) {
+      var b = e.target.closest ? e.target.closest('button[data-clear]') : null;
+      if (!b) { return; }
+      var kind = b.getAttribute('data-clear');
+      if (kind === 'sev') { state.sev = ''; }
+      else if (kind === 'cat') { state.cat = ''; }
+      else if (kind === 'repo') { state.repo = ''; }
+      else if (kind === 'action') { state.action = ''; }
+      else if (kind === 'q') { state.q = ''; }
+      apply(true);
+    });
+  }
+
+  var shareBtn = document.getElementById('share-view');
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function () {
+      var text = shareURL();
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(
+          function () { announce('Link to this filtered view copied to the clipboard.'); },
+          function () { announce('Could not copy the link. The address bar holds the filtered view.'); }
+        );
+      } else {
+        announce('Clipboard unavailable — copy the link from the address bar.');
+      }
+    });
+  }
+
+  // Verdict banner shortcuts.
+  var critBtn = document.getElementById('show-critical');
+  if (critBtn) {
+    critBtn.addEventListener('click', function () {
+      state.sev = 'CRITICAL';
+      apply(true);
+      scrollToFindings();
+    });
+  }
+  var highBtn = document.getElementById('show-high');
+  if (highBtn) {
+    highBtn.addEventListener('click', function () {
+      state.sev = 'HIGH';
+      apply(true);
+      scrollToFindings();
+    });
+  }
+
+  // ── sortable headers ───────────────────────────────────────────────
+  Array.prototype.forEach.call(document.querySelectorAll('th[data-sort]'), function (th) {
+    var btn = th.querySelector('.th-sort');
+    if (!btn) { return; }
+    btn.addEventListener('click', function () {
+      var key = th.getAttribute('data-sort');
+      if (state.sort === key) {
+        state.dir = state.dir === 'asc' ? 'desc' : 'asc';
+      } else {
+        state.sort = key;
+        state.dir = 'asc';
+      }
+      var ordered = sortedRows();
+      ordered.forEach(function (r) { tbody.appendChild(r); });
+      updateAriaSort();
+      render();
+      writeURL();
     });
   });
+
+  // ── action links (href is derived at runtime) ──────────────────────
+  Array.prototype.forEach.call(document.querySelectorAll('a.action-link'), function (a) {
+    var segs = actionPath(a.getAttribute('data-action') || '').split('/');
+    if (segs.length >= 2 && segs[0] && segs[1]) {
+      a.setAttribute('href', 'https://github.com/' + segs[0] + '/' + segs[1]);
+      a.setAttribute('target', '_blank');
+      a.setAttribute('rel', 'noopener noreferrer');
+    }
+  });
+
+  // ── repo dropdown + category counts ────────────────────────────────
+  var repoNames = {};
+  var catCounts = {};
+  rows.forEach(function (r) {
+    var repo = r.getAttribute('data-repo') || '';
+    if (repo) { repoNames[repo] = true; }
+    var cat = r.getAttribute('data-cat') || '';
+    if (cat) { catCounts[cat] = (catCounts[cat] || 0) + 1; }
+  });
+  if (repoSelect) {
+    Object.keys(repoNames).sort().forEach(function (repo) {
+      var o = el('option', null, repo);
+      o.value = repo;
+      repoSelect.appendChild(o);
+    });
+  }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-count]'), function (sp) {
+    var n = catCounts[sp.getAttribute('data-count')] || 0;
+    sp.textContent = n ? '(' + n + ')' : '(0)';
+  });
+
+  // ── blast radius ───────────────────────────────────────────────────
+  function buildBlast() {
+    var body = document.getElementById('blast-body');
+    if (!body) { return; }
+    var groups = {};
+    rows.forEach(function (r) {
+      var name = r._name;
+      var g = groups[name];
+      if (!g) {
+        g = groups[name] = { name: name, repos: {}, n: 0, sev: 'LOW', refs: {} };
+      }
+      var repo = r.getAttribute('data-repo') || '';
+      if (repo) { g.repos[repo] = true; }
+      g.n++;
+      var ref = r.getAttribute('data-ref') || '';
+      if (ref) { g.refs[ref] = true; }
+      var s = r.getAttribute('data-sev') || '';
+      if (rank(s) < rank(g.sev)) { g.sev = s; }
+    });
+    var list = Object.keys(groups).map(function (k) { return groups[k]; });
+    list.sort(function (a, b) {
+      var d = rank(a.sev) - rank(b.sev);
+      if (d) { return d; }
+      d = Object.keys(b.repos).length - Object.keys(a.repos).length;
+      if (d) { return d; }
+      d = b.n - a.n;
+      if (d) { return d; }
+      return a.name.localeCompare(b.name);
+    });
+
+    while (body.firstChild) { body.removeChild(body.firstChild); }
+    list.forEach(function (g) {
+      var tr = el('tr');
+
+      var td1 = el('td');
+      td1.setAttribute('data-label', 'Action');
+      var btn = el('button', 'linkish', g.name);
+      btn.type = 'button';
+      btn.setAttribute('data-action-filter', g.name);
+      btn.setAttribute('aria-label', 'Filter the findings table to ' + g.name);
+      td1.appendChild(btn);
+      var refs = Object.keys(g.refs);
+      if (refs.length) { td1.appendChild(el('span', 'refs', refs.join(' · '))); }
+      tr.appendChild(td1);
+
+      var repoCount = Object.keys(g.repos).length;
+      var td2 = el('td', 'num', String(repoCount));
+      td2.setAttribute('data-label', 'Repos');
+      tr.appendChild(td2);
+
+      var td3 = el('td', 'num', String(g.n));
+      td3.setAttribute('data-label', 'Findings');
+      tr.appendChild(td3);
+
+      var td4 = el('td');
+      td4.setAttribute('data-label', 'Worst severity');
+      td4.appendChild(el('span', 'sev ' + g.sev, g.sev));
+      tr.appendChild(td4);
+
+      var td5 = el('td');
+      td5.setAttribute('data-label', 'Filter');
+      var b2 = el('button', 'btn', 'Show');
+      b2.type = 'button';
+      b2.setAttribute('data-action-filter', g.name);
+      b2.setAttribute('aria-label', 'Show findings for ' + g.name + ' in ' + repoCount + ' repositories');
+      td5.appendChild(b2);
+      tr.appendChild(td5);
+
+      body.appendChild(tr);
+    });
+
+    var count = document.getElementById('blast-count');
+    if (count) { count.textContent = list.length + ' distinct action' + (list.length === 1 ? '' : 's'); }
+  }
+  buildBlast();
+
+  Array.prototype.forEach.call(document.querySelectorAll('[data-action-filter]'), function (b) {
+    b.addEventListener('click', function () {
+      state.action = b.getAttribute('data-action-filter');
+      apply(true);
+      scrollToFindings();
+    });
+  });
+
+  // ── copy-to-clipboard ──────────────────────────────────────────────
+  function flash(btn, label) {
+    var original = btn.getAttribute('data-orig') || btn.textContent;
+    btn.setAttribute('data-orig', original);
+    btn.textContent = label;
+    setTimeout(function () { btn.textContent = original; }, 1400);
+  }
+  function selectCode(btn) {
+    var code = btn.parentNode ? btn.parentNode.querySelector('code') : null;
+    if (!code || !window.getSelection) { return false; }
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(code);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      return true;
+    } catch (e) { return false; }
+  }
+  function legacyCopy(text, btn) {
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.position = 'fixed';
+    ta.style.top = '-1000px';
+    ta.style.left = '-1000px';
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = false;
+    try { ok = document.execCommand('copy'); } catch (e) { ok = false; }
+    document.body.removeChild(ta);
+    if (ok) {
+      flash(btn, 'Copied');
+      announce('Recommended fix copied to the clipboard.');
+      return;
+    }
+    // No clipboard access (insecure origin): select the text so the
+    // reader can copy it by hand instead of failing silently.
+    if (selectCode(btn)) {
+      flash(btn, 'Ctrl+C');
+      announce('Clipboard unavailable — the fix text is selected. Press Control C to copy it.');
+    } else {
+      flash(btn, 'Copy failed');
+      announce('Clipboard unavailable — copy the fix text manually.');
+    }
+  }
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('button.copy') : null;
+    if (!btn) { return; }
+    var text = btn.getAttribute('data-fix') || '';
+    if (!text) { return; }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(
+        function () {
+          flash(btn, 'Copied');
+          announce('Recommended fix copied to the clipboard.');
+        },
+        function () { legacyCopy(text, btn); }
+      );
+    } else {
+      legacyCopy(text, btn);
+    }
+  });
+
+  // ── boot ───────────────────────────────────────────────────────────
+  readURL();
+  var ordered = sortedRows();
+  ordered.forEach(function (r) { tbody.appendChild(r); });
+  updateAriaSort();
+  syncControls();
+  render();
+  writeURL();
 })();
 </script>
 </body>

@@ -11,6 +11,7 @@ import (
 type Config struct {
 	Server struct {
 		Port string
+		Host string
 		Mode string
 	}
 	GitHub struct {
@@ -23,16 +24,18 @@ type Config struct {
 		ReportDir   string
 	}
 	Rules struct {
-		CacheTTLHours   int
-		CacheDir        string
-		FetchLatestTags bool
-		UseOSV          bool
+		CacheTTLHours    int
+		CacheDir         string
+		FetchLatestTags  bool
+		UseOSV           bool
+		MaliciousFeedURL string
 	}
 }
 
 func Load() *Config {
 	var c Config
 	c.Server.Port = getStr("server.port", "8080")
+	c.Server.Host = getStr("server.host", "127.0.0.1")
 	c.Server.Mode = getStr("server.mode", "release")
 	c.GitHub.Token = getStr("github.token", "")
 	c.GitHub.Org = getStr("github.org", "")
@@ -43,6 +46,7 @@ func Load() *Config {
 	c.Rules.CacheDir = getStr("rules.cache_dir", "")
 	c.Rules.FetchLatestTags = getBool("rules.fetch_latest_tags", true)
 	c.Rules.UseOSV = getBool("rules.use_osv", true)
+	c.Rules.MaliciousFeedURL = getStr("rules.malicious_feed_url", "")
 
 	if c.Rules.CacheDir == "" {
 		home, err := os.UserHomeDir()
