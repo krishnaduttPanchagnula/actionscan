@@ -1,9 +1,10 @@
 server:
   port: "8080"
+  host: "127.0.0.1"
   mode: release
 
 github:
-  token: ""
+  token: ""          # or use env/flag
   org: ""
   user: ""
 
@@ -16,3 +17,4 @@ rules:
   cache_dir: ""              # empty = ~/.actionscan
   fetch_latest_tags: true
   use_osv: true              # OSV.dev per-action queries
+  malicious_feed_url: ""     # extra compromised-action feed; empty = default
