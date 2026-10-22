@@ -97,8 +97,6 @@ func TestRootFlagsAreBoundToViper(t *testing.T) {
 		"scan.concurrency":      "concurrency",
 		"scan.report_dir":       "out",
 		"rules.cache_ttl_hours": "cache-ttl",
-		"rules.skip_latest":     "no-latest",
-		"rules.skip_osv":        "no-osv",
 	}
 	for key, flag := range bindings {
 		if rootCmd.PersistentFlags().Lookup(flag) == nil {
@@ -109,6 +107,30 @@ func TestRootFlagsAreBoundToViper(t *testing.T) {
 			if viper.GetString(key) == "" && viper.GetInt(key) == 0 {
 				t.Errorf("key %q does not read from flag %q", key, flag)
 			}
+		}
+	}
+}
+
+// --no-latest and --no-osv are negative flags: binding them to a viper
+// key would make the key always false, which is why they are read
+// directly by the scan command. The positive config keys must still
+// work, so ACTIONSCAN_RULES_USE_OSV=false is honored.
+func TestNegativeFlagsAreNotBoundToViper(t *testing.T) {
+	for _, key := range []string{"rules.skip_latest", "rules.skip_osv"} {
+		if viper.IsSet(key) {
+			t.Errorf("key %q must not be bound to a negative flag", key)
+		}
+	}
+	for _, flag := range []string{"no-latest", "no-osv"} {
+		if rootCmd.PersistentFlags().Lookup(flag) == nil {
+			t.Errorf("flag %q not registered", flag)
+		}
+	}
+	// The positive keys the scan command actually reads.
+	initConfig()
+	for _, key := range []string{"rules.fetch_latest_tags", "rules.use_osv"} {
+		if !viper.GetBool(key) {
+			t.Errorf("config key %q must default to true", key)
 		}
 	}
 }

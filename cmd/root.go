@@ -12,14 +12,15 @@ import (
 var cfgFile string
 
 var rootCmd = &cobra.Command{
-	Use:   "actionscan",
-	Short: "Scan GitHub repos for vulnerable & outdated Actions",
+	Use:     "actionscan",
+	Short:   "Scan GitHub repos for vulnerable & outdated Actions",
+	Version: Version,
 	Long: `actionscan scans all repos for a user or org, extracts every
 GitHub Action referenced in workflows, and checks them against live
-feeds: StepSecurity compromised-actions, GitHub Security Advisories
-(GHSA), OSV.dev, and latest-release tags.
+threat-intel feeds: GitHub Security Advisories (GHSA), OSV.dev,
+compromised-action feeds, and latest-release tags.
 
-Reports are generated as HTML, CSV, and JSON.`,
+Reports are generated as HTML, CSV, JSON, and SARIF.`,
 }
 
 func Execute() {
@@ -51,8 +52,10 @@ func init() {
 	_ = viper.BindPFlag("scan.concurrency", rootCmd.PersistentFlags().Lookup("concurrency"))
 	_ = viper.BindPFlag("scan.report_dir", rootCmd.PersistentFlags().Lookup("out"))
 	_ = viper.BindPFlag("rules.cache_ttl_hours", rootCmd.PersistentFlags().Lookup("cache-ttl"))
-	_ = viper.BindPFlag("rules.skip_latest", rootCmd.PersistentFlags().Lookup("no-latest"))
-	_ = viper.BindPFlag("rules.skip_osv", rootCmd.PersistentFlags().Lookup("no-osv"))
+	// The flags are negative ("--no-latest"), so they cannot be bound
+	// to the positive config keys directly — a bound bool flag always
+	// reports its value, even when unchanged. The scan command reads
+	// the flags itself and ORs them with the config value.
 }
 
 func initConfig() {
@@ -70,6 +73,7 @@ func initConfig() {
 	viper.AutomaticEnv()
 
 	viper.SetDefault("server.port", "8080")
+	viper.SetDefault("server.host", "127.0.0.1")
 	viper.SetDefault("server.mode", "release")
 	viper.SetDefault("scan.concurrency", 8)
 	viper.SetDefault("scan.report_dir", "./reports")
