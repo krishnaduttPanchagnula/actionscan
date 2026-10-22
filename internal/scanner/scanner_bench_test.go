@@ -10,7 +10,7 @@ import (
 	"github.com/krishnaduttPanchagnula/actionscan/internal/rules"
 )
 
-// realisticWorkflow mimics a busy CI file: ~150 lines, 20 action refs.
+// realisticWorkflow mimics a busy CI file: ~150 lines, 23 action refs.
 func realisticWorkflow() []byte {
 	var sb strings.Builder
 	sb.WriteString("name: CI\non: [push, pull_request]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n")
@@ -29,35 +29,46 @@ func realisticWorkflow() []byte {
 // largeRuleSet mirrors feed sizes at benchmark time (kept local to this
 // package so scanner benches do not depend on rules internals).
 func largeRuleSet() *rules.RuleSet {
-	v := map[string]rules.VulnRule{}
-	for i := 0; i < 1200; i++ {
-		v[fmt.Sprintf("pkg%04d/action@>= %d.0.0, < %d.0.0", i, i%9+1, i%9+2)] =
-			rules.VulnRule{Reason: "GHSA: vuln", Fix: "Upgrade to a patched version"}
-	}
-	for i := 0; i < 20; i++ {
-		v[fmt.Sprintf("owner%02d/action%02d@>= 1.0.0, < 2.0.0", i%10, i)] =
-			rules.VulnRule{Reason: "GHSA: hit", Fix: "Upgrade to >= 2.0.0"}
-	}
-	return &rules.RuleSet{
-		Malicious: []rules.CompromisedEntry{
-			{Repo: "tj-actions/changed-files", Description: "CVE-2025-30066"},
-		},
-		Vulnerable:  v,
-		OSVCache:    map[string][]rules.OSVVuln{},
-		LatestTags:  map[string]string{},
+	rs := &rules.RuleSet{
 		UseOSV:      true,
 		FetchLatest: true,
 	}
+	for i := 0; i < 1200; i++ {
+		rs.Rules = append(rs.Rules, rules.Rule{
+			Category: "vulnerable",
+			Repo:     fmt.Sprintf("pkg%04d/action", i),
+			Range:    fmt.Sprintf(">= %d.0.0, < %d.0.0", i%9+1, i%9+2),
+			Reason:   "GHSA: vuln",
+			Fix:      "Upgrade to a patched version",
+			Severity: "HIGH",
+		})
+	}
+	for i := 0; i < 20; i++ {
+		rs.Rules = append(rs.Rules, rules.Rule{
+			Category: "vulnerable",
+			Repo:     fmt.Sprintf("owner%02d/action%02d", i%10, i),
+			Range:    ">= 1.0.0, < 2.0.0",
+			Reason:   "GHSA: hit",
+			Fix:      "Upgrade to >= 2.0.0",
+			Severity: "HIGH",
+		})
+	}
+	rs.Rules = append(rs.Rules, rules.Rule{
+		Category: "malicious",
+		Repo:     "tj-actions/changed-files",
+		Reason:   "CVE-2025-30066",
+	})
+	return rs
 }
 
-// ── ExtractActions ─────────────────────────────────────────────────────
+// ── extraction ─────────────────────────────────────────────────────────
 
-func BenchmarkExtractActions(b *testing.B) {
+func BenchmarkExtractActionRefs(b *testing.B) {
 	wf := realisticWorkflow()
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		got := ExtractActions(wf)
+		got := ExtractActionRefs(wf)
 		if len(got) != 23 {
 			b.Fatalf("got %d actions, want 23", len(got))
 		}
@@ -76,7 +87,10 @@ func BenchmarkCheck_CleanAction(b *testing.B) {
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		got := s.Check(ctx, "acme/app", "ci.yml", "actions/checkout@v4.1.1")
+		got := s.Check(ctx, "acme/app", ".github/workflows/ci.yml", ActionRef{
+			Raw: "actions/checkout@v4.1.1", Name: "actions/checkout",
+			FullName: "actions/checkout", Ref: "v4.1.1",
+		})
 		if len(got) != 0 {
 			b.Fatalf("unexpected findings: %+v", got)
 		}
@@ -93,7 +107,10 @@ func BenchmarkCheck_VulnerableAction(b *testing.B) {
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		got := s.Check(ctx, "acme/app", "ci.yml", "owner05/action05@v1.5.0")
+		got := s.Check(ctx, "acme/app", ".github/workflows/ci.yml", ActionRef{
+			Raw: "owner05/action05@v1.5.0", Name: "owner05/action05",
+			FullName: "owner05/action05", Ref: "v1.5.0",
+		})
 		if len(got) != 1 || got[0].Category != "vulnerable" {
 			b.Fatalf("unexpected findings: %+v", got)
 		}
@@ -110,7 +127,10 @@ func BenchmarkCheck_MaliciousAction(b *testing.B) {
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		got := s.Check(ctx, "acme/app", "ci.yml", "tj-actions/changed-files@v41")
+		got := s.Check(ctx, "acme/app", ".github/workflows/ci.yml", ActionRef{
+			Raw: "tj-actions/changed-files@v41", Name: "tj-actions/changed-files",
+			FullName: "tj-actions/changed-files", Ref: "v41",
+		})
 		if len(got) != 1 || got[0].Category != "malicious" {
 			b.Fatalf("unexpected findings: %+v", got)
 		}
@@ -131,8 +151,8 @@ func BenchmarkScanAll_200Repos(b *testing.B) {
 			Name: fmt.Sprintf("repo-%03d", i), DefaultBranch: "main",
 		}
 		workflows[full] = map[string][]byte{
-			"ci.yml":     realisticWorkflow(),
-			"deploy.yml": realisticWorkflow(),
+			".github/workflows/ci.yml":     realisticWorkflow(),
+			".github/workflows/deploy.yml": realisticWorkflow(),
 		}
 	}
 
@@ -155,7 +175,7 @@ func BenchmarkScanAll_200Repos(b *testing.B) {
 func noOSVBench(b *testing.B) {
 	b.Helper()
 	orig := queryOSV
-	queryOSV = func(_ context.Context, _, _ string) ([]rules.OSVVuln, error) {
+	queryOSV = func(_ context.Context, _ string) ([]rules.OSVVuln, error) {
 		return nil, nil
 	}
 	b.Cleanup(func() { queryOSV = orig })

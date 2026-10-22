@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -14,325 +15,416 @@ import (
 	semver "github.com/Masterminds/semver/v3"
 )
 
-// VulnRule is one advisory: why it matters and how to fix it.
-type VulnRule struct {
-	Reason string `json:"reason"`
-	Fix    string `json:"fix"`
+// Rule categories.
+const (
+	CategoryMalicious  = "malicious"
+	CategoryVulnerable = "vulnerable"
+)
+
+// Severities, most severe first.
+const (
+	severityCritical = "CRITICAL"
+	severityHigh     = "HIGH"
+	severityMedium   = "MEDIUM"
+	severityLow      = "LOW"
+)
+
+// Rule is one advisory or compromise rule.
+type Rule struct {
+	Category string   `json:"category"`       // malicious | vulnerable
+	Repo     string   `json:"repo"`           // normalized "owner/repo"
+	Range    string   `json:"range"`          // GHSA-style semver range; "" = all refs
+	Refs     []string `json:"refs,omitempty"` // exact refs (e.g. ["v41"]); when set, Range is ignored
+	Reason   string   `json:"reason"`
+	Fix      string   `json:"fix"`
+	Severity string   `json:"severity"` // CRITICAL | HIGH | MEDIUM | LOW
+
+	AdvisoryID  string `json:"advisory_id,omitempty"`
+	AdvisoryURL string `json:"advisory_url,omitempty"`
 }
 
+// RuleSet is the loaded rule set.
 type RuleSet struct {
-	Malicious  []CompromisedEntry
-	Vulnerable map[string]VulnRule  // "repo@range" -> advisory (GHSA)
-	OSVCache   map[string][]OSVVuln // "repo@version" -> vulns (per-ref, populated lazily)
-	LatestTags map[string]string    // "repo" -> latest tag (populated lazily)
-	Sources    []string
-	LoadedAt   time.Time
+	Rules    []Rule
+	Sources  []string
+	LoadedAt time.Time
+
+	// Degraded reports that at least one feed failed; DegradedReason
+	// says which. A degraded rule set is never written to the cache.
+	Degraded       bool
+	DegradedReason string
 
 	// UseOSV and FetchLatest gate the OSV and latest-tag layers
 	// (wired from --no-osv / --no-latest and config).
 	UseOSV      bool
 	FetchLatest bool
 
-	// Lookup indexes built lazily on first check. Mutating Malicious or
-	// Vulnerable after the first check is not supported.
-	idxOnce  sync.Once
-	malIdx   map[string][]CompromisedEntry // normalized repo -> entries
-	vulIdx   map[string][]compiledVuln     // normalized repo -> compiled ranges
-	refCache sync.Map                      // ref -> *semver.Version (typed nil = unparsable)
+	// Lookup index, built on first use. Mutating Rules after the first
+	// Match call is not supported.
+	idxOnce sync.Once
+	idx     map[string][]compiledRule
 }
 
-// compiledVuln is one pre-parsed advisory range bound to its reason+fix.
-type compiledVuln struct {
-	cr     compiledRange
-	reason string
-	fix    string
+// compiledRule is a rule with its semver range pre-compiled, so a match
+// costs one version parse.
+type compiledRule struct {
+	rule Rule
+	// hasRange reports whether the rule carries a range constraint.
+	hasRange bool
+	// cons is the compiled range; nil with hasRange set means the range
+	// could not be parsed and therefore matches nothing.
+	cons *semver.Constraints
 }
 
-// compiledPart is a single pre-parsed range bound ("< 2.0.0", ">= 1.0.0").
-type compiledPart struct {
-	op  string // "", "=", "==", ">", ">=", "<", "<="
-	ok  bool   // false → unparsable version, never matches
-	ver *semver.Version
-}
-
-// compiledRange is a fully pre-parsed GHSA-style version range.
-// Matching later is allocation-free: only the caller's ref is parsed.
-type compiledRange struct {
-	always bool // empty constraint matches every version
-	parts  []compiledPart
-}
-
-func compileRange(rangeStr string) compiledRange {
-	rangeStr = strings.TrimSpace(rangeStr)
-	if rangeStr == "" {
-		return compiledRange{always: true}
+// Match returns every rule that applies to repo@ref, most severe first.
+//
+// A rule matches when its repository equals the queried one and either
+// one of its exact refs equals the ref (string or semver equality), or
+// its semver range contains the ref, or it carries no constraint at all
+// and therefore matches every ref.
+func (rs *RuleSet) Match(repo, ref string) []Rule {
+	if rs == nil {
+		return nil
 	}
-	rawParts := strings.Split(rangeStr, ",")
-	cr := compiledRange{parts: make([]compiledPart, 0, len(rawParts))}
-	for _, raw := range rawParts {
-		raw = strings.TrimSpace(raw)
-		if raw == "" {
-			continue // an empty bound matches everything (matchesConstraint semantics)
-		}
-		cr.parts = append(cr.parts, compilePart(raw))
+	candidates := rs.index()[normalizeRepo(repo)]
+	if len(candidates) == 0 {
+		return nil
 	}
-	return cr
-}
-
-func compilePart(constraint string) compiledPart {
-	op := ""
-	verStr := constraint
-	for _, candidate := range []string{">=", "<=", "==", ">", "<", "="} {
-		if strings.HasPrefix(constraint, candidate) {
-			op = candidate
-			verStr = strings.TrimSpace(strings.TrimPrefix(constraint, candidate))
-			break
+	var out []Rule
+	for _, c := range candidates {
+		if c.matches(ref) {
+			out = append(out, c.rule)
 		}
 	}
-	verStr = strings.TrimPrefix(verStr, "v")
-	switch n := len(strings.Split(verStr, ".")); {
-	case n == 2:
-		verStr += ".0"
-	case n == 1:
-		verStr += ".0.0"
-	}
-	v, err := semver.NewVersion(verStr)
-	return compiledPart{op: op, ver: v, ok: err == nil}
+	sort.SliceStable(out, func(i, j int) bool {
+		if a, b := severityRank(out[i].Severity), severityRank(out[j].Severity); a != b {
+			return a > b
+		}
+		return out[i].AdvisoryID < out[j].AdvisoryID
+	})
+	return out
 }
 
-// matches reports whether v satisfies every bound of the range.
-func (cr compiledRange) matches(v *semver.Version) bool {
-	if cr.always {
-		return true
-	}
-	for _, p := range cr.parts {
-		if !p.ok {
-			return false
+// index maps a normalized repository to its rules.
+func (rs *RuleSet) index() map[string][]compiledRule {
+	rs.idxOnce.Do(func() {
+		rs.idx = make(map[string][]compiledRule, len(rs.Rules))
+		for _, r := range rs.Rules {
+			key := normalizeRepo(r.Repo)
+			if key == "" {
+				continue
+			}
+			rs.idx[key] = append(rs.idx[key], compileRule(r))
 		}
-		switch p.op {
-		case ">=":
-			if !v.GreaterThanEqual(p.ver) {
-				return false
-			}
-		case "<=":
-			if !v.LessThanEqual(p.ver) {
-				return false
-			}
-		case ">":
-			if !v.GreaterThan(p.ver) {
-				return false
-			}
-		case "<":
-			if !v.LessThan(p.ver) {
-				return false
-			}
-		default: // "", "=", "=="
-			if !v.Equal(p.ver) {
-				return false
+	})
+	return rs.idx
+}
+
+// compileRule pre-compiles the semver range of a rule.
+func compileRule(r Rule) compiledRule {
+	c := compiledRule{rule: r}
+	rng := strings.TrimSpace(r.Range)
+	if rng == "" {
+		return c // no range constraint
+	}
+	c.hasRange = true
+	if cons, err := semver.NewConstraint(padRangeVersions(rng)); err == nil {
+		c.cons = cons
+	}
+	return c
+}
+
+// matches reports whether the rule applies to ref.
+//
+// A rule may carry an exact-ref list, a version range, or both. When it
+// carries both, either matching is enough: a compromised commit SHA and
+// the tag range that was moved onto it are two views of the same
+// compromise.
+func (c compiledRule) matches(ref string) bool {
+	hasRefs := len(c.rule.Refs) > 0
+	if !hasRefs && !c.hasRange {
+		return true // no constraint: matches every ref
+	}
+	if hasRefs {
+		for _, want := range c.rule.Refs {
+			if want == ref || semverEqual(want, ref) {
+				return true
 			}
 		}
 	}
-	return true
-}
-
-func (rs *RuleSet) buildIndex() {
-	rs.malIdx = make(map[string][]CompromisedEntry, len(rs.Malicious))
-	for _, e := range rs.Malicious {
-		key := normalizeRepo(e.Repo)
-		rs.malIdx[key] = append(rs.malIdx[key], e)
+	if !c.hasRange {
+		return false
 	}
-	rs.vulIdx = make(map[string][]compiledVuln, len(rs.Vulnerable))
-	for k, rule := range rs.Vulnerable {
-		i := strings.Index(k, "@")
-		if i < 0 {
-			continue
-		}
-		key := normalizeRepo(k[:i])
-		rs.vulIdx[key] = append(rs.vulIdx[key],
-			compiledVuln{cr: compileRange(k[i+1:]), reason: rule.Reason, fix: rule.Fix})
+	if c.cons == nil {
+		return false // unparsable range matches nothing
 	}
-}
-
-// parseRef returns the cached parsed version for ref, parsing on miss.
-func (rs *RuleSet) parseRef(ref string) (*semver.Version, bool) {
-	if val, ok := rs.refCache.Load(ref); ok {
-		v, _ := val.(*semver.Version)
-		return v, v != nil
-	}
-	v, err := semver.NewVersion(strings.TrimPrefix(strings.TrimSpace(ref), "v"))
+	v, err := parseVersion(ref)
 	if err != nil {
-		rs.refCache.Store(ref, (*semver.Version)(nil))
-		return nil, false
+		return false // an unparsable ref can never satisfy a range
 	}
-	rs.refCache.Store(ref, v)
-	return v, true
+	return c.cons.Check(v)
 }
 
-type cacheFile struct {
-	FetchedAt  time.Time           `json:"fetched_at"`
-	Malicious  []CompromisedEntry  `json:"malicious"`
-	Vulnerable map[string]VulnRule `json:"vulnerable"`
-	Sources    []string            `json:"sources"`
+// semverEqual reports whether two refs denote the same version.
+func semverEqual(a, b string) bool {
+	va, err := parseVersion(a)
+	if err != nil {
+		return false
+	}
+	vb, err := parseVersion(b)
+	if err != nil {
+		return false
+	}
+	return va.Equal(vb)
 }
 
+// parseVersion parses a ref into a semver version.
+func parseVersion(s string) (*semver.Version, error) {
+	s = strings.TrimSpace(s)
+	if s == "" {
+		return nil, fmt.Errorf("empty version")
+	}
+	return semver.NewVersion(strings.TrimPrefix(s, "v"))
+}
+
+// rangeMatches reports whether ref falls inside a GHSA-style range.
+func rangeMatches(rangeStr, ref string) bool {
+	v, err := parseVersion(ref)
+	if err != nil {
+		return false // an unparsable ref can never satisfy a range
+	}
+	cons, err := semver.NewConstraint(padRangeVersions(rangeStr))
+	if err != nil {
+		return false
+	}
+	return cons.Check(v)
+}
+
+// padRangeVersions expands partial versions of equality-style bounds
+// ("= 1" becomes "= 1.0.0"). Masterminds would otherwise read "= 1" as
+// the tilde range >= 1.0.0, < 2.0.0.
+func padRangeVersions(rangeStr string) string {
+	parts := strings.Split(rangeStr, ",")
+	for i, p := range parts {
+		op, ver := splitBound(p)
+		switch op {
+		case "=", "==":
+			parts[i] = op + " " + padVersion(ver)
+		case "":
+			parts[i] = padVersion(ver)
+		}
+	}
+	return strings.Join(parts, ",")
+}
+
+// splitBound splits a range bound into its operator and its version.
+func splitBound(bound string) (op, ver string) {
+	bound = strings.TrimSpace(bound)
+	for _, candidate := range []string{">=", "<=", "==", "=>", "=<", "~>", ">", "<", "=", "~", "^"} {
+		if strings.HasPrefix(bound, candidate) {
+			return candidate, strings.TrimSpace(strings.TrimPrefix(bound, candidate))
+		}
+	}
+	return "", bound
+}
+
+// padVersion expands a partial version ("1", "1.2") to a full one.
+func padVersion(v string) string {
+	v = strings.TrimSpace(v)
+	if v == "" || strings.ContainsAny(v, " -+") {
+		return v
+	}
+	switch strings.Count(v, ".") {
+	case 0:
+		return v + ".0.0"
+	case 1:
+		return v + ".0"
+	}
+	return v
+}
+
+// severityLevel maps an advisory severity to the scanner's vocabulary.
+func severityLevel(s string) string {
+	switch strings.ToUpper(strings.TrimSpace(s)) {
+	case severityCritical:
+		return severityCritical
+	case severityHigh:
+		return severityHigh
+	case severityMedium, "MODERATE":
+		return severityMedium
+	case severityLow:
+		return severityLow
+	}
+	return severityMedium
+}
+
+// severityRank orders severities for sorting.
+func severityRank(s string) int {
+	switch strings.ToUpper(strings.TrimSpace(s)) {
+	case severityCritical:
+		return 4
+	case severityHigh:
+		return 3
+	case severityMedium:
+		return 2
+	case severityLow:
+		return 1
+	}
+	return 0
+}
+
+// advisoryFix turns a patched version into an actionable recommendation.
+func advisoryFix(actionRepo, patched string) string {
+	p := strings.TrimSpace(patched)
+	if p == "" || strings.EqualFold(p, "none") {
+		return fmt.Sprintf("Remove or replace %s", actionRepo)
+	}
+	if !strings.HasPrefix(p, "v") {
+		p = "v" + p
+	}
+	return fmt.Sprintf("Upgrade %s to %s", actionRepo, p)
+}
+
+// ── Loading ────────────────────────────────────────────────────────────
+
+// LoadOptions configures Load.
 type LoadOptions struct {
 	CacheDir    string
 	TTL         time.Duration
 	Token       string
 	UseOSV      bool
 	FetchLatest bool
+	// MaliciousFeedURL is an optional extra compromised-actions feed.
+	// Empty means DefaultMaliciousFeedURL.
+	MaliciousFeedURL string
+}
+
+const cacheFileName = "rules-cache.json"
+
+// feedClient fetches the advisory and compromised feeds.
+var feedClient = &http.Client{Timeout: 30 * time.Second}
+
+// cacheFile is the on-disk shape of the rule cache.
+type cacheFile struct {
+	FetchedAt time.Time `json:"fetched_at"`
+	Rules     []Rule    `json:"rules"`
+	Sources   []string  `json:"sources"`
 }
 
 // Load fetches live rules with disk cache + TTL, falling back to defaults.
 func Load(ctx context.Context, opts LoadOptions) (*RuleSet, error) {
-	cachePath := filepath.Join(opts.CacheDir, "rules-cache.json")
+	cachePath := filepath.Join(opts.CacheDir, cacheFileName)
 
-	if data, err := os.ReadFile(cachePath); err == nil {
-		var c cacheFile
-		if json.Unmarshal(data, &c) == nil && time.Since(c.FetchedAt) < opts.TTL {
-			return &RuleSet{
-				Malicious:   c.Malicious,
-				Vulnerable:  c.Vulnerable,
-				OSVCache:    map[string][]OSVVuln{},
-				LatestTags:  map[string]string{},
-				Sources:     c.Sources,
-				LoadedAt:    c.FetchedAt,
-				UseOSV:      opts.UseOSV,
-				FetchLatest: opts.FetchLatest,
-			}, nil
-		}
+	if rs, ok := readCache(cachePath, opts); ok {
+		return rs, nil
 	}
 
-	hc := &http.Client{Timeout: 30 * time.Second}
+	hc := feedClient
 	rs := &RuleSet{
-		Vulnerable:  map[string]VulnRule{},
-		OSVCache:    map[string][]OSVVuln{},
-		LatestTags:  map[string]string{},
 		LoadedAt:    time.Now(),
 		UseOSV:      opts.UseOSV,
 		FetchLatest: opts.FetchLatest,
 	}
-	var errs []string
+	var failures []string
 
-	if entries, err := FetchMalicious(ctx, hc); err == nil {
-		rs.Malicious = entries
-		rs.Sources = append(rs.Sources, "stepsecurity")
+	advisories, err := FetchAdvisories(ctx, hc, opts.Token)
+	if err != nil {
+		failures = append(failures, "ghsa: "+err.Error())
+		rs.Rules = append(rs.Rules, DefaultMalicious...)
+		rs.Rules = append(rs.Rules, DefaultVulnerable...)
+		rs.Sources = append(rs.Sources, "builtin-fallback")
 	} else {
-		errs = append(errs, "malicious feed: "+err.Error())
-	}
-
-	if advisories, err := FetchAdvisories(ctx, hc, opts.Token); err == nil {
-		for _, a := range advisories {
-			for _, v := range a.Vulnerabilities {
-				name := normalizeRepo(v.Package.Name)
-				if name == "" || v.VulnerableVersionRange == "" {
-					continue
-				}
-				key := name + "@" + v.VulnerableVersionRange
-				rs.Vulnerable[key] = VulnRule{
-					Reason: fmt.Sprintf("%s: %s", a.GHSAID, a.Summary),
-					Fix:    advisoryFix(name, v.PatchedVersions),
-				}
-			}
-		}
+		rs.Rules = append(rs.Rules, rulesFromAdvisories(advisories)...)
 		rs.Sources = append(rs.Sources, "ghsa")
+	}
+
+	feedURL := opts.MaliciousFeedURL
+	if feedURL == "" {
+		feedURL = DefaultMaliciousFeedURL
+	}
+	entries, feedErr := FetchMalicious(ctx, hc, feedURL)
+	if feedErr != nil {
+		// The GHSA-derived layer is the primary source: a broken extra
+		// feed degrades the load, it does not fail it.
+		failures = append(failures, "compromised feed: "+feedErr.Error())
 	} else {
-		errs = append(errs, "ghsa: "+err.Error())
+		rs.Rules = append(rs.Rules, rulesFromCompromised(entries)...)
+		rs.Sources = append(rs.Sources, "compromised-feed")
 	}
 
-	if rs.Malicious == nil {
-		rs.Malicious = DefaultMalicious
-		rs.Sources = append(rs.Sources, "builtin-malicious-fallback")
-	}
-	if len(rs.Vulnerable) == 0 {
-		rs.Vulnerable = DefaultVulnerable
-		rs.Sources = append(rs.Sources, "builtin-vulnerable-fallback")
+	if len(failures) > 0 {
+		rs.Degraded = true
+		rs.DegradedReason = strings.Join(failures, "; ")
 	}
 
-	if c, err := json.Marshal(cacheFile{
-		FetchedAt:  rs.LoadedAt,
-		Malicious:  rs.Malicious,
-		Vulnerable: rs.Vulnerable,
-		Sources:    rs.Sources,
-	}); err == nil {
-		_ = os.MkdirAll(opts.CacheDir, 0o755)
-		_ = os.WriteFile(cachePath, c, 0o644)
+	// A degraded rule set (typically the builtin fallback) must never be
+	// cached with a fresh timestamp: one transient outage would poison the
+	// cache for the whole TTL.
+	if !rs.Degraded {
+		if err := saveCache(cachePath, cacheFile{
+			FetchedAt: rs.LoadedAt,
+			Rules:     rs.Rules,
+			Sources:   rs.Sources,
+		}); err != nil {
+			rs.Degraded = true
+			rs.DegradedReason = strings.TrimSpace(rs.DegradedReason + "; cache: " + err.Error())
+		}
 	}
 
-	if len(errs) > 0 {
-		return rs, fmt.Errorf("partial load (%s)", strings.Join(errs, "; "))
+	if len(failures) > 0 {
+		return rs, fmt.Errorf("partial load (%s)", strings.Join(failures, "; "))
 	}
 	return rs, nil
 }
 
-// ── Malicious ──
-
-// IsMalicious reports whether repo@ref matches the compromised-actions
-// feed. The feed is indexed by normalized repo on first use, so a check
-// costs one map lookup instead of scanning every entry.
-func (rs *RuleSet) IsMalicious(repo, ref string) (CompromisedEntry, bool) {
-	rs.idxOnce.Do(rs.buildIndex)
-	for _, e := range rs.malIdx[normalizeRepo(repo)] {
-		if len(e.Refs) == 0 {
-			return e, true
-		}
-		for _, bad := range e.Refs {
-			if bad == ref {
-				return e, true
-			}
-		}
-	}
-	return CompromisedEntry{}, false
-}
-
-// advisoryFix turns a GHSA "patched_versions" value into an actionable
-// recommendation.
-func advisoryFix(actionRepo, patchedVersions string) string {
-	p := strings.TrimSpace(patchedVersions)
-	if p == "" || strings.EqualFold(p, "none") {
-		return fmt.Sprintf("No patched version published — remove or replace %s", actionRepo)
-	}
-	return fmt.Sprintf("Upgrade %s to %s", actionRepo, p)
-}
-
-// ── GHSA ranges ──
-
-// CheckVulnerable reports whether ref falls in any advisory range for
-// repo. Advisory ranges are compiled once and parsed refs are cached, so
-// repeat checks for the same ref are allocation-free.
-func (rs *RuleSet) CheckVulnerable(repo, ref string) (VulnRule, bool) {
-	rs.idxOnce.Do(rs.buildIndex)
-	entries := rs.vulIdx[normalizeRepo(repo)]
-	if len(entries) == 0 {
-		return VulnRule{}, false
-	}
-	v, ok := rs.parseRef(ref)
-	if !ok {
-		return VulnRule{}, false
-	}
-	for _, e := range entries {
-		if e.cr.matches(v) {
-			return VulnRule{Reason: e.reason, Fix: e.fix}, true
-		}
-	}
-	return VulnRule{}, false
-}
-
-func refInRange(ref, rangeStr string) bool {
-	v, err := semver.NewVersion(strings.TrimPrefix(strings.TrimSpace(ref), "v"))
+// readCache returns the cached rule set when it is still fresh.
+func readCache(path string, opts LoadOptions) (*RuleSet, bool) {
+	data, err := os.ReadFile(path)
 	if err != nil {
-		return false
+		return nil, false
 	}
-	return compileRange(rangeStr).matches(v)
+	var c cacheFile
+	if json.Unmarshal(data, &c) != nil {
+		return nil, false
+	}
+	if len(c.Rules) == 0 || time.Since(c.FetchedAt) >= opts.TTL {
+		return nil, false
+	}
+	return &RuleSet{
+		Rules:       c.Rules,
+		Sources:     c.Sources,
+		LoadedAt:    c.FetchedAt,
+		UseOSV:      opts.UseOSV,
+		FetchLatest: opts.FetchLatest,
+	}, true
 }
 
-func matchesConstraint(v *semver.Version, constraint string) bool {
-	return compileRange(constraint).matches(v)
-}
-
-func orNone(s string) string {
-	if s == "" {
-		return "none"
+// saveCache stores the rule set atomically: a temporary file next to the
+// cache is renamed over it, so a crash never leaves a half-written cache.
+func saveCache(path string, c cacheFile) error {
+	dir := filepath.Dir(path)
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return err
 	}
-	return s
+	data, err := json.Marshal(c)
+	if err != nil {
+		return err
+	}
+	tmp, err := os.CreateTemp(dir, ".rules-cache-*.tmp")
+	if err != nil {
+		return err
+	}
+	name := tmp.Name()
+	defer os.Remove(name) // no-op once the rename succeeded
+	if _, err := tmp.Write(data); err != nil {
+		tmp.Close()
+		return err
+	}
+	if err := tmp.Close(); err != nil {
+		return err
+	}
+	if err := os.Chmod(name, 0o644); err != nil {
+		return err
+	}
+	return os.Rename(name, path)
 }

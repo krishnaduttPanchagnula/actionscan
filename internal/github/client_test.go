@@ -210,18 +210,146 @@ func TestListWorkflows_FiltersDecodesAndToleratesFailures(t *testing.T) {
 
 	repo := Repo{Owner: "acme", Name: "r", DefaultBranch: "main"}
 	got, err := c.ListWorkflows(ctx(), repo)
-	if err != nil {
-		t.Fatal(err)
+	// One file could not be decoded: the readable ones are still
+	// returned, and the repo is reported as partially read so it never
+	// looks fully scanned.
+	if err == nil {
+		t.Error("a partially readable repo must report an error")
 	}
 	if len(got) != 2 {
 		t.Fatalf("got %d workflows (%v), want 2 (wrapped base64 must decode)", len(got), keys(got))
 	}
-	if string(got["ci.yml"]) != "name: CI\non: push\n" {
+	// Workflows are keyed by their FULL path so two files with the same
+	// name cannot collide and the report can show where a finding lives.
+	if string(got[".github/workflows/ci.yml"]) != "name: CI\non: push\n" {
 		t.Errorf("ci.yml content = %q, want decoded original (line-wrapped base64)",
-			string(got["ci.yml"]))
+			string(got[".github/workflows/ci.yml"]))
 	}
-	if string(got["deploy.yaml"]) != "name: Deploy\n" {
-		t.Errorf("deploy.yaml content = %q", string(got["deploy.yaml"]))
+	if string(got[".github/workflows/deploy.yaml"]) != "name: Deploy\n" {
+		t.Errorf("deploy.yaml content = %q", string(got[".github/workflows/deploy.yaml"]))
+	}
+}
+
+func TestListWorkflows_KeysByFullPath(t *testing.T) {
+	// Two workflows with the same file name in different directories.
+	c := newTestClient(t, func(w http.ResponseWriter, r *http.Request) {
+		switch {
+		case r.URL.Path == "/repos/acme/r/git/trees/main":
+			writeJSON(w, 200, map[string]any{
+				"sha": "abc", "truncated": false,
+				"tree": []map[string]any{
+					{"path": ".github/workflows/ci.yml", "mode": "100644", "type": "blob", "sha": "1"},
+					{"path": ".github/workflows/nested/ci.yml", "mode": "100644", "type": "blob", "sha": "2"},
+				},
+			})
+		case r.URL.Path == "/repos/acme/r/contents/.github/workflows/ci.yml":
+			writeJSON(w, 200, map[string]any{
+				"type": "file", "encoding": "base64", "content": b64("top\n"),
+			})
+		case r.URL.Path == "/repos/acme/r/contents/.github/workflows/nested/ci.yml":
+			writeJSON(w, 200, map[string]any{
+				"type": "file", "encoding": "base64", "content": b64("nested\n"),
+			})
+		default:
+			writeJSON(w, 404, map[string]any{"message": "not found"})
+		}
+	})
+
+	got, err := c.ListWorkflows(ctx(), Repo{Owner: "acme", Name: "r", DefaultBranch: "main"})
+	if err != nil {
+		t.Fatal(err)
+	}
+	if len(got) != 2 {
+		t.Fatalf("got %d workflows (%v), want 2 — same file name must not collide", len(got), keys(got))
+	}
+	if string(got[".github/workflows/ci.yml"]) != "top\n" {
+		t.Errorf("top ci.yml = %q", string(got[".github/workflows/ci.yml"]))
+	}
+	if string(got[".github/workflows/nested/ci.yml"]) != "nested\n" {
+		t.Errorf("nested ci.yml = %q", string(got[".github/workflows/nested/ci.yml"]))
+	}
+}
+
+func TestListWorkflows_TruncatedTreeIsAnError(t *testing.T) {
+	c := newTestClient(t, func(w http.ResponseWriter, r *http.Request) {
+		switch {
+		case r.URL.Path == "/repos/acme/r/git/trees/main":
+			writeJSON(w, 200, map[string]any{
+				"sha": "abc", "truncated": true,
+				"tree": []map[string]any{
+					{"path": ".github/workflows/ci.yml", "mode": "100644", "type": "blob", "sha": "1"},
+				},
+			})
+		default:
+			writeJSON(w, 404, map[string]any{"message": "not found"})
+		}
+	})
+
+	got, err := c.ListWorkflows(ctx(), Repo{FullName: "acme/r", Owner: "acme", Name: "r", DefaultBranch: "main"})
+	if err == nil {
+		t.Fatalf("a truncated tree must be an error, got %v", keys(got))
+	}
+	if !strings.Contains(err.Error(), "truncated") {
+		t.Errorf("error = %q, want it to explain the truncation", err)
+	}
+}
+
+func TestListWorkflows_NonBase64EncodingIsSkipped(t *testing.T) {
+	c := newTestClient(t, func(w http.ResponseWriter, r *http.Request) {
+		switch {
+		case r.URL.Path == "/repos/acme/r/git/trees/main":
+			writeJSON(w, 200, map[string]any{
+				"sha": "abc", "truncated": false,
+				"tree": []map[string]any{
+					{"path": ".github/workflows/big.yml", "mode": "100644", "type": "blob", "sha": "1"},
+					{"path": ".github/workflows/ci.yml", "mode": "100644", "type": "blob", "sha": "2"},
+				},
+			})
+		case r.URL.Path == "/repos/acme/r/contents/.github/workflows/big.yml":
+			// "none" is what GitHub returns for files > 1 MB.
+			writeJSON(w, 200, map[string]any{
+				"type": "file", "encoding": "none", "content": "",
+			})
+		case r.URL.Path == "/repos/acme/r/contents/.github/workflows/ci.yml":
+			writeJSON(w, 200, map[string]any{
+				"type": "file", "encoding": "base64", "content": b64("name: CI\n"),
+			})
+		default:
+			writeJSON(w, 404, map[string]any{"message": "not found"})
+		}
+	})
+
+	got, err := c.ListWorkflows(ctx(), Repo{Owner: "acme", Name: "r", DefaultBranch: "main"})
+	// The oversized file was skipped, so the repo is only partially read.
+	if err == nil {
+		t.Error("a repo with an unreadable workflow must report an error")
+	}
+	if len(got) != 1 {
+		t.Fatalf("got %v, want only the base64 file", keys(got))
+	}
+	if _, ok := got[".github/workflows/big.yml"]; ok {
+		t.Error("a file that is not base64 must not be decoded")
+	}
+}
+
+func TestListWorkflows_AllFilesUnreadableIsAnError(t *testing.T) {
+	c := newTestClient(t, func(w http.ResponseWriter, r *http.Request) {
+		switch {
+		case r.URL.Path == "/repos/acme/r/git/trees/main":
+			writeJSON(w, 200, map[string]any{
+				"sha": "abc", "truncated": false,
+				"tree": []map[string]any{
+					{"path": ".github/workflows/ci.yml", "mode": "100644", "type": "blob", "sha": "1"},
+				},
+			})
+		default:
+			writeJSON(w, 500, map[string]any{"message": "boom"})
+		}
+	})
+
+	// A repo whose only workflow cannot be read was NOT scanned clean.
+	if _, err := c.ListWorkflows(ctx(), Repo{FullName: "acme/r", Owner: "acme", Name: "r", DefaultBranch: "main"}); err == nil {
+		t.Fatal("a repo whose workflows cannot be read must surface an error")
 	}
 }
 

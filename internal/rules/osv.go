@@ -8,29 +8,34 @@ import (
 	"net/http"
 	"strings"
 	"time"
+
+	semver "github.com/Masterminds/semver/v3"
 )
 
-// OSV.dev — query per action with exact version. The GitHub Actions
-// ecosystem in OSV is keyed as "GitHubActions" with package name
-// "owner/repo".
+// OSV.dev — the GitHub Actions ecosystem is keyed as "GitHub Actions"
+// (with a space) and the package name is "owner/repo".
 
-// OSVBatchSize limits per-request batch size (OSV recommends ≤ 1000, keep small).
-const OSVBatchSize = 200
+// osvEcosystem is the OSV ecosystem name for GitHub Actions.
+const osvEcosystem = "GitHub Actions"
 
 const osvQueryURL = "https://api.osv.dev/v1/query"
 
+// OSVQuery is the body of an OSV query. It carries no version: OSV does
+// not answer version queries for this ecosystem, so the affected ranges
+// are matched locally instead.
 type OSVQuery struct {
 	Package struct {
 		Name      string `json:"name"`
 		Ecosystem string `json:"ecosystem"`
 	} `json:"package"`
-	Version string `json:"version,omitempty"`
 }
 
+// OSVResponse is the body OSV answers with.
 type OSVResponse struct {
 	Vulns []OSVVuln `json:"vulns"`
 }
 
+// OSVVuln is one advisory of an OSV response.
 type OSVVuln struct {
 	ID       string   `json:"id"`
 	Aliases  []string `json:"aliases"` // often includes the GHSA id
@@ -39,7 +44,30 @@ type OSVVuln struct {
 		Type  string `json:"type"`
 		Score string `json:"score"`
 	} `json:"severity"`
-	Affected []OSVAffected `json:"affected"`
+	DatabaseSpecific OSVDatabaseSpecific `json:"database_specific"`
+	Affected         []OSVAffected       `json:"affected"`
+}
+
+// OSVDatabaseSpecific holds the advisory-specific fields OSV exposes for
+// GitHub reviewed advisories.
+type OSVDatabaseSpecific struct {
+	Severity string   `json:"severity,omitempty"`
+	CWEIDs   []string `json:"cwe_ids,omitempty"`
+}
+
+// UnmarshalJSON tolerates fields of an unexpected type.
+func (d *OSVDatabaseSpecific) UnmarshalJSON(b []byte) error {
+	var raw map[string]json.RawMessage
+	if err := json.Unmarshal(b, &raw); err != nil {
+		return err
+	}
+	if s, ok := raw["severity"]; ok {
+		_ = json.Unmarshal(s, &d.Severity)
+	}
+	if c, ok := raw["cwe_ids"]; ok {
+		_ = json.Unmarshal(c, &d.CWEIDs)
+	}
+	return nil
 }
 
 // OSVAffected is one affected package entry of an advisory — named so
@@ -52,36 +80,39 @@ type OSVAffected struct {
 	Ranges []OSVRange `json:"ranges"`
 }
 
+// OSVRange is a range of affected versions.
 type OSVRange struct {
 	Type   string     `json:"type"`
 	Events []OSVEvent `json:"events"`
 }
 
+// OSVEvent is one boundary of a range.
 type OSVEvent struct {
 	Introduced   string `json:"introduced,omitempty"`
 	Fixed        string `json:"fixed,omitempty"`
 	LastAffected string `json:"last_affected,omitempty"`
+	Limit        string `json:"limit,omitempty"`
 }
 
 var osvClient = &http.Client{Timeout: 20 * time.Second}
 
-// QueryOSV asks OSV.dev whether actionRepo@versionRef has known vulns.
-// version should be a bare semver ("4.1.1"); non-version refs return nothing.
-func QueryOSV(ctx context.Context, actionRepo, version string) ([]OSVVuln, error) {
-	if version == "" {
+// QueryOSV asks OSV.dev for every advisory affecting actionRepo. The
+// query carries no version: the affected ranges are matched locally with
+// Affects, which keeps one request per repository instead of one per
+// repository and version.
+func QueryOSV(ctx context.Context, actionRepo string) ([]OSVVuln, error) {
+	if actionRepo == "" {
 		return nil, nil
 	}
-	q := OSVQuery{
-		Version: strings.TrimPrefix(version, "v"),
-	}
+	q := OSVQuery{}
 	q.Package.Name = actionRepo
-	q.Package.Ecosystem = "GitHubActions"
+	q.Package.Ecosystem = osvEcosystem
 
 	body, err := json.Marshal(q)
 	if err != nil {
 		return nil, err
 	}
-	req, err := http.NewRequestWithContext(ctx, "POST", osvQueryURL, bytes.NewReader(body))
+	req, err := http.NewRequestWithContext(ctx, http.MethodPost, osvQueryURL, bytes.NewReader(body))
 	if err != nil {
 		return nil, err
 	}
@@ -107,63 +138,123 @@ func QueryOSV(ctx context.Context, actionRepo, version string) ([]OSVVuln, error
 	return r.Vulns, nil
 }
 
-// BatchOSV queries OSV for several actions at once using the batch endpoint.
-// Returns repoRef -> vulns.
-func QueryOSVBatch(ctx context.Context, queries map[string]string) (map[string][]OSVVuln, error) {
-	if len(queries) == 0 {
-		return nil, nil
+// Affects reports whether ref falls into one of the affected ranges of
+// the advisory. Refs that are not versions (a commit SHA, a branch) never
+// match.
+func (v OSVVuln) Affects(ref string) bool {
+	ver, err := parseVersion(ref)
+	if err != nil {
+		return false
 	}
-
-	type batchQuery struct {
-		Query OSVQuery `json:"query"`
-	}
-	type batchReq struct {
-		Queries []batchQuery `json:"queries"`
-	}
-	type batchResp struct {
-		Results []OSVResponse `json:"results"`
-	}
-
-	bq := batchReq{}
-	keys := make([]string, 0, len(queries))
-	for repoRef, version := range queries {
-		parts := strings.SplitN(repoRef, "@", 2)
-		if len(parts) != 2 {
+	for _, aff := range v.Affected {
+		if !isActionsEcosystem(aff.Package.Ecosystem) {
 			continue
 		}
-		q := OSVQuery{Version: strings.TrimPrefix(version, "v")}
-		q.Package.Name = parts[0]
-		q.Package.Ecosystem = "GitHubActions"
-		bq.Queries = append(bq.Queries, batchQuery{Query: q})
-		keys = append(keys, repoRef)
-	}
-
-	body, err := json.Marshal(bq)
-	if err != nil {
-		return nil, err
-	}
-	req, err := http.NewRequestWithContext(ctx, "POST", "https://api.osv.dev/v1/querybatch", bytes.NewReader(body))
-	if err != nil {
-		return nil, err
-	}
-	req.Header.Set("Content-Type", "application/json")
-
-	resp, err := osvClient.Do(req)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	var br batchResp
-	if err := json.NewDecoder(resp.Body).Decode(&br); err != nil {
-		return nil, err
-	}
-
-	out := map[string][]OSVVuln{}
-	for i, res := range br.Results {
-		if i < len(keys) && len(res.Vulns) > 0 {
-			out[keys[i]] = res.Vulns
+		for _, r := range aff.Ranges {
+			if !isVersionRange(r.Type) {
+				continue
+			}
+			if rangeAffects(r, ver) {
+				return true
+			}
 		}
 	}
-	return out, nil
+	return false
+}
+
+// FixedVersion returns the first fixed version of the advisory.
+func (v OSVVuln) FixedVersion() string {
+	for _, aff := range v.Affected {
+		for _, r := range aff.Ranges {
+			for _, ev := range r.Events {
+				if ev.Fixed != "" {
+					return ev.Fixed
+				}
+			}
+		}
+	}
+	return ""
+}
+
+// SeverityLevel derives the severity of the advisory: the reviewed
+// severity when the advisory carries one, otherwise the presence of a
+// CVSS vector.
+func (v OSVVuln) SeverityLevel() string {
+	switch s := strings.ToUpper(strings.TrimSpace(v.DatabaseSpecific.Severity)); s {
+	case severityCritical, severityHigh, severityMedium, severityLow:
+		return s
+	case "MODERATE":
+		return severityMedium
+	}
+	for _, sv := range v.Severity {
+		if sv.Type != "" && sv.Score != "" {
+			return severityHigh
+		}
+	}
+	return severityMedium
+}
+
+// isActionsEcosystem reports whether an affected entry belongs to the
+// GitHub Actions ecosystem.
+func isActionsEcosystem(ecosystem string) bool {
+	ecosystem = strings.TrimSpace(ecosystem)
+	return ecosystem == "" || strings.EqualFold(ecosystem, osvEcosystem)
+}
+
+// isVersionRange reports whether a range carries version boundaries (a
+// GIT range holds commits, not versions).
+func isVersionRange(t string) bool {
+	switch strings.ToUpper(strings.TrimSpace(t)) {
+	case "", "ECOSYSTEM", "SEMVER":
+		return true
+	}
+	return false
+}
+
+// rangeAffects reports whether ver falls inside a range.
+func rangeAffects(r OSVRange, ver *semver.Version) bool {
+	var introduced, end *semver.Version
+	endInclusive := false
+	for _, ev := range r.Events {
+		switch {
+		case ev.Introduced != "":
+			v, err := parseVersion(ev.Introduced)
+			if err != nil {
+				return false
+			}
+			introduced = v
+			end = nil
+		case ev.Fixed != "":
+			v, err := parseVersion(ev.Fixed)
+			if err != nil {
+				return false
+			}
+			end = v
+			endInclusive = false
+		case ev.LastAffected != "":
+			v, err := parseVersion(ev.LastAffected)
+			if err != nil {
+				return false
+			}
+			end = v
+			endInclusive = true
+		case ev.Limit != "":
+			v, err := parseVersion(ev.Limit)
+			if err != nil {
+				return false
+			}
+			end = v
+			endInclusive = false
+		}
+	}
+	if introduced != nil && ver.LessThan(introduced) {
+		return false
+	}
+	if end == nil {
+		return introduced != nil
+	}
+	if endInclusive {
+		return !ver.GreaterThan(end)
+	}
+	return ver.LessThan(end)
 }
