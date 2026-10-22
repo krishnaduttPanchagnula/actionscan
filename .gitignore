@@ -1,2 +1,12 @@
-my-repos
-report*
+# the compiled binary
+/actionscan
+/actionscan.exe
+
+# local scan output
+/my-repos
+/reports
+/report*
+
+# competitor research: raw scraped source is kept for auditability, but
+# the Go toolchain must not try to compile it
+/competitor-profiles/raw/**/*.go
