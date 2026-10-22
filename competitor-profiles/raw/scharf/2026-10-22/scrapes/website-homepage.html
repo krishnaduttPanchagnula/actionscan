@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Scharf | scharf</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Scharf" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Static analysis tool to Identify and Fix GitHub Actions prone to Supply‑Chain Risks" />
+<meta property="og:description" content="Static analysis tool to Identify and Fix GitHub Actions prone to Supply‑Chain Risks" />
+<link rel="canonical" href="https://cybrota.github.io/scharf/" />
+<meta property="og:url" content="https://cybrota.github.io/scharf/" />
+<meta property="og:site_name" content="scharf" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Scharf" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","description":"Static analysis tool to Identify and Fix GitHub Actions prone to Supply‑Chain Risks","headline":"Scharf","name":"scharf","url":"https://cybrota.github.io/scharf/"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/scharf/assets/css/style.css?v=c11d75f2e05393b6719724f60280593d75a16618">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/scharf/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+      <h1><a href="https://cybrota.github.io/scharf/">scharf</a></h1>
+      
+
+      <h1 id="scharf">Scharf</h1>
+<p><a href="https://goreportcard.com/report/github.com/cybrota/scharf"><img src="https://goreportcard.com/badge/github.com/cybrota/scharf" alt="Go Report Card" /></a></p>
+
+<picture width="500">
+  <source width="100%" media="(prefers-color-scheme: dark)" src="https://raw.githubusercontent.com/cybrota/scharf/refs/heads/main/logo.png" alt="Scharf logo (dark)" />
+  <img width="100%" src="https://raw.githubusercontent.com/cybrota/scharf/refs/heads/main/logo.png" alt="Scharf logo (light)" />
+</picture>
+
+<p>Secure your CI/CD pipeline against supply-chain attacks on third-party GitHub Actions.</p>
+
+<p>Scharf scans your workflows, identifies mutable action references, and replaces them with immutable commit SHAs. It also generates comprehensive CSV or JSON reports across repositories and lets you inspect available tags and SHAs without leaving your terminal.</p>
+
+<h2 id="why-use-scharf">Why Use Scharf?</h2>
+
+<p>By pinning every third-party action to a specific commit SHA, Scharf prevents unexpected or malicious changes from creeping into your CI/CD process. This ensures a stable and secure development lifecycle by eliminating risks tied to drifting dependencies and mutable tags.</p>
+
+<h2 id="key-features">Key Features</h2>
+
+<ul>
+  <li>
+    <p>Autofix Workflows: Detect and update mutable action tags to their corresponding SHAs in your workflow files.</p>
+  </li>
+  <li>
+    <p>Quick SHA Lookup: Retrieve the latest commit SHA for any GitHub Action directly from the CLI.</p>
+  </li>
+  <li>
+    <p>Actionable Reports: Produce JSON or CSV reports that highlight insecure references across one or many repositories.</p>
+  </li>
+  <li>
+    <p>Custom Scopes: Choose to scan only the current HEAD or include all branches when you audit or find actions.</p>
+  </li>
+</ul>
+
+<h2 id="supported-platforms">Supported Platforms</h2>
+
+<ul>
+  <li>Linux</li>
+  <li>Mac OSX</li>
+</ul>
+
+<h2 id="installation">Installation</h2>
+<p><strong>Option 1</strong>: Install quickly via Homebrew (requires Homebrew installed)</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Tap brew formula</span>
+brew tap cybrota/cybrota
+
+<span class="c"># Install scharf</span>
+brew <span class="nb">install </span>scharf
+</code></pre></div></div>
+
+<p><strong>Option 2</strong>: Download Prebuilt Binary</p>
+
+<p>Visit the releases page and download the binary for your OS:</p>
+
+<p>https://github.com/cybrota/scharf/releases</p>
+
+<p><strong>Option 3</strong>: Install via Script</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl <span class="nt">-sf</span> https://raw.githubusercontent.com/cybrota/scharf/refs/heads/main/install.sh | sh
+</code></pre></div></div>
+
+<p>This script installs the latest version automatically (requires curl).</p>
+
+<h2 id="usage-examples">Usage Examples</h2>
+
+<h3 id="1-autofix-mutable-actions">1. Autofix Mutable Actions</h3>
+
+<p>Point to a Git repository, run:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Auto fix a local repository</span>
+scharf autofix git_repo
+</code></pre></div></div>
+
+<p>Note: By default audit looks for current directory (.) if repo is not passed.</p>
+
+<p>Scharf rewrites your workflow file, replacing, for example:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>actions/github-script@v7 ➔ actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea <span class="c"># v7</span>
+</code></pre></div></div>
+<p>Include –dry-run to preview changes without modifying files:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf autofix git_repo <span class="nt">--dry-run</span>
+</code></pre></div></div>
+
+<h3 id="2-audit-a-single-repository">2. Audit a Single Repository</h3>
+<p>Scan for mutable references in your current repository:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Audit a local repository</span>
+scharf audit git_repo
+
+<span class="c"># Audit a remote repository. This automatically clones remote to /tmp location with scharf-* prefix</span>
+scharf audit https_or_git_url
+</code></pre></div></div>
+
+<p>The output lists each insecure tag, its file location, and the SHA you should pin. You can pass <code class="language-plaintext highlighter-rouge">--raise-error</code> flag to return a Non-zero error code.</p>
+
+<p>Use a repository policy, repeatable transient exceptions, changed-line enforcement, or CI-native output:</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf audit <span class="nb">.</span> <span class="nt">--policy-from-ref</span> origin/main <span class="nt">--raise-error</span>
+scharf audit <span class="nb">.</span> <span class="nt">--ignore</span> actions/internal <span class="nt">--ignore</span> <span class="s1">'regex:example/.+@main'</span>
+scharf audit <span class="nb">.</span> <span class="nt">--baseline-ref</span> origin/main <span class="nt">--changed-lines</span> <span class="nt">--out</span> github <span class="nt">--raise-error</span>
+scharf audit <span class="nb">.</span> <span class="nt">--baseline-ref</span> origin/main <span class="nt">--out</span> sarif <span class="nt">--output</span> scharf.sarif <span class="nt">--raise-error</span>
+</code></pre></div></div>
+
+<p>Scharf discovers <code class="language-plaintext highlighter-rouge">.scharf-policy.yml</code> for advisory audits. Enforcing <code class="language-plaintext highlighter-rouge">--raise-error</code> uses the secure default unless you select an explicit policy or load <code class="language-plaintext highlighter-rouge">.scharf-policy.yml</code> from a trusted revision with <code class="language-plaintext highlighter-rouge">--policy-from-ref</code>. See <a href="/scharf/docs/policy.html">Policy and PR feedback</a> for the schema, precedence rules, expiration behavior, rollout modes, and SARIF integration.</p>
+
+<h3 id="read-only-transitive-dependency-audit">Read-only transitive dependency audit</h3>
+
+<p><code class="language-plaintext highlighter-rouge">scharf audit ./repository --dependencies --out json</code> follows declarative <code class="language-plaintext highlighter-rouge">uses</code>
+edges through composite actions and reusable workflows at resolved commits. Use
+<code class="language-plaintext highlighter-rouge">--out human</code> or <code class="language-plaintext highlighter-rouge">--out sarif</code> for other report formats and <code class="language-plaintext highlighter-rouge">--raise-error</code> to fail
+on mutable graph edges. API access uses <code class="language-plaintext highlighter-rouge">GITHUB_TOKEN</code> when available; it never
+executes downloaded actions. Normal audit behavior is unchanged.</p>
+
+<p>The graph includes original references, resolved commits and each caller chain.
+Inaccessible metadata, ambiguous workspace-relative actions, cycles and exhausted
+budgets are <strong>incomplete</strong>, never clean. <code class="language-plaintext highlighter-rouge">$/</code> uses defining-repository semantics
+(requires runner 2.336.0+); <code class="language-plaintext highlighter-rouge">./</code> in remote composite actions needs workspace context
+and is left unresolved. Local workflow calls use their defining repository.
+Traversal is capped at depth 12, 5,000 visited YAML structures/aliases/mapping keys
+and 8 MiB of unique metadata, including run-only and malformed alias expansion.</p>
+
+<p>This mode does not apply policy exceptions/baselines or perform autofixes. Run the
+normal policy audit separately. Docker image references are marked not traversed (image auditing is separate work).
+It excludes shell/JavaScript downloads, package and container contents; a pinned graph is not a trust assessment. See
+<a href="/scharf/docs/adr/004-declarative-dependency-traversal.html">ADR 004</a> for budgets and limits.</p>
+
+<h3 id="3-find-across-many-repos">3. Find Across Many Repos</h3>
+<p>Point Scharf at a directory of cloned repositories to scan multiple projects:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf find <span class="nt">--root</span> /path/to/workspace <span class="nt">--out</span> csv
+</code></pre></div></div>
+<p>Add <code class="language-plaintext highlighter-rouge">--head-only</code> flag to limit scanning to each repo’s current HEAD, or omit it to include all branches.</p>
+
+<h3 id="4-list-available-tags-and-shas">4. List Available Tags and SHAs</h3>
+<p>If you need to explore versions before pinning, run:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf list owner/repo
+<span class="c"># Ex: scharf list tj-actions/changed-files</span>
+</code></pre></div></div>
+<p>This command prints a table of tags and their corresponding commit SHAs.</p>
+
+<h3 id="5-lookup-a-specific-sha">5. Lookup a Specific SHA</h3>
+<p>When you know a tag and want its SHA, use:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf lookup owner/repo@version
+<span class="c"># Ex: scharf lookup actions/checkout@v4</span>
+</code></pre></div></div>
+
+<h3 id="6-upgrade-a-single-pinned-action-sha">6. Upgrade a Single Pinned Action SHA</h3>
+<p>To move from one pinned version to the next available version:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf upgrade owner/repo@version
+<span class="c"># Ex: scharf upgrade actions/checkout@v4</span>
+</code></pre></div></div>
+
+<p>If your input is already a SHA, provide the current version context:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf upgrade owner/repo@&lt;sha&gt; <span class="nt">--from-version</span> v4
+</code></pre></div></div>
+
+<p>Control cool-down warnings (default is 24h):</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf upgrade actions/checkout@v4 <span class="nt">--cooldown-hours</span> 24
+</code></pre></div></div>
+
+<p>Preview output without applying changes:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf upgrade actions/checkout@v4 <span class="nt">--dry-run</span>
+</code></pre></div></div>
+
+<h3 id="7-upgrade-all-scharf-formatted-pinned-shas">7. Upgrade All Scharf-Formatted Pinned SHAs</h3>
+<p>To upgrade all existing Scharf-managed pinned references in workflows:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf upgrade-all-sha <span class="nb">.</span>
+</code></pre></div></div>
+
+<p>Preview all planned upgrades:</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>scharf upgrade-all-sha <span class="nb">.</span> <span class="nt">--cooldown-hours</span> 24 <span class="nt">--dry-run</span>
+</code></pre></div></div>
+
+<p>Notes:</p>
+<ul>
+  <li>This command only upgrades references in Scharf format: <code class="language-plaintext highlighter-rouge">owner/repo@&lt;sha&gt; # &lt;version&gt;</code></li>
+  <li>Mutable references (such as <code class="language-plaintext highlighter-rouge">@v4</code>, <code class="language-plaintext highlighter-rouge">@main</code>) are not changed by this command; use <code class="language-plaintext highlighter-rouge">scharf autofix</code> for those.</li>
+</ul>
+
+<h2 id="ci-integration">CI Integration</h2>
+
+<p>Embed Scharf in your GitHub Actions workflow to enforce secure references automatically:</p>
+
+<p>See this repository for more details:
+<a href="https://github.com/cybrota/scharf-action">https://github.com/cybrota/scharf-action</a></p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">jobs</span><span class="pi">:</span>
+  <span class="na">my-job</span><span class="pi">:</span>
+    <span class="na">runs-on</span><span class="pi">:</span> <span class="s">ubuntu-22.04</span>
+
+    <span class="na">steps</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Checkout repository</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683</span>
+
+      <span class="pi">-</span> <span class="na">name</span><span class="pi">:</span> <span class="s">Audit GitHub actions</span>
+        <span class="na">uses</span><span class="pi">:</span> <span class="s">cybrota/scharf-action@c0d0eb13ca383e5a3ec947d754f61c9e61fab5ba</span>
+        <span class="na">with</span><span class="pi">:</span>
+          <span class="na">raise-error</span><span class="pi">:</span> <span class="no">true</span>
+</code></pre></div></div>
+
+<h2 id="the-risk-of-mutable-tags">The Risk of Mutable Tags</h2>
+
+<p>Mutable tags (e.g., @v1 or @main) allow action authors to push new code without changing your workflow. If a tag gets compromised, your CI can run malicious code. Scharf eliminates this vulnerability by always pinning to a specific, audited commit.</p>
+
+<h2 id="todo-for-scharf">TODO for Scharf</h2>
+<p>Check Issues Tab on GitHub</p>
+
+<h2 id="further-reading">Further Reading:</h2>
+
+<p>Supply Chain Compromise of Third-Party tj-actions/changed-files:</p>
+<ul>
+  <li>https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-github-action-cve-2025-30066</li>
+</ul>
+
+<p>Whose code am I running in GitHub Actions?</p>
+<ul>
+  <li>https://alexwlchan.net/2025/github-actions-audit/</li>
+</ul>
+
+<p>GitHub CVE: tj-actions changed-files through 45.0.7 allows remote attackers to discover secrets by reading action logs</p>
+<ul>
+  <li>https://github.com/advisories/ghsa-mrrh-fwg8-r2c3</li>
+</ul>
+
+<h3 id="optional-upstream-provenance-verification">Optional upstream provenance verification</h3>
+
+<p>Use <code class="language-plaintext highlighter-rouge">--verify-provenance</code> with <code class="language-plaintext highlighter-rouge">audit</code>, <code class="language-plaintext highlighter-rouge">autofix</code>, <code class="language-plaintext highlighter-rouge">upgrade</code>, or <code class="language-plaintext highlighter-rouge">upgrade-all-sha</code>
+to require fresh upstream branch-history evidence and detect repository identity
+and reference changes. Existing behavior remains immutability-only by default.
+See <a href="/scharf/docs/provenance.html">provenance verification</a> for evidence, request limits,
+review requirements and limitations. Verification does not establish benign code.</p>
+
+
+      
+      <div class="footer border-top border-gray-light mt-5 pt-3 text-right text-gray">
+        This site is open source. <a href="https://github.com/cybrota/scharf/edit/main/README.md">Improve this page</a>.
+      </div>
+      
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>

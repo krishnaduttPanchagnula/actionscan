@@ -1,0 +1,47 @@
+{
+  "_note": "GitHub REST API snapshot of google/osv-scanner, fetched 2026-10-22 via gh auth token. See also releases.json.",
+  "full_name": "google/osv-scanner",
+  "description": "Vulnerability scanner written in Go which uses the data provided by https://osv.dev",
+  "homepage": "https://google.github.io/osv-scanner/",
+  "language": "Go",
+  "license": "Apache-2.0",
+  "stargazers_count": 11233,
+  "forks_count": 818,
+  "open_issues_count": 98,
+  "subscribers_count": 77,
+  "created_at": "2022-11-14T01:05:20Z",
+  "updated_at": "2026-10-22T12:27:41Z",
+  "pushed_at": "2026-10-21T20:58:31Z",
+  "topics": ["scanner", "security-audit", "security-tools", "vulnerability-scanner"],
+  "size_kb": 45646,
+  "archived": false,
+  "default_branch": "main",
+  "has_discussions": true,
+  "releases_total": 56,
+  "latest_release": "v2.7.0",
+  "latest_release_published_at": "2026-10-12T01:32:07Z",
+  "osv_scanner_action_repo": {
+    "full_name": "google/osv-scanner-action",
+    "stars": 99,
+    "forks": 39,
+    "pushed_at": "2026-10-12T01:51:36Z"
+  },
+  "osv_scalibr_repo": {
+    "full_name": "google/osv-scalibr",
+    "stars": 648,
+    "description": "OSV-SCALIBR: A library for Software Composition Analysis",
+    "created_at": "2024-04-10T09:09:11Z",
+    "pushed_at": "2026-10-22T05:21:22Z"
+  },
+  "homebrew_analytics": {
+    "formula": "osv-scanner",
+    "version": "2.7.0",
+    "desc": "Vulnerability scanner which uses the OSV database",
+    "homepage": "https://google.github.io/osv-scanner/",
+    "install_30d": 3535,
+    "install_90d": 7755,
+    "install_365d": 24822,
+    "install_on_request_30d": 3533,
+    "build_error_30d": 13
+  }
+}

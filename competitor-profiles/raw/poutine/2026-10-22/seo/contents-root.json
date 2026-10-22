@@ -1,0 +1,578 @@
+[
+  {
+    "name": ".claude",
+    "path": ".claude",
+    "sha": "d7c23c60847cc68a78d21cb8d2e135b507a5a90e",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.claude?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/.claude",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/d7c23c60847cc68a78d21cb8d2e135b507a5a90e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.claude?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/d7c23c60847cc68a78d21cb8d2e135b507a5a90e",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/.claude"
+    }
+  },
+  {
+    "name": ".dockerignore",
+    "path": ".dockerignore",
+    "sha": "e6c33391a20109def2f1eeb07041bbaf02f6834e",
+    "size": 70,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.dockerignore?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/.dockerignore",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/e6c33391a20109def2f1eeb07041bbaf02f6834e",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/.dockerignore",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.dockerignore?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/e6c33391a20109def2f1eeb07041bbaf02f6834e",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/.dockerignore"
+    }
+  },
+  {
+    "name": ".github",
+    "path": ".github",
+    "sha": "4df8441b2b9c75e4689ef35980dfc9f72f4781f3",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.github?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/.github",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/4df8441b2b9c75e4689ef35980dfc9f72f4781f3",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.github?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/4df8441b2b9c75e4689ef35980dfc9f72f4781f3",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/.github"
+    }
+  },
+  {
+    "name": ".gitignore",
+    "path": ".gitignore",
+    "sha": "8cf2e041731d40f939bce9da48a142dbe4de11cb",
+    "size": 15,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.gitignore?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/.gitignore",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/8cf2e041731d40f939bce9da48a142dbe4de11cb",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/.gitignore",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.gitignore?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/8cf2e041731d40f939bce9da48a142dbe4de11cb",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/.gitignore"
+    }
+  },
+  {
+    "name": ".golangci.yml",
+    "path": ".golangci.yml",
+    "sha": "8ef7bb5bde7849be2afabcbd88de6039846842d1",
+    "size": 615,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.golangci.yml?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/.golangci.yml",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/8ef7bb5bde7849be2afabcbd88de6039846842d1",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/.golangci.yml",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.golangci.yml?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/8ef7bb5bde7849be2afabcbd88de6039846842d1",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/.golangci.yml"
+    }
+  },
+  {
+    "name": ".goreleaser.yaml",
+    "path": ".goreleaser.yaml",
+    "sha": "f92616cb16406bb9a83b5ee86186bd6e1502e7f6",
+    "size": 1642,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.goreleaser.yaml?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/.goreleaser.yaml",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/f92616cb16406bb9a83b5ee86186bd6e1502e7f6",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/.goreleaser.yaml",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.goreleaser.yaml?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/f92616cb16406bb9a83b5ee86186bd6e1502e7f6",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/.goreleaser.yaml"
+    }
+  },
+  {
+    "name": ".poutine.sample.yml",
+    "path": ".poutine.sample.yml",
+    "sha": "e4096daef15b9e90040763285acaa0a91e7fabce",
+    "size": 1751,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.poutine.sample.yml?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/.poutine.sample.yml",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/e4096daef15b9e90040763285acaa0a91e7fabce",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/.poutine.sample.yml",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.poutine.sample.yml?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/e4096daef15b9e90040763285acaa0a91e7fabce",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/.poutine.sample.yml"
+    }
+  },
+  {
+    "name": ".poutine.yml",
+    "path": ".poutine.yml",
+    "sha": "9e4461e5567975314094658d772be5c88f8ce3ca",
+    "size": 44,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.poutine.yml?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/.poutine.yml",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/9e4461e5567975314094658d772be5c88f8ce3ca",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/.poutine.yml",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.poutine.yml?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/9e4461e5567975314094658d772be5c88f8ce3ca",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/.poutine.yml"
+    }
+  },
+  {
+    "name": ".poutine",
+    "path": ".poutine",
+    "sha": "287215464f2547cb35a24b442098cc90aaa9aa4f",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.poutine?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/.poutine",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/287215464f2547cb35a24b442098cc90aaa9aa4f",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.poutine?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/287215464f2547cb35a24b442098cc90aaa9aa4f",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/.poutine"
+    }
+  },
+  {
+    "name": ".pre-commit-hooks.yaml",
+    "path": ".pre-commit-hooks.yaml",
+    "sha": "756051843f8116766e5455eb8d2422f8b867c7d3",
+    "size": 326,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/.pre-commit-hooks.yaml?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/.pre-commit-hooks.yaml",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/756051843f8116766e5455eb8d2422f8b867c7d3",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/.pre-commit-hooks.yaml",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/.pre-commit-hooks.yaml?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/756051843f8116766e5455eb8d2422f8b867c7d3",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/.pre-commit-hooks.yaml"
+    }
+  },
+  {
+    "name": "CODE_OF_CONDUCT.md",
+    "path": "CODE_OF_CONDUCT.md",
+    "sha": "5bbbe0b1042a3847f1a2d53d046422f4c0525c6b",
+    "size": 5221,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/CODE_OF_CONDUCT.md?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/CODE_OF_CONDUCT.md",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/5bbbe0b1042a3847f1a2d53d046422f4c0525c6b",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/CODE_OF_CONDUCT.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/CODE_OF_CONDUCT.md?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/5bbbe0b1042a3847f1a2d53d046422f4c0525c6b",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/CODE_OF_CONDUCT.md"
+    }
+  },
+  {
+    "name": "CONTRIBUTING.md",
+    "path": "CONTRIBUTING.md",
+    "sha": "5479bca4cd4818de34e8ec4c9aaa6e29c2d514f6",
+    "size": 2837,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/CONTRIBUTING.md?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/CONTRIBUTING.md",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/5479bca4cd4818de34e8ec4c9aaa6e29c2d514f6",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/CONTRIBUTING.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/CONTRIBUTING.md?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/5479bca4cd4818de34e8ec4c9aaa6e29c2d514f6",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/CONTRIBUTING.md"
+    }
+  },
+  {
+    "name": "Dockerfile",
+    "path": "Dockerfile",
+    "sha": "e95e38058231c75e0146304d555b1ce4331466d8",
+    "size": 572,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/Dockerfile?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/Dockerfile",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/e95e38058231c75e0146304d555b1ce4331466d8",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/Dockerfile",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/Dockerfile?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/e95e38058231c75e0146304d555b1ce4331466d8",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/Dockerfile"
+    }
+  },
+  {
+    "name": "LICENSE",
+    "path": "LICENSE",
+    "sha": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+    "size": 11357,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/LICENSE?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/LICENSE",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/LICENSE",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/LICENSE?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/LICENSE"
+    }
+  },
+  {
+    "name": "MAINTAINERS.md",
+    "path": "MAINTAINERS.md",
+    "sha": "15529e9800bf77248f9f7dd909c136814a8dea0c",
+    "size": 260,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/MAINTAINERS.md?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/MAINTAINERS.md",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/15529e9800bf77248f9f7dd909c136814a8dea0c",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/MAINTAINERS.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/MAINTAINERS.md?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/15529e9800bf77248f9f7dd909c136814a8dea0c",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/MAINTAINERS.md"
+    }
+  },
+  {
+    "name": "MCP_INTEGRATION.md",
+    "path": "MCP_INTEGRATION.md",
+    "sha": "10d0b04ec7ccfe859221807055418fc32994f6b1",
+    "size": 4332,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/MCP_INTEGRATION.md?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/MCP_INTEGRATION.md",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/10d0b04ec7ccfe859221807055418fc32994f6b1",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/MCP_INTEGRATION.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/MCP_INTEGRATION.md?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/10d0b04ec7ccfe859221807055418fc32994f6b1",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/MCP_INTEGRATION.md"
+    }
+  },
+  {
+    "name": "Makefile",
+    "path": "Makefile",
+    "sha": "6d76a66ab7a188737c450ee2e8f8db1a11ef4903",
+    "size": 1048,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/Makefile?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/Makefile",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/6d76a66ab7a188737c450ee2e8f8db1a11ef4903",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/Makefile",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/Makefile?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/6d76a66ab7a188737c450ee2e8f8db1a11ef4903",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/Makefile"
+    }
+  },
+  {
+    "name": "README.md",
+    "path": "README.md",
+    "sha": "2bf763a9a059e974c70904a3ff9ad7610dd67dd6",
+    "size": 12355,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/README.md?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/README.md",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/2bf763a9a059e974c70904a3ff9ad7610dd67dd6",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/README.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/README.md?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/2bf763a9a059e974c70904a3ff9ad7610dd67dd6",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/README.md"
+    }
+  },
+  {
+    "name": "analyze",
+    "path": "analyze",
+    "sha": "8e1bf6e6e952d29af37d726841898527a2b21e65",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/analyze?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/analyze",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/8e1bf6e6e952d29af37d726841898527a2b21e65",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/analyze?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/8e1bf6e6e952d29af37d726841898527a2b21e65",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/analyze"
+    }
+  },
+  {
+    "name": "bench",
+    "path": "bench",
+    "sha": "bc7d04ca993cc14ca56463ebf4e3757a46deea3b",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/bench?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/bench",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/bc7d04ca993cc14ca56463ebf4e3757a46deea3b",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/bench?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/bc7d04ca993cc14ca56463ebf4e3757a46deea3b",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/bench"
+    }
+  },
+  {
+    "name": "cmd",
+    "path": "cmd",
+    "sha": "2482bde726b5d1cd50b2191396953a5ec3e792c2",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/cmd?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/cmd",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/2482bde726b5d1cd50b2191396953a5ec3e792c2",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/cmd?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/2482bde726b5d1cd50b2191396953a5ec3e792c2",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/cmd"
+    }
+  },
+  {
+    "name": "dagger.json",
+    "path": "dagger.json",
+    "sha": "15ad7f5cb1cc6b1680be71a9dd88c1eba8936aed",
+    "size": 91,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/dagger.json?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/dagger.json",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/15ad7f5cb1cc6b1680be71a9dd88c1eba8936aed",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/dagger.json",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/dagger.json?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/15ad7f5cb1cc6b1680be71a9dd88c1eba8936aed",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/dagger.json"
+    }
+  },
+  {
+    "name": "dagger",
+    "path": "dagger",
+    "sha": "931de5ad94d87d0abd28e8fee642872ed97d2d5e",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/dagger?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/dagger",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/931de5ad94d87d0abd28e8fee642872ed97d2d5e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/dagger?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/931de5ad94d87d0abd28e8fee642872ed97d2d5e",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/dagger"
+    }
+  },
+  {
+    "name": "docs",
+    "path": "docs",
+    "sha": "59b33932fcfc5d887459ae92b6805e7c32bcaac7",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/docs?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/docs",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/59b33932fcfc5d887459ae92b6805e7c32bcaac7",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/docs?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/59b33932fcfc5d887459ae92b6805e7c32bcaac7",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/docs"
+    }
+  },
+  {
+    "name": "formatters",
+    "path": "formatters",
+    "sha": "52eeea13a94d40b9fea8660cdbd476ea741ca691",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/formatters?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/formatters",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/52eeea13a94d40b9fea8660cdbd476ea741ca691",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/formatters?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/52eeea13a94d40b9fea8660cdbd476ea741ca691",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/formatters"
+    }
+  },
+  {
+    "name": "go.mod",
+    "path": "go.mod",
+    "sha": "3268971c76765a89e365b00c753242747810158d",
+    "size": 5441,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/go.mod?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/go.mod",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/3268971c76765a89e365b00c753242747810158d",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/go.mod",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/go.mod?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/3268971c76765a89e365b00c753242747810158d",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/go.mod"
+    }
+  },
+  {
+    "name": "go.sum",
+    "path": "go.sum",
+    "sha": "e1e9515b2a25ff725f992c23d1d9bf1c1ce0c2d7",
+    "size": 29502,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/go.sum?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/go.sum",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/e1e9515b2a25ff725f992c23d1d9bf1c1ce0c2d7",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/go.sum",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/go.sum?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/e1e9515b2a25ff725f992c23d1d9bf1c1ce0c2d7",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/go.sum"
+    }
+  },
+  {
+    "name": "models",
+    "path": "models",
+    "sha": "c7742a9cec123af0776f9f73efb53b4f597af62f",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/models?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/models",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/c7742a9cec123af0776f9f73efb53b4f597af62f",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/models?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/c7742a9cec123af0776f9f73efb53b4f597af62f",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/models"
+    }
+  },
+  {
+    "name": "opa",
+    "path": "opa",
+    "sha": "356969f23eb339bbd5ae2940bc9d81d15021597a",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/opa?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/opa",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/356969f23eb339bbd5ae2940bc9d81d15021597a",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/opa?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/356969f23eb339bbd5ae2940bc9d81d15021597a",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/opa"
+    }
+  },
+  {
+    "name": "poutine.go",
+    "path": "poutine.go",
+    "sha": "04ffb18e96fdffd5e7126dd0a7d78faa8b5b9f88",
+    "size": 233,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/poutine.go?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/blob/main/poutine.go",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/04ffb18e96fdffd5e7126dd0a7d78faa8b5b9f88",
+    "download_url": "https://raw.githubusercontent.com/boostsecurityio/poutine/main/poutine.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/poutine.go?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/blobs/04ffb18e96fdffd5e7126dd0a7d78faa8b5b9f88",
+      "html": "https://github.com/boostsecurityio/poutine/blob/main/poutine.go"
+    }
+  },
+  {
+    "name": "providers",
+    "path": "providers",
+    "sha": "1e349639ce50f7e10e8931649e1e432759fbee34",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/providers?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/providers",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/1e349639ce50f7e10e8931649e1e432759fbee34",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/providers?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/1e349639ce50f7e10e8931649e1e432759fbee34",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/providers"
+    }
+  },
+  {
+    "name": "results",
+    "path": "results",
+    "sha": "21e591513bf838fe42effc7483505810b3b4dbe1",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/results?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/results",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/21e591513bf838fe42effc7483505810b3b4dbe1",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/results?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/21e591513bf838fe42effc7483505810b3b4dbe1",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/results"
+    }
+  },
+  {
+    "name": "scanner",
+    "path": "scanner",
+    "sha": "f7ff09abe2ce85abaf8a4852d47c1cc1df0d5d3e",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/scanner?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/scanner",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/f7ff09abe2ce85abaf8a4852d47c1cc1df0d5d3e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/scanner?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/f7ff09abe2ce85abaf8a4852d47c1cc1df0d5d3e",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/scanner"
+    }
+  },
+  {
+    "name": "test",
+    "path": "test",
+    "sha": "03fac294a707272d2d184c743cb8d0ce1018d8dc",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/test?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/test",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/03fac294a707272d2d184c743cb8d0ce1018d8dc",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/test?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/03fac294a707272d2d184c743cb8d0ce1018d8dc",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/test"
+    }
+  },
+  {
+    "name": "tools",
+    "path": "tools",
+    "sha": "cb3d7a07fe6011c4a78a32a83eeffd31c09d1a77",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/tools?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/tools",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/cb3d7a07fe6011c4a78a32a83eeffd31c09d1a77",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/tools?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/cb3d7a07fe6011c4a78a32a83eeffd31c09d1a77",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/tools"
+    }
+  },
+  {
+    "name": "versioncheck",
+    "path": "versioncheck",
+    "sha": "158cafa36adba87539f390ad31714a81d4242a7a",
+    "size": 0,
+    "url": "https://api.github.com/repos/boostsecurityio/poutine/contents/versioncheck?ref=main",
+    "html_url": "https://github.com/boostsecurityio/poutine/tree/main/versioncheck",
+    "git_url": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/158cafa36adba87539f390ad31714a81d4242a7a",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/boostsecurityio/poutine/contents/versioncheck?ref=main",
+      "git": "https://api.github.com/repos/boostsecurityio/poutine/git/trees/158cafa36adba87539f390ad31714a81d4242a7a",
+      "html": "https://github.com/boostsecurityio/poutine/tree/main/versioncheck"
+    }
+  }
+]

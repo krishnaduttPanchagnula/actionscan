@@ -1,0 +1,67 @@
+package cmd
+
+import (
+	"fmt"
+
+	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+)
+
+var (
+	threads      int
+	excludeRepos []string
+)
+
+// analyzeOrgCmd represents the analyzeOrg command
+var analyzeOrgCmd = &cobra.Command{
+	Use:   "analyze_org",
+	Short: "Analyzes an organization's repositories for supply chain vulnerabilities",
+	Long: `Analyzes an organization's repositories for supply chain vulnerabilities
+Example: poutine analyze_org org --token "$GH_TOKEN"
+
+Analyze All Projects in a Self-Hosted Gitlab Organization: 
+poutine analyze_org my-org/project --token "$GL_TOKEN" --scm gitlab --scm-base-uri https://gitlab.example.com
+		
+Note: This command will scan all repositories in the organization except those that are Archived.
+`,
+	Args: cobra.ExactArgs(1),
+	RunE: func(cmd *cobra.Command, args []string) error {
+		Token = viper.GetString("token")
+		if len(excludeRepos) > 0 {
+			config.ExcludeRepos = append(config.ExcludeRepos, excludeRepos...)
+		}
+		ctx := cmd.Context()
+		analyzer, err := GetAnalyzer(ctx, "analyze_org")
+		if err != nil {
+			return err
+		}
+
+		org := args[0]
+
+		results, err := analyzer.AnalyzeOrg(ctx, org, &threads)
+		if err != nil {
+			return fmt.Errorf("failed to analyze org %s: %w", org, err)
+		}
+
+		if err := checkViolations(results...); err != nil {
+			return err
+		}
+
+		return nil
+	},
+}
+
+func init() {
+	RootCmd.AddCommand(analyzeOrgCmd)
+
+	analyzeOrgCmd.Flags().StringVarP(&Token, "token", "t", "", "SCM access token (env: GH_TOKEN)")
+
+	analyzeOrgCmd.Flags().IntVarP(&threads, "threads", "j", 2, "Parallelization factor for scanning organizations")
+	analyzeOrgCmd.Flags().BoolVarP(&config.IgnoreForks, "ignore-forks", "i", false, "Ignore forked repositories in the organization")
+	analyzeOrgCmd.Flags().StringSliceVarP(&excludeRepos, "exclude-repo", "e", nil, "Exclude specific repositories from organization scan (can be specified multiple times)")
+
+	viper.BindPFlag("token", analyzeOrgCmd.Flags().Lookup("token"))
+	viper.BindPFlag("ignoreForks", analyzeOrgCmd.Flags().Lookup("ignore-forks"))
+	_ = viper.BindPFlag("excludeRepos", analyzeOrgCmd.Flags().Lookup("exclude-repo"))
+	viper.BindEnv("token", "GH_TOKEN")
+}

@@ -1,0 +1,14 @@
+# OSV-Scanner
+
+ Use OSV-Scanner to find existing vulnerabilities affecting your project’s dependencies.
+ OSV-Scanner provides an officially supported frontend to the OSV database that connects a project’s list of dependencies with the vulnerabilities that affect them.
+ You can use OSV-scanner in two ways:
+
+- As a CLI tool: Run directly in a terminal or CI/CD pipeline to scan projects. See the Installation Guide to get started.
+- As a Go library: Import the Go package to integrate vulnerability scanning logic into Go applications.
+ Since the OSV.dev database is open source and distributed, it has several benefits in comparison with closed source advisory databases and scanners:
+
+- Each advisory comes from an open and authoritative source (e.g. the RustSec Advisory Database)
+- Anyone can suggest improvements to advisories, resulting in a very high quality database
+- The OSV format unambiguously stores information about affected versions in a machine-readable format that precisely maps onto a developer’s list of packages
+ The above all results in fewer, more actionable vulnerability notifications, which reduces the time needed to resolve them. Check out our announcement blog post for more details!

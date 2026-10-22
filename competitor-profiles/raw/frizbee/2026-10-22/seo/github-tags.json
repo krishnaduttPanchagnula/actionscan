@@ -1,0 +1,302 @@
+[
+  {
+    "name": "v0.1.11",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.11",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.11",
+    "commit": {
+      "sha": "cc384e5c6db86f829a4c6ec4a8c567259c834a1a",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/cc384e5c6db86f829a4c6ec4a8c567259c834a1a"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMS4xMQ"
+  },
+  {
+    "name": "v0.1.10",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.10",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.10",
+    "commit": {
+      "sha": "4fda192deaef0aae0efd20bc6d7d913bfc494cc1",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/4fda192deaef0aae0efd20bc6d7d913bfc494cc1"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMS4xMA"
+  },
+  {
+    "name": "v0.1.9",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.9",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.9",
+    "commit": {
+      "sha": "44d6d5e71e156afb76d6c870862675f412a33775",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/44d6d5e71e156afb76d6c870862675f412a33775"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS45"
+  },
+  {
+    "name": "v0.1.8",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.8",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.8",
+    "commit": {
+      "sha": "b4fa6e325885e635b817c860b427ad937c31ce30",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/b4fa6e325885e635b817c860b427ad937c31ce30"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS44"
+  },
+  {
+    "name": "v0.1.7",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.7",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.7",
+    "commit": {
+      "sha": "ff4166b14b7eaf784b020893476a15a4989ce951",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/ff4166b14b7eaf784b020893476a15a4989ce951"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS43"
+  },
+  {
+    "name": "v0.1.6",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.6",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.6",
+    "commit": {
+      "sha": "0e94cca97e077a2bac52351b08090f7723149ba5",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/0e94cca97e077a2bac52351b08090f7723149ba5"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS42"
+  },
+  {
+    "name": "v0.1.5",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.5",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.5",
+    "commit": {
+      "sha": "1889f9252fbf8c3e7e8b3bfc4910a46bc2f2d209",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/1889f9252fbf8c3e7e8b3bfc4910a46bc2f2d209"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS41"
+  },
+  {
+    "name": "v0.1.4",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.4",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.4",
+    "commit": {
+      "sha": "9c2dc4086bece447861beb222f9e8b5ca80f2212",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/9c2dc4086bece447861beb222f9e8b5ca80f2212"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS40"
+  },
+  {
+    "name": "v0.1.3",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.3",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.3",
+    "commit": {
+      "sha": "9d170e74c46b793850035d56a8ef09ec7356c492",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/9d170e74c46b793850035d56a8ef09ec7356c492"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS4z"
+  },
+  {
+    "name": "v0.1.2",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.2",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.2",
+    "commit": {
+      "sha": "227081dd83c913a7aae818196a5124bd2c01eb62",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/227081dd83c913a7aae818196a5124bd2c01eb62"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS4y"
+  },
+  {
+    "name": "v0.1.1",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.1",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.1",
+    "commit": {
+      "sha": "d46cf74201b807d7b5081c837aa26efea77d70b0",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/d46cf74201b807d7b5081c837aa26efea77d70b0"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS4x"
+  },
+  {
+    "name": "v0.1.0",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.1.0",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.1.0",
+    "commit": {
+      "sha": "1325537f9cbd315e8afc23a9444c493825700337",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/1325537f9cbd315e8afc23a9444c493825700337"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMS4w"
+  },
+  {
+    "name": "v0.0.20",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.20",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.20",
+    "commit": {
+      "sha": "1cb8dbe474ef445e069d3f9b36daff4d4ce663e5",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/1cb8dbe474ef445e069d3f9b36daff4d4ce663e5"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4yMA"
+  },
+  {
+    "name": "v0.0.19",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.19",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.19",
+    "commit": {
+      "sha": "fdb3e83aebc172f472e8f80fe09ba1f59f3e167a",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/fdb3e83aebc172f472e8f80fe09ba1f59f3e167a"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4xOQ"
+  },
+  {
+    "name": "v0.0.16",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.16",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.16",
+    "commit": {
+      "sha": "181f1567cfeaf5998c4922deb3b73cbcb06af694",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/181f1567cfeaf5998c4922deb3b73cbcb06af694"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4xNg"
+  },
+  {
+    "name": "v0.0.15",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.15",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.15",
+    "commit": {
+      "sha": "59367ae925d3705a7d702fe2491c3ad895fe91c9",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/59367ae925d3705a7d702fe2491c3ad895fe91c9"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4xNQ"
+  },
+  {
+    "name": "v0.0.14",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.14",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.14",
+    "commit": {
+      "sha": "cd903fc962d1bd1e4295a91f622ea0b6a5710804",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/cd903fc962d1bd1e4295a91f622ea0b6a5710804"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4xNA"
+  },
+  {
+    "name": "v0.0.13",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.13",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.13",
+    "commit": {
+      "sha": "4e1b94b64f53d7c5059267d0b8712a62f9b6beaa",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/4e1b94b64f53d7c5059267d0b8712a62f9b6beaa"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4xMw"
+  },
+  {
+    "name": "v0.0.12",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.12",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.12",
+    "commit": {
+      "sha": "c72bf21b62943531f7ca7c4f5b7c4390d9f8b283",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/c72bf21b62943531f7ca7c4f5b7c4390d9f8b283"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4xMg"
+  },
+  {
+    "name": "v0.0.11",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.11",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.11",
+    "commit": {
+      "sha": "b7db63b2084f4506f84eb293dca4de6a5e29fcf6",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/b7db63b2084f4506f84eb293dca4de6a5e29fcf6"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4xMQ"
+  },
+  {
+    "name": "v0.0.10",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.10",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.10",
+    "commit": {
+      "sha": "213f1df40c63beda1481038c9e010d0d9c7cd0f3",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/213f1df40c63beda1481038c9e010d0d9c7cd0f3"
+    },
+    "node_id": "REF_kwDOKvtQQ7FyZWZzL3RhZ3MvdjAuMC4xMA"
+  },
+  {
+    "name": "v0.0.9",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.9",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.9",
+    "commit": {
+      "sha": "5a2bf7aeb4d04348c6504e5702aea312d1c83354",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/5a2bf7aeb4d04348c6504e5702aea312d1c83354"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC45"
+  },
+  {
+    "name": "v0.0.8",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.8",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.8",
+    "commit": {
+      "sha": "1cefc1eabc1852dbc901fdccb21b95ab64182746",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/1cefc1eabc1852dbc901fdccb21b95ab64182746"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC44"
+  },
+  {
+    "name": "v0.0.7",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.7",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.7",
+    "commit": {
+      "sha": "be7bc4d8bfd6c284a58f98b624130466c617f31e",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/be7bc4d8bfd6c284a58f98b624130466c617f31e"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC43"
+  },
+  {
+    "name": "v0.0.6",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.6",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.6",
+    "commit": {
+      "sha": "41c54fac48f8c0f0fd6d576de06dd229354e2794",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/41c54fac48f8c0f0fd6d576de06dd229354e2794"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC42"
+  },
+  {
+    "name": "v0.0.5",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.5",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.5",
+    "commit": {
+      "sha": "dd9454173fe8525e7931cc9c9bfd0f79cfa45e9a",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/dd9454173fe8525e7931cc9c9bfd0f79cfa45e9a"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC41"
+  },
+  {
+    "name": "v0.0.4",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.4",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.4",
+    "commit": {
+      "sha": "01bddb80b95df79905b0df001db3534c68f27a65",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/01bddb80b95df79905b0df001db3534c68f27a65"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC40"
+  },
+  {
+    "name": "v0.0.3",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.3",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.3",
+    "commit": {
+      "sha": "7867501e6deb43b801932957a4c3978da2915f69",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/7867501e6deb43b801932957a4c3978da2915f69"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC4z"
+  },
+  {
+    "name": "v0.0.2",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.2",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.2",
+    "commit": {
+      "sha": "30218a2385a42f6c4db42bc76124f5127d9eb9c5",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/30218a2385a42f6c4db42bc76124f5127d9eb9c5"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC4y"
+  },
+  {
+    "name": "v0.0.1",
+    "zipball_url": "https://api.github.com/repos/stacklok/frizbee/zipball/refs/tags/v0.0.1",
+    "tarball_url": "https://api.github.com/repos/stacklok/frizbee/tarball/refs/tags/v0.0.1",
+    "commit": {
+      "sha": "8c37858081435f016e3fdd4a4eb8cbe582bcdefa",
+      "url": "https://api.github.com/repos/stacklok/frizbee/commits/8c37858081435f016e3fdd4a4eb8cbe582bcdefa"
+    },
+    "node_id": "REF_kwDOKvtQQ7ByZWZzL3RhZ3MvdjAuMC4x"
+  }
+]

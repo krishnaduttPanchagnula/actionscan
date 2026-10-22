@@ -1,0 +1,302 @@
+[
+  {
+    "name": "yamlpath/v0.34.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.34.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.34.0",
+    "commit": {
+      "sha": "d047e98e96965824902c8e3bebeaf4197c0fe83e",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/d047e98e96965824902c8e3bebeaf4197c0fe83e"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMzQuMA"
+  },
+  {
+    "name": "yamlpath/v0.33.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.33.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.33.0",
+    "commit": {
+      "sha": "20b24ff49188722d1a6fe72d0c77548866d4e245",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/20b24ff49188722d1a6fe72d0c77548866d4e245"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMzMuMA"
+  },
+  {
+    "name": "yamlpath/v0.32.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.32.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.32.0",
+    "commit": {
+      "sha": "9a270265913b012fac6a757a23fa7bf6569b4396",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/9a270265913b012fac6a757a23fa7bf6569b4396"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMzIuMA"
+  },
+  {
+    "name": "yamlpath/v0.31.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.31.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.31.0",
+    "commit": {
+      "sha": "2942f11dc2eb53b60f7d68c19b71ef04c7c11ed5",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/2942f11dc2eb53b60f7d68c19b71ef04c7c11ed5"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMzEuMA"
+  },
+  {
+    "name": "yamlpath/v0.30.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.30.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.30.0",
+    "commit": {
+      "sha": "9d61a10dc16febd185c6f8f4e73d8eeab2e14d3b",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/9d61a10dc16febd185c6f8f4e73d8eeab2e14d3b"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMzAuMA"
+  },
+  {
+    "name": "yamlpath/v0.29.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.29.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.29.0",
+    "commit": {
+      "sha": "c393ca8102ea940c6d62a27fb5ccd4f881045b0b",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/c393ca8102ea940c6d62a27fb5ccd4f881045b0b"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjkuMA"
+  },
+  {
+    "name": "yamlpath/v0.28.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.28.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.28.0",
+    "commit": {
+      "sha": "6db45b582f1fe2b358b3553ef2bfa9e16369494f",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/6db45b582f1fe2b358b3553ef2bfa9e16369494f"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjguMA"
+  },
+  {
+    "name": "yamlpath/v0.27.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.27.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.27.0",
+    "commit": {
+      "sha": "4dddc589e6a2dcffe334522b88a1f8c52c35e7ca",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/4dddc589e6a2dcffe334522b88a1f8c52c35e7ca"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjcuMA"
+  },
+  {
+    "name": "yamlpath/v0.26.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.26.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.26.0",
+    "commit": {
+      "sha": "2b1248953459bae43fcccfbda17035678104837b",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/2b1248953459bae43fcccfbda17035678104837b"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjYuMA"
+  },
+  {
+    "name": "yamlpath/v0.25.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.25.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.25.0",
+    "commit": {
+      "sha": "558bec26698c215b0a5d0a9ab1eefee5a3254041",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/558bec26698c215b0a5d0a9ab1eefee5a3254041"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjUuMA"
+  },
+  {
+    "name": "yamlpath/v0.24.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.24.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.24.0",
+    "commit": {
+      "sha": "f008e663577fcb617e5c1cddbadf0f654bb290fd",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/f008e663577fcb617e5c1cddbadf0f654bb290fd"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjQuMA"
+  },
+  {
+    "name": "yamlpath/v0.23.1",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.23.1",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.23.1",
+    "commit": {
+      "sha": "5d04e8907a29c082e72fd8fac1de4dfaa7a618f4",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/5d04e8907a29c082e72fd8fac1de4dfaa7a618f4"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjMuMQ"
+  },
+  {
+    "name": "yamlpath/v0.23.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.23.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.23.0",
+    "commit": {
+      "sha": "b21812ce4f25b850315622b6f2ce3fde99479613",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/b21812ce4f25b850315622b6f2ce3fde99479613"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjMuMA"
+  },
+  {
+    "name": "yamlpath/v0.22.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.22.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.22.0",
+    "commit": {
+      "sha": "18d5c30c1cba60867e942ab84e23eb42624209c7",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/18d5c30c1cba60867e942ab84e23eb42624209c7"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjIuMA"
+  },
+  {
+    "name": "yamlpath/v0.21.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.21.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.21.0",
+    "commit": {
+      "sha": "b5ef519341037301ddfb99af7e47d4244aa29018",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/b5ef519341037301ddfb99af7e47d4244aa29018"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjEuMA"
+  },
+  {
+    "name": "yamlpath/v0.20.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.20.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.20.0",
+    "commit": {
+      "sha": "db772fe97d1252dd24f343ebf0fd6720d7f6f497",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/db772fe97d1252dd24f343ebf0fd6720d7f6f497"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMjAuMA"
+  },
+  {
+    "name": "yamlpath/v0.19.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.19.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.19.0",
+    "commit": {
+      "sha": "2cfef360934e17ba94b6268b500145ee69dbdd7c",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/2cfef360934e17ba94b6268b500145ee69dbdd7c"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMTkuMA"
+  },
+  {
+    "name": "yamlpath/v0.18.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpath/v0.18.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpath/v0.18.0",
+    "commit": {
+      "sha": "fafcebb161442958c2d730bffb661ec98108be23",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/fafcebb161442958c2d730bffb661ec98108be23"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGgvdjAuMTguMA"
+  },
+  {
+    "name": "yamlpatch/v0.13.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.13.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.13.0",
+    "commit": {
+      "sha": "76d3f1eb2ba6450f9fbbdc14b52bbf298cad09d9",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/76d3f1eb2ba6450f9fbbdc14b52bbf298cad09d9"
+    },
+    "node_id": "REF_kwDOMlil3btyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjEzLjA"
+  },
+  {
+    "name": "yamlpatch/v0.12.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.12.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.12.0",
+    "commit": {
+      "sha": "a6bdc49c5df5dd6619bc022a377ca9fffd54085c",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/a6bdc49c5df5dd6619bc022a377ca9fffd54085c"
+    },
+    "node_id": "REF_kwDOMlil3btyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjEyLjA"
+  },
+  {
+    "name": "yamlpatch/v0.11.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.11.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.11.0",
+    "commit": {
+      "sha": "13c1b65775f6dbc80900580dcb37fcde8c0d6dd3",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/13c1b65775f6dbc80900580dcb37fcde8c0d6dd3"
+    },
+    "node_id": "REF_kwDOMlil3btyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjExLjA"
+  },
+  {
+    "name": "yamlpatch/v0.10.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.10.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.10.0",
+    "commit": {
+      "sha": "b3f84f4f168f0c4d1f6c6a64d3ff8572571c95f5",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/b3f84f4f168f0c4d1f6c6a64d3ff8572571c95f5"
+    },
+    "node_id": "REF_kwDOMlil3btyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjEwLjA"
+  },
+  {
+    "name": "yamlpatch/v0.9.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.9.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.9.0",
+    "commit": {
+      "sha": "43b1c3a34e702a5f8eb9f7d7dee270911973bebc",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/43b1c3a34e702a5f8eb9f7d7dee270911973bebc"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjkuMA"
+  },
+  {
+    "name": "yamlpatch/v0.8.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.8.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.8.0",
+    "commit": {
+      "sha": "2942f11dc2eb53b60f7d68c19b71ef04c7c11ed5",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/2942f11dc2eb53b60f7d68c19b71ef04c7c11ed5"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjguMA"
+  },
+  {
+    "name": "yamlpatch/v0.7.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.7.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.7.0",
+    "commit": {
+      "sha": "545d63a38c42e85063961b1834445f9d40525a3c",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/545d63a38c42e85063961b1834445f9d40525a3c"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjcuMA"
+  },
+  {
+    "name": "yamlpatch/v0.6.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.6.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.6.0",
+    "commit": {
+      "sha": "878b7ff60206381b2140a53b38ffa46610a82625",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/878b7ff60206381b2140a53b38ffa46610a82625"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjYuMA"
+  },
+  {
+    "name": "yamlpatch/v0.5.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.5.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.5.0",
+    "commit": {
+      "sha": "6db45b582f1fe2b358b3553ef2bfa9e16369494f",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/6db45b582f1fe2b358b3553ef2bfa9e16369494f"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjUuMA"
+  },
+  {
+    "name": "yamlpatch/v0.4.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.4.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.4.0",
+    "commit": {
+      "sha": "0737eadf45dac2bde2f53129d677be8b081bb6a8",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/0737eadf45dac2bde2f53129d677be8b081bb6a8"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjQuMA"
+  },
+  {
+    "name": "yamlpatch/v0.3.1",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.3.1",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.3.1",
+    "commit": {
+      "sha": "b40d0d2b6e111696a566740db7137b3df557d122",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/b40d0d2b6e111696a566740db7137b3df557d122"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjMuMQ"
+  },
+  {
+    "name": "yamlpatch/v0.3.0",
+    "zipball_url": "https://api.github.com/repos/zizmorcore/zizmor/zipball/refs/tags/yamlpatch/v0.3.0",
+    "tarball_url": "https://api.github.com/repos/zizmorcore/zizmor/tarball/refs/tags/yamlpatch/v0.3.0",
+    "commit": {
+      "sha": "558bec26698c215b0a5d0a9ab1eefee5a3254041",
+      "url": "https://api.github.com/repos/zizmorcore/zizmor/commits/558bec26698c215b0a5d0a9ab1eefee5a3254041"
+    },
+    "node_id": "REF_kwDOMlil3bpyZWZzL3RhZ3MveWFtbHBhdGNoL3YwLjMuMA"
+  }
+]

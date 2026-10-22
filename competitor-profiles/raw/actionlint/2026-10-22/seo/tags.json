@@ -1,0 +1,202 @@
+[
+  {
+    "name": "v1.7.12",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.12",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.12",
+    "commit": {
+      "sha": "914e7df21a07ef503a81201c76d2b11c789d3fca",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/914e7df21a07ef503a81201c76d2b11c789d3fca"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjEy"
+  },
+  {
+    "name": "v1.7.11",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.11",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.11",
+    "commit": {
+      "sha": "393031adb9afb225ee52ae2ccd7a5af5525e03e8",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/393031adb9afb225ee52ae2ccd7a5af5525e03e8"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjEx"
+  },
+  {
+    "name": "v1.7.10",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.10",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.10",
+    "commit": {
+      "sha": "0933c147c9d6587653d45fdcb4c497c57a65f9af",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/0933c147c9d6587653d45fdcb4c497c57a65f9af"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjEw"
+  },
+  {
+    "name": "v1.7.9",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.9",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.9",
+    "commit": {
+      "sha": "a443f344ff32813837fa49f7aa6cbc478d770e62",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/a443f344ff32813837fa49f7aa6cbc478d770e62"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43Ljk="
+  },
+  {
+    "name": "v1.7.8",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.8",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.8",
+    "commit": {
+      "sha": "e7d448ef7507c20fc4c88a95d0c448b848cd6127",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/e7d448ef7507c20fc4c88a95d0c448b848cd6127"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43Ljg="
+  },
+  {
+    "name": "v1.7.7",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.7",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.7",
+    "commit": {
+      "sha": "03d0035246f3e81f36aed592ffb4bebf33a03106",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/03d0035246f3e81f36aed592ffb4bebf33a03106"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43Ljc="
+  },
+  {
+    "name": "v1.7.6",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.6",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.6",
+    "commit": {
+      "sha": "e54bba5a3335513822197930bbcbab5af8e11188",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/e54bba5a3335513822197930bbcbab5af8e11188"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjY="
+  },
+  {
+    "name": "v1.7.5",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.5",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.5",
+    "commit": {
+      "sha": "e11169d0656294827d65370a3c76a2325406da85",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/e11169d0656294827d65370a3c76a2325406da85"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjU="
+  },
+  {
+    "name": "v1.7.4",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.4",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.4",
+    "commit": {
+      "sha": "5db9d9cde2f3deb5035dea3e45f0a9fff2f29448",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/5db9d9cde2f3deb5035dea3e45f0a9fff2f29448"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjQ="
+  },
+  {
+    "name": "v1.7.3",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.3",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.3",
+    "commit": {
+      "sha": "4e683ab8014a63fafa117492a0c6053758e6d593",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/4e683ab8014a63fafa117492a0c6053758e6d593"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjM="
+  },
+  {
+    "name": "v1.7.2",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.2",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.2",
+    "commit": {
+      "sha": "5e94871e36402f0050f863fc162853b22005785a",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/5e94871e36402f0050f863fc162853b22005785a"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjI="
+  },
+  {
+    "name": "v1.7.1",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.1",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.1",
+    "commit": {
+      "sha": "62dc61a45fc95efe8c800af7a557ab0b9165d63b",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/62dc61a45fc95efe8c800af7a557ab0b9165d63b"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjE="
+  },
+  {
+    "name": "v1.7.0",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.7.0",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.7.0",
+    "commit": {
+      "sha": "f970a14472c1b4d576f8456884a3238aa353a288",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/f970a14472c1b4d576f8456884a3238aa353a288"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS43LjA="
+  },
+  {
+    "name": "v1.6.27",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.6.27",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.6.27",
+    "commit": {
+      "sha": "c6bd06256dd700a45e483869bcdcf304239393a6",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/c6bd06256dd700a45e483869bcdcf304239393a6"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS42LjI3"
+  },
+  {
+    "name": "v1.6.26",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.6.26",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.6.26",
+    "commit": {
+      "sha": "ea8102762106cdca9c88829f1295b39a544706f3",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/ea8102762106cdca9c88829f1295b39a544706f3"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS42LjI2"
+  },
+  {
+    "name": "v1.6.25",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.6.25",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.6.25",
+    "commit": {
+      "sha": "7b75d16d41920ec126e6f3269db0c6f3ab613c38",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/7b75d16d41920ec126e6f3269db0c6f3ab613c38"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS42LjI1"
+  },
+  {
+    "name": "v1.6.24",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.6.24",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.6.24",
+    "commit": {
+      "sha": "fd7ba3c382e13dcc0248e425b4cbc3f1185fa3ee",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/fd7ba3c382e13dcc0248e425b4cbc3f1185fa3ee"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS42LjI0"
+  },
+  {
+    "name": "v1.6.23",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.6.23",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.6.23",
+    "commit": {
+      "sha": "51803be108613182daa27af760ae117916b53e3f",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/51803be108613182daa27af760ae117916b53e3f"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS42LjIz"
+  },
+  {
+    "name": "v1.6.22",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.6.22",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.6.22",
+    "commit": {
+      "sha": "7fdc9630cc360ea1a469eed64ac6d78caeda1234",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/7fdc9630cc360ea1a469eed64ac6d78caeda1234"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS42LjIy"
+  },
+  {
+    "name": "v1.6.21",
+    "zipball_url": "https://api.github.com/repos/rhysd/actionlint/zipball/refs/tags/v1.6.21",
+    "tarball_url": "https://api.github.com/repos/rhysd/actionlint/tarball/refs/tags/v1.6.21",
+    "commit": {
+      "sha": "bb1cfc39e910ad6feced2b4fd77bc26fdad9aa71",
+      "url": "https://api.github.com/repos/rhysd/actionlint/commits/bb1cfc39e910ad6feced2b4fd77bc26fdad9aa71"
+    },
+    "node_id": "MDM6UmVmMzcwNjY4NTA3OnJlZnMvdGFncy92MS42LjIx"
+  }
+]

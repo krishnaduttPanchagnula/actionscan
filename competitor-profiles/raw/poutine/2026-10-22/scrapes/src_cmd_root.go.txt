@@ -1,0 +1,354 @@
+package cmd
+
+import (
+	"context"
+	"embed"
+	"errors"
+	"fmt"
+	"os"
+	"os/signal"
+	"path/filepath"
+	"strings"
+	"syscall"
+
+	"github.com/boostsecurityio/poutine/analyze"
+	"github.com/boostsecurityio/poutine/formatters/json"
+	"github.com/boostsecurityio/poutine/formatters/noop"
+	"github.com/boostsecurityio/poutine/formatters/pretty"
+	"github.com/boostsecurityio/poutine/formatters/sarif"
+	"github.com/boostsecurityio/poutine/models"
+	"github.com/boostsecurityio/poutine/opa"
+	"github.com/boostsecurityio/poutine/providers/gitops"
+	"github.com/boostsecurityio/poutine/providers/scm"
+	scm_domain "github.com/boostsecurityio/poutine/providers/scm/domain"
+	"github.com/boostsecurityio/poutine/versioncheck"
+	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
+	"github.com/spf13/viper"
+
+	"github.com/spf13/cobra"
+)
+
+var Format string
+var Verbose bool
+var ScmProvider string
+var ScmBaseURL scm_domain.ScmBaseDomain
+var (
+	Version string
+	Commit  string
+	Date    string
+)
+var Token string
+var CustomEmbeddedRules *embed.FS
+var cfgFile string
+var config *models.Config = models.DefaultConfig()
+var skipRules []string
+var allowedRules []string
+var failOnViolation bool
+var disableVersionCheck bool
+
+// ErrViolationsFound is returned when violations are detected and --fail-on-violation is set.
+var ErrViolationsFound = errors.New("poutine: violations found")
+
+// checkViolations returns ErrViolationsFound if --fail-on-violation is set
+// and any of the provided packages contain findings.
+func checkViolations(pkgs ...*models.PackageInsights) error {
+	if !failOnViolation {
+		return nil
+	}
+	for _, pkg := range pkgs {
+		if pkg != nil && len(pkg.FindingsResults.Findings) > 0 {
+			return ErrViolationsFound
+		}
+	}
+	return nil
+}
+
+var legacyFlags = []string{"-token", "-format", "-verbose", "-scm", "-scm-base-uri", "-threads"}
+
+const (
+	exitCodeErr        = 1
+	exitCodeInterrupt  = 2
+	exitCodeViolations = 10
+)
+
+// RootCmd represents the base command when called without any subcommands
+var RootCmd = &cobra.Command{
+	Use:           "poutine",
+	SilenceUsage:  true,
+	SilenceErrors: true,
+	Short:         "A Supply Chain Vulnerability Scanner for Build Pipelines",
+	Long: `A Supply Chain Vulnerability Scanner for Build Pipelines
+By BoostSecurity.io - https://github.com/boostsecurityio/poutine `,
+	PersistentPreRun: func(cmd *cobra.Command, args []string) {
+		zerolog.SetGlobalLevel(zerolog.InfoLevel)
+		if Verbose {
+			zerolog.SetGlobalLevel(zerolog.DebugLevel)
+		}
+		output := zerolog.ConsoleWriter{Out: os.Stderr}
+		output.FormatLevel = func(i interface{}) string {
+			return strings.ToUpper(fmt.Sprintf("| %-6s|", i))
+		}
+		log.Logger = log.Output(output)
+
+		runVersionCheck(cmd)
+	},
+}
+
+// versionCheckSkipCommands lists subcommands that must not trigger the
+// version check: "mcp-server" speaks JSON-RPC over stdio (no point delaying
+// its handshake), and "completion" is invoked by shells for tab-completion
+// lookups. Other subcommands (including "version" and "help") still pay the
+// once-per-day check, since the 24h cache means at most one network call.
+var versionCheckSkipCommands = map[string]struct{}{
+	"mcp-server": {},
+	"completion": {},
+}
+
+// runVersionCheck performs the once-per-day update check unless disabled by
+// flag, env var, or config. Commands listed in versionCheckSkipCommands and
+// any subcommand under them are excluded so users can inspect the binary or
+// run the MCP server without triggering a network call.
+func runVersionCheck(cmd *cobra.Command) {
+	for c := cmd; c != nil; c = c.Parent() {
+		if _, skip := versionCheckSkipCommands[c.Name()]; skip {
+			return
+		}
+	}
+	disabled := disableVersionCheck || (config != nil && config.DisableVersionCheck)
+	result := versioncheck.Run(cmd.Context(), Version, disabled)
+	if result == nil || !result.UpdateAvailable {
+		return
+	}
+	target := result.LatestURL
+	if target == "" {
+		target = "https://github.com/boostsecurityio/poutine/releases"
+	}
+	log.Warn().
+		Str("current_version", Version).
+		Str("latest_version", result.LatestVersion).
+		Msgf("A new version of poutine is available: %s — %s", result.LatestVersion, target)
+}
+
+// Execute adds all child commands to the root command and sets flags appropriately.
+// This is called by main.main(). It only needs to happen once to the rootCmd.
+func Execute() {
+	ctx := context.Background()
+	ctx, cancel := context.WithCancel(ctx)
+	signalChan := make(chan os.Signal, 1)
+	signal.Notify(signalChan, os.Interrupt, syscall.SIGTERM)
+	defer func() {
+		signal.Stop(signalChan)
+		cancel()
+	}()
+
+	go func() {
+		select {
+		case <-signalChan: // first signal, cancel context
+			cancel()
+			cleanup()
+		case <-ctx.Done():
+			return
+		}
+		<-signalChan // second signal, hard exit
+		os.Exit(exitCodeInterrupt)
+	}()
+
+	err := RootCmd.ExecuteContext(ctx)
+	if err != nil {
+		if errors.Is(err, ErrViolationsFound) {
+			log.Info().Msg("violations found")
+			os.Exit(exitCodeViolations)
+		}
+		log.Error().Err(err).Msg("command failed")
+		os.Exit(exitCodeErr)
+	}
+}
+
+func init() {
+	cobra.OnInitialize(initConfig)
+
+	for _, arg := range os.Args {
+		for _, legacyFlag := range legacyFlags {
+			if arg == legacyFlag {
+				fmt.Println("Error: Flags now come after the command and require '--' instead of a single '-', use poutine --help for more information.")
+				os.Exit(exitCodeErr)
+			}
+		}
+	}
+
+	RootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is .poutine.yml in the current directory or .github/poutine.yml)")
+	RootCmd.PersistentFlags().StringVarP(&Format, "format", "f", "pretty", "Output format (pretty, json, sarif)")
+	RootCmd.PersistentFlags().BoolVarP(&Verbose, "verbose", "v", false, "Enable verbose logging")
+	RootCmd.PersistentFlags().StringVarP(&ScmProvider, "scm", "s", "github", "SCM platform (github, gitlab)")
+	RootCmd.PersistentFlags().VarP(&ScmBaseURL, "scm-base-url", "b", "Base URI of the self-hosted SCM instance (optional)")
+	RootCmd.PersistentFlags().BoolVarP(&config.Quiet, "quiet", "q", false, "Disable progress output")
+	RootCmd.PersistentFlags().StringSliceVar(&skipRules, "skip", []string{}, "Adds rules to the configured skip list for the current run (optional)")
+	RootCmd.PersistentFlags().StringSliceVar(&allowedRules, "allowed-rules", []string{}, "Overwrite the configured allowedRules list for the current run (optional)")
+	RootCmd.PersistentFlags().BoolVar(&failOnViolation, "fail-on-violation", false, "Exit with a non-zero code (10) when violations are found")
+	RootCmd.PersistentFlags().BoolVar(&disableVersionCheck, "disable-version-check", false, "Disable the once-per-day check for newer poutine releases")
+
+	_ = viper.BindPFlag("quiet", RootCmd.PersistentFlags().Lookup("quiet"))
+}
+
+func initConfig() {
+	viper.AutomaticEnv()
+
+	configPath := cfgFile
+	if configPath == "" {
+		configPath = findDefaultConfigFile(".")
+	}
+
+	if configPath == "" {
+		return
+	}
+
+	viper.SetConfigFile(configPath)
+	if err := viper.ReadInConfig(); err != nil {
+		log.Error().Err(err).Msg("Can't read config")
+		os.Exit(1)
+	}
+
+	if err := viper.Unmarshal(&config); err != nil {
+		log.Error().Err(err).Msg("Unable to unmarshal config")
+		os.Exit(1)
+	}
+}
+
+// findDefaultConfigFile returns the path of the first default config file
+// found under baseDir, in order of precedence:
+//  1. <baseDir>/.poutine.<ext>        (working directory)
+//  2. <baseDir>/.github/poutine.<ext> (GitHub convention — no leading dot)
+//
+// Extensions are those supported by viper (yml, yaml, json, toml, ...).
+// Returns "" if no default config file is found.
+func findDefaultConfigFile(baseDir string) string {
+	candidates := []struct {
+		dir, name string
+	}{
+		{baseDir, ".poutine"},
+		{filepath.Join(baseDir, ".github"), "poutine"},
+	}
+	for _, c := range candidates {
+		for _, ext := range viper.SupportedExts {
+			path := filepath.Join(c.dir, c.name+"."+ext)
+			if info, err := os.Stat(path); err == nil && !info.IsDir() {
+				return path
+			}
+		}
+	}
+	return ""
+}
+
+func cleanup() {
+	log.Debug().Msg("Cleaning up temp directories")
+	globPattern := filepath.Join(os.TempDir(), analyze.TEMP_DIR_PREFIX)
+	matches, err := filepath.Glob(globPattern)
+	if err != nil {
+		log.Error().Err(err).Msg("Failed to match temp folders")
+	}
+	for _, match := range matches {
+		if err := os.RemoveAll(match); err != nil {
+			log.Error().Err(err).Msgf("Failed to remove %q", match)
+		}
+	}
+	log.Debug().Msg("Finished cleaning up temp directories")
+}
+
+func GetFormatter(opaClient *opa.Opa) analyze.Formatter {
+	switch Format {
+	case "pretty":
+		return &pretty.Format{}
+	case "sarif":
+		return sarif.NewFormat(os.Stdout, Version)
+	case "noop":
+		return &noop.Format{}
+	}
+
+	return json.NewFormat(opaClient, Format, os.Stdout)
+}
+
+func GetAnalyzer(ctx context.Context, command string) (*analyze.Analyzer, error) {
+	scmClient, err := scm.NewScmClient(ctx, ScmProvider, ScmBaseURL.String(), Token, command)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create SCM client: %w", err)
+	}
+
+	opaClient, err := newOpa(ctx)
+	if err != nil {
+		log.Error().Err(err).Msg("Failed to create OPA client")
+		return nil, err
+	}
+
+	formatter := GetFormatter(opaClient)
+	gitClient := gitops.NewGitClient(nil)
+
+	analyzer := analyze.NewAnalyzer(scmClient, gitClient, formatter, config, opaClient)
+	analyzer.Observer = analyze.NewProgressBarObserver(config.Quiet)
+	return analyzer, nil
+}
+
+// GetAnalyzerWithConfig creates an analyzer
+func GetAnalyzerWithConfig(ctx context.Context, command, scmProvider, scmBaseURL, token string, cfg *models.Config) (*analyze.Analyzer, error) {
+	scmClient, err := scm.NewScmClient(ctx, scmProvider, scmBaseURL, token, command)
+	if err != nil {
+		return nil, fmt.Errorf("failed to create SCM client: %w", err)
+	}
+
+	opaClient, err := newOpaWithConfig(ctx, cfg)
+	if err != nil {
+		log.Error().Err(err).Msg("Failed to create OPA client")
+		return nil, err
+	}
+
+	formatter := GetFormatter(opaClient)
+	gitClient := gitops.NewGitClient(nil)
+
+	analyzer := analyze.NewAnalyzer(scmClient, gitClient, formatter, cfg, opaClient)
+	analyzer.Observer = analyze.NewProgressBarObserver(cfg.Quiet)
+	return analyzer, nil
+}
+
+func newOpa(ctx context.Context) (*opa.Opa, error) {
+	if len(skipRules) > 0 {
+		config.Skip = append(config.Skip, models.ConfigSkip{Rule: skipRules})
+	}
+	if len(allowedRules) > 0 {
+		config.AllowedRules = allowedRules
+	}
+
+	var opaClient *opa.Opa
+	var err error
+
+	if CustomEmbeddedRules != nil {
+		opaClient, err = opa.NewOpaWithEmbeddedRules(ctx, config, *CustomEmbeddedRules)
+	} else {
+		opaClient, err = opa.NewOpa(ctx, config)
+	}
+
+	if err != nil {
+		log.Error().Err(err).Msg("Failed to create OPA client")
+		return nil, err
+	}
+
+	return opaClient, nil
+}
+
+// newOpaWithConfig creates an OPA client with request-scoped configuration
+func newOpaWithConfig(ctx context.Context, cfg *models.Config) (*opa.Opa, error) {
+	var opaClient *opa.Opa
+	var err error
+
+	if CustomEmbeddedRules != nil {
+		opaClient, err = opa.NewOpaWithEmbeddedRules(ctx, cfg, *CustomEmbeddedRules)
+	} else {
+		opaClient, err = opa.NewOpa(ctx, cfg)
+	}
+
+	if err != nil {
+		log.Error().Err(err).Msg("Failed to create OPA client")
+		return nil, fmt.Errorf("failed to create OPA client: %w", err)
+	}
+
+	return opaClient, nil
+}

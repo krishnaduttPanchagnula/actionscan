@@ -1,0 +1,108 @@
+{
+  "name": "main",
+  "commit": {
+    "sha": "011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7",
+    "node_id": "C_kwDOFhfz29oAKDAxMWE2ZDE1ZTc0OWJiM2YyZDc3MWVlZDljN2FhMGU3ZTNlMTBlZTc",
+    "commit": {
+      "author": {
+        "name": "Linda_pp",
+        "email": "rhysd@users.noreply.github.com",
+        "date": "2026-04-19T14:46:58Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-04-19T14:46:58Z"
+      },
+      "message": "Merge pull request #651 from attehuhtakangas/fix-shellcheck-deadlock-macos\n\nfix deadlock in shellcheck integration on darwin by using cmd.Stdin",
+      "tree": {
+        "sha": "77e94406357b47372929b4614abd3848cd1c761a",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/77e94406357b47372929b4614abd3848cd1c761a"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJp5OriCRC1aQ7uu5UhlAAAKegQAJN0tenCba17vhq9kAymLm5W\ntLt2sYmzTriURJtogTShLvbYj2Fn0i+torQ3Z9Ls/4H4Vuo2h5PDh62thYRCQq6S\ntZ5PVn8wq5tNw1ekeH0BW4sdX3GFy6t5gGXkWv+fUadAG68FdNgKZuMHw3PszUZx\nmzKkvp2GY8Ibrn1HfVSTKPp1Xc0nzJWVZ/Z6rdW4FE82C0+FTiXMz1MDd0/qw68W\nSlvNAjJf3fUQnhJ16m+VERLXZu/6p70KHZQOox7YAVLWZgZnaZGXwf0HERlgJemI\nbYBwebVMiw3Xw57v3FND1BOg29Yf37uzPwGmHg36WX7YElQlb6Fz0AyAoOhRwge8\nXOJ1mv7sEWHTCXvlM4s4QlIVbrruO/sLmmJ5Jvc2R3WppNB5v5Hq8x3nnFRhNnUP\n8vWIZptYF4N88Sjme0oj6aF1EZ+XyVl2xvMJRj1l5FYUg9lTguqYD8GwHBtXP+pN\nxsiKxyb+ngPX2DV3Md5uXdnsjVcIi33ijTA3zSbF/lcA6elU/fYA+w29uLieLfkd\n9YbRFCRpCh/KhG1cdzsj2fxiVq9SXEEGEUsyzCc+dIIMu5cMM6waUknGrGy0FL+o\n5HaHflbs2BsCHCHy0U+n/Rr7KpVJaPMgS2nO4GlM4fad0EYdD5gnHUwkY03YjUnn\njzOlEyPLTC/I603pYe+H\n=roYh\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 77e94406357b47372929b4614abd3848cd1c761a\nparent 575dc065835117209c88dfa9fe35f134ebf4b1ff\nparent fd33e9f582a01a02885c93ae3775e1190cf63653\nauthor Linda_pp <rhysd@users.noreply.github.com> 1776610018 +0900\ncommitter GitHub <noreply@github.com> 1776610018 +0900\n\nMerge pull request #651 from attehuhtakangas/fix-shellcheck-deadlock-macos\n\nfix deadlock in shellcheck integration on darwin by using cmd.Stdin",
+        "verified_at": "2026-04-19T14:46:58Z"
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7",
+    "html_url": "https://github.com/rhysd/actionlint/commit/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "575dc065835117209c88dfa9fe35f134ebf4b1ff",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/575dc065835117209c88dfa9fe35f134ebf4b1ff",
+        "html_url": "https://github.com/rhysd/actionlint/commit/575dc065835117209c88dfa9fe35f134ebf4b1ff"
+      },
+      {
+        "sha": "fd33e9f582a01a02885c93ae3775e1190cf63653",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/fd33e9f582a01a02885c93ae3775e1190cf63653",
+        "html_url": "https://github.com/rhysd/actionlint/commit/fd33e9f582a01a02885c93ae3775e1190cf63653"
+      }
+    ]
+  },
+  "_links": {
+    "self": "https://api.github.com/repos/rhysd/actionlint/branches/main",
+    "html": "https://github.com/rhysd/actionlint/tree/main"
+  },
+  "protected": false,
+  "protection": {
+    "enabled": false,
+    "required_status_checks": {
+      "enforcement_level": "off",
+      "contexts": [
+
+      ],
+      "checks": [
+
+      ]
+    }
+  },
+  "protection_url": "https://api.github.com/repos/rhysd/actionlint/branches/main/protection"
+}

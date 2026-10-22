@@ -1,0 +1,941 @@
+ 
+ Unpacking Security Scanners for GitHub Actions Workflows 
+ Report GitHub Issue
+ × 
+ Title: 
+ Content selection saved. Describe the issue below:
+ Description: 
+ Submit without GitHub 
+ Submit in GitHub 
+ arXiv is now an independent nonprofit! 
+ Learn more 
+ × 
+ Back to arXiv 
+ Why HTML? 
+ Report Issue 
+ Back to Abstract 
+ Download PDF 
+ Abstract 
+ I Introduction 
+ II Background 
+ II-A Terminology of GitHub Actions 
+ II-B Risks in GitHub Actions Workflows 
+ III Workflow Security Scanners under Study 
+ III-A Sourcing Open Source Workflow Security Scanners 
+ III-B Curated list of Workflow Security Scanners 
+ IV Methodology 
+ IV-A Classification of common weaknesses in GitHub Actions Workflows 
+ IV-B Dataset of GitHub Actions Workflows 
+ IV-C Research questions 
+ V Classification of common security weaknesses in GitHub Actions Workflows 
+ VI Results 
+ VI-A To what extent do state-of-the-art workflow security scanners search for the same workflow weaknesses? 
+ VI-A 1 General-purpose scanners 
+ VI-A 2 Focused scanners 
+ VI-B To what extent do state-of-the-art workflow security scanners behave consistently regarding the detection of security weaknesses? 
+ VI-B 1 General-purpose scanners 
+ VI-B 2 Focused scanners 
+ VI-C What are the runtime performances and reporting characteristics of security scanners? 
+ VI-C 1 General-purpose workflow security scanners 
+ VI-C 2 Focused workflow security scanners 
+ VI-D Recommendations for GitHub Actions Workflow Scanning 
+ VI-E Threats to Validity 
+ VII Related work 
+ VIII Conclusion 
+ IX Data Availability 
+ References 
+ License: arXiv.org perpetual non-exclusive license
+arXiv:2601.14455v2 [cs.SE] 17 Mar 2026
+ Unpacking Security Scanners for GitHub Actions Workflows
+ Madjda Fares,
+Yogya Gamage,
+Benoit Baudry
+ Affiliation: 
+ Affiliation: Université de Montréal, Montreal, Canada
+ Affiliation: 
+ {madjda.fares, yogya.gamage, benoit.baudry}@umontreal.ca
+ Abstract
+ GitHub Actions is a widely used platform to automate the build and deployment of software projects through configurable workflows.
+As the platform’s popularity grows, it also becomes a target of choice for software supply chain attacks.
+These attacks exploit excessive permissions, ambiguous versions or the absence of artifact integrity checks to compromise the workflows.
+In response to these attacks, several security scanners have emerged to help developers harden their workflows.
+ In this paper, we perform the first systematic comparison of 9 GitHub Actions Workflows security scanners.
+We compare them regarding scope (which security weaknesses they target), detection capabilities (how many weaknesses they detect), and performance (how long they take to scan a workflow).
+In order to compare the scanners on a common ground, we first establish a classification of 10 common security weaknesses that can be found in GitHub Actions Workflows. Then, we run the scanners against a curated set of 2722 workflows.
+ Our study reveals that the landscape of GitHub Actions Workflows security scanners is very diverse, with both general purpose and focused scanners.
+More importantly, we provide evidence that these scanners implement fundamentally different analysis strategies, leading to major gaps regarding the nature and the number of reported security weaknesses. Based on these empirical evidence we make actionable recommendations for developers to harden their GitHub Actions Workflows.
+ I Introduction 
+ GitHub Actions (GHA) is a Continuous Integration/Continuous Deployment (CI/CD) platform that lets developers automate builds, tests, and deployments through event-driven workflows [ 1 ] . Since it is inherently integrated with GitHub and widely adopted across both open-source and enterprise projects, it has become a key element of the software supply chain [ 2 ] . However, this popularity has also made GHA an attractive vector for software supply chain attacks [ 3 , 4 ] . These attacks exploit security weaknesses in GitHub Actions Workflows, such as the possibility of injecting arbitrary code in the workflow, or tampering with a workflow’s third-party dependencies [ 5 , 6 ] .
+For example, in March 2025, tj-actions/changed-files , a popular reusable action was maliciously updated compromising tens of thousands of dependent workflows that did not pin their reference to that action [ 7 ] .
+ To mitigate these risks, researchers in academia and industry have developed scanners that statically analyze GitHub Actions Workflows, searching for different security weaknesses. For instance, GitGuardian’s ggshield [ 8 ] can detect unintentionally exposed secrets, and actionlint can detect subtle syntax and type errors in the workflows. Yet, these various scanners vary in scope and often address complementary aspects of workflow security. As a result, it is challenging for developers to navigate this fragmented landscape and choose the most appropriate scanner for their needs.
+ Previous works have studied the usage of GitHub Actions in practice [ 9 ] , the challenges developers face when using GitHub Actions [ 10 ] , and GitHub Action outdatedness [ 11 ] . A few studies focus specifically on the security weaknesses of GitHub Actions [ 12 , 13 ] .
+However, to our knowledge, there is no systematic analysis and comparison of the scope and consistency of GitHub Actions Workflow security scanners.
+ In this paper, we present the first systematic comparative analysis of GitHub Actions Workflow security scanners.
+We begin with 30 open-source candidates collected from the research literature, GitHub repositories, and security blogs. In favor of reproducibility, we exclude scanners that require cloud execution. We also discard scanners that are not maintained. This way, we curate a set of 9 open source, state-of-the-art workflow security scanners.
+We classify distinct detection rules across the scanners into ten common security weaknesses, which we validate with the main maintainers of the scanners. This makes it possible to compare scanners despite differences in rule names and levels of granularity.
+ To compare the capacities of the 9 scanners, we curate a dataset of 2722 real-world workflows. The workflows are collected from 388 open-source repositories, hosted by organizations from software companies such as Microsoft, Google or NVIDIA. Our evaluation focuses on three aspects: Coverage , by mapping each scanner’s detection rules to the selected 10 weaknesses to determine which common security weaknesses are addressed;
+ Detection consistency , by analyzing commonalities and discrepancies among the weaknesses reported by the different scanners;
+ Performance , by measuring per-workflow execution time to evaluate the practicality of integrating these scanners into continuous integration pipelines.
+ Our results show that no single scanner covers all identified security weaknesses. Some specialized scanners focus on a single weakness, while general-purpose scanners report broader sets of potential risks. Most importantly, we find significant differences in the design of the scanners, leading to discrepancies in the number of reported weaknesses. Some scanners like poutine implement conservative analyses favoring the detection of high-risk weaknesses, while other scanners like scorecard are similar to linters reporting large number of formatting issues.
+In terms of performance, most scanners are fast enough for a seamless integration in a CI pipeline. The median time to analyze any workflow, regardless of its size, is 2.71 seconds for 7 out of 9 scanners.
+These findings emphasize the importance of combining complementary scanners.
+ Our main contributions are as follows.
+ • 
+ The first systematic comparison of GitHub Actions Workflow scanners regarding their scope and consistency. This qualitative assessment of the scanners helps developers who wish to secure their workflows against software supply chain attacks.
+ • 
+ A curated set of 9 state-of-the-art, open-source GitHub Actions Security Workflow scanners
+ • 
+ Guidelines for developers to integrate GitHub Actions Workflow scanners, depending on their security requirement
+ • 
+ An open science repository: https://github.com/sparkrew/github-actions-security 
+ II Background 
+ In this section, we first introduce the key concepts and terminology of GitHub Actions Workflow. We also discuss the software supply chain attack risks associated with this process.
+ II-A Terminology of GitHub Actions 
+ GitHub Actions is a continuous integration and continuous delivery (CI/CD) platform within GitHub. It allows developers to define workflows as declarative automation pipelines written in YAML. These files are stored in a directory called .github/workflows/ . The workflows execute in response to events (also called triggers) such as push or pull_request , or manual invocations like workflow_dispatch [ 14 ] . We introduce the terminology and concepts to implement a workflow.
+ A GitHub Actions Workflow consists of one or more jobs, which are executed in parallel or sequentially. Each job runs in a fresh virtual machine (VM) or container (called a runner). Runners can be GitHub-hosted (ephemeral VMs automatically provisioned in the cloud) or self-hosted (custom machines configured by the user).
+ A job is associated with a target environment via the runs-on key (e.g., ubuntu-latest ), and can define environment variables ( env: ), execution context (e.g., working-directory ), and secrets (injected at runtime from the repository’s secret store), among others. A job inherits a default set of repository permissions through the auto-generated GITHUB_TOKEN . It can be customized using the permissions: key to restrict or expand access to GitHub resources such as contents or issues.
+ A step defined in a job is an individual command or invocation of reusable units called actions. Workflow steps can use run: to execute shell commands or uses: to call an action.
+ An action is a building block of automation, declared in a file called action.yml or action.yaml . It can be a JavaScript action, a Docker container action, or a composite action defined in YAML. Actions may be local to the same repository (e.g., uses: ./.github/actions/my-action) or remote, hosted in another repository and referenced via owner/repo@version . Versions can be referenced by tags, branches, or commit SHAs, but the best practice regarding security is to pin to a specific commit SHA.
+ The GitHub Marketplace serves as a registry for publishing and discovering actions and reusable workflows. Each published action version corresponds to a specific commit hash, which enables reproducibility when workflow authors pin their references to that hash. Actions published to the Marketplace must declare an action.yml to be installable; standalone shell or JavaScript scripts cannot be published to the Marketplace without this wrapper.
+ Figure 1 : An example of a GitHub Actions Workflow. Excerpt from the size-limit workflow from excalidraw . 
+ ⬇ 
+ name : "Bundle Size check @excalidraw/excalidraw" 
+ on :
+ pull_request :
+ branches :
+ - master
+ jobs :
+ size :
+ runs-on : ubuntu-latest
+ env :
+ CI_JOB_NUMBER : 1
+ steps :
+ - name : Checkout repository
+ uses : actions/checkout@v3
+ …
+ - uses : andresz1/size-limit-action@v1
+ with :
+ github_token : ${{ secrets.GITHUB_TOKEN }}
+ build_script : build:esm
+ skip_step : install
+ directory : packages/excalidraw
+ Figure 1 illustrates an example workflow.
+It is triggered by a pull_request event targeting the master branch. It contains a single job named size , which runs two different steps.
+Both steps reuse a third-party action. The actions/checkout@v3 action is provided by the actions organization, managed by GitHub, and is used to check out repository code. andresz1/size-limit-action@v1 is owned by andresz1 and checks the size of the project bundle.
+The job also uses a scoped GITHUB_TOKEN as a credential and sets several configuration parameters (e.g., build_script, skip_step, directory ) for the size-checking action.
+ Figure 2 : GitHub Actions workflow lifecycle and key risk surfaces. 
+ II-B Risks in GitHub Actions Workflows 
+ In Figure 2 , we summarize the regular process of continuous integration and continuous delivery (CI/CD) with GitHub Actions Workflows (in black), as well as the associated risks, i.e. opportunities for software supply chain attacks that exploit the weaknesses in this process (in red).
+ For regular CI/CD, software development teams build GitHub Actions Workflows that automate build, dependency management, linting, testing, packaging, etc.
+The GitHub Actions Workflows operate in the scope of a GitHub repository and are triggered every time the developers make a change, such as pushing and merging changes.
+A workflow typically reuses actions, e.g. to checkout the code (see Figure 1 ) or to deploy a specific runtime for CI.
+When a workflow is triggered, GitHub Actions services dispatch its jobs to a runner (e.g. a Docker container) and provide it with the necessary credentials and context (e.g., as environment variables). The runner checks out the code from the repository, fetches referenced actions and dependencies, and executes the workflow steps. The runner reports logs and status to GitHub Actions and may write results back to the repository when permissions allow. The runner can also produce outputs such as bundled artifacts and publish them on external registries.
+ In the following we discuss the key risks associated with this CI/CD process based on GitHub Actions Workflows. First, external users who do not have write access on the repository can still interact with the repository, for example through issues or pull requests. These interactions can trigger GitHub Actions Workflows and external users can pass malicious payloads (1) (e.g., set a pull request title to ’; curl http://evil.com/exfil | sh # ). If workflows interpolate these event fields into shell commands, scripts, or environment variables, the payloads can enable injection during runner execution (6). Runner execution can also be hijacked through reused actions; for example, in March 2026, the official xygeni-action 1 1 
+ 1 
+ https://www.stepsecurity.io/blog/xygeni-action-compromised-c2-reverse-shell-backdoor-injected-via-tag-poisoning was compromised through tag poisoning, causing repositories that referenced @v5 to execute a C2 reverse shell on their runners.
+The code of third-party reused actions is fetched from third-party repositories, and it is possible for malicious actors to tamper with the referenced dependencies (2). Because these dependencies execute as part of the workflow run, a compromised upstream action can propagate to downstream repositories without changes in the workflow file itself. For example, a large supply chain attack was operated by tampering with the code of the popular third-party tj-actions/changed-files action action in March 2025 2 2 
+ 2 
+ https://arstechnica.com/information-technology/2025/03/supply-chain-attack-exposing-credentials-affects-23k-users-of-tj-actions/ .
+In addition, if workflows rely on broad default permissions or do not explicitly scope GITHUB_TOKEN access, a compromised step can abuse the token to escalate privileges or perform unintended write-back operations on the repository (3, 5). For example, the August 2024 Azure Karpenter Provider incident 3 3 
+ 3 
+ https://www.stepsecurity.io/case-studies/azure-karpenter-provider , where a pull-request-triggered workflow chain allowed a user-supplied ref from an untrusted fork to be checked out and executed in a privileged workflow context, leading to the exfiltration of privileged CI credentials.
+Additionally, although GitHub Actions Services provide secrets only to authorized jobs at runtime, unsafe handling (e.g., logging or propagating secrets across steps) can lead to secret exposure (4).
+Finally, workflows produce outputs such as artifacts with external targets. If these outputs are used without integrity checks, this creates output integrity and downstream impact risks (7), since tampered artifacts or cache entries can propagate to later stages or external systems.
+ III Workflow Security Scanners under Study 
+ In this section, we introduce our methodology to select state-of-the-art scanners that check for security weaknesses in GitHub Actions Workflows through static analysis. In the rest of this paper, we refer to such tools as workflow security scanners .
+ III-A Sourcing Open Source Workflow Security Scanners 
+ The number and types of attacks against GitHub Actions Workflows evolve fast and so does the landscape of workflow scanners.
+Consequently, we adopt an inclusive and exploratory approach to collect scanners.
+We concentrate on scanners that analyze workflows statically, as this is the state-of-the-art for scanning continuous integration workflows [ 15 ] . We only collect scanners that are open-source, to ensure accessibility, transparency, and reproducibility of our experiments.
+ To ensure a wide coverage, our initial collection process draws on different sources and discovery methods.
+First, we look for scanners in the security and software engineering literature. We search the proceedings of the following conferences: ICSE, ASE, FSE, ICSME, S&P, USENIX security, and CCS. We focus on the past 5 years and use the following queries “ GitHub Action ”, “ continuous integration ”, “ workflow ”. We collect 39 papers and review each paper to determine if they propose a new scanner or if they use an existing scanner. We keep 14 papers, which refer to 11 different workflow security scanners, among which 4 propose new scanners.
+Second, we search GitHub repositories tagged with the following topics: github-actions security , supply-chain-security , devsecops , ci-cd / cicd , security-tools , scanner , dependency-security . These tags often aggregate community-maintained scanners or best-practice implementations. We extract 10 workflow security scanners.
+Third, we explore the grey literature. We go through 28 case studies, and blog articles published by organizations that are actively involved in software security, CI/CD tooling, and open-source security auditing. We identify 5 new scanners through this process. We also analyze the popular Reddit communities related to our study: r/devops , r/github , r/cybersecurity , r/devsecops , r/pwnhub , and extract 4 workflow security scanners.
+ This broad collection phase provides a list of 30 distinct scanners explicitly designed to secure GitHub Actions workflows. Next, we analyze and curate this initial list for the purpose of our study.
+ III-B Curated list of Workflow Security Scanners 
+ In the following, we breakdown our curation process, to select a set of workflow security scanners that are amenable to sound and reproducible experiments.
+ Table I : Curated set of GitHub Actions Workflows security scanners. 
+ Scanner
+ Commit 
+ Collected 
+ Lang. 
+ Source 
+ actionlint 
+ 2ab3a12 
+ 2025-01-19 
+ Golang 
+ [ 16 ] 
+ frizbee 
+ bfdd688 
+ 2025-05-31 
+ Golang 
+ Blog 
+ ggshield 
+ a35fa49 
+ 2025-06-04 
+ Python 
+ [ 8 ] 
+ pinny 
+ 2e0d63a 
+ 2025-03-15 
+ Golang 
+ GitHub Topic 
+ poutine 
+ 68f289d 
+ 2025-06-02 
+ Golang 
+ GitHub Topic 
+ scharf 
+ c47ec89 
+ 2025-06-07 
+ Golang 
+ Reddit 
+ scorecard 
+ ab2f6e9 
+ 2025-05-30 
+ Golang 
+ [ 17 ] 
+ semgrep 
+ 7d387d2 
+ 2025-06-08 
+ OCaml 
+ Reddit 
+ zizmor 
+ af9b871 
+ 2025-06-09 
+ Rust 
+ Blog 
+ Workflow-focused target: We focus on scanners that analyze GitHub Actions workflow files (.yml or .yaml files). We exclude Argus , which scans repository metadata and focuses on DNS leaks, email exposure and misconfigured assets. We also exclude GitHub Actions Log Checker that scans the logs of the GitHub Actions and Trivy that scans Container Images and the file system.
+ Reproducible execution: Our study centers on scanners that we can configure and execute on our local machines. This allows us to precisely document the versions of the scanners and their configurations, for reproducibility purposes. In particular, we discard the tools that execute only on the GitHub runners or that depend on online scanners. Kntrl , Harden-Runner , Bullfrog , BOLT and Cimon are not included in the benchmarking corpus.
+ Active projects: To prioritize mature and actively maintained projects, we select scanners whose latest public commit was within the last six months. This guarantees relevance, and responsiveness to evolving GitHub Actions features and security threats. We exclude GHAST , GW-Checker , and CD-Linter , as their last recorded commits date back more than 3 years.
+ Production ready: We eliminate offensive simulation tools like Cacheract , which is designed to identify exploitable GitHub Actions misconfigurations, and Gato-X , which targets privilege escalation paths. These tools serve as red-team instruments rather than static analyzers, mainly intended to teach how GitHub Actions workflows can be exploited in practice.
+ Operational validation: Finally, we execute the 11 remaining scanners on a random sample of 10 real GitHub Actions Workflows. At this stage, we determine whether the scanners can run to completion locally and reproducibly.
+We discard two scanners that cannot be run locally.: CodeQL, and Secure - Repo after this step.
+The CodeQL repository includes a set of rules to scan GitHub Actions Workflows 4 4 
+ 4 
+ https://github.com/github/codeql/tree/main/actions . However, the execution of these rules in a local CLI, requires the CodeQL CLI/bundle, which includes the YAML extractor. Yet, this extractor is not open-source, and we cannot run the CodeQL rules for scanning GitHub Actions Workflows as part of our experiments.
+Regarding the Secure-Repo, its execution consists in invoking a cloud-based service that receives the workflow and runs the rules on a remote server. However, in order to have reproducible experiments, it is important that the rules and the rule engine run on our local machine. Consequently, we discard Secure - Repo.
+ Table I provides the curated list of workflow security scanners that we use in this study.
+The table includes the name of the scanner, the specific commit ID used for our experiments, the date of this commit (as recorded during the collection period from June 3 to June 11, 2025), the primary programming language of the implementation, and the source through which we found this scanner. We also document the exact command we use to run each scanner, as part of our reproducibility package 5 5 
+ 5 
+ https://github.com/sparkrew/github-actions-security/blob/main/tools_output/commands.md .
+ IV Methodology 
+ In this section, we present the methodology of our study. First, we explain how we build a classification of common weaknesses found in GitHub Actions Workflow security. Then, we present the dataset of GitHub Actions Workflows against which we run the workflow security scanners. Finally, we introduce the research questions that guide our analysis.
+ IV-A Classification of common weaknesses in GitHub Actions Workflows 
+ While security scanners all aim at analyzing GitHub Actions Workflows, they implement rules with different names or different levels of granularity. In order to support a fair and interpretable comparison across scanners that use different naming conventions and detection granularity, we need to determine the common weaknesses that scanners search for.
+In order to classify the common security weaknesses, we proceed in four steps: manually analyze the documentation of the scanners, manually analyze the code of the scanning rules, cluster rules that detect similar weaknesses, validate our classification with the developers of the scanners.
+ First, two authors jointly review the documentation of each scanner to identify the rules it supports. We search for the keywords " rule ", " pattern ", and " check " within the documentation and locate the sections related to workflow analysis rules. We select these keywords because the documentation of the studied scanners is not standardized, and these terms provide a reliable entry point for identifying rule descriptions.
+ Next, we cross validate each rule identified in the documentation by analyzing the source code of the scanners. We search for the specific keywords found in the scanner documentation to confirm the corresponding implementation. For example, when a rule description refers to unpinned actions or broad permissions, we search the source code for related terms such as " pin/unpinned ", " permissions ", " workflow ", " secret ", or the rule name itself, in order to locate the detection logic and verify how the rule is actually implemented.
+We also analyze the source code to identify any additional rules that may not be documented. We follow the program logic of the scanner, starting from the main function, trace method invocations, and identify functions associated with rule implementation. When the two authors disagree on whether a piece of code or a section of documentation corresponds to a single rule, they consult the third author for resolution.
+ In total, we identify 84 rules across all scanners. For each rule, the same two authors determine the type of vulnerability or misconfiguration it aims to detect.
+When we observe similarities in the goals or names of analysis rules across different scanners, we group them under the same common weakness. These similarities are identified by analyzing their documented behavior or implementation to determine whether they serve the same goal. As before, in case of disagreement between the two authors when grouping rules under a weakness, they consult the third author.
+ When clustering individual rules into weaknesses, we follow three principles: (1) we group rules that address the same security objective; (2) each rule is assigned to exactly one group; and (3) the weaknesses are defined and named in a way that rules from different scanners can be included, regardless of naming differences in different scanners.
+This process leads to the definition of 10 common weaknesses.
+ Finally, to validate our interpretation of each scanner’s rule semantics and our mapping decisions, we contacted the lead maintainers of each scanner. We share (i) our classification of 10 common weaknesses, as well as (ii) the mapping between the rules of specific scanners and these common weaknesses. We ask the maintainers whether the mapping accurately reflects the intention of their scanner, and whether they agree that all of their rules can be expressed using our 10 common weaknesses. Out of 9 maintainers, 5 responded, 3 of them provided additional feedback, which we considered to adjust the description of 2 common weaknesses. All maintainers agreed with our mapping of rules to the common weaknesses.
+ The final classification of 10 common weaknesses is detailed in section V and forms the basis for our differential analysis of the 9 security scanners.
+ IV-B Dataset of GitHub Actions Workflows 
+ To compare the capacities of the workflow security scanners, we collect a dataset of workflows that are both representative of real-world usages and structurally diverse.
+To build this benchmark, we mine the repositories of the largest technology companies by revenue 6 6 
+ 6 
+ https://en.wikipedia.org/wiki/List_of_largest_technology_companies_by_revenue , which have at least one verified GitHub organization with public repositories.
+ For each company, we collect all their verified GitHub organizations, and we filter the repositories with a minimum of 2000 GitHub stars, that contain at least one workflow file in the .github/workflows/ directory and have received a commit within the 12 months preceding the collection date (Feb. 28, 2026).
+For each repository, we collect all yaml files inside .github/workflows/ directory. Our goal is to capture a broad range of CI/CD use cases reflected in real-world GitHub Actions Workflows.
+ Table II : Dataset breakdown by company (collected Feb. 27, 2026). 
+ Company 
+ GitHub verified organizations 
+ #Repos 
+ #Workflows 
+ Alphabet 
+ google 
+ 96 
+ 472 
+ Amazon 
+ aws , awslabs 
+ 38 
+ 374 
+ Apple 
+ apple 
+ 14 
+ 55 
+ Cisco 
+ cisco 
+ 2 
+ 2 
+ IBM 
+ IBM 
+ 3 
+ 33 
+ Meta 
+ facebook , facebookresearch , facebookincubator 
+ 71 
+ 358 
+ Microsoft 
+ Azure , microsoft 
+ 130 
+ 1083 
+ NVIDIA 
+ NVIDIA 
+ 18 
+ 172 
+ Tencent 
+ Tencent 
+ 16 
+ 173 
+ Total (9) 
+ 13 
+ 388 
+ 2722 
+ Figure 3 : Jobs vs. reused actions per workflow in our dataset (each point is one workflow) 
+ The final dataset consists of 2722 workflows collected from 388 distinct open-source repositories.
+ Table II reports the number of collected workflows per company, broken down by verified GitHub organization.
+ Figure 3 relates two workflow complexity metrics across the full dataset: the number of reused actions (x-axis) and the number of jobs (y-axis), with each point representing one workflow. The plot shows a dense cluster of workflows with few jobs and few reused actions, alongside a sparse set of increasingly complex workflows that combine higher dependency usage and higher parallelism.
+Median numbers of the reused actions and jobs are 3 3 and 1 1 respectively. Yet, a long tail indicates increasingly complex workflows, with 193 workflows (7.1%) that have more than 4 jobs and 1086 workflows (39.9%) that reuse more than 3 actions.
+The scatter plot also reveals clear outliers. For example, the workflow pr-jobs.yml from facebook/rocksdb repo reuses 131 131 actions.
+This outlier mainly stems from a multi-job “mega-workflow” that repeatedly calls repository-local (95) composite actions for CI setup, caching, and artifact/log collection, plus a smaller set of external utility actions (36).
+The workflow cicd.yml is another example from the microsoft/ebpf-for-windows repository, which defines 44 44 jobs, used to highly parallelize the continuous integration pipeline.
+These real-world workflows are diverse in complexity and functionality, and provide a good benchmark to exercise the different features of security scanners.
+ IV-C Research questions 
+ With our classification of common weaknesses in GitHub Actions Workflows, and our dataset of 2722 real-world workflows, we can perform a systematic differential analysis of the security scanners. We articulate this analysis around three research questions that capture complementary aspects related to the scope of the scanners, to their ability at detecting weaknesses, and to their runtime performance.
+ RQ1. [ static ] To what extent do state-of-the-art workflow security scanners search for the same workflow weaknesses? 
+ To answer this question, we use the classification of common workflow security weaknesses presented in ( section V ) to compare the functionalities of the different scanners.
+For each scanner, we map the individual rules to the common weaknesses.
+To complement this comparison, we also document the type of inputs they support and whether they can automatically generate fixed workflows for detected weaknesses. For that, we analyze their documentation and command-line options.
+ RQ2. [ dynamic ] To what extent do state-of-the-art workflow security scanners behave consistently regarding the detection of security weaknesses? 
+ To answer this question, we run the scanners against our dataset of real - world GitHub Actions Workflows. If a scanner supports customization through configuration files, command-line options, or execution modes, we run it with the documented default settings unless otherwise stated.
+We document the exact command we use to run each scanner, as part of our reproducibility package 7 7 
+ 7 
+ https://github.com/sparkrew/github-actions-security/blob/main/tools_output/commands.md . For example, 1 illustrates the command we use to run semgrep on workflow airbnb_javascript__node.yml .
+ ⬇ 
+ $ semgrep -- config p / github - actions . github / workflows / airbnb_javascript__node . yml 
+ Listing 1: Example command to run Semgrep on a workflow file. 
+ To compare the findings across scanners, we post-process the raw outputs of each scanner execution, and map them to the common weaknesses. We implement custom rules and patterns to mine the raw output. For each workflow, we store the list of reported weaknesses, along with their corresponding detection rules and line numbers. Eventually, we produce one consolidated output per workflow. We then analyze how consistently the scanners detect weaknesses across the same workflows.
+The scripts to process the scanners outputs are available in our reproducibility package 8 8 
+ 8 
+ https://github.com/sparkrew/github-actions-security/blob/main/scripts/results.ipynb .
+ To understand why some scanners interpret the same workflow structure in different ways, we inspect the documentation and, when needed, the rule implementations to clarify each rule’s intended scope and triggering conditions. This qualitative assessment allows us to precisely explain discrepancies among scanners.
+ RQ3. [ performance ] What are the runtime performances and reporting characteristics of security scanners? 
+ Security scanners are often integrated into continuous integration pipelines, where fast feedback is essential. A scanner that significantly slows down execution may discourage adoption or be disabled in production workflows. Therefore, evaluating runtime performance is critical to ensure these scanners provide meaningful findings without introducing unacceptable delays. To assess this, we measure performance by recording the time each scanner takes to analyze a single workflow file. We measure this time using the Unix time utility, and we record elapsed wall-clock time ( real ) as the primary performance metric, since it reflects end-to-end CI delay. In addition, we also record CPU time components ( user and sys ) to help interpret whether runtime is dominated by computation or by per-invocation overhead and I/O.
+ Each measurement is done independently per workflow and repeated three times to account for natural variations in runtime, and we report the median over the three runs. Measurements are conducted across the full dataset to capture both average behavior and outliers. All experiments are run on a laptop equipped with an Intel(R) Core(TM) i7-10510U CPU @ base clock 1.80 GHz, turbo boost up to 2.30 GHz, 16GB RAM (15.8GB usable).
+ V Classification of common security weaknesses in GitHub Actions Workflows 
+ Table III : A classification of ten security weaknesses in GitHub Actions Workflows and the corresponding CWEs 
+ Weakness 
+ CWE 
+ Artifact Integrity Weakness (AIW) 
+ CWE-353 , CWE-494 
+ Control Flow Weakness (CFW) 
+ CWE-571 
+ Excessive Permission Weakness (EPW) 
+ CWE-250 , CWE-732 
+ GitHub Runner Compatibility Weakness (GRCW) 
+ CWE-477 , CWE-440 
+ Hardening Gap Weakness (HGW) 
+ CWE-223 
+ Injection Weakness (IW) 
+ CWE-20 , CWE-94 
+ Known Vulnerable Component Weakness (KVCW) 
+ CWE - 1395 
+ Privileged Trigger Weakness (PTW) 
+ CWE-862 
+ Secrets Exposure Weakness (SEW) 
+ CWE-200 , CWE-522 
+ Unpinned Dependency Weakness (UDW) 
+ CWE-829 
+ Table III summarizes the 10 common security weaknesses that can be detected by the security scanners. In order to ground our classification within an established security framework, we also list the CWEs that have the same scope as our common weaknesses. In the rest of the section, we outline the risks introduced by each weakness, and we illustrate it with examples taken from real projects.
+ Artifact Integrity Weakness (AIW). 
+GitHub Actions Workflows that do not validate the integrity of artifacts or reused dependencies are vulnerable to supply chain attacks. Malicious actors can poison caches or inject backdoored artifacts into later stages of the pipeline, leading to compromised artifacts or lateral movement into trusted systems.
+ In Figure 4 , the step downloads the artifact named next-swc-binary from the current run’s GitHub Actions artifact storage (via actions/download-artifact@v4 ); because no checksum or signature is verified after retrieval, a tampered artifact could be propagated into later stages, compromising the build or deployment.
+ ⬇ 
+ - uses : actions/download-artifact@v4
+ if : ${{ steps.docs-change.outputs.DOCS_CHANGE == ’nope’ }}
+ with :
+ name : next-swc-binary
+ path : packages/next-swc/native
+ Artifact Integrity Weakness (AIW) found in project vercel/next.js 
+ Control Flow Weakness (CFW). 
+In GitHub Actions Workflows, developers use conditions to control when specific steps should be executed. However, attackers can exploit flawed conditions such as always being true (overly permissive) to bypass intended safeguards. This may lead to the unauthorized execution of sensitive jobs, including deployments or access to secrets.
+ Figure 5 illustrates a multi-line condition defined with YAML’s folded scalar ( > ). This folded scalar is used to evaluate an expression that is defined on multiple lines. When the expression is boolean, the result of the evaluation is passed as a non-empty string ( "true" or "false" ). However, in GitHub Actions any non-empty string in if: evaluates to true , so the job always runs.
+ ⬇ 
+ if : >
+ ${{ github.event.workflow_run.event == ’pull_request’ && 
+ github.event.workflow_run.conclusion == ’success’ }} 
+ Control Flow Issue (CFW) found in project EbookFoundation/free-programming-books 
+ Excessive Permission Weakness (EPW). 
+Overprivileged workflows, tokens, jobs, or permissions, create opportunities for privilege escalation attacks. If a workflow does not explicitly restrict its GITHUB_TOKEN permissions, an attacker who gains control of a job via injection or logic flaws can abuse broad permissions to push code, access secrets, or modify critical repository settings.
+ Figure 6 shows an excerpt of a workflow that grants excessive write permissions to a job, which can let a compromised action or script modify repository contents or pull requests. If a compromised action or script runs in this job, the over-privileged token could be abused to make unauthorized code changes, tamper with pull requests, or facilitate further privilege escalation.
+ ⬇ 
+ permissions :
+ contents : write
+ pull-requests : write
+ Excessive Permission Weakness (EPW) found in project n8n-io/n8n 
+ GitHub Runner Compatibility Weakness (GRCW). 
+This weakness occurs when a workflow references an action, runtime, or workflow construct that cannot be reliably resolved, interpreted, or supported in the current GitHub Actions environment. Common root causes include outdated major versions of actions that rely on deprecated language runtimes, as well as unrecognized or renamed workflow keys, contexts, or expressions that do not resolve under the GitHub Actions specification. These incompatibilities, as well as workflow constructs whose behavior remains difficult to resolve or reason about statically, can cause jobs to fail or be skipped, unintentionally disabling required checks or security steps. Attackers can exploit this by introducing changes that downgrade actions, use deprecated constructs, or rely on analysis-obscuring patterns, which can cause guardrail jobs to error out or be skipped, or become harder for static security checks to analyze reliably. In repositories where such jobs are not strictly required or are marked with continue-on-error , this can lead to the removal of code scanning, permission tightening, or policy checks. This, in turn, increases the chance of subsequent abuse.
+ In Figure 7 , the workflow uses actions/setup-node@v1 , an outdated action version that relies on a deprecated runtime and is no longer compatible with current GitHub-hosted runners.
+ ⬇ 
+ - name : Use Node.js ${{ matrix.node-version }}
+ uses : actions/setup-node@v1 # deprecated; incompatible with current runners 
+ GitHub Runner Compatibility Weakness (GRCW) found in project chalarangelo/30-seconds-of-code 
+ Hardening Gap Weakness (HGW). 
+Workflows that lack integrated security scanning tools (e.g., SAST, dependency auditing, or secret scanning) create a hardening gap, giving attackers a broader surface to operate undetected. Without static analysis, dependency updates, or review enforcement, adversaries can introduce vulnerable code, exploit unpatched components, or suppress controls that would otherwise expose their actions.
+ Figure 8 illustrates a standard build pipeline. The pretest step is a project-specific testing step. However, the workflow does not use or invoke any security testing scanner or scanner (e.g., static code analysis/SAST, dependency/advisory auditing, or secret scanning), creating a hardening gap where vulnerabilities can pass unnoticed.
+ ⬇ 
+ steps :
+ - uses : actions/checkout@v2
+ - uses : ljharb/actions/node/install@main
+ - run : npm run pretest
+ # no code scanning or security testing step 
+ Hardening Gap Weakness (HGW) found in project airbnb/javascript 
+ Injection Weakness (IW). 
+Injection risks such as unsafe uses of untrusted inputs within shell or JavaScript contexts or environment variables in CI workflows allow attackers to execute arbitrary code by manipulating such inputs. They can inject commands through pull request metadata or workflow inputs, leading to code execution, data exfiltration, or alteration of pipeline behavior.
+ In Figure 9 , the value of inputs.run_id , potentially attacker-controlled when exposed via workflow_dispatch , is expanded unquoted inside run: , enabling shell-metacharacter injection and arbitrary command execution. Mitigation includes restricting who can set the input, validating its format, or quoting it.
+ ⬇ 
+ run : |
+ gh run watch ${{ inputs.run_id }} > /dev/null 2>&1 
+ gh run rerun ${{ inputs.run_id }} –failed 
+ Injection Weakness (IW) found in project facebook/react-native 
+ Known Vulnerable Component Weakness (KVCW). 
+Workflows that reuse and rely on components or actions with known vulnerabilities may expose the CI pipeline to existing exploits. An adversary can leverage these unpatched weaknesses to hijack execution, gain unauthorized access, or execute arbitrary code, especially in environments where updates are not regularly enforced.
+ In Figure 10 , the workflow uses actions/download-artifact@v4 , versions >= 4.0.0 and < 4.1.3 were vulnerable" or "versions 4.0.0 through 4.1.2 were vulnerable, and the issue was fixed in 4.1.3.
+ ⬇ 
+ - name : Download Windows binaries
+ uses : actions/download-artifact@v4 # Known vulnerable version (ensure >= 4.1.3) 
+ Known Vulnerability Component Weakness (KVCW) found in project denoland/deno 
+ Privileged Trigger Weakness (PTW). Some workflows are triggered by events that run in a trusted, base repository context, such as pull_request_target and issue or comment -driven automation. This means that users who do not have write access on the repository can still pass inputs (e.g., the name of an issue) to a workflow that runs with write-access privileges. A workflow that combines one of these triggers with instructions that process untrusted data or code paths, turns into a serious risk. If the workflow checks out or executes PR-controlled code, or uses event fields in scripts, it can enable secret exfiltration or repository modification.
+ ⬇ 
+ on: pull_request_target :
+ … 
+ jobs : …
+ notify: …
+ steps: …
+ - uses: tsickert/discord-webhook@6dc739
+ 8f3f165f16dadc5666051c367efa1692f4
+ with:
+ webhook-url : ${{ secrets.COMPILER_DISCORD_WEBHOOK_URL }}
+ embed-description : ${{ github.event.pull_request.body }}
+ Privileged Trigger Weakness (PTW) found in project facebook/react 
+ In Figure 11 , the workflow is triggered by pull_request_target , which runs in the base repository context and may access repository secrets and privileged tokens. In our example, the job uses a secret-backed Discord webhook while embedding attacker-controlled pull request metadata (for example the PR body). If authorization checks are missing or incorrect, an attacker can open a pull request to trigger privileged side effects and potentially leak secrets or perform unauthorized repository actions.
+ Secrets Exposure Weakness (SEW). 
+When sensitive credentials in workflows are not properly scoped or protected, such as hardcoded secrets, unnecessary exposure, or unsafe propagation across jobs, attackers can intercept them through log output, injected commands, or untrusted jobs. Leaked tokens, API keys, or credentials can be used to pivot into external infrastructure, spoof maintainers, or extract sensitive data, often without triggering immediate alarms in the CI environment.
+ Figure 12 shows a workflow using secrets: inherit , which passes all repository secrets to a reusable workflow. This is unsafe if that workflow is external or untrusted because it gives external code access to sensitive credentials.
+ ⬇ 
+ jobs :
+ build :
+ uses : ./.github/workflows/build_reusable.yml
+ secrets : inherit
+ Secrets Exposure Weakness (SEW) found in project vercel/next.js 
+ Unpinned Dependency Weakness (UDW). 
+The absence of pinned versioning for actions or dependencies exposes workflows to substitution attacks, where an adversary introduces malicious updates into upstream components. By exploiting floating tags or unverified references, attackers can inject backdoors or tampered logic into workflows without any change in the workflow’s own source code, making the attack stealthy and persistent.
+ In Figure 13 , the workflow references an action via the floating tag @main , but does not pin a specific version, which risks executing modified or malicious code if the referenced action is changed by a malicious actor.
+ ⬇ 
+ uses : freecodecamp/crowdin-action@main
+ Unpinned Dependency Weakness (UDW) found in project freeCodeCamp/freeCodeCamp 
+ VI Results 
+ In this section, we present the outcomes of our empirical comparison of GitHub Actions Workflow security scanners, following the research questions introduced in subsection IV-B .
+ VI-A To what extent do state-of-the-art workflow security scanners search for the same workflow weaknesses? 
+ Table IV : Weakness coverage and technical features per scanner. Weakness acronyms: AIW=Artifact Integrity Weakness, CFW=Control Flow Weakness, EPW=Excessive Permission Weakness, GRCW=GitHub Runner Compatibility Weakness, HGW=Hardening Gap Weakness, IW=Injection Weakness, KVCW=Known Vulnerable Component Weakness, PTW=Privileged Trigger Weakness, SEW=Secrets Exposure Weakness, UDW=Unpinned Dependency Weakness. Inputs: the scanner expects the source code repository and / or the workflow files as input; the scanner’s behavior can be configured. Fix WF: mark if the scanner generates a fixed workflow file. 
+ Scanner Name 
+ #rules 
+ Weaknesses (alphabetical order) 
+ Inputs 
+ Fix 
+ WF 
+ AIW 
+ CFW 
+ EPW 
+ GRCW 
+ HGW 
+ IW 
+ KVCW 
+ PTW 
+ SEW 
+ UDW 
+ Code 
+ Repo 
+ WF 
+ File 
+ Config. 
+ File 
+ actionlint 
+ 36 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ frizbee 
+ 1 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ggshield 
+ 1 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ pinny 
+ 1 
+ ✓ 
+ ✓ 
+ ✓ 
+ poutine 
+ 13 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ scharf 
+ 1 
+ ✓ 
+ ✓ 
+ ✓ 
+ scorecard 
+ 5 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ semgrep 
+ 3 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ zizmor 
+ 23 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ ✓ 
+ Table IV summarizes the core features of the nine workflow security scanners under study. Each row corresponds to a specific scanner, while columns describe distinct dimensions that characterize their functionality. The columns are organized into five main sections. The #rules column indicates the total number of distinct detection rules implemented by the scanner. We retrieve this number through manual inspection of each scanner’s documentation, rule catalogs, and source code.
+In the Weaknesses section, we map the scanners’ rules to the common security weaknesses introduced in section V . A checkmark (✓) indicates that the scanner includes at least one rule covering that weakness.
+The Inputs section captures the variety of options for the scanners: operate on standalone YAML workflow files (WF File); accept a full code repository including workflow directories (Code Repo); let users customize their behavior, through a configuration file (Config File). Configuration files allow users to tune the scanner for specific policies, set rule priorities, define exceptions, and control output or runtime behavior, thereby enabling more flexible and targeted workflow security auditing. The last column marks scanners that can auto-generate a fixed workflow file in addition to reporting weaknesses, such as, replacing floating action tags with immutable commit SHAs.
+ To answer RQ1, we analyze the scanners in two groups. The first group includes the general-purpose scanners : they aim for breadth, they implement many rules and cover several common weakness, often by combining lint-style checks with security and policy checks. The second group, the focused scanners , includes the scanners that specialize in one or two common weaknesses, they typically have fewer rules, but these rules provide deeper or unique detection (and sometimes automated remediation).
+ VI-A 1 General-purpose scanners
+ The general-purpose scanners include actionlint , zizmor , poutine and scorecard 
+ actionlint is a lightweight linter with the largest rule set in our study, and this breadth comes mainly from linting GitHub Actions semantics and authoring constraints.
+ actionlint can detect five common weaknesses in workflow files. Its strength is on advanced syntax-level analysis of YAML files to help developers enforce best practices.
+For example, it detects Control Flow Weaknesses (CFW) by locating logic flaws that could inadvertently trigger jobs under unsafe conditions.
+Most of the rules of actionlint (28 out of 36) aim at the GitHub Runner Compatibility Weakness (GRCW). All these rules locate various syntactical weaknesses that make the workflow’s YAML file incompatible with GitHub’s execution model.
+These rules are particularly important because they catch early configuration mistakes that could lead to insecure or failing automation pipelines.
+The configuration file of actionlint allows developers to define self - hosted runner labels, set allowed configuration variables, and ignore specific lint errors on a per - path basis.
+ zizmor provides broad general-purpose workflow security scanning, with the largest coverage of the common security weaknesses.
+ zizmor searches for all 10 weaknesses with 23 rules.
+For example, it detects Secrets Exposure Weakness (SEW) by identifying credential fields or secret expansions within container: or services: definitions. It uses two complementary methods. First, it flags blanket pass-through configurations such as secrets: inherit when invoking reusable workflows or actions. Second, it detects secret values expanded in run: steps or written to $GITHUB_ENV / $GITHUB_OUTPUT , where they may be exposed in logs. zizmor operates on both workflow files and repositories.
+Its zizmor.yml configuraiton file primarily supports the selection of specific rules or patterns, whereas .
+ poutine also covers many common weaknesses, but it is explicitly oriented toward supply-chain and third-party component risks.
+ poutine , covers seven weaknesses with 13 rules and focuses on risks induced by third-party components.
+For example, it detects Artifact Integrity Weaknesses (AIW) by checking for unverified or malicious repositories.
+ poutine requires a full repository as input. Its .poutine.yml configuration file offers fine-grained policy controls that allow selective rule enforcement, filtering by severity or vulnerability IDs, and defining allowed runners
+ scorecard complements workflow-level scanning with repository-wide security posture checks, and it includes a small set of workflow-related checks that map to high-impact weaknesses.
+ scorecard looks at the repository as a whole instead of only analyzing the workflow files.
+ scorecard currently searches for five types of weaknesses and places emphasis on repository-wide safeguards rather than workflow syntax.
+ Within the general-purpose group, zizmor and poutine have the widest coverage. zizmor provides broad general-purpose security scanning, while poutine prioritizes supply chain integrity with more flexibility. actionlint and scorecard are slightly more focused. The key contrast is that actionlint ’s contribution is “many rules concentrated in fewer classes”, whereas scorecard reaches a comparable coverage with a much smaller set of broad checks.
+ VI-A 2 Focused scanners
+ Focused scanners typically target one or two of the common weaknesses, with a small number of rules, but their detections can be uniquely deep (e.g., secret-finding heuristics) or uniquely actionable (e.g., automatic pinning fixes).
+ semgrep is a focused scanner that can report potentially dangerous command injection patterns.
+The 3 rules of semgrep focus on Injection Weaknesses (IW) and Privileged Trigger Weaknesses (PTW). They detect deprecated workflow commands, dangerous shell constructs, unquoted variable expansions in run: steps, and unsafe combinations of pull_request_target with an explicit checkout of the PR head.
+ semgrep uses flexible rule configuration files that define the security rules to run.
+It accepts both individual workflow files and full repositories as input and can generate a new workflow file that fixes the detected weaknesses.
+ frizbee , pinny and scharf exclusively check for Unpinned Dependency Weaknesses (UDW).
+These three scanners also provide automated fixes by replacing floating action versions with pinned commit SHAs. This makes their analysis significantly more actionable than other scanners that only report weaknesses. Among them, frizbee uniquely accepts both individual workflow YAML files and full repositories as input and its configuration file lets users exclude specific GitHub Actions, branches, or container images from pinning.
+ ggshield specializes in secrets detection (SEW). It uses a .ggshield.yaml (or global config) file to store authentication tokens and control secret - scanning policies, such as token lifetimes, ignore patterns, and scan settings.
+ ggshield uses entropy scanning to detect secrets that are directly visible in the workflow and regular expressions to locate statements that might indirectly expose a secret. It supports scanning both workflow files and full repositories.
+ The focused group splits into two patterns. frizbee , pinny , and scharf form a tight cluster with identical scope and similar output, ggshield is similarly single-scope but in a different weakness family, and semgrep is the only one that extends beyond a single class. The practical takeaway from their comparison is complementarity rather than competition.
+ VI-B To what extent do state-of-the-art workflow security scanners behave consistently regarding the detection of security weaknesses? 
+ Table V : Number of security weaknesses detected by each workflow security scanner: number of detections is in bold , and the number of workflows where these weaknesses are detected is in regular font. 
+ Scanner 
+ AIW 
+ CFW 
+ EPW 
+ GRCW 
+ HGW 
+ IW 
+ KVCW 
+ PTW 
+ SEW 
+ UDW 
+ actionlint 
+ 79 
+ 45 
+ 24 
+ 24 
+ 2094 
+ 911 
+ 31 
+ 21 
+ 0 
+ 0 
+ frizbee 
+ 8020 
+ 1645 
+ ggshield 
+ 5 
+ 4 
+ pinny 
+ 9811 
+ 2083 
+ poutine 
+ 125 
+ 30 
+ 6 
+ 6 
+ 47 
+ 47 
+ 107 
+ 61 
+ 121 
+ 57 
+ 201 
+ 112 
+ 0 
+ 0 
+ 0 
+ 0 
+ scharf 
+ 10202 
+ 2161 
+ scorecard 
+ 2349 
+ 1600 
+ 2638 
+ 2638 
+ 5 
+ 5 
+ 16 
+ 11 
+ 11347 
+ 2178 
+ semgrep 
+ 255 
+ 128 
+ 15 
+ 10 
+ zizmor 
+ 3620 
+ 1969 
+ 0 
+ 0 
+ 2296 
+ 1046 
+ 0 
+ 0 
+ 8 
+ 8 
+ 1778 
+ 432 
+ 0 
+ 0 
+ 196 
+ 184 
+ 89 
+ 48 
+ 2003 
+ 959 
+ Table V presents the number of weaknesses detected by each scanner, across our dataset of 2722 GitHub Actions Workflows.
+A value of 0 indicates that the scanner includes at least one rule for that weakness but, in practice, does not detect any weakness in the analyzed workflows. The number in bold font indicates the total count of findings reported by the scanner, while the number in regular font indicates how many distinct workflows contain at least one such finding (e.g., actionlint reports 79 control flow weaknesses (CFWs) across 45 workflows).
+ VI-B 1 General-purpose scanners
+ The four general-purpose scanners identify similar types of common weakness, but report different numbers, depending on their scope and analysis strategies. In the following we highlight the design choices that explain the disparities among the number of findings.
+ poutine and zizmor essentially search for the same common weaknesses. Yet, the two scanners implement different strategies to detect the weaknesses, which explains many of their differences. In particular, all the rules of poutine implement conservative heuristics and focus on specific patterns, to maximize the chances of finding weaknesses that can actually be exploited. Meanwhile, zizmor implements rules that have a broader scope, similar to a linter, reporting a blend of vulnerabilities, anti-patterns, and formatting issues. These differences are particularly visible in the case of AIW, EPW, IW, SEW and UDW.
+ poutine and zizmor respectively detect 125 and 3620 Artifact Integrity Weaknesses (AIW). poutine flags checked-out content that can later be executed, including local actions, when zizmor looks for risks around uploaded artifacts, credential persistence, and cache reuse, which are low-confidence signals for an actual integrity violation.
+For Excessive Permission Weaknesses (EPW), poutine checks permissions only in specific, high - risk situations, such as workflows triggered by events that can receive external inputs, when zizmor applies broader rules by also checking job - level settings and reporting any potentially unnecessary or overly broad permissions.
+ poutine reports 107 Injection Weaknesses (IW) in 61 workflows, searching for scripts that are run without proper checks and unsafe debug settings. zizmor ’s 1778 IWs are induced by a broader injection model that flags any ${{...}} expansion in execution contexts and treats writes to GITHUB_ENV / GITHUB_PATH as sinks.
+ poutine ’s detection of Secrets Exposure Weaknesses (SEW) focuses on jobs that might implicitly expose configured secrets or run in privileged environments where secrets could leak, which never occurs in our dataset. Meanwhile zizmor reports 89 SEWs as it also flags risky secret handling practices, such as passing all secrets to reusable workflows or writing secrets into environment files.
+Finally, poutine and zizmor respectively detect 2003 and 0 Unpinned Dependency Weaknesses (UDW). This is due to poutine ’s conservative strategy that searches
+for an unpinned reused action, which itself reuses an action that is not pinned, when zizmor all third-party actions and container images that are not pinned.
+ Only in the case of Privileged Trigger Weaknesses (PTW), poutine reports slightly more weaknesses than zizmor (201 and 196 respectively). Yet, these weaknesses are of different nature as poutine reports a PTW when it can match a concrete unsafe combination, such as a privileged or externally influenced trigger paired with risky follow-up behavior, while zizmor detects the presence of privileged triggers but does not analyze follow-up behavior that processes external inputs.
+ poutine detects 6 Control Flow Weaknesses (CFW) with its rule that identify expressions that are always true, and 121 Known Vulnerable Component Weaknesses (KVCW) by recognizing references to known vulnerable actions or versions. Meanwhile, zizmor does not detect any of these weaknesses despite their documentation mentioning these weaknesses.
+ actionlint is a general-purpose workflow security scanner, and the only scanner to report GitHub Runner Compatibility Weaknesses (GRCW). These weaknesses relate to syntactic features in workflow, which might be misinterpreted by the Github actions runner. While these incompatibilities are not vulnerabilities per se, they can be exploited by malicious actors to bypass certain guardrails in the runner. This unique feature makes actionlint a valuable scanner for comprehensive workflow audits. It also detects 79 CFW, 24 EPW, and 31 IW with rules essentially matching invalid syntax and elevated top-level scopes such as contents: write and pull-requests: write or unsafe shell commands and old workflow commands, e.g. ::set-output . However, these rules are less accurate than the ones of poutine for the same weaknesses.
+ scorecard is the only general-purpose scanner under study that does not only analyze workflows, but can also analyze source code or the health of a whole repository. In that sense, it acts more as a linter for GitHub Actions Workflows than a security-oriented scanner. It detects significantly more EPWs (2349) and HGWs (2638) than the other scanners as it systematically reports anti-patterns such as the omission of a top-level permissions: declaration or the absence of a SAST tool, without further analysis.
+ scorecard reports 5 Injection Weaknesses, flagging conditional script execution based on untrusted input from commit messages, a pattern that is also detected by other scanners. scorecard does not add any significant value for PTWs as it reports privileged triggers that are used in ways that clearly enable untrusted code execution, e.g. pull_request_target with a checkout of the incoming pull request.
+Finally, scorecard reports the highest number of Unpinned Dependency Weaknesses as it includes tooling dependencies such as package installers (11347).
+ Our differential analysis of the general-purpose workflow scanners reveals that poutine is comparatively the most conservative, reporting targeted findings when concrete high-risk patterns are present. zizmor increases coverage but also leads to more lower-confidence findings that may be noisy. actionlint is especially valuable for GitHub Runner compatibility issues, where it provides coverage that the other scanners largely do not. scorecard has a holistic approach for evaluating a repository’s health, but its GitHub Actions Workflows abilities are less informative than workflow-specific scanners.
+ VI-B 2 Focused scanners
+ Focused scanners contribute narrow but high-impact signals, either by specializing in one weakness family with strong remediation, or by applying a dedicated detection strategy.
+ frizbee , pinny , and scharf focus specifically on scanning workflows for Unpinned Dependency Weaknesses (UDW). They detect 8020, 9811 and 10202 weaknesses respectively. Our analysis of each scanner’s rules reveals that frizbee reports the lowest number because it discards reused actions that refer to the main or master branch. pinny performs a comprehensive analysis of all dependencies, but also reports some dependencies that are already pinned. scharf reports the largest number of UDWs, but it detects weaknesses even in lines that are commented out. Among the three, frizbee appears the most actionable in practice, as its lower count reflects a deliberate exclusion policy rather than noise from already pinned or commented dependencies.
+ ggshield focuses on Secrets Exposure Weaknesses and detects 5 of them in our dataset. This scanner searches for hardcoded secrets, such as tokens or keys, using high-entropy detection [ 18 ] , rather than broadly analyzing workflow logic for injection patterns. This is a useful complement of workflow-logic scanners, such as zizmor and poutine , which primarily flag risky secret-handling practices rather than identifying exposed secret material itself.
+ Similar to scorecard , semgrep is a scanner that is not specific to GitHub Actions Workflows and can analyze more than 30 languages, from yaml to solidity . Its rules are conservative and pattern-based, which detect relatively few weaknesses. For IW, it flags risky command execution patterns and workflow-command misuse (including deprecated command usage and unsafe shell constructs) in run: contexts.
+For PTW, it targets the canonical high-risk combination where pull_request_target is used together with a checkout of the pull request’s code.
+It finds the exact same weaknesses as scorecard except in one case, when the checkout target is encoded as a conditional GitHub expression rather than a direct pull request head reference, indicating a rule-level recall gap rather than a conceptual mismatch.
+ Overall, the focused scanners differ primarily in their detection style. frizbee is stricter by design and excludes main / master references, whereas pinny and scharf can report irrelevant cases such as already pinned or commented actions. ggshield is specialized in detecting secret material, making it complementary to logic-oriented scanners. semgrep performs well overall, particularly for injection weaknesses, but is less broad for privileged-trigger weaknesses.
+ VI-C What are the runtime performances and reporting characteristics of security scanners? 
+ Figure 14 : Execution time per workflow for each scanner (workflows sorted by num_jobs, then LOC). 
+ Figure 14 shows the execution time of each security scanner on each GitHub Actions Workflow. The x-axis lists GitHub Actions Workflows ordered by increasing number of jobs (num_jobs), and, for workflows with the same num_jobs, by lines of code (LOC). For each (scanner, workflow) pair, we repeat the measurement three times and report the median elapsed wall-clock time. This end-to-end time includes scanner startup and initialization costs, as well as the time spent analyzing the workflow.
+ VI-C 1 General-purpose workflow security scanners
+ actionlint , poutine and zizmor have stable runtimes across the dataset. This is consistent with the design of these scanners, whose rules focus on targeted workflow checks and rely on efficient static analysis implemented in Go or Rust.
+ scorecard is also fast overall, but its runtime band sits slightly above the other tools in this group. This is a consequence of its broader repository-level checks in addition to workflow-specific analysis. Even so, all four workflow security scanners remain practical, with median per-workflow execution times staying below 0.53s for actionlint , 0.39s for poutine , 0.26s for zizmor , and 1.31s for scorecard .
+ Our four general-purpose workflow security scanners perform well, independently of the size of the workflows. actionlint , poutine and zizmor perform very similarly and are all ready for continuous integration. scorecard introduces a limited overhead.
+ VI-C 2 Focused workflow security scanners
+ frizbee , pinny and scharf all focus on unpinned dependency weaknesses, but they do not exhibit the same runtime profiles. pinny and scharf are the fastest scanners in our study, with maximum median runtimes of only 0.06s and 0.03s respectively. frizbee is systematically slightly slower and shows a few more visible spikes. This difference is consistent with the additional timing measurements we collected: compared with pinny and scharf , frizbee appears to spend more time in startup and initialization on each run, and to perform extra work to resolve external references such as commit SHAs and container image digests, rather than simply parsing the workflow file itself. As a result, the three scanners remain in the same tier overall.
+ ggshield occupies an intermediate position in our setup. Its runtime is higher than that of the focused pinning scanners and the fastest general-purpose tools, but it remains well below semgrep . This behavior is consistent with its detection strategy. ggshield performs secret detection using entropy analysis, pattern matching, and heuristic rules. It analyzes workflow contents to identify high-entropy strings assigned to sensitive variable names (e.g., token , secret , or api_key ), applying multiple validation steps to reduce false positives. This layered content inspection contributes to variations in runtime across workflows, depending on the presence and structure of secret-like strings. This broader content inspection gives ggshield a higher baseline cost, while still keeping runtime moderate overall. In our measurements, its median per-workflow runtime is typically around one second, with a small number of slower cases.
+ semgrep stands apart as the slowest scanner in our setup. Its runtime forms a high and nearly flat band across the full dataset, clearly separated from all other tools. Across workflows, its median elapsed time ranges from 26.13s to 39.19s, far above the other scanners. This profile is consistent with a scanner that performs broader inspection of workflow contents, including shell commands and interpolated expressions, which can require deeper analysis than narrowly scoped checks. In particular, dynamic constructs such as multi-line shell commands, e.g. docker stop $running_containers , and secret references, e.g. $vars.ENTERPRISE_SSH_SCRIPT || secrets.ENTERPRISE_SSH_SCRIPT , are plausible sources of additional analysis effort. In practical terms, semgrep is the most expensive scanner in our per-workflow execution setting.
+ VI-D Recommendations for GitHub Actions Workflow Scanning 
+ Our results show that there are two categories of scanners: general-purpose scanners that cover a broad set of weaknesses, and single-purpose scanners that specialize in detecting a specific type of weakness and often provide targeted fixes. As all evaluated scanners are fast enough to be integrated into continuous integration pipelines, including multiple scanners in a workflow adds only a modest runtime overhead relative to the added security benefits. Based on these findings, we recommend three levels of scanner configurations that can be set up in GitHub Actions workflows to achieve a fundamental level of security (
+), or more comprehensive levels of security scanning (
+or 
+).
+ Fundamental Scanning 
+ As a fundamental of GitHub Actions Workflows scanning, we suggest adding actionlint and poutine to all workflows. This decision is based on the fact that poutine provides broad coverage and is conservative in its detection approach, resulting in few alerts in our dataset. However, poutine does not detect syntactic issues, which are only identified by actionlint . The combination of these two scanners allows workflows to cover a wide range of weaknesses, with actionable insights for developers, and provides a solid foundation to protect GitHub Actions Workflows.
+ In practice, developers who wish to introduce these scanners in their repositories can set up a dedicated CI job that runs on pull requests (and optionally on pushes to the main branch) and scans the files under .github/workflows/ . The job executes actionlint first to catch workflow authoring and specification issues, then runs poutine to flag security-oriented workflow patterns, as shown in Figure 15 . We recommend to configure this scanning job to fail on findings so that workflow changes are merged only after the checks pass.
+ ⬇ 
+ name : Workflow checks (actionlint + poutine)
+ on : [ pull_request ]
+ jobs :
+ scan-workflows :
+ runs-on : ubuntu-latest
+ steps :
+ - uses : actions/checkout@v4
+ - name : actionlint
+ run : actionlint .github/workflows/*.yml
+ - name : poutine
+ run : poutine scan .github/workflows
+ Example workflow running actionlint and poutine on pull requests. 
+ Essential Scanning 
+ For a more advanced level of scanning, we recommend adding frizbee alongside actionlint and poutine . frizbee complements the two other scanners with a thorough analysis of unpinned GitHub Actions in workflows and can automatically provide fixes to pin them. This setup further strengthens workflow security and lowers the manual effort required from developers.
+ Advanced Scanning 
+ For the most specialized and comprehensive level of workflow scanning, we recommend including semgrep in addition to actionlint , poutine , and frizbee . Compared to poutine , semgrep introduces more advanced rules that help detect potential code injections. However, it comes with a slight runtime overhead, and we therefore recommend it for higher-risk scenarios. This setup of four strong scanners offers a complete solution and covers even more sophisticated weaknesses.
+ VI-E Threats to Validity 
+ The first threat to validity relates to the size of our set of case studies.
+Our study is based on 2722 workflows, and some security scanners might behave differently with other workflows. We mitigate this threat, by selecting real-world workflows with different sizes and scopes from reputable GitHub organizations.
+The second threat relates to the absence of ground truth.
+To the best of our knowledge, there is no verified dataset of GitHub Actions workflows labeled with known weaknesses, which can be used as a ground truth to assess the correctness of the weaknesses reported by different security scanners. We mitigate this threat with a comparative study and manual inspection of the scanners’ code to explain the differences in the number of reported weaknesses.
+The third threat relates to the correctness of our code and data analysis pipeline. We have developed an automatic pipeline to run all the scanners against 2722 workflows, collect logs and reports, analyze and consolidate the number of weaknesses. This pipeline is subject to potential bugs. We mitigate this threat through testing and manual inspections. The pipeline and experimental data is publicly available, see section IX .
+ VII Related work 
+ Several studies provide context on how GitHub Actions are used and perceived by developers. Ghaleb et al. [ 19 ] studied thousands of mobile projects’ pipelines and found considerable diversity and complexity in CI configurations, with frequent updates needed to keep workflows working smoothly.
+Rostami et al. [ 1 ] reported that about 44% of a large sample of GitHub projects use Actions workflows, often relying on a small core of reused Actions, and noted potential issues in versioning and consistency.
+However, many projects still underutilize CI/CD security features.
+Ayala et al. [ 20 ] found that only a minority of top projects enable automated security checks or defined disclosure policies.
+The complexity of writing workflows has led to tools like GH-WCOM [ 21 ] , which aim to assist developers by suggesting workflow steps, and researchers have analyzed community discussions to catalog common pain points [ 9 ] .
+Marof and Sayed [ 22 ] performed a thematic analysis of nearly a thousand posts and identified security vulnerabilities and dependency issues as the most prevalent concerns among GitHub Actions users. In contrast to these works focusing on adoption and developer experience, our contribution relates to the security aspect. We specifically study the spectrum of security weaknesses in GitHub Actions Workflows and assess to what extent state-of-the-art workflow scanners search for and detect those weaknesses.
+ Other related work investigates the reliability and maintainability of GitHub Actions workflows.
+Decan et al. [ 11 ] found that workflows frequently become outdated, referencing obsolete actions or APIs that break builds and require developer intervention.
+The maintenance burden is high [ 23 ] , with constant churn and many commits fixing CI errors, updating environments, or adapting to upstream changes. Rostami Mazrae et al. [ 24 ] similarly report that workflow files are updated regularly, with many changes targeting job and step definitions or their configuration, reflecting sustained maintenance activity in practice. Zheng and colleagues [ 25 ] categorized common failure causes (network timeouts, configuration mistakes, dependency breakage), showing that robust CI is non-trivial. Quality “smells” have been cataloged by Khatami [ 12 ] , including seven recurring anti-patterns (e.g., broad triggers, mismanaged caching, unpinned versions) that degrade efficiency or maintainability and can indirectly affect security. These works target correctness and upkeep whereas our study centers on security, evaluating how well scanners catch weaknesses like unpinned versions in practice.
+ Muralee and colleagues [ 26 ] introduced static taint analysis for GitHub Actions workflows to trace untrusted inputs and catch command-injection paths pre-execution. Rule-based scanners [ 27 ] encode vulnerability and misconfiguration checks, finding thousands of issues even in small samples. Beyond injection-oriented analyses, COSSETER [ 28 ] proposes demand-driven static analysis to infer the minimal permissions needed by workflows and actions, supporting least-privilege configuration rather than only flagging misconfigurations. Granite [ 29 ] further advances least-privilege for GitHub Actions by offering a mechanism to enforce more granular permissions use during workflow execution. Reusable actions often ship weaknesses (outdated dependencies with CVEs or overly broad permissions) that propagate to consumers [ 13 ] . Progress measurements show partial but incomplete adoption of recommended practices [ 30 ] . Our study contributes to the GitHub Actions Workflows security body of knowledge with a systematic analysis of workflow security scanners, providing software development teams with concrete evidence about the strength of each scanner.
+ With the rise of supply-chain attacks, recent work focuses on CI workflow security.
+Pan and colleagues [ 5 ] highlight unpinned dependencies and command injection as critical vulnerabilities in GitHub Actions. Koishybayev et al. [ 31 ] analyzed 447K workflows, finding 99.8% ran with excessive privileges, could be triggered by untrusted pull requests, and most of them used third-party actions with potential issues. Other CI platforms show isolation and privilege weaknesses [ 15 ] ; cache abuse enables data exfiltration and artifact poisoning [ 32 ] ; and vulnerable or malicious plugins threaten pipeline integrity [ 33 ] . Guidance recommends pinning versions, minimal permissions, author verification, and secret scanning [ 34 ] . Basak et al. [ 8 ] compare secret detection scanners and report meaningful differences in what they detect and how consistently they flag leaks, which affects the practical protection secret scanning provides in CI/CD.
+We contribute to this area with the first systematic differential analysis of state-of-the-art security scanners for GitHub Actions Workflows.
+ VIII Conclusion 
+ We conduct the first comprehensive analysis of GitHub Actions security workflow scanners. We curate 9 state-of-the-art scanners that statically analyze GitHub Actions Workflows. We classify the rules implemented by these tools into 10 common types of security weaknesses in GitHub Actions Workflows, which serve as a baseline for comparing the scanners. We run all scanners against 2722 real-world workflows and evaluate the coverage, detection consistency, and performance of the selected scanners.
+Our results provide evidence that there is no universal scanner that performs well across all common weakness types. Instead, some scanners are specialized for particular categories of weaknesses, whereas others function as more general-purpose linters for GitHub Actions Workflows.
+We also find that most scanners run fast enough to be used in CI/CD pipelines.
+ Based on our findings, we recommend three levels of scanner configuration, corresponding to fundamental, essential, and advanced levels of security. For fundamental scanning, we suggest configuring poutine and actionlint , which provide fast, security-oriented feedback about the workflows. For essential scanning, we recommend adding frizbee to thoroughly scan for unpinned dependencies. For advanced scanning, we advise including semgrep on top of these three scanners to detect more complex weaknesses such as code injections.
+GitHub itself is currently strengthening the built-in security checks for GitHub Actions Workflows, for instance, by making releases and tags immutable and by allowing organizations to enforce that GitHub Actions are pinned.
+For future work, we aim at establishing a labeled dataset of GitHub Actions Workflows with known weaknesses. This will be highly valuable for future research on GitHub Actions weaknesses detection and repair capabilities. We also foresee fantastic opportunities in improving the scanners with the analysis of the deeper network of transitive GitHub Action reuse, as current scanners primarily focus on weaknesses in the first level of reused actions.
+ IX Data Availability 
+ Data and code for this work is available at https://github.com/sparkrew/github-actions-security 
+ References
+ [1] 
+P. Rostami, A. Decan, and T. Mens, “On the use of GitHub Actions in software
+development repositories,” in Proceedings of the 38th IEEE
+International Conference on Software Maintenance and Evolution (ICSME) ,
+pp. 1–11, 2022.
+ [2] 
+W. Enck and L. Williams, “Top Five Challenges in Software Supply Chain
+Security: Observations From 30 Industry and Government Organizations,” IEEE Security & Privacy , vol. 20, no. 2, pp. 96–100, 2022.
+ [3] 
+“Defending Continuous Integration/Continuous Delivery (CI/CD)
+Environments,” tech. rep., National Security Agency (NSA) and National
+Institute of Standards and Technology (NIST), June 2023.
+ Cybersecurity Information (CSI) Report.
+ [4] 
+P. Ladisa, H. Plate, M. Martinez, and O. Barais, “SoK: Taxonomy of Attacks on
+Open-Source Software Supply Chains,” in Proceedings of the Symposium
+on Security and Privacy (S&P) , pp. 1509–1526, 2023.
+ [5] 
+Z. Pan, W. Shen, X. Wang, Y. Yang, R. Chang, Y. Liu, C. Liu, Y. Liu, and
+K. Ren, “Ambush From All Sides: Understanding Security Threats in
+Open-Source Software CI/CD Pipelines,” IEEE Transactions on
+Dependable and Secure Computing , vol. 21, no. 1, pp. 403–418, 2024.
+ [6] 
+H. Onsori Delicheh, A. Decan, and T. Mens, “Quantifying Security Issues in
+Reusable JavaScript Actions in GitHub Workflows,” in Proceedings of
+International Conference on Mining Software Repositories (MSR) ,
+p. 692–703, 2024.
+ [7] 
+“CVE-2025-30066.” https://www.cve.org/CVERecord?id=CVE-2025-30066 .
+ Accessed: 2025-08-27.
+ [8] 
+S. K. Basak, J. Cox, B. Reaves, and L. Williams, “ A Comparative Study of
+Software Secrets Reporting by Secret Detection Tools ,” in Proceedings
+of the Symposium on Empirical Software Engineering and Measurement (ESEM) ,
+pp. 1–12, 2023.
+ [9] 
+Y. Zhang, Y. Wu, T. Chen, T. Wang, H. Liu, and H. Wang, “How do developers
+talk about GitHub Actions? Evidence from online software development
+community,” in Proceedings of the International Conference on Software
+Engineering (ICSE) , pp. 1–13, 2024.
+ [10] 
+J. Cheenepalli, J. D. Hastings, K. M. Ahmed, and C. Fenner, “Advancing
+DevSecOps in SMEs: Challenges and Best Practices for Secure CI/CD
+Pipelines,” in Proceedings of the International Symposium on Digital
+Forensics and Security (ISDFS) , 2025.
+ [11] 
+A. Decan, T. Mens, and P. Grosjean, “On the Outdatedness of Workflows in the
+GitHub Actions Ecosystem,” Journal of Systems and Software , vol. 206,
+p. 111827, 2023.
+ [12] 
+A. Khatami, C. Willekens, and A. Zaidman, “Catching Smells in the Act: A
+GitHub Actions Workflow Investigation,” in Proceedings of the Working
+Conference on Source Code Analysis and Manipulation (SCAM) , pp. 47–58,
+2024.
+ [13] 
+D. Koishybayev, A. Decan, and T. Mens, “Quantifying Security Issues in
+Reusable JavaScript Actions in GitHub Workflows,” in Proceedings of
+the 21st International Conference on Mining Software Repositories (MSR) ,
+pp. 682–686, 2024.
+ [14] 
+GitHub, “Understanding github actions.”
+ https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions ,
+2024.
+ Accessed: 2026-03-12.
+ [15] 
+Y. Gu, L. Ying, H. Chai, C. Qiao, H. Duan, and X. Gao, “Continuous Intrusion:
+Characterizing the Security of Continuous Integration Services,” in Proceedings of the Symposium on Security and Privacy (S&P) , pp. 1561–1577,
+2023.
+ [16] 
+X. Zhang, S. Muralee, S. Cherupattamoolayil, and A. Machiry, “On the
+Effectiveness of Large Language Models for GitHub Workflows,” in Proceedings of the International Conference on Availability, Reliability and
+Security (ARS) , pp. 1–10, 2024.
+ [17] 
+L. Williams, G. Benedetti, S. Hamer, R. Paramitha, I. Rahman, M. Tamanna,
+G. Tystahl, N. Zahan, P. Morrison, Y. Acar, M. Cukier, C. Kästner,
+A. Kapravelos, D. Wermke, and W. Enck, “Research Directions in Software
+Supply Chain Security,” ACM Transactions on Software Engineering
+Methodologies (TOSEM) , vol. 34, May 2025.
+ [18] 
+GitGuardian, “Generic high entropy secret detector.”
+ https://docs.gitguardian.com/secrets-detection/secrets-detection-engine/detectors/generics/generic_high_entropy_secret ,
+2025.
+ Accessed: 2025-09-04.
+ [19] 
+T. Ghaleb, O. Abduljalil, and S. Hassan, “CI/CD Configuration Practices in
+Open-Source Android Apps: An Empirical Study,” ACM Transactions on
+Software Engineering and Methodology , May 2025.
+ [20] 
+J. Ayala and J. Garcia, “An Empirical Study on Workflows and Security
+Policies in Popular GitHub Repositories,” in Proceedings of the
+International Workshop on Software Vulnerability (SVM) , pp. 6–9, 2023.
+ [21] 
+A. Mastropaolo, F. Zampetti, G. Bavota, and M. Di Penta, “Toward
+Automatically Completing GitHub Workflows,” in Proceedings of the
+International Conference on Software Engineering (ICSE) , pp. 1–10, 2024.
+ [22] 
+K. Marof and S. Sayed, “Exploring the characteristics and challenges in github
+actions and its ecosystem,” BSc thesis, University of Gothenborg, 2024.
+ [23] 
+P. Valenzuela-Toledo, A. Bergel, T. Kehrer, and O. Nierstrasz, “The Hidden
+Costs of Automation: An Empirical Study on GitHub Actions Workflow
+Maintenance,” in Proceedings of the International Conference on Source
+Code Analysis and Manipulation (SCAM) , pp. 213–223, 2024.
+ [24] 
+P. Rostami Mazrae, A. Decan, T. Mens, and M. Wessel, “An empirical study of
+the evolution of github actions workflows,” Journal of Systems and
+Software , vol. 236, 2026.
+ [25] 
+L. Zheng, S. Li, X. Huang, J. Huang, B. Lin, J. Chen, and J. Xuan, “Why Do
+GitHub Actions Workflows Fail? An Empirical Study,” ACM Transactions
+on Software Engineering and Methodology , July 2025.
+ [26] 
+S. Muralee, I. Koishybayev, A. Nahapetyan, G. Tystahl, B. Reaves, A. Bianchi,
+W. Enck, A. Kapravelos, and A. Machiry, “ARGUS: A Framework for Staged
+Static Taint Analysis of GitHub Workflows and Actions,” in Proceedings
+of the USENIX Security Symposium , pp. 6983–7000, Aug. 2023.
+ [27] 
+G. Benedetti, L. Verderame, and A. Merlo, “Automatic Security Assessment of
+GitHub Actions Workflows,” in Proceedings of the ACM Workshop on
+Software Supply Chain Offensive Research and Ecosystem Defenses (SCORED) ,
+p. 37–45, 2022.
+ [28] 
+G. Tystahl, J. Ghebremichael, S. Muralee, S. Cherupattamoolayil, A. Bianchi,
+A. Machiry, A. Kapravelos, and W. Enck, “Cosseter: Github actions permission
+reduction using demand-driven static analysis,” in IEEE Symposium on
+Security and Privacy (S&P) , 2026.
+ [29] 
+M. Moazen, A. Ahmadian, M. Balliu, et al. , “Granite: Granular runtime
+enforcement for github actions permissions,” arXiv preprint
+arXiv:2512.11602 , 2025.
+ [30] 
+J. Huang and B. Lin, “ Revisiting Security Practices for Github Actions
+Workflows ,” in Proceedings of the International Conference on
+Program Comprehension (ICPC) , pp. 73–77, 2025.
+ [31] 
+I. Koishybayev, A. Nahapetyan, R. Zachariah, S. Muralee, B. Reaves,
+A. Kapravelos, and A. Machiry, “Characterizing the Security of Github CI
+Workflows,” in Proceedings of the USENIX Security Symposium ,
+pp. 2747–2763, Aug. 2022.
+ [32] 
+Y. Gu, L. Ying, H. Chai, Y. Pu, H. Duan, and X. Gao, “More Haste, Less Speed:
+Cache Related Security Threats in Continuous Integration Services,” in Proceedings of the Symposium on Security and Privacy (S&P) , pp. 1179–1197,
+2024.
+ [33] 
+X. Li, Y. Gu, C. Qiao, Z. Zhang, D. Liu, L. Ying, H. Duan, and X. Gao,
+“Towards Understanding the Security of Plugins in Continuous Integration
+Services,” in Proceedings of the International Conference on Computer
+and Communications Security (CCS) , p. 482–496, 2024.
+ [34] 
+H. O. Delicheh and T. Mens, “Mitigating Security Issues in GitHub Actions,”
+in Proceedings of the International Workshop on Engineering and
+Cybersecurity of Critical Systems (EnCyCriS) and the IEEE/ACM Second
+International Workshop on Software Vulnerability , p. 6–11, 2024.
+ Experimental support, please
+ view the build logs 
+ for errors. Generated by
+ L
+ A 
+ T
+ E 
+ xml 
+ .
+ Instructions for reporting errors
+ We are continuing to improve HTML versions of papers, and your feedback helps enhance accessibility and mobile
+ support. To report errors in the HTML that will help us improve conversion and rendering, choose any of the
+ methods listed below:
+ Click the "Report Issue" ( ) button, located in the page header.
+ Tip: You can select the relevant text first, to include it in your report.
+ Our team has already identified the following issues . We appreciate your time reviewing and reporting rendering errors we
+ may not have found yet. Your efforts will help us improve the HTML versions for all readers, because disability
+ should not be a barrier to accessing research. Thank you for your continued support in championing open access for
+ all.
+ Have a free development cycle? Help support accessibility at arXiv! Our collaborators at LaTeXML maintain a list of packages that need conversion , and welcome developer contributions .
+ We gratefully acknowledge support from
+ our major funders ,
+ member institutions , ,
+ and all contributors.
+ About 
+ · 
+ Help 
+ · 
+ Contact 
+ · 
+ Subscribe 
+ · 
+ Copyright 
+ · 
+ Privacy 
+ · 
+ Accessibility 
+ · 
+ Operational Status (opens in new tab) 
+ Major funding support from

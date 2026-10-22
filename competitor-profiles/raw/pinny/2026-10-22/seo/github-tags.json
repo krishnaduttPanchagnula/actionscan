@@ -1,0 +1,52 @@
+[
+  {
+    "name": "v0.0.9",
+    "zipball_url": "https://api.github.com/repos/koalalab-inc/pinny/zipball/refs/tags/v0.0.9",
+    "tarball_url": "https://api.github.com/repos/koalalab-inc/pinny/tarball/refs/tags/v0.0.9",
+    "commit": {
+      "sha": "77903d4f7c3c988083eecbce048963ee0f753d17",
+      "url": "https://api.github.com/repos/koalalab-inc/pinny/commits/77903d4f7c3c988083eecbce048963ee0f753d17"
+    },
+    "node_id": "REF_kwDOKsHERLByZWZzL3RhZ3MvdjAuMC45"
+  },
+  {
+    "name": "v0.0.8",
+    "zipball_url": "https://api.github.com/repos/koalalab-inc/pinny/zipball/refs/tags/v0.0.8",
+    "tarball_url": "https://api.github.com/repos/koalalab-inc/pinny/tarball/refs/tags/v0.0.8",
+    "commit": {
+      "sha": "b561a521ceb5aaef089951542f36180d7882c34e",
+      "url": "https://api.github.com/repos/koalalab-inc/pinny/commits/b561a521ceb5aaef089951542f36180d7882c34e"
+    },
+    "node_id": "REF_kwDOKsHERLByZWZzL3RhZ3MvdjAuMC44"
+  },
+  {
+    "name": "v0.0.7",
+    "zipball_url": "https://api.github.com/repos/koalalab-inc/pinny/zipball/refs/tags/v0.0.7",
+    "tarball_url": "https://api.github.com/repos/koalalab-inc/pinny/tarball/refs/tags/v0.0.7",
+    "commit": {
+      "sha": "da47f937771d0e7e9a40397248d17a52a6fcf21c",
+      "url": "https://api.github.com/repos/koalalab-inc/pinny/commits/da47f937771d0e7e9a40397248d17a52a6fcf21c"
+    },
+    "node_id": "REF_kwDOKsHERLByZWZzL3RhZ3MvdjAuMC43"
+  },
+  {
+    "name": "v0.0.6",
+    "zipball_url": "https://api.github.com/repos/koalalab-inc/pinny/zipball/refs/tags/v0.0.6",
+    "tarball_url": "https://api.github.com/repos/koalalab-inc/pinny/tarball/refs/tags/v0.0.6",
+    "commit": {
+      "sha": "ca4d9588c129efd87ce58144c9e9dff9b12865f8",
+      "url": "https://api.github.com/repos/koalalab-inc/pinny/commits/ca4d9588c129efd87ce58144c9e9dff9b12865f8"
+    },
+    "node_id": "REF_kwDOKsHERLByZWZzL3RhZ3MvdjAuMC42"
+  },
+  {
+    "name": "v0.0.4",
+    "zipball_url": "https://api.github.com/repos/koalalab-inc/pinny/zipball/refs/tags/v0.0.4",
+    "tarball_url": "https://api.github.com/repos/koalalab-inc/pinny/tarball/refs/tags/v0.0.4",
+    "commit": {
+      "sha": "384b677f3548ffebb49aeefe650e7b04fa28aab8",
+      "url": "https://api.github.com/repos/koalalab-inc/pinny/commits/384b677f3548ffebb49aeefe650e7b04fa28aab8"
+    },
+    "node_id": "REF_kwDOKsHERLByZWZzL3RhZ3MvdjAuMC40"
+  }
+]

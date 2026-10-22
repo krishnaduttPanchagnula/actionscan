@@ -1,0 +1,412 @@
+[
+  {
+    "name": "v1.12.9",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.9",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.9",
+    "commit": {
+      "sha": "6214b1682c8d0b3085c58a14fac904b6b21732be",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/6214b1682c8d0b3085c58a14fac904b6b21732be"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuOQ"
+  },
+  {
+    "name": "v1.12.8",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.8",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.8",
+    "commit": {
+      "sha": "e62e990ac804d3df757b4e18e5d661a7d7cb802f",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/e62e990ac804d3df757b4e18e5d661a7d7cb802f"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuOA"
+  },
+  {
+    "name": "v1.12.7",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.7",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.7",
+    "commit": {
+      "sha": "dba70f21cb2c031ad8507dc96f090690613d9a9a",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/dba70f21cb2c031ad8507dc96f090690613d9a9a"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuNw"
+  },
+  {
+    "name": "v1.12.6",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.6",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.6",
+    "commit": {
+      "sha": "c93cb3c936c119b6c16eaec27acef2cfa407ef55",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/c93cb3c936c119b6c16eaec27acef2cfa407ef55"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuNg"
+  },
+  {
+    "name": "v1.12.5",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.5",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.5",
+    "commit": {
+      "sha": "4be304c6fa4598d66cda998c3a926f5253eb3374",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/4be304c6fa4598d66cda998c3a926f5253eb3374"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuNQ"
+  },
+  {
+    "name": "v1.12.4",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.4",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.4",
+    "commit": {
+      "sha": "038da9e799b9a92c1d3b8524f126fc8f47fa77c3",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/038da9e799b9a92c1d3b8524f126fc8f47fa77c3"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuNA"
+  },
+  {
+    "name": "v1.12.3",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.3",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.3",
+    "commit": {
+      "sha": "336e5b458f42dc20bed7e2f77edde7858a24d6eb",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/336e5b458f42dc20bed7e2f77edde7858a24d6eb"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuMw"
+  },
+  {
+    "name": "v1.12.2",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.2",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.2",
+    "commit": {
+      "sha": "ab1c4cc5e1ae3fc08c688e3d6983476517a177a3",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/ab1c4cc5e1ae3fc08c688e3d6983476517a177a3"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuMg"
+  },
+  {
+    "name": "v1.12.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.1",
+    "commit": {
+      "sha": "3f171e13b96aae0bd441ae973be44b76ced49ab3",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/3f171e13b96aae0bd441ae973be44b76ced49ab3"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuMQ"
+  },
+  {
+    "name": "v1.12.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.12.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.12.0",
+    "commit": {
+      "sha": "ff8969d78932a69ea7e4855bda50c86716bc59f7",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/ff8969d78932a69ea7e4855bda50c86716bc59f7"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTIuMA"
+  },
+  {
+    "name": "v1.11.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.11.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.11.1",
+    "commit": {
+      "sha": "9bdbfff1fc39e1cfc27274336f8395e49dbc7702",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/9bdbfff1fc39e1cfc27274336f8395e49dbc7702"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTEuMQ"
+  },
+  {
+    "name": "v1.11.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.11.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.11.0",
+    "commit": {
+      "sha": "e2b6da0ed8a2ba943770ed87c720c87d1f5b9317",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/e2b6da0ed8a2ba943770ed87c720c87d1f5b9317"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTEuMA"
+  },
+  {
+    "name": "v1.10.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.10.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.10.1",
+    "commit": {
+      "sha": "32f37b9abd5679b555cbe7ed4a231013ddf30e44",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/32f37b9abd5679b555cbe7ed4a231013ddf30e44"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTAuMQ"
+  },
+  {
+    "name": "v1.10.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.10.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.10.0",
+    "commit": {
+      "sha": "a67b8ba811aa0dec3333e9f96068b5ce80cd0df1",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/a67b8ba811aa0dec3333e9f96068b5ce80cd0df1"
+    },
+    "node_id": "REF_kwDOGM3SS7FyZWZzL3RhZ3MvdjEuMTAuMA"
+  },
+  {
+    "name": "v1.9.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.9.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.9.1",
+    "commit": {
+      "sha": "ebdf2f9a7c7cf5f168ddf3731c697e537ccb0982",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/ebdf2f9a7c7cf5f168ddf3731c697e537ccb0982"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuOS4x"
+  },
+  {
+    "name": "v1.9.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.9.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.9.0",
+    "commit": {
+      "sha": "1c0c012fc1861288b4d1a8d7c3573480cb20da5e",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/1c0c012fc1861288b4d1a8d7c3573480cb20da5e"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuOS4w"
+  },
+  {
+    "name": "v1.8.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.8.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.8.0",
+    "commit": {
+      "sha": "2464ff790b3f81cfbc6ab959664656521c626c7a",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/2464ff790b3f81cfbc6ab959664656521c626c7a"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuOC4w"
+  },
+  {
+    "name": "v1.7.3",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.7.3",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.7.3",
+    "commit": {
+      "sha": "5e424631e67cea0bea9b6f9f9ad578c944c7e0ed",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/5e424631e67cea0bea9b6f9f9ad578c944c7e0ed"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNy4z"
+  },
+  {
+    "name": "v1.7.2",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.7.2",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.7.2",
+    "commit": {
+      "sha": "0f8278623b71375aa81c7f7c35425758694279da",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/0f8278623b71375aa81c7f7c35425758694279da"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNy4y"
+  },
+  {
+    "name": "v1.7.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.7.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.7.1",
+    "commit": {
+      "sha": "bbbbe1ee6be6264c43271e2bc4376148bf6942f6",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/bbbbe1ee6be6264c43271e2bc4376148bf6942f6"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNy4x"
+  },
+  {
+    "name": "v1.7.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.7.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.7.0",
+    "commit": {
+      "sha": "06f4c2573ba65a50dfea0b9cf4620ed4d16a650d",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/06f4c2573ba65a50dfea0b9cf4620ed4d16a650d"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNy4w"
+  },
+  {
+    "name": "v1.6.2",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.6.2",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.6.2",
+    "commit": {
+      "sha": "48c05bac3ee824094e5177362e800d5bb4ae71cb",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/48c05bac3ee824094e5177362e800d5bb4ae71cb"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNi4y"
+  },
+  {
+    "name": "v1.6.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.6.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.6.1",
+    "commit": {
+      "sha": "336876ca4bcf2effa2ec6e74fab91caf14bd7b34",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/336876ca4bcf2effa2ec6e74fab91caf14bd7b34"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNi4x"
+  },
+  {
+    "name": "v1.6.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.6.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.6.0",
+    "commit": {
+      "sha": "f43b8d28996c71fc487c833fc9c1bffa6cb3ccb1",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/f43b8d28996c71fc487c833fc9c1bffa6cb3ccb1"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNi4w"
+  },
+  {
+    "name": "v1.5.3",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.5.3",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.5.3",
+    "commit": {
+      "sha": "d346d34bc64a75b472e6a75b8785c55eed80ae0e",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/d346d34bc64a75b472e6a75b8785c55eed80ae0e"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNS4z"
+  },
+  {
+    "name": "v1.5.2",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.5.2",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.5.2",
+    "commit": {
+      "sha": "6fb13bcb0bd33717b5047dc195ca08f4af65d20e",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/6fb13bcb0bd33717b5047dc195ca08f4af65d20e"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNS4y"
+  },
+  {
+    "name": "v1.5.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.5.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.5.1",
+    "commit": {
+      "sha": "d48f26d5fc520f6809ad568d7a1b56894ddc0f85",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/d48f26d5fc520f6809ad568d7a1b56894ddc0f85"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNS4x"
+  },
+  {
+    "name": "v1.5.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.5.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.5.0",
+    "commit": {
+      "sha": "84135ad9dc93c7247502f1e684b3196daf333b3b",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/84135ad9dc93c7247502f1e684b3196daf333b3b"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNS4w"
+  },
+  {
+    "name": "v1.4.2",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.4.2",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.4.2",
+    "commit": {
+      "sha": "da66ed59e3d6feb38cbdbaeb0828ee77a2337efc",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/da66ed59e3d6feb38cbdbaeb0828ee77a2337efc"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNC4y"
+  },
+  {
+    "name": "v1.4.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.4.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.4.1",
+    "commit": {
+      "sha": "8a372e9fb01be1e2e82c5f090c72ca1793007216",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/8a372e9fb01be1e2e82c5f090c72ca1793007216"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNC4x"
+  },
+  {
+    "name": "v1.4.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.4.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.4.0",
+    "commit": {
+      "sha": "1dfa4d21b8de221126d778777b068897b13e2237",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/1dfa4d21b8de221126d778777b068897b13e2237"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuNC4w"
+  },
+  {
+    "name": "v1.3.3",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.3.3",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.3.3",
+    "commit": {
+      "sha": "d9d6d7e778b117a718e621e7aa9b2cf068c7865d",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/d9d6d7e778b117a718e621e7aa9b2cf068c7865d"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuMy4z"
+  },
+  {
+    "name": "v1.3.2",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.3.2",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.3.2",
+    "commit": {
+      "sha": "a9f2ba076c08107f07c51ad81bf9b3731a88a00d",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/a9f2ba076c08107f07c51ad81bf9b3731a88a00d"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuMy4y"
+  },
+  {
+    "name": "v1.3.2-int",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.3.2-int",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.3.2-int",
+    "commit": {
+      "sha": "eadfceca162ae72518925e3f5f4bc865804e3fb1",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/eadfceca162ae72518925e3f5f4bc865804e3fb1"
+    },
+    "node_id": "REF_kwDOGM3SS7RyZWZzL3RhZ3MvdjEuMy4yLWludA"
+  },
+  {
+    "name": "v1.3.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.3.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.3.1",
+    "commit": {
+      "sha": "7dfcba1e4b8bffc1e497cd6f0db3da91ce1d2bb5",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/7dfcba1e4b8bffc1e497cd6f0db3da91ce1d2bb5"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuMy4x"
+  },
+  {
+    "name": "v1.3.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.3.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.3.0",
+    "commit": {
+      "sha": "d59edb05332533b28ef62083df98196dd40408c4",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/d59edb05332533b28ef62083df98196dd40408c4"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuMy4w"
+  },
+  {
+    "name": "v1.2.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.2.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.2.0",
+    "commit": {
+      "sha": "d666fc708809b1113891ce92b53a8512cf1c4483",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/d666fc708809b1113891ce92b53a8512cf1c4483"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuMi4w"
+  },
+  {
+    "name": "v1.1.1",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.1.1",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.1.1",
+    "commit": {
+      "sha": "5be58e7ed8acabd039a4913960bb4fb93d6cab80",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/5be58e7ed8acabd039a4913960bb4fb93d6cab80"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuMS4x"
+  },
+  {
+    "name": "v1.1.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.1.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.1.0",
+    "commit": {
+      "sha": "267e16e2441ba3a584739c34bc1063846eb261a9",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/267e16e2441ba3a584739c34bc1063846eb261a9"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuMS4w"
+  },
+  {
+    "name": "v1.0.0",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1.0.0",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1.0.0",
+    "commit": {
+      "sha": "adaff53a2bc13221eb8baebbc08287def6ba28fa",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/adaff53a2bc13221eb8baebbc08287def6ba28fa"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEuMC4w"
+  },
+  {
+    "name": "v1-int",
+    "zipball_url": "https://api.github.com/repos/step-security/secure-repo/zipball/refs/tags/v1-int",
+    "tarball_url": "https://api.github.com/repos/step-security/secure-repo/tarball/refs/tags/v1-int",
+    "commit": {
+      "sha": "ad108925137968c4b775008ec97f09eaf37c977b",
+      "url": "https://api.github.com/repos/step-security/secure-repo/commits/ad108925137968c4b775008ec97f09eaf37c977b"
+    },
+    "node_id": "REF_kwDOGM3SS7ByZWZzL3RhZ3MvdjEtaW50"
+  }
+]

@@ -1,0 +1,1570 @@
+[
+  {
+    "name": ".codecov.yaml",
+    "path": ".codecov.yaml",
+    "sha": "96cf9eabff78c63f98b520679bec7ec78df9a32b",
+    "size": 133,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/.codecov.yaml?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/.codecov.yaml",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/96cf9eabff78c63f98b520679bec7ec78df9a32b",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/.codecov.yaml",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/.codecov.yaml?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/96cf9eabff78c63f98b520679bec7ec78df9a32b",
+      "html": "https://github.com/rhysd/actionlint/blob/main/.codecov.yaml"
+    }
+  },
+  {
+    "name": ".git-hooks",
+    "path": ".git-hooks",
+    "sha": "e9eff76c4fbfbaed91043f8a3bd548ffb968e5c4",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/.git-hooks?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/.git-hooks",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/e9eff76c4fbfbaed91043f8a3bd548ffb968e5c4",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/.git-hooks?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/e9eff76c4fbfbaed91043f8a3bd548ffb968e5c4",
+      "html": "https://github.com/rhysd/actionlint/tree/main/.git-hooks"
+    }
+  },
+  {
+    "name": ".gitattributes",
+    "path": ".gitattributes",
+    "sha": "22e33ed622b591edac0eff104e8820febbae9a38",
+    "size": 222,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/.gitattributes?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/.gitattributes",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/22e33ed622b591edac0eff104e8820febbae9a38",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/.gitattributes",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/.gitattributes?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/22e33ed622b591edac0eff104e8820febbae9a38",
+      "html": "https://github.com/rhysd/actionlint/blob/main/.gitattributes"
+    }
+  },
+  {
+    "name": ".github",
+    "path": ".github",
+    "sha": "e641ef7e710668aed60f75d974bbbec9bf2ad982",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/.github?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/.github",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/e641ef7e710668aed60f75d974bbbec9bf2ad982",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/.github?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/e641ef7e710668aed60f75d974bbbec9bf2ad982",
+      "html": "https://github.com/rhysd/actionlint/tree/main/.github"
+    }
+  },
+  {
+    "name": ".gitignore",
+    "path": ".gitignore",
+    "sha": "527b8e4b3facb4a60a82318b2b4a3abbbece21be",
+    "size": 319,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/.gitignore?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/.gitignore",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/527b8e4b3facb4a60a82318b2b4a3abbbece21be",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/.gitignore",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/.gitignore?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/527b8e4b3facb4a60a82318b2b4a3abbbece21be",
+      "html": "https://github.com/rhysd/actionlint/blob/main/.gitignore"
+    }
+  },
+  {
+    "name": ".goreleaser.yaml",
+    "path": ".goreleaser.yaml",
+    "sha": "4909bdd5e95dfd9ae790ab2e6d9691e4c3e2ef65",
+    "size": 1555,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/.goreleaser.yaml?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/.goreleaser.yaml",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4909bdd5e95dfd9ae790ab2e6d9691e4c3e2ef65",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/.goreleaser.yaml",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/.goreleaser.yaml?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4909bdd5e95dfd9ae790ab2e6d9691e4c3e2ef65",
+      "html": "https://github.com/rhysd/actionlint/blob/main/.goreleaser.yaml"
+    }
+  },
+  {
+    "name": ".pre-commit-hooks.yaml",
+    "path": ".pre-commit-hooks.yaml",
+    "sha": "58e354a15b973fea1491347cc6681fbf0661a52d",
+    "size": 761,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/.pre-commit-hooks.yaml?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/.pre-commit-hooks.yaml",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/58e354a15b973fea1491347cc6681fbf0661a52d",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/.pre-commit-hooks.yaml",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/.pre-commit-hooks.yaml?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/58e354a15b973fea1491347cc6681fbf0661a52d",
+      "html": "https://github.com/rhysd/actionlint/blob/main/.pre-commit-hooks.yaml"
+    }
+  },
+  {
+    "name": "CHANGELOG.md",
+    "path": "CHANGELOG.md",
+    "sha": "9c489d4c808a2ccf7208bb7066f494bd2deb0b33",
+    "size": 139501,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/CHANGELOG.md?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/CHANGELOG.md",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9c489d4c808a2ccf7208bb7066f494bd2deb0b33",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/CHANGELOG.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/CHANGELOG.md?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9c489d4c808a2ccf7208bb7066f494bd2deb0b33",
+      "html": "https://github.com/rhysd/actionlint/blob/main/CHANGELOG.md"
+    }
+  },
+  {
+    "name": "CONTRIBUTING.md",
+    "path": "CONTRIBUTING.md",
+    "sha": "e4d0f572b5d29382d9b9fe708d41b52363956261",
+    "size": 11877,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/CONTRIBUTING.md?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/CONTRIBUTING.md",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e4d0f572b5d29382d9b9fe708d41b52363956261",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/CONTRIBUTING.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/CONTRIBUTING.md?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e4d0f572b5d29382d9b9fe708d41b52363956261",
+      "html": "https://github.com/rhysd/actionlint/blob/main/CONTRIBUTING.md"
+    }
+  },
+  {
+    "name": "Casks",
+    "path": "Casks",
+    "sha": "a7c438cfc7d11201fb1b8f5b231bb059d85db89f",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/Casks?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/Casks",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/a7c438cfc7d11201fb1b8f5b231bb059d85db89f",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/Casks?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/a7c438cfc7d11201fb1b8f5b231bb059d85db89f",
+      "html": "https://github.com/rhysd/actionlint/tree/main/Casks"
+    }
+  },
+  {
+    "name": "Dockerfile",
+    "path": "Dockerfile",
+    "sha": "4ecbe066131f3bb02aa8bd12d3a090a822334ebb",
+    "size": 572,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/Dockerfile?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/Dockerfile",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4ecbe066131f3bb02aa8bd12d3a090a822334ebb",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/Dockerfile",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/Dockerfile?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4ecbe066131f3bb02aa8bd12d3a090a822334ebb",
+      "html": "https://github.com/rhysd/actionlint/blob/main/Dockerfile"
+    }
+  },
+  {
+    "name": "LICENSE.txt",
+    "path": "LICENSE.txt",
+    "sha": "69292aedc9113498e83d72e48d38894f9a2a2eb6",
+    "size": 1067,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/LICENSE.txt?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/LICENSE.txt",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/69292aedc9113498e83d72e48d38894f9a2a2eb6",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/LICENSE.txt",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/LICENSE.txt?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/69292aedc9113498e83d72e48d38894f9a2a2eb6",
+      "html": "https://github.com/rhysd/actionlint/blob/main/LICENSE.txt"
+    }
+  },
+  {
+    "name": "Makefile",
+    "path": "Makefile",
+    "sha": "b896ef92f6dd84f9aee259bf770b252bf42ce39f",
+    "size": 3607,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/Makefile?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/Makefile",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b896ef92f6dd84f9aee259bf770b252bf42ce39f",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/Makefile",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/Makefile?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b896ef92f6dd84f9aee259bf770b252bf42ce39f",
+      "html": "https://github.com/rhysd/actionlint/blob/main/Makefile"
+    }
+  },
+  {
+    "name": "README.md",
+    "path": "README.md",
+    "sha": "05c8718a5ad816741cfad65c493db7de34c7aedc",
+    "size": 8243,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/README.md?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/README.md",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/05c8718a5ad816741cfad65c493db7de34c7aedc",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/README.md",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/README.md?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/05c8718a5ad816741cfad65c493db7de34c7aedc",
+      "html": "https://github.com/rhysd/actionlint/blob/main/README.md"
+    }
+  },
+  {
+    "name": "action_metadata.go",
+    "path": "action_metadata.go",
+    "sha": "9f211209cf1e81e5e49d16c6c405092eedee219a",
+    "size": 11961,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/action_metadata.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/action_metadata.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9f211209cf1e81e5e49d16c6c405092eedee219a",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/action_metadata.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/action_metadata.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9f211209cf1e81e5e49d16c6c405092eedee219a",
+      "html": "https://github.com/rhysd/actionlint/blob/main/action_metadata.go"
+    }
+  },
+  {
+    "name": "action_metadata_test.go",
+    "path": "action_metadata_test.go",
+    "sha": "f51e320595a7eac83e4d48efacb4e95685b48bac",
+    "size": 15472,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/action_metadata_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/action_metadata_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/f51e320595a7eac83e4d48efacb4e95685b48bac",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/action_metadata_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/action_metadata_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/f51e320595a7eac83e4d48efacb4e95685b48bac",
+      "html": "https://github.com/rhysd/actionlint/blob/main/action_metadata_test.go"
+    }
+  },
+  {
+    "name": "all_webhooks.go",
+    "path": "all_webhooks.go",
+    "sha": "eee3fd5d5158338254c9c5905bc6f6884ab7b7c4",
+    "size": 3238,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/all_webhooks.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/all_webhooks.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/eee3fd5d5158338254c9c5905bc6f6884ab7b7c4",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/all_webhooks.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/all_webhooks.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/eee3fd5d5158338254c9c5905bc6f6884ab7b7c4",
+      "html": "https://github.com/rhysd/actionlint/blob/main/all_webhooks.go"
+    }
+  },
+  {
+    "name": "all_webhooks_test.go",
+    "path": "all_webhooks_test.go",
+    "sha": "2ac61f5fba095a3f1fa44ab103b2089e444ebde4",
+    "size": 497,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/all_webhooks_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/all_webhooks_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/2ac61f5fba095a3f1fa44ab103b2089e444ebde4",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/all_webhooks_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/all_webhooks_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/2ac61f5fba095a3f1fa44ab103b2089e444ebde4",
+      "html": "https://github.com/rhysd/actionlint/blob/main/all_webhooks_test.go"
+    }
+  },
+  {
+    "name": "ast.go",
+    "path": "ast.go",
+    "sha": "335f5c3a3a9fe7e2ccf2e6fa36e5f668056f6918",
+    "size": 39236,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/ast.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/ast.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/335f5c3a3a9fe7e2ccf2e6fa36e5f668056f6918",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/ast.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/ast.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/335f5c3a3a9fe7e2ccf2e6fa36e5f668056f6918",
+      "html": "https://github.com/rhysd/actionlint/blob/main/ast.go"
+    }
+  },
+  {
+    "name": "ast_test.go",
+    "path": "ast_test.go",
+    "sha": "4960c6e468b7b8ceea84f118382e5b5f3f4e6e1d",
+    "size": 1378,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/ast_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/ast_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4960c6e468b7b8ceea84f118382e5b5f3f4e6e1d",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/ast_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/ast_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4960c6e468b7b8ceea84f118382e5b5f3f4e6e1d",
+      "html": "https://github.com/rhysd/actionlint/blob/main/ast_test.go"
+    }
+  },
+  {
+    "name": "availability.go",
+    "path": "availability.go",
+    "sha": "f46b49e1c491c68c164444260189faeb5eea4331",
+    "size": 14732,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/availability.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/availability.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/f46b49e1c491c68c164444260189faeb5eea4331",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/availability.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/availability.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/f46b49e1c491c68c164444260189faeb5eea4331",
+      "html": "https://github.com/rhysd/actionlint/blob/main/availability.go"
+    }
+  },
+  {
+    "name": "availability_test.go",
+    "path": "availability_test.go",
+    "sha": "27ae4ee0fee24091e786cfd01a48873bd78d1653",
+    "size": 2323,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/availability_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/availability_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/27ae4ee0fee24091e786cfd01a48873bd78d1653",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/availability_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/availability_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/27ae4ee0fee24091e786cfd01a48873bd78d1653",
+      "html": "https://github.com/rhysd/actionlint/blob/main/availability_test.go"
+    }
+  },
+  {
+    "name": "cmd",
+    "path": "cmd",
+    "sha": "9fe8236a1f62d1e346a403239496bfb37b30df75",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/cmd?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/cmd",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/9fe8236a1f62d1e346a403239496bfb37b30df75",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/cmd?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/9fe8236a1f62d1e346a403239496bfb37b30df75",
+      "html": "https://github.com/rhysd/actionlint/tree/main/cmd"
+    }
+  },
+  {
+    "name": "command.go",
+    "path": "command.go",
+    "sha": "b68784e09010f9772e810b9c5b5914c781a5bb77",
+    "size": 6146,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/command.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/command.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b68784e09010f9772e810b9c5b5914c781a5bb77",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/command.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/command.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b68784e09010f9772e810b9c5b5914c781a5bb77",
+      "html": "https://github.com/rhysd/actionlint/blob/main/command.go"
+    }
+  },
+  {
+    "name": "command_test.go",
+    "path": "command_test.go",
+    "sha": "8f0a7940d285929ba68e8f928d5d204d6d8b4270",
+    "size": 1023,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/command_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/command_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/8f0a7940d285929ba68e8f928d5d204d6d8b4270",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/command_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/command_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/8f0a7940d285929ba68e8f928d5d204d6d8b4270",
+      "html": "https://github.com/rhysd/actionlint/blob/main/command_test.go"
+    }
+  },
+  {
+    "name": "config.go",
+    "path": "config.go",
+    "sha": "354a4195e437038bc695a9df7a579c50163788ee",
+    "size": 5387,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/config.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/config.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/354a4195e437038bc695a9df7a579c50163788ee",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/config.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/config.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/354a4195e437038bc695a9df7a579c50163788ee",
+      "html": "https://github.com/rhysd/actionlint/blob/main/config.go"
+    }
+  },
+  {
+    "name": "config_test.go",
+    "path": "config_test.go",
+    "sha": "76b3ce6c61aca05cc8bcb0213741f5add5a14659",
+    "size": 6587,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/config_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/config_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/76b3ce6c61aca05cc8bcb0213741f5add5a14659",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/config_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/config_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/76b3ce6c61aca05cc8bcb0213741f5add5a14659",
+      "html": "https://github.com/rhysd/actionlint/blob/main/config_test.go"
+    }
+  },
+  {
+    "name": "doc.go",
+    "path": "doc.go",
+    "sha": "d25264b3dea5e2d652da9dd39fcc8f14f01e3f93",
+    "size": 1658,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/doc.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/doc.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/d25264b3dea5e2d652da9dd39fcc8f14f01e3f93",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/doc.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/doc.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/d25264b3dea5e2d652da9dd39fcc8f14f01e3f93",
+      "html": "https://github.com/rhysd/actionlint/blob/main/doc.go"
+    }
+  },
+  {
+    "name": "docs",
+    "path": "docs",
+    "sha": "ac72c8cae88f0cf8207a88b9e5a0cde97f98bfc3",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/docs?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/docs",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/ac72c8cae88f0cf8207a88b9e5a0cde97f98bfc3",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/docs?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/ac72c8cae88f0cf8207a88b9e5a0cde97f98bfc3",
+      "html": "https://github.com/rhysd/actionlint/tree/main/docs"
+    }
+  },
+  {
+    "name": "error.go",
+    "path": "error.go",
+    "sha": "d127dbf4af8005fc417e2b9cd833249a4f6b6440",
+    "size": 8947,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/error.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/error.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/d127dbf4af8005fc417e2b9cd833249a4f6b6440",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/error.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/error.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/d127dbf4af8005fc417e2b9cd833249a4f6b6440",
+      "html": "https://github.com/rhysd/actionlint/blob/main/error.go"
+    }
+  },
+  {
+    "name": "error_test.go",
+    "path": "error_test.go",
+    "sha": "7336bd7425b025b17bd7138c98d46d33c175e4d4",
+    "size": 15576,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/error_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/error_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7336bd7425b025b17bd7138c98d46d33c175e4d4",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/error_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/error_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7336bd7425b025b17bd7138c98d46d33c175e4d4",
+      "html": "https://github.com/rhysd/actionlint/blob/main/error_test.go"
+    }
+  },
+  {
+    "name": "example_test.go",
+    "path": "example_test.go",
+    "sha": "5a3f8a96c2b34dcf24ffe0e868da3355c923962a",
+    "size": 2870,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/example_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/example_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/5a3f8a96c2b34dcf24ffe0e868da3355c923962a",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/example_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/example_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/5a3f8a96c2b34dcf24ffe0e868da3355c923962a",
+      "html": "https://github.com/rhysd/actionlint/blob/main/example_test.go"
+    }
+  },
+  {
+    "name": "example_your_own_rule_test.go",
+    "path": "example_your_own_rule_test.go",
+    "sha": "c86740af50f62d3a2e93da8f8845b95f9f24f7ec",
+    "size": 1781,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/example_your_own_rule_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/example_your_own_rule_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/c86740af50f62d3a2e93da8f8845b95f9f24f7ec",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/example_your_own_rule_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/example_your_own_rule_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/c86740af50f62d3a2e93da8f8845b95f9f24f7ec",
+      "html": "https://github.com/rhysd/actionlint/blob/main/example_your_own_rule_test.go"
+    }
+  },
+  {
+    "name": "expr.go",
+    "path": "expr.go",
+    "sha": "193323201d647a5b030f657c7c0bc6566548ef65",
+    "size": 727,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/193323201d647a5b030f657c7c0bc6566548ef65",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/193323201d647a5b030f657c7c0bc6566548ef65",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr.go"
+    }
+  },
+  {
+    "name": "expr_ast.go",
+    "path": "expr_ast.go",
+    "sha": "d56298fa79ddad009e153d739df16558e4e06468",
+    "size": 8506,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_ast.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_ast.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/d56298fa79ddad009e153d739df16558e4e06468",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_ast.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_ast.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/d56298fa79ddad009e153d739df16558e4e06468",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_ast.go"
+    }
+  },
+  {
+    "name": "expr_insecure.go",
+    "path": "expr_insecure.go",
+    "sha": "b1f7f9a04cf6fd007215838b18f7989a480fce8e",
+    "size": 9972,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_insecure.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_insecure.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b1f7f9a04cf6fd007215838b18f7989a480fce8e",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_insecure.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_insecure.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b1f7f9a04cf6fd007215838b18f7989a480fce8e",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_insecure.go"
+    }
+  },
+  {
+    "name": "expr_insecure_test.go",
+    "path": "expr_insecure_test.go",
+    "sha": "cb28d65d51264617fb88f62301387dd88a427c74",
+    "size": 19641,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_insecure_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_insecure_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/cb28d65d51264617fb88f62301387dd88a427c74",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_insecure_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_insecure_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/cb28d65d51264617fb88f62301387dd88a427c74",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_insecure_test.go"
+    }
+  },
+  {
+    "name": "expr_lexer.go",
+    "path": "expr_lexer.go",
+    "sha": "0b15333ab49cc07433fd265c0117edde620ab5c3",
+    "size": 12037,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_lexer.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_lexer.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/0b15333ab49cc07433fd265c0117edde620ab5c3",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_lexer.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_lexer.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/0b15333ab49cc07433fd265c0117edde620ab5c3",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_lexer.go"
+    }
+  },
+  {
+    "name": "expr_lexer_test.go",
+    "path": "expr_lexer_test.go",
+    "sha": "ac46ab515b7a7bbad8cfe241bfaf687c116b633d",
+    "size": 16902,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_lexer_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_lexer_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ac46ab515b7a7bbad8cfe241bfaf687c116b633d",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_lexer_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_lexer_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ac46ab515b7a7bbad8cfe241bfaf687c116b633d",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_lexer_test.go"
+    }
+  },
+  {
+    "name": "expr_parser.go",
+    "path": "expr_parser.go",
+    "sha": "1b9f772fd0f2522fe7f021440a50d62e7d47e037",
+    "size": 7894,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_parser.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_parser.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/1b9f772fd0f2522fe7f021440a50d62e7d47e037",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_parser.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_parser.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/1b9f772fd0f2522fe7f021440a50d62e7d47e037",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_parser.go"
+    }
+  },
+  {
+    "name": "expr_parser_test.go",
+    "path": "expr_parser_test.go",
+    "sha": "9abc12e7c76270cc05db449a0f0dc0980cf7496d",
+    "size": 21282,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_parser_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_parser_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9abc12e7c76270cc05db449a0f0dc0980cf7496d",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_parser_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_parser_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9abc12e7c76270cc05db449a0f0dc0980cf7496d",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_parser_test.go"
+    }
+  },
+  {
+    "name": "expr_sema.go",
+    "path": "expr_sema.go",
+    "sha": "b7bb4e8ed456ff9a6b217499f51ad7fe6256a0fc",
+    "size": 34775,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_sema.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_sema.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b7bb4e8ed456ff9a6b217499f51ad7fe6256a0fc",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_sema.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_sema.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b7bb4e8ed456ff9a6b217499f51ad7fe6256a0fc",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_sema.go"
+    }
+  },
+  {
+    "name": "expr_sema_test.go",
+    "path": "expr_sema_test.go",
+    "sha": "959ef1682b929a63cc1480e64ac0e0d53eea173b",
+    "size": 49808,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_sema_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_sema_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/959ef1682b929a63cc1480e64ac0e0d53eea173b",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_sema_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_sema_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/959ef1682b929a63cc1480e64ac0e0d53eea173b",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_sema_test.go"
+    }
+  },
+  {
+    "name": "expr_test.go",
+    "path": "expr_test.go",
+    "sha": "ff071f2b32868059584848127d495720224a0d97",
+    "size": 2271,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ff071f2b32868059584848127d495720224a0d97",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ff071f2b32868059584848127d495720224a0d97",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_test.go"
+    }
+  },
+  {
+    "name": "expr_type.go",
+    "path": "expr_type.go",
+    "sha": "b517db959c9b8937fa350faa9c7af44cd2d62045",
+    "size": 12084,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_type.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_type.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b517db959c9b8937fa350faa9c7af44cd2d62045",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_type.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_type.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b517db959c9b8937fa350faa9c7af44cd2d62045",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_type.go"
+    }
+  },
+  {
+    "name": "expr_type_test.go",
+    "path": "expr_type_test.go",
+    "sha": "4eb775b162bbc9efde934d96cbf597a339156588",
+    "size": 22740,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/expr_type_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/expr_type_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4eb775b162bbc9efde934d96cbf597a339156588",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/expr_type_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/expr_type_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4eb775b162bbc9efde934d96cbf597a339156588",
+      "html": "https://github.com/rhysd/actionlint/blob/main/expr_type_test.go"
+    }
+  },
+  {
+    "name": "fuzz",
+    "path": "fuzz",
+    "sha": "2bcc6a9d6394ccc0e3222d657e4f0e47805c6807",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/fuzz?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/fuzz",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/2bcc6a9d6394ccc0e3222d657e4f0e47805c6807",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/fuzz?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/2bcc6a9d6394ccc0e3222d657e4f0e47805c6807",
+      "html": "https://github.com/rhysd/actionlint/tree/main/fuzz"
+    }
+  },
+  {
+    "name": "glob.go",
+    "path": "glob.go",
+    "sha": "02e2e35337597e68ebf737ca8352be3ee10041ac",
+    "size": 7468,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/glob.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/glob.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/02e2e35337597e68ebf737ca8352be3ee10041ac",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/glob.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/glob.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/02e2e35337597e68ebf737ca8352be3ee10041ac",
+      "html": "https://github.com/rhysd/actionlint/blob/main/glob.go"
+    }
+  },
+  {
+    "name": "glob_test.go",
+    "path": "glob_test.go",
+    "sha": "8b674f99d1d72c919a0e38ad499001adc91f86d0",
+    "size": 11102,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/glob_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/glob_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/8b674f99d1d72c919a0e38ad499001adc91f86d0",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/glob_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/glob_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/8b674f99d1d72c919a0e38ad499001adc91f86d0",
+      "html": "https://github.com/rhysd/actionlint/blob/main/glob_test.go"
+    }
+  },
+  {
+    "name": "go.mod",
+    "path": "go.mod",
+    "sha": "3f25aac371514f75a662dccc113fcb76f825d5ef",
+    "size": 577,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/go.mod?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/go.mod",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/3f25aac371514f75a662dccc113fcb76f825d5ef",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/go.mod",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/go.mod?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/3f25aac371514f75a662dccc113fcb76f825d5ef",
+      "html": "https://github.com/rhysd/actionlint/blob/main/go.mod"
+    }
+  },
+  {
+    "name": "go.sum",
+    "path": "go.sum",
+    "sha": "054b4ee1c82a597ab75511618575e072a46907c9",
+    "size": 2455,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/go.sum?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/go.sum",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/054b4ee1c82a597ab75511618575e072a46907c9",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/go.sum",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/go.sum?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/054b4ee1c82a597ab75511618575e072a46907c9",
+      "html": "https://github.com/rhysd/actionlint/blob/main/go.sum"
+    }
+  },
+  {
+    "name": "linter.go",
+    "path": "linter.go",
+    "sha": "1eaa480bc33729cdc2b4c1bbe43179ce3657c734",
+    "size": 18997,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/linter.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/linter.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/1eaa480bc33729cdc2b4c1bbe43179ce3657c734",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/linter.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/linter.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/1eaa480bc33729cdc2b4c1bbe43179ce3657c734",
+      "html": "https://github.com/rhysd/actionlint/blob/main/linter.go"
+    }
+  },
+  {
+    "name": "linter_test.go",
+    "path": "linter_test.go",
+    "sha": "9613c1cd82949cba10d31d6e5a4a26edd378f81a",
+    "size": 20888,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/linter_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/linter_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9613c1cd82949cba10d31d6e5a4a26edd378f81a",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/linter_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/linter_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9613c1cd82949cba10d31d6e5a4a26edd378f81a",
+      "html": "https://github.com/rhysd/actionlint/blob/main/linter_test.go"
+    }
+  },
+  {
+    "name": "man",
+    "path": "man",
+    "sha": "d0f79d860cc22d2de53a6058f9b9004c41d9569b",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/man?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/man",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/d0f79d860cc22d2de53a6058f9b9004c41d9569b",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/man?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/d0f79d860cc22d2de53a6058f9b9004c41d9569b",
+      "html": "https://github.com/rhysd/actionlint/tree/main/man"
+    }
+  },
+  {
+    "name": "parse.go",
+    "path": "parse.go",
+    "sha": "77c892168306ae7f477f24dc8c84c3df875d9527",
+    "size": 46086,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/parse.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/parse.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/77c892168306ae7f477f24dc8c84c3df875d9527",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/parse.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/parse.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/77c892168306ae7f477f24dc8c84c3df875d9527",
+      "html": "https://github.com/rhysd/actionlint/blob/main/parse.go"
+    }
+  },
+  {
+    "name": "parse_test.go",
+    "path": "parse_test.go",
+    "sha": "708de7d69402d1621600a02fa57cd63dac203d0e",
+    "size": 1310,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/parse_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/parse_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/708de7d69402d1621600a02fa57cd63dac203d0e",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/parse_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/parse_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/708de7d69402d1621600a02fa57cd63dac203d0e",
+      "html": "https://github.com/rhysd/actionlint/blob/main/parse_test.go"
+    }
+  },
+  {
+    "name": "pass.go",
+    "path": "pass.go",
+    "sha": "e626fe22133e270cc8a94c4f844b63739384577c",
+    "size": 3507,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/pass.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/pass.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e626fe22133e270cc8a94c4f844b63739384577c",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/pass.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/pass.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e626fe22133e270cc8a94c4f844b63739384577c",
+      "html": "https://github.com/rhysd/actionlint/blob/main/pass.go"
+    }
+  },
+  {
+    "name": "playground",
+    "path": "playground",
+    "sha": "e2a4d0137fa0892fdbbc0c96ef073d4dfc057f1b",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/playground?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/playground",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/e2a4d0137fa0892fdbbc0c96ef073d4dfc057f1b",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/playground?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/e2a4d0137fa0892fdbbc0c96ef073d4dfc057f1b",
+      "html": "https://github.com/rhysd/actionlint/tree/main/playground"
+    }
+  },
+  {
+    "name": "popular_actions.go",
+    "path": "popular_actions.go",
+    "sha": "60cc2b0f12a7001c5c0d844066c4f974499dcefd",
+    "size": 275306,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/popular_actions.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/popular_actions.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/60cc2b0f12a7001c5c0d844066c4f974499dcefd",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/popular_actions.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/popular_actions.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/60cc2b0f12a7001c5c0d844066c4f974499dcefd",
+      "html": "https://github.com/rhysd/actionlint/blob/main/popular_actions.go"
+    }
+  },
+  {
+    "name": "popular_actions_test.go",
+    "path": "popular_actions_test.go",
+    "sha": "bef72cd0b6ac0f1a2ccb842895f82b6e32793388",
+    "size": 823,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/popular_actions_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/popular_actions_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/bef72cd0b6ac0f1a2ccb842895f82b6e32793388",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/popular_actions_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/popular_actions_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/bef72cd0b6ac0f1a2ccb842895f82b6e32793388",
+      "html": "https://github.com/rhysd/actionlint/blob/main/popular_actions_test.go"
+    }
+  },
+  {
+    "name": "process.go",
+    "path": "process.go",
+    "sha": "33bd2459498b8063af478a214d48a8e32c812e85",
+    "size": 5181,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/process.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/process.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/33bd2459498b8063af478a214d48a8e32c812e85",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/process.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/process.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/33bd2459498b8063af478a214d48a8e32c812e85",
+      "html": "https://github.com/rhysd/actionlint/blob/main/process.go"
+    }
+  },
+  {
+    "name": "process_test.go",
+    "path": "process_test.go",
+    "sha": "04f1afc146995a169a3acbbb2081eb17634047d0",
+    "size": 9088,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/process_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/process_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/04f1afc146995a169a3acbbb2081eb17634047d0",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/process_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/process_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/04f1afc146995a169a3acbbb2081eb17634047d0",
+      "html": "https://github.com/rhysd/actionlint/blob/main/process_test.go"
+    }
+  },
+  {
+    "name": "project.go",
+    "path": "project.go",
+    "sha": "7a35392b7144f7d75f31e7a823baaeaba1d3a223",
+    "size": 2907,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/project.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/project.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7a35392b7144f7d75f31e7a823baaeaba1d3a223",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/project.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/project.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7a35392b7144f7d75f31e7a823baaeaba1d3a223",
+      "html": "https://github.com/rhysd/actionlint/blob/main/project.go"
+    }
+  },
+  {
+    "name": "project_test.go",
+    "path": "project_test.go",
+    "sha": "ad80a71da5b379fb5aeef4b254cb523d2ccd229a",
+    "size": 3597,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/project_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/project_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ad80a71da5b379fb5aeef4b254cb523d2ccd229a",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/project_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/project_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ad80a71da5b379fb5aeef4b254cb523d2ccd229a",
+      "html": "https://github.com/rhysd/actionlint/blob/main/project_test.go"
+    }
+  },
+  {
+    "name": "quotes.go",
+    "path": "quotes.go",
+    "sha": "7ba5bf5cc9a2c8cfc2e3a6b2142ee19ff5e3891f",
+    "size": 1452,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/quotes.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/quotes.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7ba5bf5cc9a2c8cfc2e3a6b2142ee19ff5e3891f",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/quotes.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/quotes.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7ba5bf5cc9a2c8cfc2e3a6b2142ee19ff5e3891f",
+      "html": "https://github.com/rhysd/actionlint/blob/main/quotes.go"
+    }
+  },
+  {
+    "name": "quotes_test.go",
+    "path": "quotes_test.go",
+    "sha": "b485bf6c26f9772d6f3c827614c9a0a1c01f400b",
+    "size": 1648,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/quotes_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/quotes_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b485bf6c26f9772d6f3c827614c9a0a1c01f400b",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/quotes_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/quotes_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b485bf6c26f9772d6f3c827614c9a0a1c01f400b",
+      "html": "https://github.com/rhysd/actionlint/blob/main/quotes_test.go"
+    }
+  },
+  {
+    "name": "reusable_workflow.go",
+    "path": "reusable_workflow.go",
+    "sha": "3becd8014cd5ec801aa970e85ac03183b8a9b174",
+    "size": 12742,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/reusable_workflow.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/reusable_workflow.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/3becd8014cd5ec801aa970e85ac03183b8a9b174",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/reusable_workflow.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/reusable_workflow.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/3becd8014cd5ec801aa970e85ac03183b8a9b174",
+      "html": "https://github.com/rhysd/actionlint/blob/main/reusable_workflow.go"
+    }
+  },
+  {
+    "name": "reusable_workflow_test.go",
+    "path": "reusable_workflow_test.go",
+    "sha": "f37f5d10d0f01ff272e33026a2c6569eea03f894",
+    "size": 21191,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/reusable_workflow_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/reusable_workflow_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/f37f5d10d0f01ff272e33026a2c6569eea03f894",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/reusable_workflow_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/reusable_workflow_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/f37f5d10d0f01ff272e33026a2c6569eea03f894",
+      "html": "https://github.com/rhysd/actionlint/blob/main/reusable_workflow_test.go"
+    }
+  },
+  {
+    "name": "rule.go",
+    "path": "rule.go",
+    "sha": "e6eeb19871176fa4f10df3ca42c4d3a82228f16b",
+    "size": 3305,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e6eeb19871176fa4f10df3ca42c4d3a82228f16b",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e6eeb19871176fa4f10df3ca42c4d3a82228f16b",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule.go"
+    }
+  },
+  {
+    "name": "rule_action.go",
+    "path": "rule_action.go",
+    "sha": "ea1848347916d76b5a0c8e6badbb20beb858d121",
+    "size": 20446,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_action.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_action.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ea1848347916d76b5a0c8e6badbb20beb858d121",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_action.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_action.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ea1848347916d76b5a0c8e6badbb20beb858d121",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_action.go"
+    }
+  },
+  {
+    "name": "rule_credentials.go",
+    "path": "rule_credentials.go",
+    "sha": "bab84fab9b4c7f2123af689f036000c472afa2f7",
+    "size": 1124,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_credentials.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_credentials.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/bab84fab9b4c7f2123af689f036000c472afa2f7",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_credentials.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_credentials.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/bab84fab9b4c7f2123af689f036000c472afa2f7",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_credentials.go"
+    }
+  },
+  {
+    "name": "rule_deprecated_commands.go",
+    "path": "rule_deprecated_commands.go",
+    "sha": "5cd93f2b6e0fd99c6bcdd2a070328b703f1d6706",
+    "size": 1840,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_deprecated_commands.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_deprecated_commands.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/5cd93f2b6e0fd99c6bcdd2a070328b703f1d6706",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_deprecated_commands.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_deprecated_commands.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/5cd93f2b6e0fd99c6bcdd2a070328b703f1d6706",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_deprecated_commands.go"
+    }
+  },
+  {
+    "name": "rule_deprecated_commands_test.go",
+    "path": "rule_deprecated_commands_test.go",
+    "sha": "58275143009105d402f6d729a7d8c8d9d363cbc4",
+    "size": 2719,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_deprecated_commands_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_deprecated_commands_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/58275143009105d402f6d729a7d8c8d9d363cbc4",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_deprecated_commands_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_deprecated_commands_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/58275143009105d402f6d729a7d8c8d9d363cbc4",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_deprecated_commands_test.go"
+    }
+  },
+  {
+    "name": "rule_env_var.go",
+    "path": "rule_env_var.go",
+    "sha": "5a6e3da63c5f6cef9eb8eca1347630a0aea410fe",
+    "size": 1465,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_env_var.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_env_var.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/5a6e3da63c5f6cef9eb8eca1347630a0aea410fe",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_env_var.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_env_var.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/5a6e3da63c5f6cef9eb8eca1347630a0aea410fe",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_env_var.go"
+    }
+  },
+  {
+    "name": "rule_env_var_test.go",
+    "path": "rule_env_var_test.go",
+    "sha": "4a0e03d1eed85bb9d9218542e8532fec1e1efbf1",
+    "size": 1595,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_env_var_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_env_var_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4a0e03d1eed85bb9d9218542e8532fec1e1efbf1",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_env_var_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_env_var_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4a0e03d1eed85bb9d9218542e8532fec1e1efbf1",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_env_var_test.go"
+    }
+  },
+  {
+    "name": "rule_events.go",
+    "path": "rule_events.go",
+    "sha": "f920eb17f062d5834fbcc0c014e5e2d8a799d2fa",
+    "size": 10113,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_events.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_events.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/f920eb17f062d5834fbcc0c014e5e2d8a799d2fa",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_events.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_events.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/f920eb17f062d5834fbcc0c014e5e2d8a799d2fa",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_events.go"
+    }
+  },
+  {
+    "name": "rule_expression.go",
+    "path": "rule_expression.go",
+    "sha": "eab7a934be944c938e344c484f99109d30bc91a0",
+    "size": 30141,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_expression.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_expression.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/eab7a934be944c938e344c484f99109d30bc91a0",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_expression.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_expression.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/eab7a934be944c938e344c484f99109d30bc91a0",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_expression.go"
+    }
+  },
+  {
+    "name": "rule_glob.go",
+    "path": "rule_glob.go",
+    "sha": "ef7e459fe6a19e7f9da10c7f0e6f12da66a3acf4",
+    "size": 2274,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_glob.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_glob.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ef7e459fe6a19e7f9da10c7f0e6f12da66a3acf4",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_glob.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_glob.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/ef7e459fe6a19e7f9da10c7f0e6f12da66a3acf4",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_glob.go"
+    }
+  },
+  {
+    "name": "rule_id.go",
+    "path": "rule_id.go",
+    "sha": "b491e5e60dbe35c9b665fa238f43ed8cb34e1067",
+    "size": 1687,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_id.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_id.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b491e5e60dbe35c9b665fa238f43ed8cb34e1067",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_id.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_id.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/b491e5e60dbe35c9b665fa238f43ed8cb34e1067",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_id.go"
+    }
+  },
+  {
+    "name": "rule_id_test.go",
+    "path": "rule_id_test.go",
+    "sha": "581de73496743f9f9496dbdca38ef7a7170cba31",
+    "size": 1990,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_id_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_id_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/581de73496743f9f9496dbdca38ef7a7170cba31",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_id_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_id_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/581de73496743f9f9496dbdca38ef7a7170cba31",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_id_test.go"
+    }
+  },
+  {
+    "name": "rule_if_cond.go",
+    "path": "rule_if_cond.go",
+    "sha": "7fb30837ea78c3a5e3ace07de6b960d8a233041f",
+    "size": 1791,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_if_cond.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_if_cond.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7fb30837ea78c3a5e3ace07de6b960d8a233041f",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_if_cond.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_if_cond.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7fb30837ea78c3a5e3ace07de6b960d8a233041f",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_if_cond.go"
+    }
+  },
+  {
+    "name": "rule_if_cond_test.go",
+    "path": "rule_if_cond_test.go",
+    "sha": "26ccf5a089f4ea02d422c24c90de4ee6f1284858",
+    "size": 1737,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_if_cond_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_if_cond_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/26ccf5a089f4ea02d422c24c90de4ee6f1284858",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_if_cond_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_if_cond_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/26ccf5a089f4ea02d422c24c90de4ee6f1284858",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_if_cond_test.go"
+    }
+  },
+  {
+    "name": "rule_job_needs.go",
+    "path": "rule_job_needs.go",
+    "sha": "9b20d54fb031bec21f69f48aadaa21db35b04246",
+    "size": 4386,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_job_needs.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_job_needs.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9b20d54fb031bec21f69f48aadaa21db35b04246",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_job_needs.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_job_needs.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/9b20d54fb031bec21f69f48aadaa21db35b04246",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_job_needs.go"
+    }
+  },
+  {
+    "name": "rule_matrix.go",
+    "path": "rule_matrix.go",
+    "sha": "178ee5ba9505cfe64641de8ae125973c9cca258f",
+    "size": 4990,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_matrix.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_matrix.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/178ee5ba9505cfe64641de8ae125973c9cca258f",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_matrix.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_matrix.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/178ee5ba9505cfe64641de8ae125973c9cca258f",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_matrix.go"
+    }
+  },
+  {
+    "name": "rule_permissions.go",
+    "path": "rule_permissions.go",
+    "sha": "430b8748d4f8f03a9815290a9d7bd76f03ba4b6c",
+    "size": 2771,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_permissions.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_permissions.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/430b8748d4f8f03a9815290a9d7bd76f03ba4b6c",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_permissions.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_permissions.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/430b8748d4f8f03a9815290a9d7bd76f03ba4b6c",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_permissions.go"
+    }
+  },
+  {
+    "name": "rule_pyflakes.go",
+    "path": "rule_pyflakes.go",
+    "sha": "8fef8c394a72b618a39c53dfb0437032e93419f4",
+    "size": 5056,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_pyflakes.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_pyflakes.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/8fef8c394a72b618a39c53dfb0437032e93419f4",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_pyflakes.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_pyflakes.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/8fef8c394a72b618a39c53dfb0437032e93419f4",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_pyflakes.go"
+    }
+  },
+  {
+    "name": "rule_pyflakes_test.go",
+    "path": "rule_pyflakes_test.go",
+    "sha": "e9ccc810b0db3283c6388287637cf62938e226b6",
+    "size": 4995,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_pyflakes_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_pyflakes_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e9ccc810b0db3283c6388287637cf62938e226b6",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_pyflakes_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_pyflakes_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e9ccc810b0db3283c6388287637cf62938e226b6",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_pyflakes_test.go"
+    }
+  },
+  {
+    "name": "rule_runner_label.go",
+    "path": "rule_runner_label.go",
+    "sha": "a8745b2592775c4b358b16ffeb772087507ee67e",
+    "size": 9265,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_runner_label.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_runner_label.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/a8745b2592775c4b358b16ffeb772087507ee67e",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_runner_label.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_runner_label.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/a8745b2592775c4b358b16ffeb772087507ee67e",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_runner_label.go"
+    }
+  },
+  {
+    "name": "rule_runner_label_test.go",
+    "path": "rule_runner_label_test.go",
+    "sha": "7182297d3ec5f4a9f0880b766c553c69c13870d5",
+    "size": 11352,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_runner_label_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_runner_label_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7182297d3ec5f4a9f0880b766c553c69c13870d5",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_runner_label_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_runner_label_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7182297d3ec5f4a9f0880b766c553c69c13870d5",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_runner_label_test.go"
+    }
+  },
+  {
+    "name": "rule_shell_name.go",
+    "path": "rule_shell_name.go",
+    "sha": "e867b46694462541e041e03c18884ecab1213886",
+    "size": 4185,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_shell_name.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_shell_name.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e867b46694462541e041e03c18884ecab1213886",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_shell_name.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_shell_name.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/e867b46694462541e041e03c18884ecab1213886",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_shell_name.go"
+    }
+  },
+  {
+    "name": "rule_shellcheck.go",
+    "path": "rule_shellcheck.go",
+    "sha": "7a943bf2da5ac666d657cc046d9e453900c8d4c5",
+    "size": 7919,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_shellcheck.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_shellcheck.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7a943bf2da5ac666d657cc046d9e453900c8d4c5",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_shellcheck.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_shellcheck.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/7a943bf2da5ac666d657cc046d9e453900c8d4c5",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_shellcheck.go"
+    }
+  },
+  {
+    "name": "rule_shellcheck_test.go",
+    "path": "rule_shellcheck_test.go",
+    "sha": "862e9114a7844d0e7bfdcf307baa394f0a6a3ff8",
+    "size": 3532,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_shellcheck_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_shellcheck_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/862e9114a7844d0e7bfdcf307baa394f0a6a3ff8",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_shellcheck_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_shellcheck_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/862e9114a7844d0e7bfdcf307baa394f0a6a3ff8",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_shellcheck_test.go"
+    }
+  },
+  {
+    "name": "rule_test.go",
+    "path": "rule_test.go",
+    "sha": "4e6bf3fec9232d24639cc6b732a25ceba92df6e8",
+    "size": 1710,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4e6bf3fec9232d24639cc6b732a25ceba92df6e8",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/4e6bf3fec9232d24639cc6b732a25ceba92df6e8",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_test.go"
+    }
+  },
+  {
+    "name": "rule_workflow_call.go",
+    "path": "rule_workflow_call.go",
+    "sha": "46411121cd574437eb241935cead0e42e330b627",
+    "size": 5272,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_workflow_call.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_workflow_call.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/46411121cd574437eb241935cead0e42e330b627",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_workflow_call.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_workflow_call.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/46411121cd574437eb241935cead0e42e330b627",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_workflow_call.go"
+    }
+  },
+  {
+    "name": "rule_workflow_call_test.go",
+    "path": "rule_workflow_call_test.go",
+    "sha": "adaf57efdf1ab03f22c361fc1f0ecc40133c4d6a",
+    "size": 10148,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/rule_workflow_call_test.go?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/rule_workflow_call_test.go",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/adaf57efdf1ab03f22c361fc1f0ecc40133c4d6a",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/rule_workflow_call_test.go",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/rule_workflow_call_test.go?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/adaf57efdf1ab03f22c361fc1f0ecc40133c4d6a",
+      "html": "https://github.com/rhysd/actionlint/blob/main/rule_workflow_call_test.go"
+    }
+  },
+  {
+    "name": "scripts",
+    "path": "scripts",
+    "sha": "ddb18802692e41416390d94bef0b572d2df3768c",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/scripts?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/scripts",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/ddb18802692e41416390d94bef0b572d2df3768c",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/scripts?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/ddb18802692e41416390d94bef0b572d2df3768c",
+      "html": "https://github.com/rhysd/actionlint/tree/main/scripts"
+    }
+  },
+  {
+    "name": "staticcheck.conf",
+    "path": "staticcheck.conf",
+    "sha": "3d2cef6830042161e738b504f28d2ab82eced1c9",
+    "size": 173,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/staticcheck.conf?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/blob/main/staticcheck.conf",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/blobs/3d2cef6830042161e738b504f28d2ab82eced1c9",
+    "download_url": "https://raw.githubusercontent.com/rhysd/actionlint/main/staticcheck.conf",
+    "type": "file",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/staticcheck.conf?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/blobs/3d2cef6830042161e738b504f28d2ab82eced1c9",
+      "html": "https://github.com/rhysd/actionlint/blob/main/staticcheck.conf"
+    }
+  },
+  {
+    "name": "testdata",
+    "path": "testdata",
+    "sha": "515c9f008c682beb45ba8ae9bec98328304c1fc7",
+    "size": 0,
+    "url": "https://api.github.com/repos/rhysd/actionlint/contents/testdata?ref=main",
+    "html_url": "https://github.com/rhysd/actionlint/tree/main/testdata",
+    "git_url": "https://api.github.com/repos/rhysd/actionlint/git/trees/515c9f008c682beb45ba8ae9bec98328304c1fc7",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/rhysd/actionlint/contents/testdata?ref=main",
+      "git": "https://api.github.com/repos/rhysd/actionlint/git/trees/515c9f008c682beb45ba8ae9bec98328304c1fc7",
+      "html": "https://github.com/rhysd/actionlint/tree/main/testdata"
+    }
+  }
+]

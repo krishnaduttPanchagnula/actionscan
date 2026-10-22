@@ -1,0 +1,52 @@
+Scanning dir .
+Starting filesystem walk for root: /
+Scanned /tmp/opencode/work/testrepo/.github/workflows/ci.yml file and found 2 packages
+End status: 3 dirs visited, 5 inodes visited, 1 Extract calls, 93.261µs elapsed, 93.331µs wall time
+Loaded GitHub Actions local db from /home/krishna/.cache/osv-scalibr/GitHub Actions/all.zip
+panic: unsupported ecosystem GitHub Actions
+	panic: runtime error: invalid memory address or nil pointer dereference
+[signal SIGSEGV: segmentation violation code=0x1 addr=0x10 pc=0x1a42ba3]
+
+goroutine 1 [running]:
+github.com/google/osv-scalibr.Scanner.Scan.func1()
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/scalibr.go:204 +0x23
+panic({0x33705d0?, 0x366f792cd420?})
+	runtime/panic.go:859 +0x125
+github.com/google/osv-scalibr/semantic.MustParse(...)
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/semantic/parse.go:36
+github.com/google/osv-scalibr/enricher/vulnmatch/osvlocal/internal/vulns.rangeContainsVersion(0x366f793b9ce0, 0x366f791385a0)
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/enricher/vulnmatch/osvlocal/internal/vulns/vulnerability.go:59 +0x3c6
+github.com/google/osv-scalibr/enricher/vulnmatch/osvlocal/internal/vulns.rangeAffectsVersion({0x366f79502ba0, 0x1, 0x1c7183c?}, 0x366f791385a0)
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/enricher/vulnmatch/osvlocal/internal/vulns/vulnerability.go:105 +0x7c
+github.com/google/osv-scalibr/enricher/vulnmatch/osvlocal/internal/vulns.IsAffected(0x366f7934d2c0, 0x366f791385a0)
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/enricher/vulnmatch/osvlocal/internal/vulns/vulnerability.go:199 +0x356
+github.com/google/osv-scalibr/enricher/vulnmatch/osvlocal.VulnerabilitiesAffectingPackage({0x366f79800270, 0x2, 0x3b4de60?}, 0x366f791385a0)
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/enricher/vulnmatch/osvlocal/zip.go:259 +0x89
+github.com/google/osv-scalibr/enricher/vulnmatch/osvlocal.(*localMatcher).MatchVulnerabilities(0x366f794e58c0, {0x38dd740, 0x3b4de60}, 0x366f791385a0, {0x366f7928fe40, 0x2, 0x2})
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/enricher/vulnmatch/osvlocal/matcher.go:90 +0x1e5
+github.com/google/osv-scalibr/enricher/vulnmatch/osvlocal.(*Enricher).Enrich(0x1f8bf38?, {0x38dd740, 0x3b4de60}, 0x0?, 0x366f797c4048)
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/enricher/vulnmatch/osvlocal/osvlocal.go:138 +0x1a5
+github.com/google/osv-scalibr/enricher.Run({0x38dd740, 0x3b4de60}, 0x366f79bcba08, 0x366f797c4048)
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/enricher/enricher.go:110 +0x33d
+github.com/google/osv-scalibr.Scanner.Scan({}, {0x38dd740, 0x3b4de60}, 0x366f79ca41f0)
+	github.com/google/osv-scalibr@v0.5.4-0.20261009010329-5be78a00e3c2/scalibr.go:348 +0x26aa
+github.com/google/osv-scanner/v2/pkg/osvscanner.scan({_}, {{{0x3b4de60, 0x0, 0x0}, {0x0, 0x0, {0x0, 0x0}}, {0x366f79800cb0, 0x1, ...}, ...}, ...}, ...)
+	github.com/google/osv-scanner/v2/pkg/osvscanner/scan.go:340 +0x1385
+github.com/google/osv-scanner/v2/pkg/osvscanner.DoScan({{{0x3b4de60, 0x0, 0x0}, {0x0, 0x0, {0x0, 0x0}}, {0x366f79800cb0, 0x1, 0x1}, ...}, ...})
+	github.com/google/osv-scanner/v2/pkg/osvscanner/osvscanner.go:152 +0x526
+github.com/google/osv-scanner/v2/cmd/osv-scanner/scan/source.action({0x366f794ccb30?, 0x3617bf0?}, 0x366f79790308, {0x38c3e70, 0x366f78f82018}, {0x38c3e70, 0x366f78f82020}, {0x0, 0x0})
+	github.com/google/osv-scanner/v2/cmd/osv-scanner/scan/source/command.go:153 +0x809
+github.com/google/osv-scanner/v2/cmd/osv-scanner/scan/source.Command.func4({0x38ddaf8?, 0x366f792daea0?}, 0x366f792daea0?)
+	github.com/google/osv-scanner/v2/cmd/osv-scanner/scan/source/command.go:92 +0x35
+github.com/urfave/cli/v3.(*Command).run(0x366f79790308, {0x38ddaf8, 0x366f792daea0}, {0x366f79742a00, 0xa, 0xa})
+	github.com/urfave/cli/v3@v3.13.0/command_run.go:393 +0x2d2c
+github.com/urfave/cli/v3.(*Command).run(0x366f79790908, {0x38ddaf8, 0x366f792dad80}, {0x366f78fd13f0, 0xb, 0xb})
+	github.com/urfave/cli/v3@v3.13.0/command_run.go:325 +0x245a
+github.com/urfave/cli/v3.(*Command).run(0x366f79791508, {0x38ddaf8, 0x366f792da7e0}, {0x366f78fb0000, 0xc, 0xc})
+	github.com/urfave/cli/v3@v3.13.0/command_run.go:325 +0x245a
+github.com/urfave/cli/v3.(*Command).Run(...)
+	github.com/urfave/cli/v3@v3.13.0/command_run.go:95
+github.com/google/osv-scanner/v2/cmd/osv-scanner/internal/cmd.Run({0x366f78fb0000, 0xc, 0xc}, {0x38c3e70, 0x366f78f82018}, {0x38c3e70, 0x366f78f82020}, {0x0, 0x0}, {0x366f79affe88, ...})
+	github.com/google/osv-scanner/v2/cmd/osv-scanner/internal/cmd/run.go:110 +0x5fd
+main.main()
+	github.com/google/osv-scanner/v2/cmd/osv-scanner/main.go:15 +0x9a

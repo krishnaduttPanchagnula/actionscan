@@ -1,0 +1,130 @@
+Scharf | scharf 
+ scharf 
+ Scharf
+ Secure your CI/CD pipeline against supply-chain attacks on third-party GitHub Actions.
+ Scharf scans your workflows, identifies mutable action references, and replaces them with immutable commit SHAs. It also generates comprehensive CSV or JSON reports across repositories and lets you inspect available tags and SHAs without leaving your terminal.
+ Why Use Scharf?
+ By pinning every third-party action to a specific commit SHA, Scharf prevents unexpected or malicious changes from creeping into your CI/CD process. This ensures a stable and secure development lifecycle by eliminating risks tied to drifting dependencies and mutable tags.
+ Key Features
+ Autofix Workflows: Detect and update mutable action tags to their corresponding SHAs in your workflow files.
+ Quick SHA Lookup: Retrieve the latest commit SHA for any GitHub Action directly from the CLI.
+ Actionable Reports: Produce JSON or CSV reports that highlight insecure references across one or many repositories.
+ Custom Scopes: Choose to scan only the current HEAD or include all branches when you audit or find actions.
+ Supported Platforms
+ Linux
+ Mac OSX
+ Installation
+ Option 1 : Install quickly via Homebrew (requires Homebrew installed)
+ # Tap brew formula 
+brew tap cybrota/cybrota
+ # Install scharf 
+brew install scharf
+ Option 2 : Download Prebuilt Binary
+ Visit the releases page and download the binary for your OS:
+ https://github.com/cybrota/scharf/releases
+ Option 3 : Install via Script
+ curl -sf https://raw.githubusercontent.com/cybrota/scharf/refs/heads/main/install.sh | sh
+ This script installs the latest version automatically (requires curl).
+ Usage Examples
+ 1. Autofix Mutable Actions
+ Point to a Git repository, run:
+ # Auto fix a local repository 
+scharf autofix git_repo
+ Note: By default audit looks for current directory (.) if repo is not passed.
+ Scharf rewrites your workflow file, replacing, for example:
+ actions/github-script@v7 ➔ actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7 
+ Include –dry-run to preview changes without modifying files:
+ scharf autofix git_repo --dry-run 
+ 2. Audit a Single Repository
+ Scan for mutable references in your current repository:
+ # Audit a local repository 
+scharf audit git_repo
+ # Audit a remote repository. This automatically clones remote to /tmp location with scharf-* prefix 
+scharf audit https_or_git_url
+ The output lists each insecure tag, its file location, and the SHA you should pin. You can pass --raise-error flag to return a Non-zero error code.
+ Use a repository policy, repeatable transient exceptions, changed-line enforcement, or CI-native output:
+ scharf audit . --policy-from-ref origin/main --raise-error 
+scharf audit . --ignore actions/internal --ignore 'regex:example/.+@main' 
+scharf audit . --baseline-ref origin/main --changed-lines --out github --raise-error 
+scharf audit . --baseline-ref origin/main --out sarif --output scharf.sarif --raise-error 
+ Scharf discovers .scharf-policy.yml for advisory audits. Enforcing --raise-error uses the secure default unless you select an explicit policy or load .scharf-policy.yml from a trusted revision with --policy-from-ref . See Policy and PR feedback for the schema, precedence rules, expiration behavior, rollout modes, and SARIF integration.
+ Read-only transitive dependency audit
+ scharf audit ./repository --dependencies --out json follows declarative uses 
+edges through composite actions and reusable workflows at resolved commits. Use
+ --out human or --out sarif for other report formats and --raise-error to fail
+on mutable graph edges. API access uses GITHUB_TOKEN when available; it never
+executes downloaded actions. Normal audit behavior is unchanged.
+ The graph includes original references, resolved commits and each caller chain.
+Inaccessible metadata, ambiguous workspace-relative actions, cycles and exhausted
+budgets are incomplete , never clean. $/ uses defining-repository semantics
+(requires runner 2.336.0+); ./ in remote composite actions needs workspace context
+and is left unresolved. Local workflow calls use their defining repository.
+Traversal is capped at depth 12, 5,000 visited YAML structures/aliases/mapping keys
+and 8 MiB of unique metadata, including run-only and malformed alias expansion.
+ This mode does not apply policy exceptions/baselines or perform autofixes. Run the
+normal policy audit separately. Docker image references are marked not traversed (image auditing is separate work).
+It excludes shell/JavaScript downloads, package and container contents; a pinned graph is not a trust assessment. See
+ ADR 004 for budgets and limits.
+ 3. Find Across Many Repos
+ Point Scharf at a directory of cloned repositories to scan multiple projects:
+ scharf find --root /path/to/workspace --out csv
+ Add --head-only flag to limit scanning to each repo’s current HEAD, or omit it to include all branches.
+ 4. List Available Tags and SHAs
+ If you need to explore versions before pinning, run:
+ scharf list owner/repo
+ # Ex: scharf list tj-actions/changed-files 
+ This command prints a table of tags and their corresponding commit SHAs.
+ 5. Lookup a Specific SHA
+ When you know a tag and want its SHA, use:
+ scharf lookup owner/repo@version
+ # Ex: scharf lookup actions/checkout@v4 
+ 6. Upgrade a Single Pinned Action SHA
+ To move from one pinned version to the next available version:
+ scharf upgrade owner/repo@version
+ # Ex: scharf upgrade actions/checkout@v4 
+ If your input is already a SHA, provide the current version context:
+ scharf upgrade owner/repo@<sha> --from-version v4
+ Control cool-down warnings (default is 24h):
+ scharf upgrade actions/checkout@v4 --cooldown-hours 24
+ Preview output without applying changes:
+ scharf upgrade actions/checkout@v4 --dry-run 
+ 7. Upgrade All Scharf-Formatted Pinned SHAs
+ To upgrade all existing Scharf-managed pinned references in workflows:
+ scharf upgrade-all-sha . 
+ Preview all planned upgrades:
+ scharf upgrade-all-sha . --cooldown-hours 24 --dry-run 
+ Notes:
+ This command only upgrades references in Scharf format: owner/repo@<sha> # <version> 
+ Mutable references (such as @v4 , @main ) are not changed by this command; use scharf autofix for those.
+ CI Integration
+ Embed Scharf in your GitHub Actions workflow to enforce secure references automatically:
+ See this repository for more details:
+ https://github.com/cybrota/scharf-action 
+ jobs : 
+ my-job : 
+ runs-on : ubuntu-22.04 
+ steps : 
+ - name : Checkout repository 
+ uses : actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 
+ - name : Audit GitHub actions 
+ uses : cybrota/scharf-action@c0d0eb13ca383e5a3ec947d754f61c9e61fab5ba 
+ with : 
+ raise-error : true 
+ The Risk of Mutable Tags
+ Mutable tags (e.g., @v1 or @main) allow action authors to push new code without changing your workflow. If a tag gets compromised, your CI can run malicious code. Scharf eliminates this vulnerability by always pinning to a specific, audited commit.
+ TODO for Scharf
+ Check Issues Tab on GitHub
+ Further Reading:
+ Supply Chain Compromise of Third-Party tj-actions/changed-files:
+ https://www.cisa.gov/news-events/alerts/2025/03/18/supply-chain-compromise-third-party-github-action-cve-2025-30066
+ Whose code am I running in GitHub Actions?
+ https://alexwlchan.net/2025/github-actions-audit/
+ GitHub CVE: tj-actions changed-files through 45.0.7 allows remote attackers to discover secrets by reading action logs
+ https://github.com/advisories/ghsa-mrrh-fwg8-r2c3
+ Optional upstream provenance verification
+ Use --verify-provenance with audit , autofix , upgrade , or upgrade-all-sha 
+to require fresh upstream branch-history evidence and detect repository identity
+and reference changes. Existing behavior remains immutability-only by default.
+See provenance verification for evidence, request limits,
+review requirements and limitations. Verification does not establish benign code.
+ This site is open source. Improve this page .

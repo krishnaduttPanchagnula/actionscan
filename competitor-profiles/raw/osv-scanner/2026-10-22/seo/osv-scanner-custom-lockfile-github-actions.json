@@ -1,0 +1,12 @@
+Starting filesystem walk for root: /
+Scanned /tmp/opencode/work/testrepo/osv-scanner.json file and found 1 package
+End status: 0 dirs visited, 1 inodes visited, 1 Extract calls, 98.081µs elapsed, 98.161µs wall time
+{
+  "results": [],
+  "experimental_config": {
+    "licenses": {
+      "summary": false,
+      "allowlist": null
+    }
+  }
+}

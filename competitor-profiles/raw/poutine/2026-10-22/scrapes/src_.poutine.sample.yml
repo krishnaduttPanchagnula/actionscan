@@ -1,0 +1,68 @@
+# Include custom Rego rules from specified directories
+# Each path should contain *.rego files with package names following: package rules.<rule_name>
+# For more details, see: https://github.com/boost-rnd/poutine-rules
+# default: []
+# include:
+# - path: ./custom_rules
+# - path: ./github_actions
+
+# When using analyze_org, ignore forked repositories in the organization
+# default: false
+ignoreForks: true
+
+# Disable the once-per-day check for newer poutine releases
+# default: false
+# disableVersionCheck: true
+
+# Set rule configuration options
+rulesConfig:
+  pr_runs_on_self_hosted:
+    allowed_runners:
+    - self-hosted
+    - label:gpu
+    - group:prdeploy
+
+
+# Skip findings if any rules in this list matches the finding's properties.
+# Each rule can have the following keys: job, level, osv_id, path, purl, rule.
+# The value of each key is a string or a list of strings.
+# default: []
+skip:
+
+
+skipExamples:
+# skip findings by rule level (one of: note, warning, error)
+- level: note
+
+# skip findings at a given path
+- path: .github/workflows/safe.yml
+
+# skip findings of a given rule
+- rule: unpinnable_action
+
+# skip findings of a rule at given paths
+- rule: pr_runs_on_self_hosted
+  path:
+  - .github/workflows/pr.yml
+
+# skip findings of a rule about a list of packages
+- rule: github_action_from_unverified_creator_used
+  purl:
+  - pkg:githubactions/dorny/paths-filter
+  - pkg:githubactions/golangci/golangci-lint-action
+
+# skip findings of a rule for a list of repositories
+- rule: pr_runs_on_self_hosted
+  purl:
+  - pkg:github/org/repo
+
+# skip findings by OSV ID
+- osv_id:
+  - GHSA-mcph-m25j-8j63
+
+
+# includes only this set of rules
+allowedRules:
+- "pr_runs_on_self_hosted"
+- "unpinnable_action"
+- "github_action_from_unverified_creator_used"

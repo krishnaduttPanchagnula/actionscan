@@ -1,0 +1,1667 @@
+[
+  {
+    "sha": "011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7",
+    "node_id": "C_kwDOFhfz29oAKDAxMWE2ZDE1ZTc0OWJiM2YyZDc3MWVlZDljN2FhMGU3ZTNlMTBlZTc",
+    "commit": {
+      "author": {
+        "name": "Linda_pp",
+        "email": "rhysd@users.noreply.github.com",
+        "date": "2026-04-19T14:46:58Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-04-19T14:46:58Z"
+      },
+      "message": "Merge pull request #651 from attehuhtakangas/fix-shellcheck-deadlock-macos\n\nfix deadlock in shellcheck integration on darwin by using cmd.Stdin",
+      "tree": {
+        "sha": "77e94406357b47372929b4614abd3848cd1c761a",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/77e94406357b47372929b4614abd3848cd1c761a"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJp5OriCRC1aQ7uu5UhlAAAKegQAJN0tenCba17vhq9kAymLm5W\ntLt2sYmzTriURJtogTShLvbYj2Fn0i+torQ3Z9Ls/4H4Vuo2h5PDh62thYRCQq6S\ntZ5PVn8wq5tNw1ekeH0BW4sdX3GFy6t5gGXkWv+fUadAG68FdNgKZuMHw3PszUZx\nmzKkvp2GY8Ibrn1HfVSTKPp1Xc0nzJWVZ/Z6rdW4FE82C0+FTiXMz1MDd0/qw68W\nSlvNAjJf3fUQnhJ16m+VERLXZu/6p70KHZQOox7YAVLWZgZnaZGXwf0HERlgJemI\nbYBwebVMiw3Xw57v3FND1BOg29Yf37uzPwGmHg36WX7YElQlb6Fz0AyAoOhRwge8\nXOJ1mv7sEWHTCXvlM4s4QlIVbrruO/sLmmJ5Jvc2R3WppNB5v5Hq8x3nnFRhNnUP\n8vWIZptYF4N88Sjme0oj6aF1EZ+XyVl2xvMJRj1l5FYUg9lTguqYD8GwHBtXP+pN\nxsiKxyb+ngPX2DV3Md5uXdnsjVcIi33ijTA3zSbF/lcA6elU/fYA+w29uLieLfkd\n9YbRFCRpCh/KhG1cdzsj2fxiVq9SXEEGEUsyzCc+dIIMu5cMM6waUknGrGy0FL+o\n5HaHflbs2BsCHCHy0U+n/Rr7KpVJaPMgS2nO4GlM4fad0EYdD5gnHUwkY03YjUnn\njzOlEyPLTC/I603pYe+H\n=roYh\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 77e94406357b47372929b4614abd3848cd1c761a\nparent 575dc065835117209c88dfa9fe35f134ebf4b1ff\nparent fd33e9f582a01a02885c93ae3775e1190cf63653\nauthor Linda_pp <rhysd@users.noreply.github.com> 1776610018 +0900\ncommitter GitHub <noreply@github.com> 1776610018 +0900\n\nMerge pull request #651 from attehuhtakangas/fix-shellcheck-deadlock-macos\n\nfix deadlock in shellcheck integration on darwin by using cmd.Stdin",
+        "verified_at": "2026-04-19T14:46:58Z"
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7",
+    "html_url": "https://github.com/rhysd/actionlint/commit/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/011a6d15e749bb3f2d771eed9c7aa0e7e3e10ee7/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "575dc065835117209c88dfa9fe35f134ebf4b1ff",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/575dc065835117209c88dfa9fe35f134ebf4b1ff",
+        "html_url": "https://github.com/rhysd/actionlint/commit/575dc065835117209c88dfa9fe35f134ebf4b1ff"
+      },
+      {
+        "sha": "fd33e9f582a01a02885c93ae3775e1190cf63653",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/fd33e9f582a01a02885c93ae3775e1190cf63653",
+        "html_url": "https://github.com/rhysd/actionlint/commit/fd33e9f582a01a02885c93ae3775e1190cf63653"
+      }
+    ]
+  },
+  {
+    "sha": "575dc065835117209c88dfa9fe35f134ebf4b1ff",
+    "node_id": "C_kwDOFhfz29oAKDU3NWRjMDY1ODM1MTE3MjA5Yzg4ZGZhOWZlMzVmMTM0ZWJmNGIxZmY",
+    "commit": {
+      "author": {
+        "name": "Linda_pp",
+        "email": "rhysd@users.noreply.github.com",
+        "date": "2026-04-19T14:03:02Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-04-19T14:03:02Z"
+      },
+      "message": "Merge pull request #645 from mkusaka/feat/service-container-entrypoint-command\n\nAdd support for entrypoint and command for service containers",
+      "tree": {
+        "sha": "8dfc957e2261fd4acbe8758f21c5969a5187572a",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/8dfc957e2261fd4acbe8758f21c5969a5187572a"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/575dc065835117209c88dfa9fe35f134ebf4b1ff",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJp5OCXCRC1aQ7uu5UhlAAAu4wQAIPf9eSVLa7VgNC7rK3H9UG1\nh4gZjRVsiPgZjO0iTlhl9TLgdYoedJZNM0Zo/FfXmhPcAKZSYEO+Rv+j83dGvWTv\nzuesDPl95lORDBdLFK+nMzD+v+vztO1fKnUVkWcNkQrnyZHMFrWV7GZOeDdghWq/\nE28KQ5GRbl9Z4Eb6tk8YoVeCUCQQmaZQezpaygscZD9bd8G7L7fFp2PjaXH5lyo4\n6eEscEhMRCUUBwFyCssXcDMrGm3TC/f6JfIk3KlwX67yYF0NvVqIIKASxjy2S3mw\n2bDyGyxljimSaShwFB3GLkO8CHkBPzrHJz+MJJElUPBUrn+bRFioIAyc84w2JgKs\nfV/QUsQATztPhUgAcwvQUloKFjdCQmUn0cALoTJamAKN+yL9kKxUzp1ZnXZG9021\nwhqdsf4/emEtaJkFkHi2c89fjtaT5VllYd45qU8Jmis/iI2RSXBbZjGhJ1Z/BzdU\nmzBOLWMr58eGCUveYkK6z3LypgmYcoJCmOpNGuMbJ7iXcoN+UZ6xDZ4suutsg6AI\nkFszz7SW6Rq0mnjyHaIqGlZYERrP4M2/6mYTpxYuWBb3wExdmHNjFsfknJEH6kWi\nJRDgLvVRuQwVw+owtnvoA9J1j0W1AlEXXia37DOo8Vq2ZvLTljzKB5yGHg22ysCE\nK237ET0TzirJUvmww1V3\n=Ytp0\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree 8dfc957e2261fd4acbe8758f21c5969a5187572a\nparent 21e87230c0bac0ffe162da973b80bec9eac35191\nparent 2b703c9e22d8b809b77f64ca7e35462331be52be\nauthor Linda_pp <rhysd@users.noreply.github.com> 1776607382 +0900\ncommitter GitHub <noreply@github.com> 1776607382 +0900\n\nMerge pull request #645 from mkusaka/feat/service-container-entrypoint-command\n\nAdd support for entrypoint and command for service containers",
+        "verified_at": "2026-04-19T14:03:03Z"
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/575dc065835117209c88dfa9fe35f134ebf4b1ff",
+    "html_url": "https://github.com/rhysd/actionlint/commit/575dc065835117209c88dfa9fe35f134ebf4b1ff",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/575dc065835117209c88dfa9fe35f134ebf4b1ff/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "21e87230c0bac0ffe162da973b80bec9eac35191",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/21e87230c0bac0ffe162da973b80bec9eac35191",
+        "html_url": "https://github.com/rhysd/actionlint/commit/21e87230c0bac0ffe162da973b80bec9eac35191"
+      },
+      {
+        "sha": "2b703c9e22d8b809b77f64ca7e35462331be52be",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/2b703c9e22d8b809b77f64ca7e35462331be52be",
+        "html_url": "https://github.com/rhysd/actionlint/commit/2b703c9e22d8b809b77f64ca7e35462331be52be"
+      }
+    ]
+  },
+  {
+    "sha": "fd33e9f582a01a02885c93ae3775e1190cf63653",
+    "node_id": "C_kwDOFhfz29oAKGZkMzNlOWY1ODJhMDFhMDI4ODVjOTNhZTM3NzVlMTE5MGNmNjM2NTM",
+    "commit": {
+      "author": {
+        "name": "Atte Huhtakangas",
+        "email": "atte.huhtakangas@gmail.com",
+        "date": "2026-04-17T15:19:45Z"
+      },
+      "committer": {
+        "name": "Atte Huhtakangas",
+        "email": "atte.huhtakangas@gmail.com",
+        "date": "2026-04-17T15:19:45Z"
+      },
+      "message": "fix deadlock in shellcheck integration on darwin by using cmd.Stdin\n\nWriting the script to cmd.StdinPipe() before cmd.Start() relies on the\nkernel pipe buffer absorbing the whole payload. On darwin with several\nconcurrent workers this deadlocks because the buffer fills up and no\nreader is attached until Start() runs, which never happens.\n\nSet cmd.Stdin to a strings.Reader instead so the standard library pipes\nthe payload to the child after Start() on a copy goroutine. This is the\ncanonical os/exec pattern and removes the manual pipe management.\n\nCloses #650",
+      "tree": {
+        "sha": "9019827de8646d851182e3bb1d9f85bd123f59aa",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/9019827de8646d851182e3bb1d9f85bd123f59aa"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/fd33e9f582a01a02885c93ae3775e1190cf63653",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN SSH SIGNATURE-----\nU1NIU0lHAAAAAQAAADMAAAALc3NoLWVkMjU1MTkAAAAgLI+Oip1GdipjbGcov+Hq4G5r8F\nq9pM98wy7AxSdtiXYAAAADZ2l0AAAAAAAAAAZzaGE1MTIAAABTAAAAC3NzaC1lZDI1NTE5\nAAAAQDe8DmoVY5tHpL5BnAdpKX0TYJwoHPT5nj5KmevTjmVjlABV3rGgT5xq3GP9UvDap8\nhKX7VQ+VUp+i75i4xyTQc=\n-----END SSH SIGNATURE-----",
+        "payload": "tree 9019827de8646d851182e3bb1d9f85bd123f59aa\nparent 21e87230c0bac0ffe162da973b80bec9eac35191\nauthor Atte Huhtakangas <atte.huhtakangas@gmail.com> 1776439185 +0100\ncommitter Atte Huhtakangas <atte.huhtakangas@gmail.com> 1776439185 +0100\n\nfix deadlock in shellcheck integration on darwin by using cmd.Stdin\n\nWriting the script to cmd.StdinPipe() before cmd.Start() relies on the\nkernel pipe buffer absorbing the whole payload. On darwin with several\nconcurrent workers this deadlocks because the buffer fills up and no\nreader is attached until Start() runs, which never happens.\n\nSet cmd.Stdin to a strings.Reader instead so the standard library pipes\nthe payload to the child after Start() on a copy goroutine. This is the\ncanonical os/exec pattern and removes the manual pipe management.\n\nCloses #650\n",
+        "verified_at": "2026-04-17T15:19:54Z"
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/fd33e9f582a01a02885c93ae3775e1190cf63653",
+    "html_url": "https://github.com/rhysd/actionlint/commit/fd33e9f582a01a02885c93ae3775e1190cf63653",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/fd33e9f582a01a02885c93ae3775e1190cf63653/comments",
+    "author": {
+      "login": "attehuhtakangas",
+      "id": 3680110,
+      "node_id": "MDQ6VXNlcjM2ODAxMTA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3680110?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/attehuhtakangas",
+      "html_url": "https://github.com/attehuhtakangas",
+      "followers_url": "https://api.github.com/users/attehuhtakangas/followers",
+      "following_url": "https://api.github.com/users/attehuhtakangas/following{/other_user}",
+      "gists_url": "https://api.github.com/users/attehuhtakangas/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/attehuhtakangas/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/attehuhtakangas/subscriptions",
+      "organizations_url": "https://api.github.com/users/attehuhtakangas/orgs",
+      "repos_url": "https://api.github.com/users/attehuhtakangas/repos",
+      "events_url": "https://api.github.com/users/attehuhtakangas/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/attehuhtakangas/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "attehuhtakangas",
+      "id": 3680110,
+      "node_id": "MDQ6VXNlcjM2ODAxMTA=",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3680110?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/attehuhtakangas",
+      "html_url": "https://github.com/attehuhtakangas",
+      "followers_url": "https://api.github.com/users/attehuhtakangas/followers",
+      "following_url": "https://api.github.com/users/attehuhtakangas/following{/other_user}",
+      "gists_url": "https://api.github.com/users/attehuhtakangas/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/attehuhtakangas/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/attehuhtakangas/subscriptions",
+      "organizations_url": "https://api.github.com/users/attehuhtakangas/orgs",
+      "repos_url": "https://api.github.com/users/attehuhtakangas/repos",
+      "events_url": "https://api.github.com/users/attehuhtakangas/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/attehuhtakangas/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "21e87230c0bac0ffe162da973b80bec9eac35191",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/21e87230c0bac0ffe162da973b80bec9eac35191",
+        "html_url": "https://github.com/rhysd/actionlint/commit/21e87230c0bac0ffe162da973b80bec9eac35191"
+      }
+    ]
+  },
+  {
+    "sha": "2b703c9e22d8b809b77f64ca7e35462331be52be",
+    "node_id": "C_kwDOFhfz29oAKDJiNzAzYzllMjJkOGI4MDliNzdmNjRjYTdlMzU0NjIzMzFiZTUyYmU",
+    "commit": {
+      "author": {
+        "name": "mkusaka",
+        "email": "hinoshita1992@gmail.com",
+        "date": "2026-04-02T18:34:00Z"
+      },
+      "committer": {
+        "name": "mkusaka",
+        "email": "hinoshita1992@gmail.com",
+        "date": "2026-04-02T18:34:00Z"
+      },
+      "message": "Add support for entrypoint and command for service containers",
+      "tree": {
+        "sha": "8dfc957e2261fd4acbe8758f21c5969a5187572a",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/8dfc957e2261fd4acbe8758f21c5969a5187572a"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/2b703c9e22d8b809b77f64ca7e35462331be52be",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/2b703c9e22d8b809b77f64ca7e35462331be52be",
+    "html_url": "https://github.com/rhysd/actionlint/commit/2b703c9e22d8b809b77f64ca7e35462331be52be",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/2b703c9e22d8b809b77f64ca7e35462331be52be/comments",
+    "author": {
+      "login": "mkusaka",
+      "id": 24956031,
+      "node_id": "MDQ6VXNlcjI0OTU2MDMx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24956031?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mkusaka",
+      "html_url": "https://github.com/mkusaka",
+      "followers_url": "https://api.github.com/users/mkusaka/followers",
+      "following_url": "https://api.github.com/users/mkusaka/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mkusaka/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mkusaka/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mkusaka/subscriptions",
+      "organizations_url": "https://api.github.com/users/mkusaka/orgs",
+      "repos_url": "https://api.github.com/users/mkusaka/repos",
+      "events_url": "https://api.github.com/users/mkusaka/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mkusaka/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "mkusaka",
+      "id": 24956031,
+      "node_id": "MDQ6VXNlcjI0OTU2MDMx",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24956031?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/mkusaka",
+      "html_url": "https://github.com/mkusaka",
+      "followers_url": "https://api.github.com/users/mkusaka/followers",
+      "following_url": "https://api.github.com/users/mkusaka/following{/other_user}",
+      "gists_url": "https://api.github.com/users/mkusaka/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/mkusaka/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/mkusaka/subscriptions",
+      "organizations_url": "https://api.github.com/users/mkusaka/orgs",
+      "repos_url": "https://api.github.com/users/mkusaka/repos",
+      "events_url": "https://api.github.com/users/mkusaka/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/mkusaka/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "21e87230c0bac0ffe162da973b80bec9eac35191",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/21e87230c0bac0ffe162da973b80bec9eac35191",
+        "html_url": "https://github.com/rhysd/actionlint/commit/21e87230c0bac0ffe162da973b80bec9eac35191"
+      }
+    ]
+  },
+  {
+    "sha": "21e87230c0bac0ffe162da973b80bec9eac35191",
+    "node_id": "C_kwDOFhfz29oAKDIxZTg3MjMwYzBiYWMwZmZlMTYyZGE5NzNiODBiZWM5ZWFjMzUxOTE",
+    "commit": {
+      "author": {
+        "name": "Linda_pp",
+        "email": "rhysd@users.noreply.github.com",
+        "date": "2026-04-02T09:00:24Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-04-02T09:00:24Z"
+      },
+      "message": "Merge pull request #643 from rhysd/dependabot/github_actions/github-actions-7980569b8c\n\nBump codecov/codecov-action from 5 to 6 in the github-actions group",
+      "tree": {
+        "sha": "ddd2bf8a4f8189aaf129d5881377628b941e9e82",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/ddd2bf8a4f8189aaf129d5881377628b941e9e82"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/21e87230c0bac0ffe162da973b80bec9eac35191",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJpzjAoCRC1aQ7uu5UhlAAAOt0QAFWOpU3Cea8RbUZy48V/BJkr\n7bHriy5WmBTrQzyW1nGNW//b78PT3Lbs7T8QmZ0dv2ekX/HVCb/uEYVGZXNU9XPy\nbOW352ckxD9AZHrytelUSFsWtyWwMaHgmtdkYxDEyfE6jPFb5nonl56HV/OU2DgN\nvx7Avfc02TPFFrF0KHdHL0Y0OiafhlBrgoIcz5gtzis6MiPRUPay3QDkDi396RQZ\nTioKombNscE+1sXSGrydT36rnjQSNDe5+YiR2wjpkV/0lTBuLSCZyxCSsw4SXitW\nc7IOG7/V59oc6b3Tho5vC5/eGDLiSQ/HlwZNvmL8bQ2Iq5d6R+dYfXfRd9UOFs4l\nSjOfXfoyezdtVDF+wuVS1FQ5rmWaG/7HlTkSH9mojebmVPVmcuJPfe/Fl8OltF0z\nTJARisD9yeOry9dVrdaNXQTl4qtaQaAfeSEA/5HUvKB7JDMAfnrqRTU1OpGJaz53\nL789UXHI600N2MRx0Y+lKKsXeQAvIqeWBGLbhOAF/pcTvp0zLFBSSuo2EQGvbUr2\nOyJ4OQ9hAxejQVjRs0s1jEU4kBkvFV570IIpEUUE++l0ctM7BqxkS7u3zrq94tD2\nGaST1kwIxVzrrBrB64bnuDT3fCQG+i7FazcHiZHeFfKqI1uNxkg3DtrUjbQLYVGl\nokmzT9Slt90PPB8EYj8n\n=pIiy\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree ddd2bf8a4f8189aaf129d5881377628b941e9e82\nparent 3868e1042b733145b28e4c8a7d74ec987a921de6\nparent a6a4466cd9d3edd997bfb73d32a63666e109c93c\nauthor Linda_pp <rhysd@users.noreply.github.com> 1775120424 +0900\ncommitter GitHub <noreply@github.com> 1775120424 +0900\n\nMerge pull request #643 from rhysd/dependabot/github_actions/github-actions-7980569b8c\n\nBump codecov/codecov-action from 5 to 6 in the github-actions group",
+        "verified_at": "2026-04-02T09:00:25Z"
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/21e87230c0bac0ffe162da973b80bec9eac35191",
+    "html_url": "https://github.com/rhysd/actionlint/commit/21e87230c0bac0ffe162da973b80bec9eac35191",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/21e87230c0bac0ffe162da973b80bec9eac35191/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "3868e1042b733145b28e4c8a7d74ec987a921de6",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/3868e1042b733145b28e4c8a7d74ec987a921de6",
+        "html_url": "https://github.com/rhysd/actionlint/commit/3868e1042b733145b28e4c8a7d74ec987a921de6"
+      },
+      {
+        "sha": "a6a4466cd9d3edd997bfb73d32a63666e109c93c",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/a6a4466cd9d3edd997bfb73d32a63666e109c93c",
+        "html_url": "https://github.com/rhysd/actionlint/commit/a6a4466cd9d3edd997bfb73d32a63666e109c93c"
+      }
+    ]
+  },
+  {
+    "sha": "a6a4466cd9d3edd997bfb73d32a63666e109c93c",
+    "node_id": "C_kwDOFhfz29oAKGE2YTQ0NjZjZDlkM2VkZDk5N2JmYjczZDMyYTYzNjY2ZTEwOWM5M2M",
+    "commit": {
+      "author": {
+        "name": "dependabot[bot]",
+        "email": "49699333+dependabot[bot]@users.noreply.github.com",
+        "date": "2026-04-02T07:27:06Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-04-02T07:27:06Z"
+      },
+      "message": "Bump codecov/codecov-action from 5 to 6 in the github-actions group\n\nBumps the github-actions group with 1 update: [codecov/codecov-action](https://github.com/codecov/codecov-action).\n\n\nUpdates `codecov/codecov-action` from 5 to 6\n- [Release notes](https://github.com/codecov/codecov-action/releases)\n- [Changelog](https://github.com/codecov/codecov-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/codecov/codecov-action/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: codecov/codecov-action\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: github-actions\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+      "tree": {
+        "sha": "ddd2bf8a4f8189aaf129d5881377628b941e9e82",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/ddd2bf8a4f8189aaf129d5881377628b941e9e82"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/a6a4466cd9d3edd997bfb73d32a63666e109c93c",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJpzhpLCRC1aQ7uu5UhlAAADp4QAFZXrHgGgeuwDmnNS94FC5Mk\n+lUqyQE5OoSemHI5EUI9R+BONyyhL4rrGVgHyeIGXW05a1YA+LGbQ3vuQWqzZyRQ\neaPJSNpscTmwv07d3E7CzmvXqteaFINbcI5vdYGgoCV5UuM/s/ceMEjlKKDjzsGu\nnlaeZCtnZdmjDYg7PvAQaFipZtSk63Sx5L3xVyR+QSyrmpNJzrq660UcztJVZiu8\nvc8rVXFbH0Y+Hputn+7lihAm/FSqOFXTxSOQturtTC8qMH7JpVz/iLAdYX9AoN7C\nrO8x0xj4hkA/nbP1/GOm3TglNn7KKAjRknTTsP3AgnfYCaAZRSxjRwBkKSul6yHB\nIUD263d6lmnHuhiZiNWd9y9LzjO/ySNczaj3CA9hP8pRXY82RXmlzPyGNosVZfUZ\nzs8y4LfJ5jgn3K3qFBe8yIP+uYrbFYCKG1+8K1n/YHpFa4J0waVSCvQc3De7LM8e\nCWUHp7jFfrwTV9xjX67gSuWWDNz/SKSgkyJeHXSKRZhHT8p8VHt5EXmNUj085B8/\n0Wvi69Nx/NZKG7ehjrKFMN4/AKxB2y6EiRHrFT7hWHQ9XUXjFYcJXuQCdQ3Zj72Y\nznPVH6/Kq1r4o34YIR85hArPYhF0E2p3iUe4e5dmgbJyc0W10Buem5qoXh5MH36/\nLCLpXT3rXNWjLPz+g5l+\n=7nMM\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree ddd2bf8a4f8189aaf129d5881377628b941e9e82\nparent 3868e1042b733145b28e4c8a7d74ec987a921de6\nauthor dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com> 1775114826 +0000\ncommitter GitHub <noreply@github.com> 1775114826 +0000\n\nBump codecov/codecov-action from 5 to 6 in the github-actions group\n\nBumps the github-actions group with 1 update: [codecov/codecov-action](https://github.com/codecov/codecov-action).\n\n\nUpdates `codecov/codecov-action` from 5 to 6\n- [Release notes](https://github.com/codecov/codecov-action/releases)\n- [Changelog](https://github.com/codecov/codecov-action/blob/main/CHANGELOG.md)\n- [Commits](https://github.com/codecov/codecov-action/compare/v5...v6)\n\n---\nupdated-dependencies:\n- dependency-name: codecov/codecov-action\n  dependency-version: '6'\n  dependency-type: direct:production\n  update-type: version-update:semver-major\n  dependency-group: github-actions\n...\n\nSigned-off-by: dependabot[bot] <support@github.com>",
+        "verified_at": "2026-04-02T07:27:07Z"
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/a6a4466cd9d3edd997bfb73d32a63666e109c93c",
+    "html_url": "https://github.com/rhysd/actionlint/commit/a6a4466cd9d3edd997bfb73d32a63666e109c93c",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/a6a4466cd9d3edd997bfb73d32a63666e109c93c/comments",
+    "author": {
+      "login": "dependabot[bot]",
+      "id": 49699333,
+      "node_id": "MDM6Qm90NDk2OTkzMzM=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/29110?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/dependabot%5Bbot%5D",
+      "html_url": "https://github.com/apps/dependabot",
+      "followers_url": "https://api.github.com/users/dependabot%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/dependabot%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/dependabot%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/dependabot%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/dependabot%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/dependabot%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/dependabot%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/dependabot%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/dependabot%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "3868e1042b733145b28e4c8a7d74ec987a921de6",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/3868e1042b733145b28e4c8a7d74ec987a921de6",
+        "html_url": "https://github.com/rhysd/actionlint/commit/3868e1042b733145b28e4c8a7d74ec987a921de6"
+      }
+    ]
+  },
+  {
+    "sha": "3868e1042b733145b28e4c8a7d74ec987a921de6",
+    "node_id": "C_kwDOFhfz29oAKDM4NjhlMTA0MmI3MzMxNDViMjhlNGM4YTdkNzRlYzk4N2E5MjFkZTY",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T18:15:02Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T18:15:02Z"
+      },
+      "message": "fix section title of the check for `on.schedule` is outdated",
+      "tree": {
+        "sha": "86a3de80a57ef196792481cd8dce9beb7adc32a7",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/86a3de80a57ef196792481cd8dce9beb7adc32a7"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/3868e1042b733145b28e4c8a7d74ec987a921de6",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/3868e1042b733145b28e4c8a7d74ec987a921de6",
+    "html_url": "https://github.com/rhysd/actionlint/commit/3868e1042b733145b28e4c8a7d74ec987a921de6",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/3868e1042b733145b28e4c8a7d74ec987a921de6/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "fcf6e2023e22c6c3048ead73d0a3ef572a30bbd7",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/fcf6e2023e22c6c3048ead73d0a3ef572a30bbd7",
+        "html_url": "https://github.com/rhysd/actionlint/commit/fcf6e2023e22c6c3048ead73d0a3ef572a30bbd7"
+      }
+    ]
+  },
+  {
+    "sha": "fcf6e2023e22c6c3048ead73d0a3ef572a30bbd7",
+    "node_id": "C_kwDOFhfz29oAKGZjZjZlMjAyM2UyMmM2YzMwNDhlYWQ3M2QwYTNlZjU3MmEzMGJiZDc",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T18:14:05Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T18:14:05Z"
+      },
+      "message": "update changelog for v1.7.12 changes",
+      "tree": {
+        "sha": "1e6b5855fc347cd16a627b6780660fdf6f03fc7b",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/1e6b5855fc347cd16a627b6780660fdf6f03fc7b"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/fcf6e2023e22c6c3048ead73d0a3ef572a30bbd7",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/fcf6e2023e22c6c3048ead73d0a3ef572a30bbd7",
+    "html_url": "https://github.com/rhysd/actionlint/commit/fcf6e2023e22c6c3048ead73d0a3ef572a30bbd7",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/fcf6e2023e22c6c3048ead73d0a3ef572a30bbd7/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "3795ba2f6cb243eeca54c9d22e5c531cb9dcfb4a",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/3795ba2f6cb243eeca54c9d22e5c531cb9dcfb4a",
+        "html_url": "https://github.com/rhysd/actionlint/commit/3795ba2f6cb243eeca54c9d22e5c531cb9dcfb4a"
+      }
+    ]
+  },
+  {
+    "sha": "3795ba2f6cb243eeca54c9d22e5c531cb9dcfb4a",
+    "node_id": "C_kwDOFhfz29oAKDM3OTViYTJmNmNiMjQzZWVjYTU0YzlkMjJlNWM1MzFjYjlkY2ZiNGE",
+    "commit": {
+      "author": {
+        "name": "github-actions[bot]",
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "date": "2026-03-30T17:49:30Z"
+      },
+      "committer": {
+        "name": "github-actions[bot]",
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "date": "2026-03-30T17:49:30Z"
+      },
+      "message": "update version to 1.7.12 in download-actionlint.bash",
+      "tree": {
+        "sha": "a5e4ad9e6bdd47ffbdd621ba3558b34e7d060024",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/a5e4ad9e6bdd47ffbdd621ba3558b34e7d060024"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/3795ba2f6cb243eeca54c9d22e5c531cb9dcfb4a",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/3795ba2f6cb243eeca54c9d22e5c531cb9dcfb4a",
+    "html_url": "https://github.com/rhysd/actionlint/commit/3795ba2f6cb243eeca54c9d22e5c531cb9dcfb4a",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/3795ba2f6cb243eeca54c9d22e5c531cb9dcfb4a/comments",
+    "author": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "1ce6912afb9c280d41f6132dc1d350364b574885",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/1ce6912afb9c280d41f6132dc1d350364b574885",
+        "html_url": "https://github.com/rhysd/actionlint/commit/1ce6912afb9c280d41f6132dc1d350364b574885"
+      }
+    ]
+  },
+  {
+    "sha": "1ce6912afb9c280d41f6132dc1d350364b574885",
+    "node_id": "C_kwDOFhfz29oAKDFjZTY5MTJhZmI5YzI4MGQ0MWY2MTMyZGMxZDM1MDM2NGI1NzQ4ODU",
+    "commit": {
+      "author": {
+        "name": "github-actions[bot]",
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "date": "2026-03-30T17:49:22Z"
+      },
+      "committer": {
+        "name": "github-actions[bot]",
+        "email": "41898282+github-actions[bot]@users.noreply.github.com",
+        "date": "2026-03-30T17:49:22Z"
+      },
+      "message": "Brew cask update for actionlint version v1.7.12",
+      "tree": {
+        "sha": "dd1ff85f2ad7dbf90ac498125bf7729e28b04e37",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/dd1ff85f2ad7dbf90ac498125bf7729e28b04e37"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/1ce6912afb9c280d41f6132dc1d350364b574885",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/1ce6912afb9c280d41f6132dc1d350364b574885",
+    "html_url": "https://github.com/rhysd/actionlint/commit/1ce6912afb9c280d41f6132dc1d350364b574885",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/1ce6912afb9c280d41f6132dc1d350364b574885/comments",
+    "author": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "github-actions[bot]",
+      "id": 41898282,
+      "node_id": "MDM6Qm90NDE4OTgyODI=",
+      "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+      "html_url": "https://github.com/apps/github-actions",
+      "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+      "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+      "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+      "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+      "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+      "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+      "type": "Bot",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "914e7df21a07ef503a81201c76d2b11c789d3fca",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/914e7df21a07ef503a81201c76d2b11c789d3fca",
+        "html_url": "https://github.com/rhysd/actionlint/commit/914e7df21a07ef503a81201c76d2b11c789d3fca"
+      }
+    ]
+  },
+  {
+    "sha": "914e7df21a07ef503a81201c76d2b11c789d3fca",
+    "node_id": "C_kwDOFhfz29oAKDkxNGU3ZGYyMWEwN2VmNTAzYTgxMjAxYzc2ZDJiMTFjNzg5ZDNmY2E",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:47:17Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:47:17Z"
+      },
+      "message": "bump up version to v1.7.12",
+      "tree": {
+        "sha": "ecee8c9c752f012b2da57a5fc59863624539b43b",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/ecee8c9c752f012b2da57a5fc59863624539b43b"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/914e7df21a07ef503a81201c76d2b11c789d3fca",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/914e7df21a07ef503a81201c76d2b11c789d3fca",
+    "html_url": "https://github.com/rhysd/actionlint/commit/914e7df21a07ef503a81201c76d2b11c789d3fca",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/914e7df21a07ef503a81201c76d2b11c789d3fca/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f1fe8a14702e00ee5f51a65cd44232260a1f38e3",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/f1fe8a14702e00ee5f51a65cd44232260a1f38e3",
+        "html_url": "https://github.com/rhysd/actionlint/commit/f1fe8a14702e00ee5f51a65cd44232260a1f38e3"
+      }
+    ]
+  },
+  {
+    "sha": "f1fe8a14702e00ee5f51a65cd44232260a1f38e3",
+    "node_id": "C_kwDOFhfz29oAKGYxZmU4YTE0NzAyZTAwZWU1ZjUxYTY1Y2Q0NDIzMjI2MGExZjM4ZTM",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:42:33Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:42:33Z"
+      },
+      "message": "update popular actions data set to the latest",
+      "tree": {
+        "sha": "7856a88c43823e7d270897c7e03088fb844a5cda",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/7856a88c43823e7d270897c7e03088fb844a5cda"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/f1fe8a14702e00ee5f51a65cd44232260a1f38e3",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/f1fe8a14702e00ee5f51a65cd44232260a1f38e3",
+    "html_url": "https://github.com/rhysd/actionlint/commit/f1fe8a14702e00ee5f51a65cd44232260a1f38e3",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/f1fe8a14702e00ee5f51a65cd44232260a1f38e3/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "0ef3e186788c574789a53973ce6bbe68b0847855",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/0ef3e186788c574789a53973ce6bbe68b0847855",
+        "html_url": "https://github.com/rhysd/actionlint/commit/0ef3e186788c574789a53973ce6bbe68b0847855"
+      }
+    ]
+  },
+  {
+    "sha": "0ef3e186788c574789a53973ce6bbe68b0847855",
+    "node_id": "C_kwDOFhfz29oAKDBlZjNlMTg2Nzg4YzU3NDc4OWE1Mzk3M2NlNmJiZTY4YjA4NDc4NTU",
+    "commit": {
+      "author": {
+        "name": "springmeyer",
+        "email": "dane.springmeyer@read.ai",
+        "date": "2026-03-20T03:38:42Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:37:23Z"
+      },
+      "message": "add support for https://github.blog/changelog/2026-03-19-github-actions-late-march-2026-updates/#github-actions-now-allows-developers-to-use-environments-without-auto-deployment",
+      "tree": {
+        "sha": "e2f929f834255234db2604f52e967b49247ea65e",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/e2f929f834255234db2604f52e967b49247ea65e"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/0ef3e186788c574789a53973ce6bbe68b0847855",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/0ef3e186788c574789a53973ce6bbe68b0847855",
+    "html_url": "https://github.com/rhysd/actionlint/commit/0ef3e186788c574789a53973ce6bbe68b0847855",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/0ef3e186788c574789a53973ce6bbe68b0847855/comments",
+    "author": {
+      "login": "springmeyer",
+      "id": 20300,
+      "node_id": "MDQ6VXNlcjIwMzAw",
+      "avatar_url": "https://avatars.githubusercontent.com/u/20300?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/springmeyer",
+      "html_url": "https://github.com/springmeyer",
+      "followers_url": "https://api.github.com/users/springmeyer/followers",
+      "following_url": "https://api.github.com/users/springmeyer/following{/other_user}",
+      "gists_url": "https://api.github.com/users/springmeyer/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/springmeyer/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/springmeyer/subscriptions",
+      "organizations_url": "https://api.github.com/users/springmeyer/orgs",
+      "repos_url": "https://api.github.com/users/springmeyer/repos",
+      "events_url": "https://api.github.com/users/springmeyer/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/springmeyer/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "d2f9e65edb32bf399153bb4931f4e30460951e1c",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/d2f9e65edb32bf399153bb4931f4e30460951e1c",
+        "html_url": "https://github.com/rhysd/actionlint/commit/d2f9e65edb32bf399153bb4931f4e30460951e1c"
+      }
+    ]
+  },
+  {
+    "sha": "d2f9e65edb32bf399153bb4931f4e30460951e1c",
+    "node_id": "C_kwDOFhfz29oAKGQyZjllNjVlZGIzMmJmMzk5MTUzYmI0OTMxZjRlMzA0NjA5NTFlMWM",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:33:39Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:33:39Z"
+      },
+      "message": "update document to describe the timezone check in `on.schedule`",
+      "tree": {
+        "sha": "060a27f8365c1686d445b667b9c00eeae4f250bf",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/060a27f8365c1686d445b667b9c00eeae4f250bf"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/d2f9e65edb32bf399153bb4931f4e30460951e1c",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/d2f9e65edb32bf399153bb4931f4e30460951e1c",
+    "html_url": "https://github.com/rhysd/actionlint/commit/d2f9e65edb32bf399153bb4931f4e30460951e1c",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/d2f9e65edb32bf399153bb4931f4e30460951e1c/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "c03b2717b1dfa137c053e3a54b35461bfdc370ae",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/c03b2717b1dfa137c053e3a54b35461bfdc370ae",
+        "html_url": "https://github.com/rhysd/actionlint/commit/c03b2717b1dfa137c053e3a54b35461bfdc370ae"
+      }
+    ]
+  },
+  {
+    "sha": "c03b2717b1dfa137c053e3a54b35461bfdc370ae",
+    "node_id": "C_kwDOFhfz29oAKGMwM2IyNzE3YjFkZmExMzdjMDUzZTNhNTRiMzU0NjFiZmRjMzcwYWU",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:24:14Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:24:14Z"
+      },
+      "message": "Merge branch 'followup-issue641' (#641)",
+      "tree": {
+        "sha": "c37ae69ed0c029753be1206fa54617a8668c4203",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/c37ae69ed0c029753be1206fa54617a8668c4203"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/c03b2717b1dfa137c053e3a54b35461bfdc370ae",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/c03b2717b1dfa137c053e3a54b35461bfdc370ae",
+    "html_url": "https://github.com/rhysd/actionlint/commit/c03b2717b1dfa137c053e3a54b35461bfdc370ae",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/c03b2717b1dfa137c053e3a54b35461bfdc370ae/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "4897c1ddc2fb5738bb38d80c58ab2f1836118391",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/4897c1ddc2fb5738bb38d80c58ab2f1836118391",
+        "html_url": "https://github.com/rhysd/actionlint/commit/4897c1ddc2fb5738bb38d80c58ab2f1836118391"
+      },
+      {
+        "sha": "c9efd912c902f0c8f614f5dab77954d2e30540a7",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/c9efd912c902f0c8f614f5dab77954d2e30540a7",
+        "html_url": "https://github.com/rhysd/actionlint/commit/c9efd912c902f0c8f614f5dab77954d2e30540a7"
+      }
+    ]
+  },
+  {
+    "sha": "c9efd912c902f0c8f614f5dab77954d2e30540a7",
+    "node_id": "C_kwDOFhfz29oAKGM5ZWZkOTEyYzkwMmYwYzhmNjE0ZjVkYWI3Nzk1NGQyZTMwNTQwYTc",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:17:48Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:17:48Z"
+      },
+      "message": "fix staticcheck checks files inside `./playground/node_modules`",
+      "tree": {
+        "sha": "c37ae69ed0c029753be1206fa54617a8668c4203",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/c37ae69ed0c029753be1206fa54617a8668c4203"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/c9efd912c902f0c8f614f5dab77954d2e30540a7",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/c9efd912c902f0c8f614f5dab77954d2e30540a7",
+    "html_url": "https://github.com/rhysd/actionlint/commit/c9efd912c902f0c8f614f5dab77954d2e30540a7",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/c9efd912c902f0c8f614f5dab77954d2e30540a7/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "08e233692b667c90f96469588ccc1d835508b363",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/08e233692b667c90f96469588ccc1d835508b363",
+        "html_url": "https://github.com/rhysd/actionlint/commit/08e233692b667c90f96469588ccc1d835508b363"
+      }
+    ]
+  },
+  {
+    "sha": "08e233692b667c90f96469588ccc1d835508b363",
+    "node_id": "C_kwDOFhfz29oAKDA4ZTIzMzY5MmI2NjdjOTBmOTY0Njk1ODhjY2MxZDgzNTUwOGIzNjM",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:06:28Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:06:57Z"
+      },
+      "message": "include timezone database in executable statically\n\nto ensure that timezone data is available. otherwise timezone check can\nfail in some environments where timezone database is not available.",
+      "tree": {
+        "sha": "c7502742e5cbad3457f231bf9464abd398ad817b",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/c7502742e5cbad3457f231bf9464abd398ad817b"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/08e233692b667c90f96469588ccc1d835508b363",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/08e233692b667c90f96469588ccc1d835508b363",
+    "html_url": "https://github.com/rhysd/actionlint/commit/08e233692b667c90f96469588ccc1d835508b363",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/08e233692b667c90f96469588ccc1d835508b363/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "f48c0a493f9e25e99443136b413cde503258c745",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/f48c0a493f9e25e99443136b413cde503258c745",
+        "html_url": "https://github.com/rhysd/actionlint/commit/f48c0a493f9e25e99443136b413cde503258c745"
+      }
+    ]
+  },
+  {
+    "sha": "f48c0a493f9e25e99443136b413cde503258c745",
+    "node_id": "C_kwDOFhfz29oAKGY0OGMwYTQ5M2Y5ZTI1ZTk5NDQzMTM2YjQxM2NkZTUwMzI1OGM3NDU",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:03:38Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T17:03:38Z"
+      },
+      "message": "fix timezone check is incomplete",
+      "tree": {
+        "sha": "f546600cece75182d84dfd78ff25f4725da4ce83",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/f546600cece75182d84dfd78ff25f4725da4ce83"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/f48c0a493f9e25e99443136b413cde503258c745",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/f48c0a493f9e25e99443136b413cde503258c745",
+    "html_url": "https://github.com/rhysd/actionlint/commit/f48c0a493f9e25e99443136b413cde503258c745",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/f48c0a493f9e25e99443136b413cde503258c745/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "6b811d3a8395894f2353f964fed61f61d64e9230",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/6b811d3a8395894f2353f964fed61f61d64e9230",
+        "html_url": "https://github.com/rhysd/actionlint/commit/6b811d3a8395894f2353f964fed61f61d64e9230"
+      }
+    ]
+  },
+  {
+    "sha": "6b811d3a8395894f2353f964fed61f61d64e9230",
+    "node_id": "C_kwDOFhfz29oAKDZiODExZDNhODM5NTg5NGYyMzUzZjk2NGZlZDYxZjYxZDY0ZTkyMzA",
+    "commit": {
+      "author": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T16:43:13Z"
+      },
+      "committer": {
+        "name": "rhysd",
+        "email": "lin90162@yahoo.co.jp",
+        "date": "2026-03-30T16:43:13Z"
+      },
+      "message": "fix problem matcher test fails due to line ending in test data",
+      "tree": {
+        "sha": "bc667a140e7dce03f03bd55d65b493e9f90efa8b",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/bc667a140e7dce03f03bd55d65b493e9f90efa8b"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/6b811d3a8395894f2353f964fed61f61d64e9230",
+      "comment_count": 0,
+      "verification": {
+        "verified": false,
+        "reason": "unsigned",
+        "signature": null,
+        "payload": null,
+        "verified_at": null
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/6b811d3a8395894f2353f964fed61f61d64e9230",
+    "html_url": "https://github.com/rhysd/actionlint/commit/6b811d3a8395894f2353f964fed61f61d64e9230",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/6b811d3a8395894f2353f964fed61f61d64e9230/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "4897c1ddc2fb5738bb38d80c58ab2f1836118391",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/4897c1ddc2fb5738bb38d80c58ab2f1836118391",
+        "html_url": "https://github.com/rhysd/actionlint/commit/4897c1ddc2fb5738bb38d80c58ab2f1836118391"
+      }
+    ]
+  },
+  {
+    "sha": "4897c1ddc2fb5738bb38d80c58ab2f1836118391",
+    "node_id": "C_kwDOFhfz29oAKDQ4OTdjMWRkYzJmYjU3MzhiYjM4ZDgwYzU4YWIyZjE4MzYxMTgzOTE",
+    "commit": {
+      "author": {
+        "name": "Linda_pp",
+        "email": "rhysd@users.noreply.github.com",
+        "date": "2026-03-30T16:19:43Z"
+      },
+      "committer": {
+        "name": "GitHub",
+        "email": "noreply@github.com",
+        "date": "2026-03-30T16:19:43Z"
+      },
+      "message": "Merge pull request #641 from martincostello/gh-638\n\nAdd support for timezone for schedule triggers",
+      "tree": {
+        "sha": "fc89bca9a882cc72106df20775be12652f3f118b",
+        "url": "https://api.github.com/repos/rhysd/actionlint/git/trees/fc89bca9a882cc72106df20775be12652f3f118b"
+      },
+      "url": "https://api.github.com/repos/rhysd/actionlint/git/commits/4897c1ddc2fb5738bb38d80c58ab2f1836118391",
+      "comment_count": 0,
+      "verification": {
+        "verified": true,
+        "reason": "valid",
+        "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJpyqKfCRC1aQ7uu5UhlAAAvFIQAE10gTE4KBuW6wsxwH1laGJ4\nlVhzyZuIKjAxvjCSOlWabS0/13EN5/tAYGTJJzKW2iL8SanPv6IkO/XFnPpaTP3s\nLTDO9u5DkuKwUJahQRMXojcjBusEqTJ8mHLM4zsKBvJJiLNkmRtB2sS4zSuuN3sI\not3pXLCVQ+IZWoxfoAwREIgKnD/lRZkk7IQZ5zxSJHldjRw5EnJ5ET0IjI8XA2O5\naUnsvXw+ckuUiWlAjoIo8mbu6nmhmO4EiTXsOFUCnsT2cooPt7yHWv/rTA/o/8jt\nRdyKvs6mv9SLVHDtQzW+TVN9DYddHVNyk3T/R4HUzT+70UQazthW9k51Ju5wvu/J\nCkREAcCTbR4Gu+HZsVt5rhc6D48y5Z77+aX0O7doDnyn7FAU8ww4BSX8CeCYM8NY\n7wexQD+d/tYmMRE1uP3akMmDnmM9HCvVO8QlwBak9yOoukUdnxvoaxhr/hxfeCx0\nu0KUZ6oBR/dcvech3+qqDbyVO8Vfhj/q34MI8+H2xxX2PVzRwHRT+3Ngw3jFAAKI\nWWdcWMwao1657F1YFxjiuVoXsbLlkZ1Lhr8BdN7Du4JGTLrjyKGsvKURu1vccVB4\nNx7sG7jpWSRTczDC5ljcZ3ReIgnx1Mo1w0YGewapqRxq1pBE4UJfG7ZEqkeM+2+8\nfogV+Vj0TspGtBSyBI6Y\n=x6Dv\n-----END PGP SIGNATURE-----\n",
+        "payload": "tree fc89bca9a882cc72106df20775be12652f3f118b\nparent 0f908faf57a36443c34c8354708c7eaeafe706dd\nparent 3edb284b44c961444a788a62972b86dad0667cc6\nauthor Linda_pp <rhysd@users.noreply.github.com> 1774887583 +0900\ncommitter GitHub <noreply@github.com> 1774887583 +0900\n\nMerge pull request #641 from martincostello/gh-638\n\nAdd support for timezone for schedule triggers",
+        "verified_at": "2026-03-30T16:19:44Z"
+      }
+    },
+    "url": "https://api.github.com/repos/rhysd/actionlint/commits/4897c1ddc2fb5738bb38d80c58ab2f1836118391",
+    "html_url": "https://github.com/rhysd/actionlint/commit/4897c1ddc2fb5738bb38d80c58ab2f1836118391",
+    "comments_url": "https://api.github.com/repos/rhysd/actionlint/commits/4897c1ddc2fb5738bb38d80c58ab2f1836118391/comments",
+    "author": {
+      "login": "rhysd",
+      "id": 823277,
+      "node_id": "MDQ6VXNlcjgyMzI3Nw==",
+      "avatar_url": "https://avatars.githubusercontent.com/u/823277?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/rhysd",
+      "html_url": "https://github.com/rhysd",
+      "followers_url": "https://api.github.com/users/rhysd/followers",
+      "following_url": "https://api.github.com/users/rhysd/following{/other_user}",
+      "gists_url": "https://api.github.com/users/rhysd/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/rhysd/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/rhysd/subscriptions",
+      "organizations_url": "https://api.github.com/users/rhysd/orgs",
+      "repos_url": "https://api.github.com/users/rhysd/repos",
+      "events_url": "https://api.github.com/users/rhysd/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/rhysd/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "committer": {
+      "login": "web-flow",
+      "id": 19864447,
+      "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+      "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/web-flow",
+      "html_url": "https://github.com/web-flow",
+      "followers_url": "https://api.github.com/users/web-flow/followers",
+      "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+      "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+      "organizations_url": "https://api.github.com/users/web-flow/orgs",
+      "repos_url": "https://api.github.com/users/web-flow/repos",
+      "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/web-flow/received_events",
+      "type": "User",
+      "user_view_type": "public",
+      "site_admin": false
+    },
+    "parents": [
+      {
+        "sha": "0f908faf57a36443c34c8354708c7eaeafe706dd",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/0f908faf57a36443c34c8354708c7eaeafe706dd",
+        "html_url": "https://github.com/rhysd/actionlint/commit/0f908faf57a36443c34c8354708c7eaeafe706dd"
+      },
+      {
+        "sha": "3edb284b44c961444a788a62972b86dad0667cc6",
+        "url": "https://api.github.com/repos/rhysd/actionlint/commits/3edb284b44c961444a788a62972b86dad0667cc6",
+        "html_url": "https://github.com/rhysd/actionlint/commit/3edb284b44c961444a788a62972b86dad0667cc6"
+      }
+    ]
+  }
+]

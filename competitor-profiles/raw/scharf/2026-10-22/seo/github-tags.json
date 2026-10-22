@@ -1,0 +1,222 @@
+[
+  {
+    "name": "v1.4.2",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.4.2",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.4.2",
+    "commit": {
+      "sha": "c11d75f2e05393b6719724f60280593d75a16618",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/c11d75f2e05393b6719724f60280593d75a16618"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuNC4y"
+  },
+  {
+    "name": "v1.4.1",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.4.1",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.4.1",
+    "commit": {
+      "sha": "d51c21e773474c61988fe96189c425c00d7df447",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/d51c21e773474c61988fe96189c425c00d7df447"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuNC4x"
+  },
+  {
+    "name": "v1.4.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.4.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.4.0",
+    "commit": {
+      "sha": "c8d7818b760ef54308bdeed93c36e7b4718d1b6e",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/c8d7818b760ef54308bdeed93c36e7b4718d1b6e"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuNC4w"
+  },
+  {
+    "name": "v1.3.1",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.3.1",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.3.1",
+    "commit": {
+      "sha": "e75f67dbe83b2a9c09234958e09d1ab5368f31e3",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/e75f67dbe83b2a9c09234958e09d1ab5368f31e3"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMy4x"
+  },
+  {
+    "name": "v1.3.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.3.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.3.0",
+    "commit": {
+      "sha": "337fdf57860cc702c05e48befc08cb753ecec7d5",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/337fdf57860cc702c05e48befc08cb753ecec7d5"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMy4w"
+  },
+  {
+    "name": "v1.2.1",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.2.1",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.2.1",
+    "commit": {
+      "sha": "04813fc8f05cb1784258269bbd8b577eb3c758bb",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/04813fc8f05cb1784258269bbd8b577eb3c758bb"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMi4x"
+  },
+  {
+    "name": "v1.2.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.2.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.2.0",
+    "commit": {
+      "sha": "8fcb1cd39b76ff6450cd5066aebd6970c30cf3e1",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/8fcb1cd39b76ff6450cd5066aebd6970c30cf3e1"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMi4w"
+  },
+  {
+    "name": "v1.1.3",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.1.3",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.1.3",
+    "commit": {
+      "sha": "e0c97b312ae584d1b6bc347415e705378fd162dd",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/e0c97b312ae584d1b6bc347415e705378fd162dd"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMS4z"
+  },
+  {
+    "name": "v1.1.2",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.1.2",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.1.2",
+    "commit": {
+      "sha": "8d85c6d28dddc32c0fd014552ad0aef1d6a76a0d",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/8d85c6d28dddc32c0fd014552ad0aef1d6a76a0d"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMS4y"
+  },
+  {
+    "name": "v1.1.1",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.1.1",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.1.1",
+    "commit": {
+      "sha": "c3ce10d589ea8ba39e6a56791ac5e73258e31dd0",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/c3ce10d589ea8ba39e6a56791ac5e73258e31dd0"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMS4x"
+  },
+  {
+    "name": "v1.1.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.1.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.1.0",
+    "commit": {
+      "sha": "e371f1c0d633a8d7246e0c90061a68c13da9c45b",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/e371f1c0d633a8d7246e0c90061a68c13da9c45b"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMS4w"
+  },
+  {
+    "name": "v1.0.1",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.0.1",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.0.1",
+    "commit": {
+      "sha": "85784c6fdfcc8e96b126f671c95f02d80e8c6ddf",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/85784c6fdfcc8e96b126f671c95f02d80e8c6ddf"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMC4x"
+  },
+  {
+    "name": "v1.0.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v1.0.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v1.0.0",
+    "commit": {
+      "sha": "557c4f2f2eeee08725dd1f0d133771a495fcc29e",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/557c4f2f2eeee08725dd1f0d133771a495fcc29e"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjEuMC4w"
+  },
+  {
+    "name": "v0.8.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.8.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.8.0",
+    "commit": {
+      "sha": "0330f09ec4ae9b171bac818a6dbde25073ef9748",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/0330f09ec4ae9b171bac818a6dbde25073ef9748"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuOC4w"
+  },
+  {
+    "name": "v0.7.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.7.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.7.0",
+    "commit": {
+      "sha": "be33908558d3489cc569a8db5994c9d7ab77cb24",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/be33908558d3489cc569a8db5994c9d7ab77cb24"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuNy4w"
+  },
+  {
+    "name": "v0.6.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.6.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.6.0",
+    "commit": {
+      "sha": "44db8c824b7c94e919e860b5f97a936a0000046b",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/44db8c824b7c94e919e860b5f97a936a0000046b"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuNi4w"
+  },
+  {
+    "name": "v0.5.1",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.5.1",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.5.1",
+    "commit": {
+      "sha": "24c3ab5becf268e0c6846b68a210039b8be353d9",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/24c3ab5becf268e0c6846b68a210039b8be353d9"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuNS4x"
+  },
+  {
+    "name": "v0.5.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.5.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.5.0",
+    "commit": {
+      "sha": "19573a7ed2fd1ce79f4335159fca0240c843dddb",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/19573a7ed2fd1ce79f4335159fca0240c843dddb"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuNS4w"
+  },
+  {
+    "name": "v0.4.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.4.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.4.0",
+    "commit": {
+      "sha": "134eadd2489aeb5d06cfbf7a3db8d5d3bffdb025",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/134eadd2489aeb5d06cfbf7a3db8d5d3bffdb025"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuNC4w"
+  },
+  {
+    "name": "v0.3.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.3.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.3.0",
+    "commit": {
+      "sha": "8bd1983bf9cff8ef1578855cc0d6c61d20ba26f2",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/8bd1983bf9cff8ef1578855cc0d6c61d20ba26f2"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuMy4w"
+  },
+  {
+    "name": "v0.2.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.2.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.2.0",
+    "commit": {
+      "sha": "702c912fd6161df400085dbf85c8da90ec53aba9",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/702c912fd6161df400085dbf85c8da90ec53aba9"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuMi4w"
+  },
+  {
+    "name": "v0.1.0",
+    "zipball_url": "https://api.github.com/repos/cybrota/scharf/zipball/refs/tags/v0.1.0",
+    "tarball_url": "https://api.github.com/repos/cybrota/scharf/tarball/refs/tags/v0.1.0",
+    "commit": {
+      "sha": "1c0b0880543767adb97ea0bb466e018edb329e23",
+      "url": "https://api.github.com/repos/cybrota/scharf/commits/1c0b0880543767adb97ea0bb466e018edb329e23"
+    },
+    "node_id": "REF_kwDOONCY6LByZWZzL3RhZ3MvdjAuMS4w"
+  }
+]

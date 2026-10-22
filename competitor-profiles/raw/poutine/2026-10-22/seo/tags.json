@@ -1,0 +1,202 @@
+[
+  {
+    "name": "v1.1.6",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.1.6",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.1.6",
+    "commit": {
+      "sha": "8918c66db19ecfd12b2f8379e445c3da4589e599",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/8918c66db19ecfd12b2f8379e445c3da4589e599"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMS42"
+  },
+  {
+    "name": "v1.1.5",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.1.5",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.1.5",
+    "commit": {
+      "sha": "e50c0a41b7853a3d91da4e72babf5adc51d21f2d",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/e50c0a41b7853a3d91da4e72babf5adc51d21f2d"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMS41"
+  },
+  {
+    "name": "v1.1.4",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.1.4",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.1.4",
+    "commit": {
+      "sha": "c89412a84a4683a307a57a5425d04a6a071d278b",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/c89412a84a4683a307a57a5425d04a6a071d278b"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMS40"
+  },
+  {
+    "name": "v1.1.3",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.1.3",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.1.3",
+    "commit": {
+      "sha": "5ea29c5b2bf5f2ecfd23a4d195bfe766256f88d1",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/5ea29c5b2bf5f2ecfd23a4d195bfe766256f88d1"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMS4z"
+  },
+  {
+    "name": "v1.1.2",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.1.2",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.1.2",
+    "commit": {
+      "sha": "b3cd202f6cc154d1e82184e7c42933d7b9122376",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/b3cd202f6cc154d1e82184e7c42933d7b9122376"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMS4y"
+  },
+  {
+    "name": "v1.0.8",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.0.8",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.0.8",
+    "commit": {
+      "sha": "985017b74ce21cd9eee5d8ded22d810807c271e9",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/985017b74ce21cd9eee5d8ded22d810807c271e9"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMC44"
+  },
+  {
+    "name": "v1.0.7",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.0.7",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.0.7",
+    "commit": {
+      "sha": "f350a41901f0f06fa964b65b72a7ab63b644c5b2",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/f350a41901f0f06fa964b65b72a7ab63b644c5b2"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMC43"
+  },
+  {
+    "name": "v1.0.6",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.0.6",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.0.6",
+    "commit": {
+      "sha": "849436a928f769d17e5443e219c5b0326324bf23",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/849436a928f769d17e5443e219c5b0326324bf23"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMC42"
+  },
+  {
+    "name": "v1.0.5",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.0.5",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.0.5",
+    "commit": {
+      "sha": "a6900f5d6a612f4111f61466dcce1a0f0550aa3e",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/a6900f5d6a612f4111f61466dcce1a0f0550aa3e"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMC41"
+  },
+  {
+    "name": "v1.0.4",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.0.4",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.0.4",
+    "commit": {
+      "sha": "547803b86f9812d20428caf11d9ad64c995270be",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/547803b86f9812d20428caf11d9ad64c995270be"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMC40"
+  },
+  {
+    "name": "v1.0.3",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.0.3",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.0.3",
+    "commit": {
+      "sha": "3b535b6ee7a672a6daf9936e1e9f8416ce71da22",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/3b535b6ee7a672a6daf9936e1e9f8416ce71da22"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMC4z"
+  },
+  {
+    "name": "v1.0.2",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.0.2",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.0.2",
+    "commit": {
+      "sha": "7bdfec0f2edd40b9f065a00fc5b24c811125494f",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/7bdfec0f2edd40b9f065a00fc5b24c811125494f"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMC4y"
+  },
+  {
+    "name": "v1.0.1",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v1.0.1",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v1.0.1",
+    "commit": {
+      "sha": "8ba91de9d0ae4640fcfa48c4863953e6df1a7110",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/8ba91de9d0ae4640fcfa48c4863953e6df1a7110"
+    },
+    "node_id": "REF_kwDOLsCFg7ByZWZzL3RhZ3MvdjEuMC4x"
+  },
+  {
+    "name": "v0.18.0",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v0.18.0",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v0.18.0",
+    "commit": {
+      "sha": "16c6972a96ef3c8b4a151dd4b6da2ccd48ef736d",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/16c6972a96ef3c8b4a151dd4b6da2ccd48ef736d"
+    },
+    "node_id": "REF_kwDOLsCFg7FyZWZzL3RhZ3MvdjAuMTguMA"
+  },
+  {
+    "name": "v0.17.0",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v0.17.0",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v0.17.0",
+    "commit": {
+      "sha": "3185069445660817a88ecec700304f0748086c60",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/3185069445660817a88ecec700304f0748086c60"
+    },
+    "node_id": "REF_kwDOLsCFg7FyZWZzL3RhZ3MvdjAuMTcuMA"
+  },
+  {
+    "name": "v0.16.1",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v0.16.1",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v0.16.1",
+    "commit": {
+      "sha": "7182c433cf3b9357e19caeb5a450061f2cd9a41c",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/7182c433cf3b9357e19caeb5a450061f2cd9a41c"
+    },
+    "node_id": "REF_kwDOLsCFg7FyZWZzL3RhZ3MvdjAuMTYuMQ"
+  },
+  {
+    "name": "v0.16.0",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v0.16.0",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v0.16.0",
+    "commit": {
+      "sha": "4d52b8ec756605ecac71aa1f8b13b73827ae2ac7",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/4d52b8ec756605ecac71aa1f8b13b73827ae2ac7"
+    },
+    "node_id": "REF_kwDOLsCFg7FyZWZzL3RhZ3MvdjAuMTYuMA"
+  },
+  {
+    "name": "v0.15.2",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v0.15.2",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v0.15.2",
+    "commit": {
+      "sha": "160d529d7e6569f0d08496bb411b6115f8f0e12f",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/160d529d7e6569f0d08496bb411b6115f8f0e12f"
+    },
+    "node_id": "REF_kwDOLsCFg7FyZWZzL3RhZ3MvdjAuMTUuMg"
+  },
+  {
+    "name": "v0.15.1",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v0.15.1",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v0.15.1",
+    "commit": {
+      "sha": "e4aab7ea1118c7b3389468c2d1412489459eaab0",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/e4aab7ea1118c7b3389468c2d1412489459eaab0"
+    },
+    "node_id": "REF_kwDOLsCFg7FyZWZzL3RhZ3MvdjAuMTUuMQ"
+  },
+  {
+    "name": "v0.15.0",
+    "zipball_url": "https://api.github.com/repos/boostsecurityio/poutine/zipball/refs/tags/v0.15.0",
+    "tarball_url": "https://api.github.com/repos/boostsecurityio/poutine/tarball/refs/tags/v0.15.0",
+    "commit": {
+      "sha": "b8181bf58063dac262827f5e0682c58db29fdddc",
+      "url": "https://api.github.com/repos/boostsecurityio/poutine/commits/b8181bf58063dac262827f5e0682c58db29fdddc"
+    },
+    "node_id": "REF_kwDOLsCFg7FyZWZzL3RhZ3MvdjAuMTUuMA"
+  }
+]

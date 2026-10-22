@@ -1,0 +1,502 @@
+[
+  {
+    "name": "v5.6.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.6.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.6.0",
+    "commit": {
+      "sha": "61e84743356275f6ffca23b1b2f2cb945e19eb96",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/61e84743356275f6ffca23b1b2f2cb945e19eb96"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS42LjA="
+  },
+  {
+    "name": "v5.5.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.5.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.5.0",
+    "commit": {
+      "sha": "c395761df6afe1a69e476bc60a013a94bcbc153f",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/c395761df6afe1a69e476bc60a013a94bcbc153f"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS41LjA="
+  },
+  {
+    "name": "v5.4.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.4.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.4.0",
+    "commit": {
+      "sha": "80ee3ecfedf8b19ab8991713a9fdb2e7dcd7262e",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/80ee3ecfedf8b19ab8991713a9fdb2e7dcd7262e"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS40LjA="
+  },
+  {
+    "name": "v5.3.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.3.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.3.0",
+    "commit": {
+      "sha": "c22063e786c11f9dd714d777a687ff7c4599b600",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/c22063e786c11f9dd714d777a687ff7c4599b600"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS4zLjA="
+  },
+  {
+    "name": "v5.2.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.2.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.2.1",
+    "commit": {
+      "sha": "ab2f6e92482462fe66246d9e32f642855a691dc1",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/ab2f6e92482462fe66246d9e32f642855a691dc1"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS4yLjE="
+  },
+  {
+    "name": "v5.2.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.2.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.2.0",
+    "commit": {
+      "sha": "f08e8fbdb73dbde0533803fdbad3fd4186825314",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/f08e8fbdb73dbde0533803fdbad3fd4186825314"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS4yLjA="
+  },
+  {
+    "name": "v5.1.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.1.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.1.1",
+    "commit": {
+      "sha": "cd152cb6742c5b8f2f3d2b5193b41d9c50905198",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/cd152cb6742c5b8f2f3d2b5193b41d9c50905198"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS4xLjE="
+  },
+  {
+    "name": "v5.1.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.1.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.1.0",
+    "commit": {
+      "sha": "b0143fc57d8d38748990027266de715052806f4b",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/b0143fc57d8d38748990027266de715052806f4b"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS4xLjA="
+  },
+  {
+    "name": "v5.0.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.0.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.0.0",
+    "commit": {
+      "sha": "ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS4wLjA="
+  },
+  {
+    "name": "v5.0.0-rc2",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.0.0-rc2",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.0.0-rc2",
+    "commit": {
+      "sha": "6b5cb27cd011f6f3657e703b28ea824b9eae7552",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/6b5cb27cd011f6f3657e703b28ea824b9eae7552"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS4wLjAtcmMy"
+  },
+  {
+    "name": "v5.0.0-rc1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v5.0.0-rc1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v5.0.0-rc1",
+    "commit": {
+      "sha": "0b9dfb656f1796c7c693ad74f5193657b6a81e0b",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/0b9dfb656f1796c7c693ad74f5193657b6a81e0b"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NS4wLjAtcmMx"
+  },
+  {
+    "name": "v4.13.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.13.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.13.1",
+    "commit": {
+      "sha": "49c0eed3a423f00c872b5c3c9f1bbca9e8aae799",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/49c0eed3a423f00c872b5c3c9f1bbca9e8aae799"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMy4x"
+  },
+  {
+    "name": "v4.13.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.13.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.13.0",
+    "commit": {
+      "sha": "e1d3abc7fd2bdfe8819ac19b5c82815ea20890e6",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/e1d3abc7fd2bdfe8819ac19b5c82815ea20890e6"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMy4w"
+  },
+  {
+    "name": "v4.12.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.12.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.12.0",
+    "commit": {
+      "sha": "7ed886f1bd917d19cb9d6ce6c10e80e81fa31c39",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/7ed886f1bd917d19cb9d6ce6c10e80e81fa31c39"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMi4w"
+  },
+  {
+    "name": "v4.11.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.11.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.11.0",
+    "commit": {
+      "sha": "4edb07802fdad892fa8d10f8fd47666b6ccc27c9",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/4edb07802fdad892fa8d10f8fd47666b6ccc27c9"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMS4w"
+  },
+  {
+    "name": "v4.10.5",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.10.5",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.10.5",
+    "commit": {
+      "sha": "27cfe92ed356fdb5a398c919ad480817ea907808",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/27cfe92ed356fdb5a398c919ad480817ea907808"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMC41"
+  },
+  {
+    "name": "v4.10.4",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.10.4",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.10.4",
+    "commit": {
+      "sha": "98316298749fdd62d3cc99423baec45ae11af662",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/98316298749fdd62d3cc99423baec45ae11af662"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMC40"
+  },
+  {
+    "name": "v4.10.3",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.10.3",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.10.3",
+    "commit": {
+      "sha": "9ad975764535b9753fbcb0c78335f826dbb213c4",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/9ad975764535b9753fbcb0c78335f826dbb213c4"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMC4z"
+  },
+  {
+    "name": "v4.10.2",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.10.2",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.10.2",
+    "commit": {
+      "sha": "376f465c111c39c6a5ad7408e8896cd790cb5219",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/376f465c111c39c6a5ad7408e8896cd790cb5219"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMC4y"
+  },
+  {
+    "name": "v4.10.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.10.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.10.1",
+    "commit": {
+      "sha": "6c5d964fcde4b83fa5ad5e40060e9e5ba920cd2f",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/6c5d964fcde4b83fa5ad5e40060e9e5ba920cd2f"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMC4x"
+  },
+  {
+    "name": "v4.10.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.10.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.10.0",
+    "commit": {
+      "sha": "93ef087828b208a8143cfd352c546c8c01d790a8",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/93ef087828b208a8143cfd352c546c8c01d790a8"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xMC4w"
+  },
+  {
+    "name": "v4.9.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.9.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.9.1",
+    "commit": {
+      "sha": "6c5d964fcde4b83fa5ad5e40060e9e5ba920cd2f",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/6c5d964fcde4b83fa5ad5e40060e9e5ba920cd2f"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC45LjE="
+  },
+  {
+    "name": "v4.9.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.9.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.9.0",
+    "commit": {
+      "sha": "20cc4eee98a2b97e3f5a00eb0383ddcabfeea034",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/20cc4eee98a2b97e3f5a00eb0383ddcabfeea034"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC45LjA="
+  },
+  {
+    "name": "v4.8.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.8.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.8.0",
+    "commit": {
+      "sha": "c40859202d739b31fd060ac5b30d17326cd74275",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/c40859202d739b31fd060ac5b30d17326cd74275"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC44LjA="
+  },
+  {
+    "name": "v4.7.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.7.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.7.0",
+    "commit": {
+      "sha": "7cd6406aef0b80a819402e631919293d5eb6adcf",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/7cd6406aef0b80a819402e631919293d5eb6adcf"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC43LjA="
+  },
+  {
+    "name": "v4.6.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.6.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.6.0",
+    "commit": {
+      "sha": "2cbf5afd5460b51fd40939f8c44b32543b1a0bcb",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/2cbf5afd5460b51fd40939f8c44b32543b1a0bcb"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC42LjA="
+  },
+  {
+    "name": "v4.5.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.5.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.5.0",
+    "commit": {
+      "sha": "69eb1ccf1d0cf8c5b291044479f18672bf250325",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/69eb1ccf1d0cf8c5b291044479f18672bf250325"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC41LjA="
+  },
+  {
+    "name": "v4.4.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.4.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.4.0",
+    "commit": {
+      "sha": "e42af756609b2cde6d757fd45ea05ddf0016ff62",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/e42af756609b2cde6d757fd45ea05ddf0016ff62"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC40LjA="
+  },
+  {
+    "name": "v4.3.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.3.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.3.1",
+    "commit": {
+      "sha": "70d045b9ef00e7171ce3950aca38eef6ea4d7308",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/70d045b9ef00e7171ce3950aca38eef6ea4d7308"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4zLjE="
+  },
+  {
+    "name": "v4.3.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.3.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.3.0",
+    "commit": {
+      "sha": "6406cfd4e34156a5ad04fb4207bef0297f83903c",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/6406cfd4e34156a5ad04fb4207bef0297f83903c"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4zLjA="
+  },
+  {
+    "name": "v4.2.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.2.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.2.0",
+    "commit": {
+      "sha": "44ad5f53ad75aa220fc16c1bd2ab3facdf4d69c1",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/44ad5f53ad75aa220fc16c1bd2ab3facdf4d69c1"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4yLjA="
+  },
+  {
+    "name": "v4.1.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.1.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.1.0",
+    "commit": {
+      "sha": "33f80c93dc79f860d874857c511c4d26d399609d",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/33f80c93dc79f860d874857c511c4d26d399609d"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4xLjA="
+  },
+  {
+    "name": "v4.0.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.0.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.0.1",
+    "commit": {
+      "sha": "c60b66bbc8b85286416d6ab9ae9324a095e66c94",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/c60b66bbc8b85286416d6ab9ae9324a095e66c94"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4wLjE="
+  },
+  {
+    "name": "v4.0.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v4.0.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v4.0.0",
+    "commit": {
+      "sha": "f7b329e8305d11178836bb35ae95a5f7e7cf2292",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/f7b329e8305d11178836bb35ae95a5f7e7cf2292"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92NC4wLjA="
+  },
+  {
+    "name": "v3.2.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v3.2.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v3.2.1",
+    "commit": {
+      "sha": "23b0ddb8aa96356321cf31a2709723e29b15a951",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/23b0ddb8aa96356321cf31a2709723e29b15a951"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92My4yLjE="
+  },
+  {
+    "name": "v3.1.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v3.1.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v3.1.1",
+    "commit": {
+      "sha": "fd238d0e40ebc898e4aa592ad133b1f15687384f",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/fd238d0e40ebc898e4aa592ad133b1f15687384f"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92My4xLjE="
+  },
+  {
+    "name": "v3.1.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v3.1.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v3.1.0",
+    "commit": {
+      "sha": "311d2e2e4205d05f3423ec77d5ed2ed04a5fd1f0",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/311d2e2e4205d05f3423ec77d5ed2ed04a5fd1f0"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92My4xLjA="
+  },
+  {
+    "name": "v3.0.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v3.0.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v3.0.1",
+    "commit": {
+      "sha": "6c1c789dc5b05cde492334f57b53807c786b038a",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/6c1c789dc5b05cde492334f57b53807c786b038a"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92My4wLjE="
+  },
+  {
+    "name": "v3.0.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v3.0.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v3.0.0",
+    "commit": {
+      "sha": "f153db5a4ab307d879a02fec7927e1c8c957ba6c",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/f153db5a4ab307d879a02fec7927e1c8c957ba6c"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92My4wLjA="
+  },
+  {
+    "name": "v2.2.8",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v2.2.8",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v2.2.8",
+    "commit": {
+      "sha": "3cbe7b26f786efe3137805cd8d6107b3b79791ad",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/3cbe7b26f786efe3137805cd8d6107b3b79791ad"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92Mi4yLjg="
+  },
+  {
+    "name": "v2.2.3",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v2.2.3",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v2.2.3",
+    "commit": {
+      "sha": "7b912e89031ca1aad6095a69e138a1a21a0b3c62",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/7b912e89031ca1aad6095a69e138a1a21a0b3c62"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92Mi4yLjM="
+  },
+  {
+    "name": "v2.1.3",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v2.1.3",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v2.1.3",
+    "commit": {
+      "sha": "0c55af5ef807ec5689ca0755e4d3c1891e9979be",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/0c55af5ef807ec5689ca0755e4d3c1891e9979be"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92Mi4xLjM="
+  },
+  {
+    "name": "v2.1.2",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v2.1.2",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v2.1.2",
+    "commit": {
+      "sha": "7f71928daa3d80e9990d671cf6c70c53b49506d5",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/7f71928daa3d80e9990d671cf6c70c53b49506d5"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92Mi4xLjI="
+  },
+  {
+    "name": "v2.1.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v2.1.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v2.1.1",
+    "commit": {
+      "sha": "30bb11965a4b0816a43d1e028d3e9efebebea8db",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/30bb11965a4b0816a43d1e028d3e9efebebea8db"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92Mi4xLjE="
+  },
+  {
+    "name": "v2.1.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v2.1.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v2.1.0",
+    "commit": {
+      "sha": "8128f9fe68cc1a0c13dfac9a248d48c858e70341",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/8128f9fe68cc1a0c13dfac9a248d48c858e70341"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92Mi4xLjA="
+  },
+  {
+    "name": "v2.0.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v2.0.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v2.0.0",
+    "commit": {
+      "sha": "5dd7f118ae9853b5dd58ec27bf6f62ebddb2a39f",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/5dd7f118ae9853b5dd58ec27bf6f62ebddb2a39f"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92Mi4wLjA="
+  },
+  {
+    "name": "v1.2.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v1.2.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v1.2.0",
+    "commit": {
+      "sha": "7ff09db2ed4dd7c58e0c5ba0925a309485884286",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/7ff09db2ed4dd7c58e0c5ba0925a309485884286"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92MS4yLjA="
+  },
+  {
+    "name": "v1.1.1",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v1.1.1",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v1.1.1",
+    "commit": {
+      "sha": "f906f3f5688e557e2d12730691a440b971d1623c",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/f906f3f5688e557e2d12730691a440b971d1623c"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92MS4xLjE="
+  },
+  {
+    "name": "v1.1.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v1.1.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v1.1.0",
+    "commit": {
+      "sha": "7ab314db7d13941f2af31f96638cbe6db2609a8b",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/7ab314db7d13941f2af31f96638cbe6db2609a8b"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92MS4xLjA="
+  },
+  {
+    "name": "v1.0.0",
+    "zipball_url": "https://api.github.com/repos/ossf/scorecard/zipball/refs/tags/v1.0.0",
+    "tarball_url": "https://api.github.com/repos/ossf/scorecard/tarball/refs/tags/v1.0.0",
+    "commit": {
+      "sha": "87997ffb5724cb479223a08a2890c60b0ea4bfbd",
+      "url": "https://api.github.com/repos/ossf/scorecard/commits/87997ffb5724cb479223a08a2890c60b0ea4bfbd"
+    },
+    "node_id": "MDM6UmVmMzAyNjcwNzk3OnJlZnMvdGFncy92MS4wLjA="
+  }
+]
