@@ -4,7 +4,8 @@ project_name: actionscan
 
 before:
   hooks:
-    - go mod tidy
+    - go mod download
+    - go mod verify
 
 builds:
   - id: actionscan
@@ -23,9 +24,9 @@ builds:
         goarch: arm64
     ldflags:
       - -s -w
-      - -X main.version={{.Version}}
-      - -X main.commit={{.Commit}}
-      - -X main.date={{.Date}}
+      - -X github.com/krishnaduttPanchagnula/actionscan/cmd.Version={{.Version}}
+      - -X github.com/krishnaduttPanchagnula/actionscan/cmd.Commit={{.Commit}}
+      - -X github.com/krishnaduttPanchagnula/actionscan/cmd.Date={{.Date}}
 
 archives:
   - id: default
@@ -45,6 +46,7 @@ archives:
       - README.md
       - LICENSE*
       - config.yaml
+    # web/template.html is embedded in the binary, so it needs no shipping.
 
 checksum:
   name_template: "checksums.txt"
