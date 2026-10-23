@@ -212,6 +212,33 @@ func (c *Client) ListRepos(ctx context.Context, org, user string) ([]Repo, error
 	return out, nil
 }
 
+// GetRepo resolves one "owner/name" reference to a repository, so a
+// scan can be scoped to a single repository.
+func (c *Client) GetRepo(ctx context.Context, fullName string) (Repo, error) {
+	parts := strings.SplitN(strings.TrimSpace(fullName), "/", 2)
+	if len(parts) != 2 || parts[0] == "" || parts[1] == "" {
+		return Repo{}, fmt.Errorf("repo must be owner/name, got %q", fullName)
+	}
+	var r *github.Repository
+	err := withRetry(ctx, func() (err error) {
+		r, _, err = c.gh.Repositories.Get(ctx, parts[0], parts[1])
+		return err
+	})
+	if err != nil {
+		return Repo{}, err
+	}
+	if r.GetFork() {
+		return Repo{}, fmt.Errorf("%s is a fork", fullName)
+	}
+	return Repo{
+		FullName:      r.GetFullName(),
+		Owner:         r.GetOwner().GetLogin(),
+		Name:          r.GetName(),
+		DefaultBranch: r.GetDefaultBranch(),
+		Private:       r.GetPrivate(),
+	}, nil
+}
+
 // ListWorkflows returns the workflow files of a repo keyed by their full
 // path (".github/workflows/ci.yml") so two workflows with the same file
 // name cannot collide and the report can show where a finding lives.

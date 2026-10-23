@@ -36,9 +36,30 @@ Reports are generated as **HTML** (a triage dashboard), **CSV**, **JSON**, and *
 - ✅ **SARIF output** — upload findings to GitHub code scanning
 - ✅ **Honest reports** — the dashboard states what was scanned, which feeds answered,
   which repos could not be read, and when the rules were fetched
+- ✅ **Triage dashboard** — verdict banner, blast radius, filters, shareable URLs
 - ✅ **Real workflow parsing** — YAML-aware, so local actions, `docker://` refs,
   `$/` self-references and `uses:` inside shell scripts are not reported as findings
-- ✅ **Triage dashboard** — verdict banner, blast radius, filters, shareable URLs
+- ✅ **Transitive graph layer** — resolves composite actions and reusable workflows
+  (`--transitive`); reports actions that run in your CI but are outside the
+  top-level scan
+- ✅ **Provenance checks** — verifies pinned SHAs are still published by the
+  upstream repo (`--provenance`; imposter commits that were force-pushed away
+  are flagged)
+- ✅ **Policy file** (`actionscan.yml`) — suppression rules, severity remaps,
+  personas (`regular`/`pedantic`/`auditor`), and inline `# actionscan: ignore`
+- ✅ **Baseline + delta** — scan now, scan later, see what's *new* vs *resolved*
+  (`--baseline`), with regressed findings flagged as NEW in the HTML
+- ✅ **`--repo` and `--no-ignores`** — single-repo scans and CI-respecting
+  inline ignores
+- ✅ **GitHub Actions annotations** — findings are emitted as `::warning::`/
+  `::error::` with a Markdown step summary when run under `GITHUB_ACTIONS=true`
+- ✅ **Threat-intel feed** — `actionscan feed` builds a supply-chain feed
+  (JSON/Atom) of compromised actions from GHSA, ready to publish on GitHub Pages
+
+actionscan is a **static supply-chain scanner**: it audits the actions your
+workflows *reference*. It is **not** a linter for workflow YAML, a runtime
+defence, a dependency/package scanner, or a secret scanner — those have their
+own tools and are out of scope.
 
 ---
 
@@ -187,6 +208,13 @@ JSON API: `GET /api/status`, `GET /api/findings`.
 | `--no-latest` | `false` | skip latest-tag lookups |
 | `--no-osv` | `false` | skip OSV.dev queries |
 | `--fail-on` | `none` | exit non-zero at this severity: `none\|critical\|high\|medium\|low` |
+| `--repo` | — | scan a single repository (`owner/name`) |
+| `--policy` | `./actionscan.yml` | path to the policy file (directory is fine) |
+| `--persona` | — | sensitivity profile: `regular` / `pedantic` / `auditor` |
+| `--no-ignores` | `false` | ignore inline `# actionscan: ignore` comments |
+| `--baseline` | — | compare against a previous `report.json`; report only what is new |
+| `--transitive` | `false` | also resolve the transitive dependency graph |
+| `--provenance` | `false` | also verify that pinned SHAs are still published upstream |
 | `--port` / `--host` | `8080` / `127.0.0.1` | serve bind address |
 
 **Exit codes**
@@ -195,7 +223,7 @@ JSON API: `GET /api/status`, `GET /api/findings`.
 |---|---|
 | `0` | scan completed, no findings at or above the `--fail-on` threshold |
 | `1` | findings at or above the threshold |
-| `2` | the scan could not be completed reliably (a threat feed was unreachable, or `--fail-on` is not a valid value) — a degraded scan never passes a gate |
+| `2` | the scan could not be completed reliably (a threat feed was unreachable, `--fail-on` is not a valid value, or an incomplete transitive graph) — a degraded/incomplete scan never passes a gate |
 
 ---
 
@@ -266,16 +294,107 @@ Rate-limited calls are retried automatically.
 }
 ```
 
+## Policy: ignore and prioritise (`actionscan.yml`)
+
+Create an `actionscan.yml` (or point at one with `--policy`) to suppress noise and
+prioritise what actually matters:
+
+```yaml
+persona: regular                 # regular | pedantic | auditor
+severity_remap:                  # override the severity of a category/advisory
+  outdated: low
+ignore_actions:                  # glob-style against "owner/repo" (no ref)
+  - actions/checkout
+  - my-org/legacy-*             # suite of actions you own and can verify
+deny_ignore:                     # these must NEVER be suppressed, even by personas
+  - tj-actions/changed-files
+respect_inline_ignores: true      # honour `# actionscan: ignore` comments
+```
+
+- **Personas**: `regular` (default) reports the five layers. `pedantic` adds
+  mutable-tag findings ("this pin is a branch or a floating tag"). `auditor`
+  adds *every* check at its highest sensitivity — for compliance runs.
+- **Inline ignores**: end a workflow line with `# actionscan: ignore` (or
+  `# actionscan: ignore[category]`) to drop a finding on that line, without
+  silencing the whole repo. `--no-ignores` disables inline ignores.
+- The policy file is reported in `PolicyFile` of the JSON summary so scans are
+  reproducible.
+
+## Baseline and delta (regressions vs. new vs. resolved)
+
+```bash
+# First scan — save the report as your baseline
+./actionscan scan --org my-org --out ./base
+
+# Later scan — only what changed since the baseline
+./actionscan scan --org my-org --out ./now --baseline ./base/report.json
+# → "Baseline ./base/report.json: 3 new, 2 resolved"
+```
+
+- `--baseline` compares fingerprints and prints `new`, `resolved`, and the
+  baseline timestamp. `baseline-diff.json` is written next to the reports.
+- Findings that were **not** in the baseline are tagged `NEW` as a badge in
+  the HTML dashboard, so regressions stand out.
+- Fingerprints are deterministic (sorted, no timestamps), so the same inputs
+  always produce the same diff.
+
+## Transitive layer (`--transitive`)
+
+By default actionscan reads top-level `uses:`. With `--transitive` it also
+resolves composite actions and reusable workflows to depth 12, and applies the
+same five checks to every action they pull in — including ones never mentioned in
+your repositories.
+
+```bash
+./actionscan scan --org my-org --transitive
+# Transitive graph: 28 nodes, depth 2, complete-with-findings
+```
+
+- An **incomplete** graph (a file that cannot be parsed, a fetch error, or a
+  budget being exceeded) exits with code **2** — a gate never passes on a scan
+  that did not examine all the code. Only the gate is affected; the report
+  still contains what was found.
+- Budgets: depth 12, 5 000 YAML structures per document, 8 MiB of metadata,
+  500 HTTP requests.
+
+## Provenance checks (`--provenance`)
+
+Pinning to a SHA is only safe while the upstream project still carries that
+commit. With `--provenance` each pinned action is checked against *every*
+published branch and tag; a commit reachable from no branch or tag is an
+**imposter commit** (force-pushed away, or pushed by someone with write
+access) and is reported.
+
+```bash
+./actionscan scan --org my-org --provenance
+```
+
+## Supply-chain feed (`actionscan feed`)
+
+`actionscan feed` writes two files from the live feeds: `feed.json` (the
+OSV-style schema, one entry per compromised action, each with a "became
+compromised / patched" window) and `feed.atom`. They are meant to be published
+on GitHub Pages so other tools — or your own CI — can subscribe.
+
+```bash
+./actionscan feed --out ./feed
+```
+
 ---
 
 ## Limitations
 
 - Semver matching only applies to version-pinned refs (`v4.1.1`); branch/SHA refs can't be range-checked
 - Floating tags (`v4`) are evaluated at their nominal major version, not the resolved commit — this is the largest source of both false positives and false negatives
-- Transitive dependencies (nested composite actions, reusable workflow calls) are not traversed
+- Transitive dependencies **opt-in** via `--transitive` (composite actions,
+  reusable workflows). Default off because it is more API-heavy and an incomplete
+  graph now fails the gate (exit 2) rather than silently passing
 - `docker://` actions and `container:` images are out of scope
 - Only non-fork repos are scanned
-- A repo whose git tree is too large for the API to return, or whose workflow files cannot be read, is reported as unreadable — never as clean
+- A repo whose git tree is too large for the API to return, or whose workflow
+  files cannot be read, is reported as unreadable — never as clean
+- The provenance check needs read access to the upstream action repo's branches
+  and tags; private or deleted action repos come back as "could not check"
 
 ---
 

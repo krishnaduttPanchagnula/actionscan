@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"path/filepath"
 	"strings"
 	"syscall"
 	"time"
@@ -73,27 +74,101 @@ var scanCmd = &cobra.Command{
 			RuleSet: rs,
 		}
 
+		// Policy: suppression, noise control and inline ignores.
+		policyPath, _ := cmd.Flags().GetString("policy")
+		policyDir := policyPath
+		if policyDir != "" {
+			if fi, err := os.Stat(policyDir); err == nil && !fi.IsDir() {
+				policyDir = filepath.Dir(policyDir)
+			}
+		}
+		pc, err := config.LoadPolicy(policyDir)
+		if err != nil {
+			return fmt.Errorf("reading policy: %w", err)
+		}
+		if pc == nil {
+			pc = &scanner.PolicyConfig{}
+		}
+		if persona, _ := cmd.Flags().GetString("persona"); persona != "" {
+			pc.Persona = persona
+		}
+		if cmd.Flags().Changed("no-ignores") {
+			respect, _ := cmd.Flags().GetBool("no-ignores")
+			pc.RespectInlineIgnores = !respect
+		}
+		if err := pc.Validate(); err != nil {
+			return fmt.Errorf("policy: %w", err)
+		}
+		policy, err := scanner.NewPolicy(pc)
+		if err != nil {
+			return fmt.Errorf("policy: %w", err)
+		}
+		s.Policy = policy
+
+		// The transitive graph and the imposter-commit check.
+		s.Transitive, _ = cmd.Flags().GetBool("transitive")
+		s.Provenance, _ = cmd.Flags().GetBool("provenance")
+		if s.Transitive && s.Provenance {
+			fmt.Fprintln(os.Stderr, "⚠ --transitive and --provenance together is slow: both resolve every reference over the API")
+		}
+
 		target := scanTarget(cfg.GitHub.Org, cfg.GitHub.User)
 		if cfg.GitHub.Org == "" && cfg.GitHub.User == "" {
 			fmt.Fprintln(os.Stderr, "No org/user given — scanning repos of the authenticated user…")
 		}
 
 		fmt.Fprintf(os.Stderr, "Listing repos (org=%q user=%q)…\n", cfg.GitHub.Org, cfg.GitHub.User)
-		repos, err := ghClient.ListRepos(ctx, cfg.GitHub.Org, cfg.GitHub.User)
-		if err != nil {
-			return fmt.Errorf("listing repos: %w", err)
+		var repos []github.Repo
+		single, _ := cmd.Flags().GetString("repo")
+		if single != "" {
+			one, err := ghClient.GetRepo(ctx, single)
+			if err != nil {
+				return fmt.Errorf("reading repo %s: %w", single, err)
+			}
+			repos = []github.Repo{one}
+		} else {
+			repos, err = ghClient.ListRepos(ctx, cfg.GitHub.Org, cfg.GitHub.User)
+			if err != nil {
+				return fmt.Errorf("listing repos: %w", err)
+			}
 		}
-		fmt.Fprintf(os.Stderr, "Found %d repos. Scanning with %d workers…\n", len(repos), cfg.Scan.Concurrency)
+		if single == "" {
+			fmt.Fprintf(os.Stderr, "Found %d repos. Scanning with %d workers…\n", len(repos), cfg.Scan.Concurrency)
+		} else {
+			fmt.Fprintf(os.Stderr, "Scanning 1 repo with %d workers…\n", cfg.Scan.Concurrency)
+		}
 
 		summary := s.ScanAll(ctx, repos, cfg.Scan.Concurrency)
 		summary.Target = target
 		summary.ToolVersion = Version
+		summary.PolicyFile = policyPath
+		if pp, ok := policy.(scanner.PersonaPolicy); ok {
+			summary.PolicyPersona = pp.Persona()
+		}
+
+		// Delta against a baseline: what is new since the last scan.
+		baselinePath, _ := cmd.Flags().GetString("baseline")
+		var baseline *scanner.Summary
+		if baselinePath != "" {
+			base, warnings, err := report.LoadBaselineWithWarnings(baselinePath, Version)
+			if err != nil {
+				return fmt.Errorf("reading baseline: %w", err)
+			}
+			for _, w := range warnings {
+				fmt.Fprintf(os.Stderr, "⚠ baseline: %s\n", w)
+			}
+			baseline = base
+			report.ApplyBaseline(summary, baseline, baselinePath)
+			fmt.Fprintf(os.Stderr, "Baseline %s: %d new, %d resolved\n",
+				baselinePath, summary.NewFindings, summary.ResolvedFindgs)
+		}
 
 		if err := os.MkdirAll(cfg.Scan.ReportDir, 0o755); err != nil {
 			return err
 		}
 
-		htmlPath, err := report.HTML(summary, cfg.Scan.ReportDir)
+		newFingerprints := report.NewFingerprints(summary, baseline)
+		htmlPath, err := report.HTMLWithBaseline(summary, cfg.Scan.ReportDir, newFingerprints)
 		if err != nil {
 			return fmt.Errorf("writing html: %w", err)
 		}
@@ -109,6 +184,27 @@ var scanCmd = &cobra.Command{
 		if err != nil {
 			return fmt.Errorf("writing sarif: %w", err)
 		}
+		if baseline != nil {
+			diffPath, err := report.WriteBaselineDiff(summary, baseline,
+				filepath.Join(cfg.Scan.ReportDir, "baseline-diff.json"))
+			if err != nil {
+				return fmt.Errorf("writing baseline diff: %w", err)
+			}
+			fmt.Fprintf(os.Stderr, "  DIFF:  %s\n", diffPath)
+		}
+
+		// GitHub Actions annotations and the job summary: the two places
+		// a developer actually looks.
+		if os.Getenv("GITHUB_ACTIONS") == "true" {
+			if ann := report.Annotations(summary); ann != "" {
+				fmt.Print(ann)
+			}
+			if path := os.Getenv("GITHUB_STEP_SUMMARY"); path != "" {
+				if err := os.WriteFile(path, []byte(report.StepSummary(summary)), 0o644); err != nil {
+					fmt.Fprintf(os.Stderr, "⚠ writing the step summary: %v\n", err)
+				}
+			}
+		}
 
 		fmt.Fprintf(os.Stderr, "\nDone. %d findings in %d of %d repos (%d actions checked):\n",
 			len(summary.Findings), summary.AffectedRepos, summary.TotalRepos, summary.ActionsChecked)
@@ -120,6 +216,13 @@ var scanCmd = &cobra.Command{
 				fmt.Fprintf(os.Stderr, "      %s\n", r)
 			}
 		}
+		if summary.Transitive != nil {
+			fmt.Fprintf(os.Stderr, "  Transitive graph: %d nodes, depth %d, %s\n",
+				summary.Transitive.Nodes, summary.Transitive.Depth, summary.Transitive.Status())
+			if !summary.Transitive.Complete {
+				fmt.Fprintf(os.Stderr, "  ⚠ the transitive graph is INCOMPLETE: %s\n", summary.Transitive.Reason)
+			}
+		}
 		fmt.Fprintf(os.Stderr, "Reports:\n  HTML:  %s\n  CSV:   %s\n  JSON:  %s\n  SARIF: %s\n",
 			htmlPath, csvPath, jsonPath, sarifPath)
 		fmt.Fprintln(os.Stderr, "View:  actionscan serve --port 8080")
@@ -129,7 +232,7 @@ var scanCmd = &cobra.Command{
 		if code, fail := exitCode(summary, failOn); fail {
 			switch code {
 			case 2:
-				fmt.Fprintf(os.Stderr, "\nFailing: the scan could not be completed reliably (degraded threat intel) — refusing to pass the %s gate.\n", failOn)
+				fmt.Fprintf(os.Stderr, "\nFailing: the scan could not be completed reliably (degraded threat intel, or an incomplete transitive graph) — refusing to pass the %s gate.\n", failOn)
 			default:
 				fmt.Fprintf(os.Stderr, "\nFailing: findings at or above %s severity.\n", failOn)
 			}
@@ -170,6 +273,11 @@ func exitCode(s *scanner.Summary, failOn string) (int, bool) {
 	if s.Degraded {
 		return 2, true
 	}
+	// An incomplete transitive graph means actions were not examined.
+	// A gate must not pass on a scan that did not finish.
+	if s.Transitive != nil && !s.Transitive.Complete {
+		return 2, true
+	}
 	switch level {
 	case "critical":
 		if s.Critical > 0 {
@@ -194,5 +302,19 @@ func exitCode(s *scanner.Summary, failOn string) (int, bool) {
 func init() {
 	scanCmd.Flags().String("fail-on", "none",
 		"exit non-zero when findings reach this severity: none|critical|high|medium|low")
+	scanCmd.Flags().String("repo", "",
+		"scan a single repository (owner/name) instead of a whole org or user")
+	scanCmd.Flags().String("baseline", "",
+		"compare against a previous report.json and report only what is new")
+	scanCmd.Flags().String("policy", "",
+		"path to actionscan.yml (default: ./actionscan.yml)")
+	scanCmd.Flags().String("persona", "",
+		"sensitivity profile: regular|pedantic|auditor")
+	scanCmd.Flags().Bool("no-ignores", false,
+		"ignore inline '# actionscan: ignore' comments and report the finding anyway")
+	scanCmd.Flags().Bool("transitive", false,
+		"also resolve the transitive dependency graph (composite actions, reusable workflows)")
+	scanCmd.Flags().Bool("provenance", false,
+		"also verify that pinned SHAs are still on the action's default branch")
 	rootCmd.AddCommand(scanCmd)
 }

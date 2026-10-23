@@ -130,12 +130,16 @@ func loadSummary(dir string) (*scanner.Summary, error) {
 // named key instead renders an empty page.
 func templateData(s *scanner.Summary) struct {
 	*scanner.Summary
-	Empty bool
+	Empty           bool
+	NewFingerprints map[string]bool
+	TransitiveRows  [][]string
 } {
 	return struct {
 		*scanner.Summary
-		Empty bool
-	}{s, len(s.Findings) == 0}
+		Empty           bool
+		NewFingerprints map[string]bool
+		TransitiveRows  [][]string
+	}{s, len(s.Findings) == 0, nil, nil}
 }
 
 func init() {

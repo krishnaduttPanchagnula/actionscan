@@ -111,6 +111,13 @@
   .verdict-ok h1 { color: var(--ok-fg); }
   .verdict-ok p { color: var(--text); }
 
+  /* ── new-since-baseline badge ── */
+  .badge-new {
+    display: inline-block; margin-left: .4rem; padding: .05rem .4rem;
+    border-radius: 999px; background: var(--accent); color: #fff;
+    font-size: 10px; font-weight: 700; letter-spacing: .05em; vertical-align: .1em;
+  }
+
   /* ── alerts ── */
   .alert {
     display: flex; gap: .75rem; align-items: flex-start;
@@ -536,6 +543,30 @@
       <dt>Feed status</dt>
       <dd>{{if .Degraded}}<span class="muted">degraded — partial intelligence</span>{{else}}complete{{end}}</dd>
     </div>
+    {{if .BaselinePath}}
+    <div>
+      <dt>Baseline</dt>
+      <dd>{{.BaselinePath}}<span class="muted"> — {{.BaselineAt}}</span></dd>
+    </div>
+    <div>
+      <dt>Change since baseline</dt>
+      <dd>{{.NewFindings}} new, {{.ResolvedFindgs}} resolved</dd>
+    </div>
+    {{end}}
+    {{if .PolicyPersona}}
+    <div>
+      <dt>Sensitivity profile</dt>
+      <dd>{{.PolicyPersona}}</dd>
+    </div>
+    {{end}}
+    {{if .Transitive}}
+    <div>
+      <dt>Transitive graph</dt>
+      <dd>{{.Transitive.Nodes}} actions, depth {{.Transitive.Depth}}
+        {{if .Transitive.Complete}}<span class="muted"> — {{.Transitive.Status}}</span>
+        {{else}}<span class="muted"> — INCOMPLETE: {{.Transitive.Reason}}</span>{{end}}</dd>
+    </div>
+    {{end}}
     <div class="meta-wide">
       <dt>Rule feeds that answered</dt>
       <dd>
@@ -617,6 +648,41 @@
   </div>
 </section>
 
+{{if .Transitive}}
+<section class="panel" aria-labelledby="transitive-h">
+  <div class="panel-head">
+    <h2 id="transitive-h">Transitive dependencies</h2>
+    <span class="hint">Actions reached through a composite action or a reusable workflow — invisible to a top-level scan</span>
+    {{if not .Transitive.Complete}}
+    <span class="alert alert-warn">INCOMPLETE: {{.Transitive.Reason}} — this list is not exhaustive</span>
+    {{end}}
+  </div>
+  <div class="table-wrap">
+    <table class="blast-table">
+      <caption class="sr-only">Actions reached transitively, with the chain of repositories that leads to them</caption>
+      <thead>
+        <tr>
+          <th scope="col">Action</th>
+          <th scope="col">Reached through</th>
+          <th scope="col">Depth</th>
+          <th scope="col">Issue</th>
+        </tr>
+      </thead>
+      <tbody>
+      {{range .TransitiveRows}}
+        <tr>
+          <td class="mono">{{index . 0}}</td>
+          <td class="mono">{{index . 1}}</td>
+          <td class="num">{{index . 2}}</td>
+          <td>{{index . 3}}</td>
+        </tr>
+      {{end}}
+      </tbody>
+    </table>
+  </div>
+</section>
+{{end}}
+
 <section class="panel" id="findings" aria-labelledby="findings-h">
   <div class="panel-head">
     <h2 id="findings-h">Findings <span class="count" id="shown-count">({{.Total}})</span></h2>
@@ -640,6 +706,8 @@
       <button class="pill" type="button" data-cat="osv" aria-pressed="false">osv <span class="pill-count" data-count="osv"></span></button>
       <button class="pill" type="button" data-cat="outdated" aria-pressed="false">outdated <span class="pill-count" data-count="outdated"></span></button>
       <button class="pill" type="button" data-cat="unpinned" aria-pressed="false">unpinned <span class="pill-count" data-count="unpinned"></span></button>
+      <button class="pill" type="button" data-cat="transitive" aria-pressed="false">transitive <span class="pill-count" data-count="transitive"></span></button>
+      <button class="pill" type="button" data-cat="imposter" aria-pressed="false">imposter <span class="pill-count" data-count="imposter"></span></button>
     </div>
     <div class="field">
       <label for="repo-filter">Repository</label>
@@ -680,7 +748,7 @@
       </thead>
       <tbody id="findings-body">
       {{range .Findings}}
-        <tr data-sev="{{.Severity}}" data-repo="{{.Repo}}" data-cat="{{.Category}}" data-action="{{.Action}}" data-ref="{{.Ref}}" data-search="{{.Repo}}|{{.Workflow}}|{{.Job}}|{{.Action}}|{{.AdvisoryID}}">
+        <tr data-sev="{{.Severity}}" data-repo="{{.Repo}}" data-cat="{{.Category}}" data-action="{{.Action}}" data-ref="{{.Ref}}" data-fingerprint="{{.Fingerprint}}" data-search="{{.Repo}}|{{.Workflow}}|{{.Job}}|{{.Action}}|{{.AdvisoryID}}">
           <td data-label="Severity"><span class="sev {{.Severity}}">{{.Severity}}</span></td>
           <td data-label="Repository" class="repo"><a href="https://github.com/{{.Repo}}" target="_blank" rel="noopener noreferrer">{{.Repo}}</a></td>
           <td data-label="Workflow" class="workflow mono">
@@ -691,6 +759,7 @@
           <td data-label="Category"><span class="cat">{{.Category}}</span></td>
           <td data-label="Issue" class="reason">
             {{.Reason}}
+            {{if index $.NewFingerprints .Fingerprint}}<span class="badge-new">NEW</span>{{end}}
             {{if .AdvisoryID}}
             <div class="advisory">
               {{if .AdvisoryURL}}<a href="{{.AdvisoryURL}}" target="_blank" rel="noopener noreferrer">{{.AdvisoryID}}</a>{{else}}{{.AdvisoryID}}{{end}}

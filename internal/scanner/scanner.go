@@ -28,6 +28,15 @@ type Finding struct {
 
 	AdvisoryID  string `json:"advisory_id,omitempty"`  // GHSA-xxxx / OSV id
 	AdvisoryURL string `json:"advisory_url,omitempty"` // link to the advisory
+
+	// Fingerprint is the stable identity of this finding, used to diff
+	// a scan against a baseline. See Fingerprint().
+	Fingerprint string `json:"fingerprint,omitempty"`
+
+	// Line is the 1-based line of the workflow file the finding came
+	// from, 0 when unknown. It is what an inline ignore comment is
+	// matched against.
+	Line int `json:"line,omitempty"`
 }
 
 // HasCopyableFix reports whether Fix is a paste-ready `uses:` line.
@@ -58,6 +67,27 @@ type Summary struct {
 	DegradedReason  string    `json:"degraded_reason,omitempty"`
 	UnreadableRepos []string  `json:"unreadable_repos,omitempty"`
 	ToolVersion     string    `json:"tool_version"`
+
+	// Complete reports whether the scan looked at everything it set out
+	// to look at. A scan that could not finish is not a clean scan, and
+	// must never read as one.
+	Complete         bool   `json:"complete"`
+	IncompleteReason string `json:"incomplete_reason,omitempty"`
+
+	// Delta against a baseline scan, when one was given.
+	BaselinePath   string `json:"baseline_path,omitempty"`
+	BaselineAt     string `json:"baseline_at,omitempty"`
+	NewFindings    int    `json:"new_findings"`
+	ResolvedFindgs int    `json:"resolved_findings"`
+
+	// Transitive is the transitive dependency analysis, when it ran.
+	Transitive *TransitiveReport `json:"transitive,omitempty"`
+
+	// Policy is the configuration that was applied, for the report to
+	// show what was suppressed and why.
+	PolicyFile    string `json:"policy_file,omitempty"`
+	PolicyPersona string `json:"policy_persona,omitempty"`
+	PolicyIgnored int    `json:"policy_ignored"`
 }
 
 // Total is the number of findings.
@@ -67,6 +97,24 @@ func (s *Summary) Total() int { return len(s.Findings) }
 type Scanner struct {
 	Client  Client
 	RuleSet *rules.RuleSet
+
+	// Policy suppresses findings per the user's configuration. It is
+	// nil when no policy is configured, which means nothing is
+	// suppressed.
+	Policy Policy
+
+	// Transitive enables the transitive dependency graph: the actions a
+	// workflow reaches through a composite action or a reusable
+	// workflow, which no amount of top-level scanning can see.
+	Transitive bool
+
+	// TransitiveLimits bounds the traversal. The zero value means the
+	// documented defaults.
+	TransitiveLimits github.TransitiveLimits
+
+	// Provenance enables the imposter-commit check: is the commit a
+	// workflow pins to still on the action's default branch?
+	Provenance bool
 
 	// OSV results are cached per owner/repo for the lifetime of one
 	// scan: the query is by package name, so every ref of the same
@@ -107,6 +155,7 @@ type ActionRef struct {
 	Ref      string // version/sha/branch, "" when absent
 	Job      string // job id
 	Step     int    // step index within the job, -1 for job-level reusable workflow calls
+	Line     int    // 1-based line in the workflow file, 0 when unknown
 }
 
 // ExtractActionRefs parses a workflow file and returns every remote
@@ -133,8 +182,11 @@ func ExtractActionRefs(yamlBytes []byte) []ActionRef {
 			continue
 		}
 		// Job-level reusable workflow call: org/repo/.github/workflows/x.yml@v1
-		if a, ok := newActionRef(scalarValue(mapValue(job, "uses")), jobName, -1); ok {
-			out = append(out, a)
+		if node := mapValue(job, "uses"); node != nil {
+			if a, ok := newActionRef(scalarValue(node), jobName, -1); ok {
+				a.Line = node.Line
+				out = append(out, a)
+			}
 		}
 		steps := mapValue(job, "steps")
 		if steps == nil || steps.Kind != yaml.SequenceNode {
@@ -144,8 +196,11 @@ func ExtractActionRefs(yamlBytes []byte) []ActionRef {
 			if step.Kind != yaml.MappingNode {
 				continue
 			}
-			if a, ok := newActionRef(scalarValue(mapValue(step, "uses")), jobName, si); ok {
-				out = append(out, a)
+			if node := mapValue(step, "uses"); node != nil {
+				if a, ok := newActionRef(scalarValue(node), jobName, si); ok {
+					a.Line = node.Line
+					out = append(out, a)
+				}
 			}
 		}
 	}
@@ -516,11 +571,21 @@ func (s *Scanner) ScanAll(ctx context.Context, repos []github.Repo, concurrency 
 					return // cancelled: the remaining repos are not scanned
 				}
 				findings, checked, err := s.scanRepo(ctx, r)
+				extra := s.extraLayers(ctx, r)
 
 				mu.Lock()
 				summary.TotalRepos++
 				summary.ActionsChecked += checked
 				summary.Findings = append(summary.Findings, findings...)
+				summary.Findings = append(summary.Findings, extra.findings...)
+				if extra.transitive != nil {
+					if summary.Transitive == nil {
+						// A fresh report is complete until something
+						// proves otherwise.
+						summary.Transitive = &TransitiveReport{Complete: true}
+					}
+					mergeTransitive(summary.Transitive, extra.transitive)
+				}
 				if err != nil {
 					summary.UnreadableRepos = append(summary.UnreadableRepos,
 						fmt.Sprintf("%s: %v", r.FullName, err))
@@ -556,6 +621,7 @@ feed:
 		affected[f.Repo] = true
 	}
 	summary.AffectedRepos = len(affected)
+	SetFingerprints(summary.Findings)
 	sort.Strings(summary.UnreadableRepos)
 
 	// Stable + full tie-breakers → identical reports run to run.
@@ -604,9 +670,37 @@ func (s *Scanner) scanRepo(ctx context.Context, r github.Repo) ([]Finding, int, 
 	var findings []Finding
 	checked := 0
 	for _, p := range paths {
-		for _, a := range ExtractActionRefs(workflows[p]) {
+		// Inline ignores are per workflow file: `# actionscan: ignore`
+		// on the same line as a `uses:`.
+		ignores := ParseInlineIgnores(workflows[p])
+		respectInline := true
+		if pp, ok := s.Policy.(PersonaPolicy); ok {
+			respectInline = pp.RespectInlineIgnores()
+		}
+		refs := ExtractActionRefs(workflows[p])
+		for _, a := range refs {
 			checked++
-			findings = append(findings, s.Check(ctx, r.FullName, p, a)...)
+			candidates := s.Check(ctx, r.FullName, p, a)
+			// A persona adds findings of its own — the sensitivity
+			// profiles report things the rules do not.
+			if pp, ok := s.Policy.(PersonaPolicy); ok {
+				candidates = append(candidates, pp.PersonaFindings(r.FullName, p, a.Job, a)...)
+			}
+			for _, f := range candidates {
+				f.Line = a.Line
+				if respectInline && SuppressInline(ignores, f, a.Line) {
+					continue
+				}
+				if s.Policy != nil {
+					if s.Policy.Suppress(f) {
+						continue
+					}
+					if sev := s.Policy.Severity(f); sev != "" {
+						f.Severity = sev
+					}
+				}
+				findings = append(findings, f)
+			}
 		}
 	}
 	return findings, checked, nil

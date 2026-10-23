@@ -19,6 +19,15 @@ var dashboard = template.Must(template.New("report").Parse(web.TemplateHTML()))
 
 // HTML writes the dashboard to <dir>/report.html.
 func HTML(s *scanner.Summary, dir string) (string, error) {
+	return HTMLWithBaseline(s, dir, nil)
+}
+
+// HTMLWithBaseline writes the dashboard, marking the findings that are
+// new relative to a baseline scan.
+//
+// newFingerprints is the set of finding fingerprints that are new. It
+// may be nil, in which case nothing is marked.
+func HTMLWithBaseline(s *scanner.Summary, dir string, newFingerprints map[string]bool) (string, error) {
 	p := filepath.Join(dir, "report.html")
 	f, err := os.Create(p)
 	if err != nil {
@@ -29,9 +38,22 @@ func HTML(s *scanner.Summary, dir string) (string, error) {
 	data := struct {
 		*scanner.Summary
 		Empty bool
-	}{s, len(s.Findings) == 0}
+		// NewFingerprints lets the template render a NEW badge.
+		NewFingerprints map[string]bool
+		// TransitiveRows renders the transitive dependency table.
+		TransitiveRows [][]string
+	}{s, len(s.Findings) == 0, newFingerprints, transitiveRows(s)}
 
 	return p, dashboard.Execute(f, data)
+}
+
+// transitiveRows renders the transitive dependency analysis as table
+// rows, or nil when the analysis did not run.
+func transitiveRows(s *scanner.Summary) [][]string {
+	if s == nil || s.Transitive == nil {
+		return nil
+	}
+	return scanner.TransitiveRows(*s.Transitive)
 }
 
 // CSV writes the findings to <dir>/report.csv.

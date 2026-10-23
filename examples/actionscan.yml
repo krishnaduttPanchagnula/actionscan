@@ -1,0 +1,47 @@
+# actionscan configuration
+#
+# Optional. Place this file next to your workflow files (or point at it
+# with --policy). Every key is optional.
+#
+#   actionscan scan --policy ./actionscan.yml
+#
+# See https://github.com/krishnaduttPanchagnula/actionscan for the full
+# documentation.
+
+version: 1
+
+# Actions to skip entirely. An "owner/repo" entry also covers that
+# repository's sub-path actions (github/codeql-action covers
+# github/codeql-action/analyze). "owner/repo/*" matches everything
+# below the repository. Matching is case-insensitive.
+ignore_actions:
+  # - actions/checkout
+  # - some-org/internal-*
+
+# Actions that must never be skipped. An ignore entry for one of these
+# is a configuration error, because silently muting a compromised action
+# is the worst thing this tool can do.
+deny_ignore:
+  - tj-actions/changed-files
+  - reviewdog/action-setup
+
+# Rule categories to drop entirely:
+#   malicious, vulnerable, osv, outdated, unpinned
+ignore_rules:
+  # - outdated
+
+# Remap a severity, per rule category or per advisory id. An advisory
+# id wins over a rule category.
+severity_remap:
+  # outdated: LOW
+  # GHSA-mrrh-fwg8-r2c3: CRITICAL
+
+# Sensitivity profile:
+#   regular  — only what the rules produce
+#   pedantic — also flags floating version tags (v4 rather than v4.2.2)
+#   auditor  — also flags anything not pinned to a full 40-char SHA
+persona: regular
+
+# Honour "# actionscan: ignore" comments in workflow files. Set to
+# false to audit what people tried to suppress.
+respect_inline_ignores: true
